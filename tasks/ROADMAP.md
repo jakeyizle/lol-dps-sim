@@ -91,14 +91,14 @@ Each milestone ends deployed, with its scenarios passing.
 
 - [x] Caitlyn
 - [x] Ashe
-- [ ] Kai'Sa
-- [ ] Vayne
-- [ ] Rotation editor UI
+- [ ] Kai'Sa → T-040
+- [ ] Vayne → T-041
+- [ ] Rotation editor UI → T-042
 
 ## M8 — Persistence & launch (SAVE)
 
-- [ ] localStorage + schema migrations (incl. user target presets, TGT-005)
-- [ ] Share URLs, patch notices, removed-item handling
+- [ ] localStorage + schema migrations (incl. user target presets, TGT-005) → T-043
+- [ ] Share URLs, patch notices, removed-item handling → T-044 (removed items: T-043)
 - [ ] README with disclaimer; E2E journeys; `scenarios:check --strict` in CI
 
 ## M9 — Mutation testing (PLAN §8)
