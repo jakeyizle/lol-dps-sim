@@ -149,3 +149,30 @@ describe("crit", () => {
     },
   );
 });
+
+it(
+  "percent penetration from several sources combines multiplicatively",
+  { tags: ["STAT-002"] },
+  () => {
+    const s = computeStats({
+      champion: testChampion,
+      level: 1,
+      constants: testConstants,
+      bonuses: [
+        { magicPenPercent: 0.4, armorPenPercent: 0.3 },
+        { magicPenPercent: 0.5, armorPenPercent: 0.3 },
+      ],
+    });
+    expect(s.magicPenPercent).toBeCloseTo(1 - 0.6 * 0.5, 9);
+    expect(s.armorPenPercent).toBeCloseTo(1 - 0.7 * 0.7, 9);
+  },
+);
+
+it("no bonuses leave base stats", { tags: ["STAT-001"] }, () => {
+  const s = computeStats({
+    champion: testChampion,
+    level: 1,
+    constants: testConstants,
+  });
+  expect(s.attackDamage).toEqual({ base: 60, bonus: 0, total: 60 });
+});

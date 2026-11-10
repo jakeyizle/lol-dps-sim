@@ -33,7 +33,10 @@ const page = DEFAULT_RUNES.Jinx;
 
 const BUDGET_MS = 2000;
 
-it(
+// Mutation runs instrument the engine, so their timings say nothing about the budget.
+const instrumented = "__stryker__" in globalThis;
+
+it.skipIf(instrumented)(
   "4 builds × 3 targets × 200 RNG runs finish within the budget",
   { tags: ["CMP-005"], timeout: 30_000 },
   () => {

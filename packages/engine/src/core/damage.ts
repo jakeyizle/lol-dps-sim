@@ -78,6 +78,7 @@ export function effectiveResistance(opts: {
   penFlat?: number;
 }) {
   let r = opts.base - (opts.reductionFlat ?? 0);
+  // Stryker disable next-line EqualityOperator: at exactly 0 the rest also yields 0
   if (r <= 0) return r;
   r *= 1 - (opts.reductionPercent ?? 0);
   r *= 1 - (opts.penPercent ?? 0);
@@ -86,6 +87,7 @@ export function effectiveResistance(opts: {
 
 /** DMG-001–003. */
 export function resistanceMultiplier(r: number) {
+  // Stryker disable next-line EqualityOperator: both branches give 1 at 0
   return r >= 0 ? 100 / (100 + r) : 2 - 100 / (100 - r);
 }
 
@@ -101,12 +103,12 @@ export function critMultiplier(
   return 1 + critChance * (onCrit - 1);
 }
 
+/** True damage ignores resistances, so it never gets here. */
 function resistanceFor(
-  type: DamageType,
+  type: Exclude<DamageType, "true">,
   attacker: Attacker,
   defender: Defender,
 ) {
-  if (type === "true") return 0;
   return type === "physical"
     ? effectiveResistance({
         base: defender.armor,

@@ -176,6 +176,7 @@ function part(p: Part, ctx: CalcContext): number {
       // Each breakpoint adds a one-off bonus and/or a bonus per level from its level on.
       const level = ctx.stats.level;
       let total = p.mLevel1Value ?? 0;
+      // Stryker disable next-line ArrayDeclaration: a string's characters have no mLevel, so they add nothing either
       for (const b of p.mBreakpoints ?? []) {
         const from = b.mLevel ?? Infinity;
         if (level < from) continue;

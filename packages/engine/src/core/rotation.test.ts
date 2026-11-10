@@ -4,7 +4,7 @@ import { describe, expect, it } from "vitest";
 import { testChampion, testConstants } from "../../test/champions";
 import type { DamageInstance } from "./damage";
 import { stackingBuff } from "./effects";
-import type { Rotation } from "./rotation";
+import { conditionTime, type Rotation, type RotationState } from "./rotation";
 import {
   simulate,
   type SimAbility,
@@ -227,5 +227,33 @@ describe("resource condition", { tags: ["ROT-006"] }, () => {
     );
     expect(times(r, "Q")).toEqual([]);
     expect(times(r, "attack")).toEqual([0, 1.25]);
+  });
+});
+
+describe("mana condition timing", { tags: ["ROT-006"] }, () => {
+  const state = (over: Partial<RotationState> = {}): RotationState => ({
+    time: 2,
+    afterAttack: false,
+    mana: 50,
+    maxMana: 300,
+    manaRegen: 5,
+    targetHealth: 100,
+    targetMaxHealth: 100,
+    buffStacks: () => 0,
+    wouldKill: () => false,
+    ...over,
+  });
+  const at = (amount: number, over: Partial<RotationState> = {}) =>
+    conditionTime({ kind: "minMana", amount }, "Q", state(over));
+
+  it("holds now with enough mana, later as mana regenerates, never past max mana", () => {
+    expect(at(30)).toBe(2);
+    expect(at(50)).toBe(2);
+    // 25 missing at 5 per second
+    expect(at(75)).toBe(7);
+    expect(at(300, { mana: 290 })).toBe(4);
+    expect(at(301)).toBe(Infinity);
+    expect(at(75, { manaRegen: 0 })).toBe(Infinity);
+    expect(at(50, { manaRegen: 0 })).toBe(2);
   });
 });
