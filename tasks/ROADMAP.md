@@ -49,7 +49,7 @@ Each milestone ends deployed, with its scenarios passing.
 
 ## M2 — Engine core (STAT, DMG, SIM)
 
-- [ ] Stats: level growth, flat bonuses, AS formula + cap, crit cap, crit damage → T-005
+- [x] Stats: level growth, flat bonuses, AS formula + cap, crit cap, crit damage
 - [ ] Damage pipeline: resistances, pen order, crit EV/RNG, on-hit exclusion, amps, typed shields, tags
 - [ ] Event loop: attack timer, windup formula per slot, end conditions, executes, damage trace
 - [ ] Buffs, DoTs, cooldowns + haste, cast times, AA resets, mana (start, regen, costs)
