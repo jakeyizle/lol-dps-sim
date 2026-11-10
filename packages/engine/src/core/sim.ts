@@ -83,6 +83,8 @@ export interface SimAttacker {
   initialBuffs?: readonly { spec: BuffSpec; stacks: number }[];
   /** Default: attack only. */
   rotation?: Rotation;
+  /** The attacker's health as a fraction of max, constant during the fight (BUILD-012). Default 1. */
+  healthFraction?: number;
   /** Effects run kit → items → runes (SIM-024). */
   kit?: readonly Effect[];
   /** In build order. */
@@ -116,6 +118,8 @@ export interface SimOptions {
    * to the max duration; effects see missing health capped at 100%; executes are off.
    */
   dpsRun?: boolean;
+  /** Game time in minutes, for time-scaling effects (BUILD-013). Default 30. */
+  gameTime?: number;
 }
 
 export interface TraceEntry {
@@ -293,6 +297,8 @@ export function simulate(
         return Math.max(0, health); // METRIC-008: missing health caps at 100%
       },
       targetMaxHealth: target.maxHealth,
+      attackerHealthFraction: attacker.healthFraction ?? 1,
+      gameTime: options.gameTime ?? 30,
       targetBonusHealth: target.bonusHealth ?? 0,
       targetIsChampion: target.champion ?? true,
       get mana() {

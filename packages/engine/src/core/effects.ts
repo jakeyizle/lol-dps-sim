@@ -49,6 +49,10 @@ export interface EffectContext {
   stats: StatBlock;
   targetHealth: number;
   targetMaxHealth: number;
+  /** BUILD-012. */
+  attackerHealthFraction: number;
+  /** Minutes (BUILD-013). */
+  gameTime: number;
   targetBonusHealth: number;
   targetIsChampion: boolean;
   /** Current mana, after regeneration. */

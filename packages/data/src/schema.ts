@@ -101,6 +101,8 @@ export const Constants = z.object({
   /** Energized stacks per basic attack, and the max (ITEM-018). */
   energizeStacksPerAttack: z.number().positive(),
   energizeMaxStacks: z.number().positive(),
+  /** Champion level needed for each rank of R (BUILD-004). */
+  ultimateLevels: z.array(z.number().int().min(1).max(18)).min(1),
 });
 export type Constants = z.infer<typeof Constants>;
 

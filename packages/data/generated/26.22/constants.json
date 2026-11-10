@@ -3,5 +3,10 @@
   "attackSpeedCap": 3.003,
   "baseCritMultiplier": 2,
   "energizeStacksPerAttack": 6,
-  "energizeMaxStacks": 100
+  "energizeMaxStacks": 100,
+  "ultimateLevels": [
+    6,
+    11,
+    16
+  ]
 }
