@@ -82,14 +82,15 @@ Each milestone ends deployed, with its scenarios passing.
 
 ## M6 — Compare (CMP)
 
-- [ ] Multi-build side by side
-- [ ] Item-count timeline
-- [ ] Build × target matrix, worker pool, RNG mode in UI; perf check (CMP-005)
+- [ ] Multi-build side by side → T-034
+- [ ] Item-count timeline → T-035
+- [ ] Build × target matrix → T-036
+- [ ] Worker pool, RNG mode in UI; perf check (CMP-005) → T-037
 
 ## M7 — Remaining champions (CAIT, ASHE, KAISA, VAYNE, ROT)
 
-- [ ] Caitlyn
-- [ ] Ashe
+- [ ] Caitlyn → T-038
+- [ ] Ashe → T-039
 - [ ] Kai'Sa
 - [ ] Vayne
 - [ ] Rotation editor UI
