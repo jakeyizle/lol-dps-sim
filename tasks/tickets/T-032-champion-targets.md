@@ -7,7 +7,7 @@ Depends on: T-029
 
 ## Notes
 
-- Target model: `{ kind: "champion", champion, level, items, runes, overrides } | { kind: "dummy", health, armor, magicResist, damageReduction }`; any champion in the patch data can be a target (BUILD-009 second half). Target champions outside the manifest need their stats in the data: decide whether to add all champions' base stats to the pipeline (stats only, no kits).
+- Target model: `{ kind: "champion", champion, level, items, runes, overrides } | { kind: "dummy", health, armor, magicResist, damageReduction }`; any champion in the patch data can be a target (BUILD-009 second half). The pipeline adds every champion's base stats (no kits); a target's defensive kit is modelled only where the engine registers one, and other targets show "stats only" (BUILD-009).
 - Target stats via `computeStats` + item/rune stats; bonus health feeds Giant Slayer (ITEM-013).
 - TGT-002: add the dummy's % damage reduction (a `DamageReduction` on the defender).
 - Presets: Squishy / Bruiser / Tank shipped as data; user presets in the store (persistence lands in M8, so TGT-005's reload half waits for SAVE-001; note it).
