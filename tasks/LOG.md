@@ -14,3 +14,4 @@
 - T-003 | 2026-11-09 | React 19 + Vite 8 + Tailwind 4 shell, CI workflow (lint, typecheck, test, scenarios:check, build), GitHub Pages deploy on main
 - T-014 | 2026-11-09 | buffs (stacks, expiry, stat bonuses, AS cap lift), casts (cast time, haste cooldowns, AA resets), DoTs, mana (start full, regen, costs); policy callback until rotations
 - T-015 | 2026-11-09 | seeded RNG crit mode (crit slot windup), simulateMany with mean/p10/p50/p90 + kill rate, CMP-005 benchmark (34 ms locally for 4×3×200)
+- T-011 | 2026-11-09 | items (30: stats mapped to engine names, passive values, exclusive groups from ItemGroup max-ownable) and runes (21 incl. shards, values from perks bin, trees from runesReforged); note 26.22 Kraken data is every-3rd-attack (AttackCount 3), not stacks

@@ -1,0 +1,330 @@
+{
+  "Perks/Styles/Precision/LethalTempo": {
+    "mPerkId": 8008,
+    "mPerkName": "LethalTempo",
+    "mScript": {
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "Duration": 6,
+          "MaxStacks": 6,
+          "TTASPerStackMelee": 0.05999999865889549,
+          "PerfectlyTimedForgivance": 0.25,
+          "TTASPerStackRanged": 0.03999999910593033,
+          "TTMinNoteDamageMelee": 9,
+          "TTMaxNoteDamageMelee": 30,
+          "TTMinNoteDamageRanged": 6,
+          "TTMaxNoteDamageRanged": 24
+        }
+      }
+    },
+    "__type": "Perk"
+  },
+  "Perks/Styles/Precision/PressTheAttack": {
+    "mPerkId": 8005,
+    "mPerkName": "PressTheAttack",
+    "mScript": {
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "MinDamage": 40,
+          "MaxDamage": 160,
+          "BonusADRatio": 0,
+          "APRatio": 0,
+          "LethalityRatio": 0,
+          "HitsRequired": 3,
+          "TimeBetweenHits": 4,
+          "AmpPotencyMaxSelf": 0.07999999821186066,
+          "AmpDuration": 5,
+          "AmpPotencyMaxOthers": 0.07999999821186066,
+          "AmpPotencyStartSelf": 0.07999999821186066,
+          "AmpPotencyStartOthers": 0.07999999821186066,
+          "BonusPercentDamage": 0.07999999821186066,
+          "OutOfCombatTimer": 5,
+          "Cooldown": 6
+        }
+      }
+    },
+    "__type": "Perk"
+  },
+  "Perks/Styles/Domination/HailOfBlades": {
+    "mPerkId": 9923,
+    "mPerkName": "HailOfBlades",
+    "mScript": {
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "NumHits": 3,
+          "Duration": 3,
+          "ASBoost": 0.8999999761581421,
+          "Cooldown": 10,
+          "ASBoostRanged": 0.6000000238418579,
+          "BonusDamageMin": 2,
+          "BonusDamageMax": 20,
+          "BonusADRatio": 0.11999999731779099,
+          "APRatio": 0.10000000149011612,
+          "MaxBonusHits": 2
+        }
+      }
+    },
+    "__type": "Perk"
+  },
+  "Perks/Styles/Precision/Conqueror": {
+    "mPerkId": 8010,
+    "mPerkName": "Conqueror",
+    "mScript": {
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "MinAdaptivePerStack": 1.7999999523162842,
+          "MaxAdaptivePerStack": 4,
+          "MaxStacks": 12,
+          "BuffDuration": 5,
+          "TimeUntilNextStackFromSameSpell": 4,
+          "HealingPercent": 0.07999999821186066,
+          "RangedHealingPercent": 0.05000000074505806
+        }
+      }
+    },
+    "__type": "Perk"
+  },
+  "Perks/Styles/Precision/FleetFootwork": {
+    "mPerkId": 8021,
+    "mPerkName": "FleetFootwork",
+    "mScript": {
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "HealBonusADRatio": 0.10000000149011612,
+          "HealAPRatio": 0.05000000074505806,
+          "HealBase": 15,
+          "HealMax": 160,
+          "MSBuff": 0.20000000298023224,
+          "MSDuration": 1,
+          "RangedMSMod": 0.75,
+          "RangedHealMod": 0.6000000238418579,
+          "MinionHealMod": 0.15000000596046448
+        }
+      }
+    },
+    "__type": "Perk"
+  },
+  "Perks/Styles/Precision/CoupDeGrace": {
+    "mPerkId": 8014,
+    "mPerkName": "CoupDeGrace",
+    "mScript": {
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "EnemyHealthPercentageThreshold": 0.4000000059604645,
+          "BonusPercentDamage": 0.07999999821186066
+        }
+      }
+    },
+    "__type": "Perk"
+  },
+  "Perks/Styles/Precision/CutDown": {
+    "mPerkId": 8017,
+    "mPerkName": "CutDown",
+    "mScript": {
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "MinBonusDamagePercent": 0.05000000074505806,
+          "MaxBonusDamagePercent": 0.15000000596046448,
+          "MinHealthDifference": 0.10000000149011612,
+          "MaxHealthDifference": 1,
+          "EnemyHealthPercentageThreshold": 0.6000000238418579,
+          "BonusPercentDamage": 0.07999999821186066
+        }
+      }
+    },
+    "__type": "Perk"
+  },
+  "Perks/Styles/Precision/LastStand": {
+    "mPerkId": 8299,
+    "mPerkName": "LastStand",
+    "mScript": {
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "MinBonusDamagePercent": 0.05000000074505806,
+          "MaxBonusDamagePercent": 0.10999999940395355,
+          "HealthThresholdStart": 0.6000000238418579,
+          "HealthThresholdEnd": 0.30000001192092896
+        }
+      }
+    },
+    "__type": "Perk"
+  },
+  "Perks/Styles/Precision/LegendAlacrity": {
+    "mPerkId": 9104,
+    "mPerkName": "LegendAlacrity",
+    "mScript": {
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "AttackSpeedPerStack": 0.014999999664723873,
+          "AttackSpeedBase": 0.029999999329447746,
+          "MaxLegendStacks": 10,
+          "{3e1fdd4a}": 100,
+          "{8fb410e2}": 100,
+          "{f6570baa}": 100,
+          "LargeMonsterKillValue": 25,
+          "MinionKillValue": 4
+        }
+      }
+    },
+    "__type": "Perk"
+  },
+  "Perks/Styles/Precision/LegendBloodline": {
+    "mPerkId": 9103,
+    "mPerkName": "LegendBloodline",
+    "mScript": {
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "LifeStealPerStack": 0.44999998807907104,
+          "LifeStealBase": 0,
+          "MaxLegendStacks": 15,
+          "{3e1fdd4a}": 100,
+          "{8fb410e2}": 100,
+          "{f6570baa}": 100,
+          "LargeMonsterKillValue": 25,
+          "MinionKillValue": 4,
+          "BonusHealth": 85
+        }
+      }
+    },
+    "__type": "Perk"
+  },
+  "Perks/Styles/Sorcery/GatheringStorm": {
+    "mPerkId": 8236,
+    "mPerkName": "GatheringStorm",
+    "mScript": {
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "UpdateAfterMinutes": 10,
+          "AdaptiveAP": 8,
+          "AdaptiveAD": 6,
+          "{c5d14564}": 8
+        }
+      }
+    },
+    "__type": "Perk"
+  },
+  "Perks/Styles/Sorcery/AbsoluteFocus": {
+    "mPerkId": 8233,
+    "mPerkName": "AbsoluteFocus",
+    "mScript": {
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "HealthPercent": 0.699999988079071,
+          "MinAdaptive": 3,
+          "MaxAdaptive": 30
+        }
+      }
+    },
+    "__type": "Perk"
+  },
+  "Perks/StatMods/AttackSpeed": {
+    "mPerkId": 5005,
+    "mPerkName": "AttackSpeed",
+    "mScript": {
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "StatGain": 10
+        }
+      }
+    },
+    "__type": "Perk"
+  },
+  "Perks/StatMods/Adaptive": {
+    "mPerkId": 5008,
+    "mPerkName": "Adaptive",
+    "mScript": {
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "StatGain2": 9,
+          "StatGain1": 5.400000095367432
+        }
+      }
+    },
+    "__type": "Perk"
+  },
+  "Perks/StatMods/HealthScaling": {
+    "mPerkId": 5001,
+    "mPerkName": "HealthScaling",
+    "mScript": {
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "StatGainMin": 10,
+          "StatGainMax": 180
+        }
+      }
+    },
+    "__type": "Perk"
+  },
+  "Perks/StatMods/Armor": {
+    "mPerkId": 5002,
+    "mPerkName": "Armor",
+    "mScript": {
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "StatGain": 6
+        }
+      }
+    },
+    "__type": "Perk"
+  },
+  "Perks/StatMods/MagicRes": {
+    "mPerkId": 5003,
+    "mPerkName": "MagicRes",
+    "mScript": {
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "StatGain": 8
+        }
+      }
+    },
+    "__type": "Perk"
+  },
+  "Perks/StatMods/CDRScaling": {
+    "mPerkId": 5007,
+    "mPerkName": "CDRScaling",
+    "mScript": {
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "HasteGain": 8
+        }
+      }
+    },
+    "__type": "Perk"
+  },
+  "Perks/StatMods/MovementSpeed": {
+    "mPerkId": 5010,
+    "mPerkName": "MovementSpeed",
+    "mScript": {
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "StatGain1": 2.5
+        }
+      }
+    },
+    "__type": "Perk"
+  },
+  "Perks/StatMods/Health": {
+    "mPerkId": 5011,
+    "mPerkName": "Health",
+    "mScript": {
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "StatGain": 65
+        }
+      }
+    },
+    "__type": "Perk"
+  },
+  "Perks/StatMods/Tenacity": {
+    "mPerkId": 5013,
+    "mPerkName": "Tenacity",
+    "mScript": {
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "StatGain": 15
+        }
+      }
+    },
+    "__type": "Perk"
+  }
+}

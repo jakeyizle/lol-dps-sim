@@ -1,0 +1,1284 @@
+{
+  "patch": "26.22",
+  "items": {
+    "1055": {
+      "id": "1055",
+      "name": "Doran's Blade",
+      "cost": 450,
+      "stats": {
+        "health": 80,
+        "attackDamage": 10
+      },
+      "otherStats": {
+        "PercentOmnivampMod": 0.025
+      },
+      "values": {},
+      "calculations": {},
+      "groups": [
+        "DoransItems"
+      ]
+    },
+    "2501": {
+      "id": "2501",
+      "name": "Overlord's Bloodmail",
+      "cost": 3300,
+      "stats": {
+        "health": 550,
+        "attackDamage": 40
+      },
+      "otherStats": {},
+      "values": {
+        "HPToADPercentage": 0.025,
+        "MissingHealthAD": 0.1,
+        "MissingHealthThreshold": 0.7
+      },
+      "calculations": {
+        "RemainingHealthThreshold": {
+          "mMultiplier": {
+            "mNumber": -1,
+            "__type": "NumberCalculationPart"
+          },
+          "mExpandedTooltipCalculationDisplay": 5,
+          "mFormulaParts": [
+            {
+              "mNumber": -1,
+              "__type": "NumberCalculationPart"
+            },
+            {
+              "mDataValue": "MissingHealthThreshold",
+              "__type": "NamedDataValueCalculationPart"
+            }
+          ],
+          "mDisplayAsPercent": true,
+          "__type": "GameCalculation"
+        }
+      },
+      "groups": [
+        "{18fc0a13}"
+      ]
+    },
+    "3006": {
+      "id": "3006",
+      "name": "Berserker's Greaves",
+      "cost": 1100,
+      "stats": {
+        "moveSpeed": 45,
+        "attackSpeed": 0.3
+      },
+      "otherStats": {},
+      "values": {
+        "FeatsAS": 0.05
+      },
+      "calculations": {},
+      "groups": [
+        "Boots",
+        "BootsWithoutActives"
+      ]
+    },
+    "3026": {
+      "id": "3026",
+      "name": "Guardian Angel",
+      "cost": 3200,
+      "stats": {
+        "armor": 45,
+        "attackDamage": 55
+      },
+      "otherStats": {},
+      "values": {
+        "Cooldown": 300
+      },
+      "calculations": {},
+      "groups": [
+        "3026"
+      ]
+    },
+    "3031": {
+      "id": "3031",
+      "name": "Infinity Edge",
+      "cost": 3500,
+      "stats": {
+        "critChance": 0.25,
+        "critDamage": 0.3,
+        "attackDamage": 75
+      },
+      "otherStats": {},
+      "values": {},
+      "calculations": {},
+      "groups": [
+        "{37d64eea}",
+        "{5ddfe837}"
+      ]
+    },
+    "3033": {
+      "id": "3033",
+      "name": "Mortal Reminder",
+      "cost": 3000,
+      "stats": {
+        "armorPenPercent": 0.3,
+        "critChance": 0.25,
+        "attackDamage": 35
+      },
+      "otherStats": {},
+      "values": {
+        "GrievousDuration": 3,
+        "GrievousAmount": 0.4
+      },
+      "calculations": {},
+      "groups": [
+        "3033",
+        "LastWhisper"
+      ]
+    },
+    "3036": {
+      "id": "3036",
+      "name": "Lord Dominik's Regards",
+      "cost": 3300,
+      "stats": {
+        "armorPenPercent": 0.35,
+        "critChance": 0.25,
+        "attackDamage": 35
+      },
+      "otherStats": {},
+      "values": {
+        "MaxBonusDamagePercent": 0.15,
+        "MaxBonusHealth": 1500
+      },
+      "calculations": {},
+      "groups": [
+        "LastWhisper"
+      ]
+    },
+    "3046": {
+      "id": "3046",
+      "name": "Phantom Dancer",
+      "cost": 2650,
+      "stats": {
+        "critChance": 0.25,
+        "attackSpeed": 0.65
+      },
+      "otherStats": {
+        "mPercentMovementSpeedMod": 0.1
+      },
+      "values": {},
+      "calculations": {},
+      "groups": [
+        "3046"
+      ]
+    },
+    "3047": {
+      "id": "3047",
+      "name": "Plated Steelcaps",
+      "cost": 1200,
+      "stats": {
+        "moveSpeed": 45,
+        "armor": 25
+      },
+      "otherStats": {},
+      "values": {
+        "FeatsArmor": 5
+      },
+      "calculations": {},
+      "groups": [
+        "Boots",
+        "BootsWithoutActives"
+      ]
+    },
+    "3053": {
+      "id": "3053",
+      "name": "Sterak's Gage",
+      "cost": 3200,
+      "stats": {
+        "health": 400
+      },
+      "otherStats": {
+        "mPercentTenacityItemMod": 0.2
+      },
+      "values": {
+        "LowHealthThreshold": 0.3,
+        "ShieldDuration": 4.5,
+        "HealthPercent": 0.1,
+        "HealPercent": 0.02,
+        "RangedEffectiveness": 0.6,
+        "ReductionAmount": 0.5,
+        "BaseShieldRatio": 0.6,
+        "HealDuration": 5,
+        "ADtoAD": 0.5,
+        "TimeBeforeDecay": 0.75,
+        "TenacityDuration": 8,
+        "SizeIncrease": 0.1,
+        "TenacityAmount": 0,
+        "Cooldown": 90
+      },
+      "calculations": {
+        "MeleeItemCalcValue": {
+          "mSimpleTooltipCalculationDisplay": 6,
+          "mExpandedTooltipCalculationDisplay": 6,
+          "mFormulaParts": [
+            {
+              "mStat": 12,
+              "mDataValue": "HealPercent",
+              "__type": "StatByNamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "BonusShield": {
+          "mMultiplier": {
+            "mBuffName": "{6faa06b7}",
+            "mCoefficient": 1,
+            "__type": "BuffCounterByCoefficientCalculationPart"
+          },
+          "mModifiedGameCalculation": "MeleeItemCalcValueB",
+          "__type": "GameCalculationModified"
+        },
+        "MeleeItemCalcValueB": {
+          "mFormulaParts": [
+            {
+              "mStat": 12,
+              "mStatFormula": 2,
+              "mDataValue": "HealthPercent",
+              "__type": "StatByNamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "RangedItemCalcValueB": {
+          "mMultiplier": {
+            "mDataValue": "RangedEffectiveness",
+            "__type": "NamedDataValueCalculationPart"
+          },
+          "mSimpleTooltipCalculationDisplay": 6,
+          "mExpandedTooltipCalculationDisplay": 6,
+          "mModifiedGameCalculation": "MeleeItemCalcValueB",
+          "__type": "GameCalculationModified"
+        },
+        "ChampRange": {
+          "mSimpleTooltipCalculationDisplay": 5,
+          "mExpandedTooltipCalculationDisplay": 5,
+          "tooltipOnly": true,
+          "mFormulaParts": [
+            {
+              "mCeiling": 3,
+              "mFloor": 2,
+              "mSubparts": [
+                {
+                  "mStat": 31,
+                  "mStatFormula": 1,
+                  "mSubpart": {
+                    "mNumber": 0.009999999776482582,
+                    "__type": "NumberCalculationPart"
+                  },
+                  "__type": "StatBySubPartCalculationPart"
+                }
+              ],
+              "__type": "ClampSubPartsCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "RangedItemCalcValue": {
+          "mMultiplier": {
+            "mDataValue": "RangedEffectiveness",
+            "__type": "NamedDataValueCalculationPart"
+          },
+          "mModifiedGameCalculation": "MeleeItemCalcValue",
+          "__type": "GameCalculationModified"
+        },
+        "ShieldSize": {
+          "mFormulaParts": [
+            {
+              "mStat": 12,
+              "mStatFormula": 2,
+              "mDataValue": "BaseShieldRatio",
+              "__type": "StatByNamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "BonusAD": {
+          "mFormulaParts": [
+            {
+              "mStat": 2,
+              "mStatFormula": 1,
+              "mDataValue": "ADtoAD",
+              "__type": "StatByNamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
+      },
+      "groups": [
+        "LifelineItems"
+      ]
+    },
+    "3065": {
+      "id": "3065",
+      "name": "Spirit Visage",
+      "cost": 2700,
+      "stats": {
+        "abilityHaste": 10,
+        "health": 400,
+        "magicResist": 50
+      },
+      "otherStats": {
+        "mPercentBaseHPRegenMod": 1
+      },
+      "values": {
+        "HealingIncrease": 0.25,
+        "ShieldIncrease": 0.25
+      },
+      "calculations": {},
+      "groups": [
+        "3065"
+      ]
+    },
+    "3072": {
+      "id": "3072",
+      "name": "Bloodthirster",
+      "cost": 3400,
+      "stats": {
+        "attackDamage": 80
+      },
+      "otherStats": {
+        "mPercentLifeStealMod": 0.15
+      },
+      "values": {
+        "Threshold": 0.7,
+        "DecayTime": 25
+      },
+      "calculations": {
+        "OvershieldCalc": {
+          "mFormulaParts": [
+            {
+              "mLevel1Value": 165,
+              "mBreakpoints": [
+                {
+                  "mLevel": 9,
+                  "mBonusPerLevelAtAndAfter": 15,
+                  "__type": "Breakpoint"
+                }
+              ],
+              "__type": "ByCharLevelBreakpointsCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
+      },
+      "groups": [
+        "3072"
+      ]
+    },
+    "3075": {
+      "id": "3075",
+      "name": "Thornmail",
+      "cost": 2450,
+      "stats": {
+        "health": 150,
+        "armor": 75
+      },
+      "otherStats": {},
+      "values": {
+        "BaseDamage": 20,
+        "BonusArmorDamageRatio": 0.1,
+        "GrievousAmount": 0.4,
+        "GrievousDuration": 3,
+        "EnhancedGrievousAmount": 0.4
+      },
+      "calculations": {
+        "TotalDamage": {
+          "mFormulaParts": [
+            {
+              "mDataValue": "BaseDamage",
+              "__type": "NamedDataValueCalculationPart"
+            },
+            {
+              "mStat": 1,
+              "mStatFormula": 2,
+              "mDataValue": "BonusArmorDamageRatio",
+              "__type": "StatByNamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
+      },
+      "groups": [
+        "3075",
+        "{d52cd27b}"
+      ]
+    },
+    "3085": {
+      "id": "3085",
+      "name": "Runaan's Hurricane",
+      "cost": 2650,
+      "stats": {
+        "critChance": 0.25,
+        "attackSpeed": 0.4
+      },
+      "otherStats": {
+        "mPercentMovementSpeedMod": 0.05
+      },
+      "values": {
+        "BoltMinPercent": 40,
+        "BoltMaxPercent": 40,
+        "ExtraRangeOnBoltCheck": 65,
+        "OnHitDamage": 0
+      },
+      "calculations": {
+        "BoltDamage": {
+          "mFormulaParts": [
+            {
+              "mStat": 2,
+              "mSubpart": {
+                "mNumber": 0.6000000238418579,
+                "__type": "NumberCalculationPart"
+              },
+              "__type": "StatBySubPartCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "{232dac8a}": {
+          "mFormulaParts": [
+            {
+              "mNumber": 0.6000000238418579,
+              "__type": "NumberCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "ChampRange": {
+          "mSimpleTooltipCalculationDisplay": 5,
+          "mExpandedTooltipCalculationDisplay": 5,
+          "mDefaultGameCalculation": "{792cf56b}",
+          "mConditionalGameCalculation": "{06387172}",
+          "mConditionalCalculationRequirements": {
+            "__type": "IsRangedCastRequirement"
+          },
+          "__type": "GameCalculationConditional"
+        },
+        "{792cf56b}": {
+          "mFormulaParts": [
+            {
+              "mNumber": 1,
+              "__type": "NumberCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "{06387172}": {
+          "mFormulaParts": [
+            {
+              "mNumber": 2,
+              "__type": "NumberCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
+      },
+      "groups": [
+        "3085",
+        "{8d0a6ae2}"
+      ]
+    },
+    "3087": {
+      "id": "3087",
+      "name": "Statikk Shiv",
+      "cost": 3000,
+      "stats": {
+        "attackDamage": 45,
+        "abilityPower": 45,
+        "attackSpeed": 0.3
+      },
+      "otherStats": {
+        "mPercentMovementSpeedMod": 0.04
+      },
+      "values": {
+        "BounceDelay": 0,
+        "BounceRange": 500,
+        "BonusEnergizedStacks": 9,
+        "ChainDamage": 60,
+        "NonChampChainDamage": 90
+      },
+      "calculations": {
+        "BounceCount": {
+          "mFormulaParts": [
+            {
+              "mLevel1Value": 4,
+              "mBreakpoints": [
+                {
+                  "mLevel": 6,
+                  "mAdditionalBonusAtThisLevel": 1,
+                  "__type": "Breakpoint"
+                },
+                {
+                  "mLevel": 10,
+                  "mAdditionalBonusAtThisLevel": 1,
+                  "__type": "Breakpoint"
+                },
+                {
+                  "mLevel": 14,
+                  "mAdditionalBonusAtThisLevel": 1,
+                  "__type": "Breakpoint"
+                },
+                {
+                  "mLevel": 20,
+                  "mAdditionalBonusAtThisLevel": 1,
+                  "__type": "Breakpoint"
+                }
+              ],
+              "__type": "ByCharLevelBreakpointsCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
+      },
+      "groups": [
+        "3087"
+      ]
+    },
+    "3091": {
+      "id": "3091",
+      "name": "Wit's End",
+      "cost": 2800,
+      "stats": {
+        "magicResist": 45,
+        "attackSpeed": 0.5
+      },
+      "otherStats": {
+        "mPercentTenacityItemMod": 0.2
+      },
+      "values": {},
+      "calculations": {
+        "OnHitDamage": {
+          "DamageType": 1,
+          "mFormulaParts": [
+            {
+              "mNumber": 45,
+              "__type": "NumberCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
+      },
+      "groups": [
+        "3091"
+      ]
+    },
+    "3094": {
+      "id": "3094",
+      "name": "Rapid Firecannon",
+      "cost": 2650,
+      "stats": {
+        "critChance": 0.25,
+        "attackSpeed": 0.35
+      },
+      "otherStats": {
+        "mPercentMovementSpeedMod": 0.04
+      },
+      "values": {
+        "RangePercentIncrease": 0.35,
+        "MaxRangeIncrease": 150,
+        "BonusDamage": 40
+      },
+      "calculations": {},
+      "groups": [
+        "3094"
+      ]
+    },
+    "3110": {
+      "id": "3110",
+      "name": "Frozen Heart",
+      "cost": 2500,
+      "stats": {
+        "abilityHaste": 20,
+        "armor": 75,
+        "mana": 400
+      },
+      "otherStats": {},
+      "values": {
+        "ASPDSlow": -0.2,
+        "AuraRadius": 700
+      },
+      "calculations": {},
+      "groups": [
+        "3110"
+      ]
+    },
+    "3115": {
+      "id": "3115",
+      "name": "Nashor's Tooth",
+      "cost": 2900,
+      "stats": {
+        "abilityHaste": 15,
+        "abilityPower": 80,
+        "attackSpeed": 0.5
+      },
+      "otherStats": {},
+      "values": {
+        "NashorsBaseValue": 15,
+        "NashorsAPValue": 0.15
+      },
+      "calculations": {
+        "TotalOnHitDamage": {
+          "DamageType": 1,
+          "mFormulaParts": [
+            {
+              "mDataValue": "NashorsBaseValue",
+              "__type": "NamedDataValueCalculationPart"
+            },
+            {
+              "mDataValue": "NashorsAPValue",
+              "__type": "StatByNamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
+      },
+      "groups": [
+        "3115"
+      ]
+    },
+    "3124": {
+      "id": "3124",
+      "name": "Guinsoo's Rageblade",
+      "cost": 3000,
+      "stats": {
+        "attackDamage": 30,
+        "abilityPower": 30,
+        "attackSpeed": 0.25
+      },
+      "otherStats": {},
+      "values": {
+        "OnHitDamage": 30,
+        "MythicArmorPen": 0,
+        "MythicMagicPen": 0,
+        "AttackSpeedPerStack": 0.08,
+        "MaxStacks": 4,
+        "BuffDuration": 4,
+        "CritChancePerStep": 0,
+        "DamageAmountPerCritStep": 0,
+        "MaxDamageFromCrit": 0
+      },
+      "calculations": {
+        "MaxAttackSpeedCalc": {
+          "tooltipOnly": true,
+          "mFormulaParts": [
+            {
+              "mPart1": {
+                "mDataValue": "AttackSpeedPerStack",
+                "__type": "NamedDataValueCalculationPart"
+              },
+              "mPart2": {
+                "mDataValue": "MaxStacks",
+                "__type": "NamedDataValueCalculationPart"
+              },
+              "__type": "ProductOfSubPartsCalculationPart"
+            }
+          ],
+          "mDisplayAsPercent": true,
+          "__type": "GameCalculation"
+        },
+        "TotalMagicPen": {
+          "mMultiplier": {
+            "mDataValue": "MythicMagicPen",
+            "__type": "NamedDataValueCalculationPart"
+          },
+          "mFormulaParts": [
+            {
+              "epicness": 5,
+              "__type": "ByItemEpicnessCountCalculationPart"
+            }
+          ],
+          "mDisplayAsPercent": true,
+          "__type": "GameCalculation"
+        },
+        "TotalArmorPen": {
+          "mMultiplier": {
+            "mDataValue": "MythicArmorPen",
+            "__type": "NamedDataValueCalculationPart"
+          },
+          "mFormulaParts": [
+            {
+              "epicness": 5,
+              "__type": "ByItemEpicnessCountCalculationPart"
+            }
+          ],
+          "mDisplayAsPercent": true,
+          "__type": "GameCalculation"
+        },
+        "{592c02e8}": {
+          "DamageType": 1,
+          "mFormulaParts": [
+            {
+              "mDataValue": "OnHitDamage",
+              "__type": "NamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
+      },
+      "groups": [
+        "{0eb22e4f}"
+      ]
+    },
+    "3143": {
+      "id": "3143",
+      "name": "Randuin's Omen",
+      "cost": 2700,
+      "stats": {
+        "health": 350,
+        "armor": 75
+      },
+      "otherStats": {},
+      "values": {
+        "PercentCritDamageReduction": 0.3,
+        "SlowAmount": 0.7,
+        "SlowDuration": 2,
+        "Radius": 500,
+        "Cooldown": 90
+      },
+      "calculations": {},
+      "groups": [
+        "3143"
+      ]
+    },
+    "3153": {
+      "id": "3153",
+      "name": "Blade of The Ruined King",
+      "cost": 3200,
+      "stats": {
+        "attackDamage": 40,
+        "attackSpeed": 0.25
+      },
+      "otherStats": {
+        "mPercentLifeStealMod": 0.1
+      },
+      "values": {
+        "MoveSpeedMod": -0.3,
+        "MoveSpeedDuration": 1,
+        "Cooldown": 15,
+        "RangedValue": 0.06,
+        "MeleeValue": 0.09,
+        "MonsterDamageCap": 100,
+        "AttackCounterDuration": 6,
+        "RangedMoveSpeedMod": -0.15
+      },
+      "calculations": {
+        "ChampRange": {
+          "mSimpleTooltipCalculationDisplay": 5,
+          "mExpandedTooltipCalculationDisplay": 5,
+          "mDefaultGameCalculation": "{792cf56b}",
+          "mConditionalGameCalculation": "{06387172}",
+          "mConditionalCalculationRequirements": {
+            "__type": "IsRangedCastRequirement"
+          },
+          "__type": "GameCalculationConditional"
+        },
+        "SiphonDamage": {
+          "mFormulaParts": [
+            {
+              "mLevel1Value": 40,
+              "mBreakpoints": [
+                {
+                  "mLevel": 10,
+                  "mBonusPerLevelAtAndAfter": 7,
+                  "__type": "Breakpoint"
+                }
+              ],
+              "__type": "ByCharLevelBreakpointsCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "MeleeItemCalcValue": {
+          "mFormulaParts": [
+            {
+              "mDataValue": "MeleeValue",
+              "__type": "NamedDataValueCalculationPart"
+            }
+          ],
+          "mDisplayAsPercent": true,
+          "__type": "GameCalculation"
+        },
+        "RangedItemCalcValue": {
+          "mFormulaParts": [
+            {
+              "mDataValue": "RangedValue",
+              "__type": "NamedDataValueCalculationPart"
+            }
+          ],
+          "mDisplayAsPercent": true,
+          "__type": "GameCalculation"
+        },
+        "{792cf56b}": {
+          "mFormulaParts": [
+            {
+              "mNumber": 1,
+              "__type": "NumberCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "{06387172}": {
+          "mFormulaParts": [
+            {
+              "mNumber": 2,
+              "__type": "NumberCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "{c0b34d7a}": {
+          "mFormulaParts": [
+            {
+              "mDataValue": "MoveSpeedMod",
+              "__type": "NamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "{fe7dca43}": {
+          "mFormulaParts": [
+            {
+              "mDataValue": "RangedMoveSpeedMod",
+              "__type": "NamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "MeleeItemCalcValueB": {
+          "mMultiplier": {
+            "mNumber": -1,
+            "__type": "NumberCalculationPart"
+          },
+          "mFormulaParts": [
+            {
+              "mDataValue": "MoveSpeedMod",
+              "__type": "NamedDataValueCalculationPart"
+            }
+          ],
+          "mDisplayAsPercent": true,
+          "__type": "GameCalculation"
+        },
+        "RangedItemCalcValueB": {
+          "mMultiplier": {
+            "mNumber": -1,
+            "__type": "NumberCalculationPart"
+          },
+          "mFormulaParts": [
+            {
+              "mDataValue": "RangedMoveSpeedMod",
+              "__type": "NamedDataValueCalculationPart"
+            }
+          ],
+          "mDisplayAsPercent": true,
+          "__type": "GameCalculation"
+        },
+        "{d96e60e3}": {
+          "mFormulaParts": [
+            {
+              "mDataValue": "MeleeValue",
+              "__type": "NamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "{42565e68}": {
+          "mFormulaParts": [
+            {
+              "mDataValue": "RangedValue",
+              "__type": "NamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "{79b6144b}": {
+          "mDefaultGameCalculation": "{d96e60e3}",
+          "mConditionalGameCalculation": "{42565e68}",
+          "mConditionalCalculationRequirements": {
+            "__type": "IsRangedCastRequirement"
+          },
+          "__type": "GameCalculationConditional"
+        },
+        "{405deeb1}": {
+          "mMultiplier": {
+            "mSpellCalculationKey": "{79b6144b}",
+            "__type": "{f3cbe7b2}"
+          },
+          "DamageType": 0,
+          "mFormulaParts": [
+            {
+              "{a8cb9c14}": true,
+              "mStat": 13,
+              "mCoefficient": 1,
+              "__type": "StatByCoefficientCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
+      },
+      "groups": [
+        "3153"
+      ]
+    },
+    "3156": {
+      "id": "3156",
+      "name": "Maw of Malmortius",
+      "cost": 3100,
+      "stats": {
+        "abilityHaste": 15,
+        "magicResist": 40,
+        "attackDamage": 60
+      },
+      "otherStats": {},
+      "values": {
+        "ShieldSize": 200,
+        "LowHealthThreshold": 0.3,
+        "ShieldDuration": 3,
+        "ShieldADScaling": 1.5,
+        "BuffDuration": 5,
+        "BuffExtension": 3,
+        "BuffVamp": 0.1,
+        "RangedShieldMod": 0.75,
+        "Cooldown": 90
+      },
+      "calculations": {
+        "MeleeItemCalcValue": {
+          "mFormulaParts": [
+            {
+              "mDataValue": "ShieldSize",
+              "__type": "NamedDataValueCalculationPart"
+            },
+            {
+              "mStat": 2,
+              "mStatFormula": 2,
+              "mDataValue": "ShieldADScaling",
+              "__type": "StatByNamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "RangedItemCalcValue": {
+          "mMultiplier": {
+            "mDataValue": "RangedShieldMod",
+            "__type": "NamedDataValueCalculationPart"
+          },
+          "mModifiedGameCalculation": "MeleeItemCalcValue",
+          "__type": "GameCalculationModified"
+        },
+        "ChampRange": {
+          "mSimpleTooltipCalculationDisplay": 5,
+          "mExpandedTooltipCalculationDisplay": 5,
+          "mDefaultGameCalculation": "{792cf56b}",
+          "mConditionalGameCalculation": "{06387172}",
+          "mConditionalCalculationRequirements": {
+            "__type": "IsRangedCastRequirement"
+          },
+          "__type": "GameCalculationConditional"
+        },
+        "{792cf56b}": {
+          "mFormulaParts": [
+            {
+              "mNumber": 1,
+              "__type": "NumberCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "{06387172}": {
+          "mFormulaParts": [
+            {
+              "mNumber": 2,
+              "__type": "NumberCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
+      },
+      "groups": [
+        "LifelineItems"
+      ]
+    },
+    "3157": {
+      "id": "3157",
+      "name": "Zhonya's Hourglass",
+      "cost": 3250,
+      "stats": {
+        "armor": 50,
+        "abilityPower": 105
+      },
+      "otherStats": {},
+      "values": {
+        "Cooldown": 120,
+        "Duration": 2.5
+      },
+      "calculations": {},
+      "groups": [
+        "3157"
+      ]
+    },
+    "3302": {
+      "id": "3302",
+      "name": "Terminus",
+      "cost": 3000,
+      "stats": {
+        "attackDamage": 30,
+        "attackSpeed": 0.35
+      },
+      "otherStats": {},
+      "values": {
+        "BuffDuration": 5,
+        "DebuffDuration": 5,
+        "PenMax": 0.3,
+        "PenPerHit": 0.1
+      },
+      "calculations": {
+        "ARMRPerHitScaling": {
+          "mFormulaParts": [
+            {
+              "mLevel1Value": 6,
+              "mBreakpoints": [
+                {
+                  "mLevel": 11,
+                  "mAdditionalBonusAtThisLevel": 1,
+                  "__type": "Breakpoint"
+                },
+                {
+                  "mLevel": 14,
+                  "mAdditionalBonusAtThisLevel": 1,
+                  "__type": "Breakpoint"
+                }
+              ],
+              "__type": "ByCharLevelBreakpointsCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "ARMRMaxScaling": {
+          "mMultiplier": {
+            "mNumber": 3,
+            "__type": "NumberCalculationPart"
+          },
+          "mModifiedGameCalculation": "ARMRPerHitScaling",
+          "__type": "GameCalculationModified"
+        },
+        "{592c02e8}": {
+          "DamageType": 1,
+          "mFormulaParts": [
+            {
+              "mSpellCalculationKey": "OnHitDamage",
+              "__type": "{f3cbe7b2}"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "OnHitDamage": {
+          "mFormulaParts": [
+            {
+              "mNumber": 30,
+              "__type": "NumberCalculationPart"
+            },
+            {
+              "mStat": 2,
+              "mStatFormula": 2,
+              "mCoefficient": 0.10000000149011612,
+              "__type": "StatByCoefficientCalculationPart"
+            },
+            {
+              "mCoefficient": 0.10000000149011612,
+              "__type": "StatByCoefficientCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
+      },
+      "groups": [
+        "{c2413581}",
+        "LastWhisper",
+        "VoidPen"
+      ]
+    },
+    "3508": {
+      "id": "3508",
+      "name": "Essence Reaver",
+      "cost": 3050,
+      "stats": {
+        "abilityHaste": 20,
+        "critChance": 0.25,
+        "attackDamage": 50
+      },
+      "otherStats": {},
+      "values": {
+        "FlatManaRefund": 15,
+        "ManaRefundRatio": 0.15,
+        "BaseADRatio": 1.25,
+        "CritChanceMultiplier": 50,
+        "SpellbladeCooldown": 1.5,
+        "Cooldown": 1.5
+      },
+      "calculations": {
+        "TotalManaRefund": {
+          "mMultiplier": {
+            "mNumber": 0.5,
+            "__type": "NumberCalculationPart"
+          },
+          "mExpandedTooltipCalculationDisplay": 0,
+          "mModifiedGameCalculation": "SpellbladeDamage",
+          "__type": "GameCalculationModified"
+        },
+        "SpellbladeDamage": {
+          "mExpandedTooltipCalculationDisplay": 0,
+          "mFormulaParts": [
+            {
+              "mStat": 2,
+              "mStatFormula": 1,
+              "mDataValue": "BaseADRatio",
+              "__type": "StatByNamedDataValueCalculationPart"
+            },
+            {
+              "mStat": 8,
+              "mDataValue": "CritChanceMultiplier",
+              "__type": "StatByNamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
+      },
+      "groups": [
+        "3508",
+        "{57352a0f}"
+      ]
+    },
+    "6672": {
+      "id": "6672",
+      "name": "Kraken Slayer",
+      "cost": 3000,
+      "stats": {
+        "attackDamage": 45,
+        "attackSpeed": 0.4
+      },
+      "otherStats": {
+        "mPercentMovementSpeedMod": 0.04
+      },
+      "values": {
+        "AttackCount": 3,
+        "BuffDuration": 4,
+        "MaxAmpNumber": 1.75,
+        "RangedDamageMultiplier": 0.8
+      },
+      "calculations": {
+        "DamageAmount": {
+          "mFormulaParts": [
+            {
+              "mLevel1Value": 150,
+              "mBreakpoints": [
+                {
+                  "mLevel": 9,
+                  "mBonusPerLevelAtAndAfter": 5,
+                  "__type": "Breakpoint"
+                }
+              ],
+              "__type": "ByCharLevelBreakpointsCalculationPart"
+            }
+          ],
+          "mRangedMultiplier": {
+            "mDataValue": "RangedDamageMultiplier",
+            "__type": "NamedDataValueCalculationPart"
+          },
+          "__type": "{e9a3c91d}"
+        },
+        "MaximumDamage": {
+          "mMultiplier": {
+            "mDataValue": "MaxAmpNumber",
+            "__type": "NamedDataValueCalculationPart"
+          },
+          "mModifiedGameCalculation": "DamageAmount",
+          "__type": "GameCalculationModified"
+        }
+      },
+      "groups": [
+        "6672"
+      ]
+    },
+    "6673": {
+      "id": "6673",
+      "name": "Immortal Shieldbow",
+      "cost": 3000,
+      "stats": {
+        "critChance": 0.25,
+        "attackDamage": 55
+      },
+      "otherStats": {},
+      "values": {
+        "ShieldDuration": 3,
+        "Cooldown": 90,
+        "BuffDuration": 8,
+        "HealthThreshold": 0.3
+      },
+      "calculations": {
+        "ShieldAmount": {
+          "mFormulaParts": [
+            {
+              "mLevel1Value": 400,
+              "mBreakpoints": [
+                {
+                  "mLevel": 9,
+                  "mBonusPerLevelAtAndAfter": 30,
+                  "__type": "Breakpoint"
+                }
+              ],
+              "__type": "ByCharLevelBreakpointsCalculationPart"
+            }
+          ],
+          "mRangedMultiplier": {
+            "mNumber": 0.800000011920929,
+            "__type": "NumberCalculationPart"
+          },
+          "__type": "{e9a3c91d}"
+        }
+      },
+      "groups": [
+        "LifelineItems",
+        "6673"
+      ]
+    },
+    "6675": {
+      "id": "6675",
+      "name": "Navori Flickerblade",
+      "cost": 2650,
+      "stats": {
+        "critChance": 0.25,
+        "attackSpeed": 0.4
+      },
+      "otherStats": {
+        "mPercentMovementSpeedMod": 0.04
+      },
+      "values": {
+        "CDRAmount": 0.15
+      },
+      "calculations": {},
+      "groups": [
+        "6675"
+      ]
+    },
+    "6676": {
+      "id": "6676",
+      "name": "The Collector",
+      "cost": 3000,
+      "stats": {
+        "critChance": 0.25,
+        "attackDamage": 50
+      },
+      "otherStats": {},
+      "values": {
+        "LethalityAmount": 10,
+        "ExecuteThreshold": 0.05,
+        "GoldAmount": 25
+      },
+      "calculations": {},
+      "groups": [
+        "6676"
+      ]
+    }
+  }
+}

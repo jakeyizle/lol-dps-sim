@@ -39,6 +39,8 @@ describe("patch selection", () => {
       });
       expect([...written.keys()]).toEqual([
         "26.22/champions.json",
+        "26.22/items.json",
+        "26.22/runes.json",
         "26.22/constants.json",
       ]);
     },
@@ -54,9 +56,11 @@ describe("game files", { tags: ["DATA-010"] }, () => {
   it("are read from the patch's own CommunityDragon folder", async () => {
     const { run, fetchJson } = setup();
     await run();
-    const cdragon = fetchJson.urls.filter((u) => u.includes("communitydragon"));
+    const urls = fetchJson.urls.filter((u) => u.includes("communitydragon"));
+    const cdragon = urls.filter((u) => u.includes("/characters/"));
+    expect(urls).toHaveLength(manifest.champions.length + 3);
     expect(cdragon).toHaveLength(manifest.champions.length);
-    for (const url of cdragon)
+    for (const url of urls)
       expect(url).toMatch(/^https:\/\/raw\.communitydragon\.org\/16\.22\//);
   });
 
