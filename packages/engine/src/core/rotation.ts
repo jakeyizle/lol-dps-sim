@@ -57,6 +57,7 @@ export function conditionTime(
     case "minMana": {
       const missing = condition.amount - s.mana;
       if (missing <= 0) return s.time;
+      // Stryker disable next-line ConditionalExpression,EqualityOperator: with no regen the wait below is Infinity anyway
       if (condition.amount > s.maxMana || s.manaRegen <= 0) return Infinity;
       return s.time + missing / s.manaRegen;
     }

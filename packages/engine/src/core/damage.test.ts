@@ -257,3 +257,40 @@ describe("shields", () => {
     expect(absorb(maw, 80, "magic").toHealth).toBe(0);
   });
 });
+
+it("all-damage reductions apply to everything", { tags: ["TGT-002"] }, () => {
+  const dummy: Defender = {
+    ...noArmor,
+    reductions: [{ appliesTo: "all", fraction: 0.25 }],
+  };
+  expect(post(hit({ ability: true }), dummy)).toBe(150);
+  expect(post(hit({ type: "true" }), dummy)).toBe(150);
+});
+
+it("true damage ignores armor and magic resist", { tags: ["DMG-004"] }, () => {
+  const tough: Defender = { armor: 100, magicResist: 100 };
+  expect(post(hit({ type: "true" }), tough)).toBe(200);
+  expect(post(hit({ type: "magic" }), tough)).toBe(100);
+});
+
+it("no amplifiers leave the amount as it is", () => {
+  expect(
+    resolveDamage({
+      instance: hit(),
+      attacker,
+      defender: noArmor,
+      critMode: EV,
+    }).postMitigation,
+  ).toBe(200);
+});
+
+it("a rolled non-crit is reported as such", { tags: ["DMG-008"] }, () => {
+  const r = resolveDamage({
+    instance: hit({ critable: true }),
+    attacker,
+    defender: noArmor,
+    critMode: { kind: "roll", crit: false },
+  });
+  expect(r.crit).toBe("noCrit");
+  expect(r.postMitigation).toBe(200);
+});

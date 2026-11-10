@@ -115,3 +115,21 @@ describe("performance", { tags: ["CMP-005"] }, () => {
     expect(Date.now() - start).toBeLessThan(2000);
   });
 });
+
+it("spreads are taken from the sorted values", { tags: ["SIM-013"] }, () => {
+  expect(spread([30, 10, 20])).toEqual({ mean: 20, p10: 10, p50: 20, p90: 30 });
+});
+
+it("run i uses seed + i", { tags: ["SIM-013"] }, () => {
+  const ttk = (seed: number) =>
+    simulate(attacker, target, { critMode: "rng", seed }).ttk ?? Infinity;
+  // a seed whose next and previous runs differ, so the direction matters
+  let seed = 2;
+  while (ttk(seed + 1) === ttk(seed - 1)) seed += 1;
+  const many = simulateMany(attacker, target, {
+    critMode: "rng",
+    seed,
+    runs: 2,
+  });
+  expect(many.ttk.mean).toBeCloseTo((ttk(seed) + ttk(seed + 1)) / 2, 9);
+});

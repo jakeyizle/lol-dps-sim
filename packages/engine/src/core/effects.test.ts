@@ -256,3 +256,44 @@ describe("helpers", () => {
     expect(r.trace[1]).toMatchObject({ time: 0.25 });
   });
 });
+
+describe("effect helpers", () => {
+  const buff: BuffSpec = {
+    id: "B",
+    maxStacks: 5,
+    duration: 10,
+    refreshOnStack: true,
+  };
+
+  it("stackingBuff hooks only its trigger", { tags: ["SIM-015"] }, () => {
+    const hooks = (on: "launch" | "hit" | "cast") =>
+      Object.keys(stackingBuff(buff, on)).filter((k) => k !== "id");
+    expect(hooks("launch")).toEqual(["onAttackLaunch"]);
+    expect(hooks("hit")).toEqual(["onHit"]);
+    expect(hooks("cast")).toEqual(["onAbilityCast"]);
+  });
+
+  it(
+    "everyNthAttack's count survives while attacks keep coming within its duration",
+    { tags: ["SIM-015"] },
+    () => {
+      // attacks land every 1.25 s; a 2 s count only lasts if each attack refreshes it
+      const third: number[] = [];
+      run(
+        {
+          items: [
+            everyNthAttack({
+              id: "Third",
+              n: 3,
+              at: "hit",
+              duration: 2,
+              apply: (ctx) => third.push(ctx.time),
+            }),
+          ],
+        },
+        { maxDuration: 8 },
+      );
+      expect(third).toEqual([2.75, 6.5]);
+    },
+  );
+});
