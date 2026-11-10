@@ -12,6 +12,18 @@ export interface BuffSpec {
   stats?: StatBonuses;
   /** Lifts the attack speed cap while active (STAT-006). */
   attackSpeedCap?: number;
+  /** On expiry, lose one stack and restart the duration instead of all stacks. */
+  decayOneAtATime?: boolean;
+}
+
+/** How basic attacks are made; kits change it (e.g. Jinx's weapons). */
+export interface AttackMode {
+  /** Attack slot for normal attacks. */
+  slot: string;
+  /** Attack slot for crits (SIM-022). */
+  critSlot: string;
+  /** Mana per attack; attacks wait for it (JINX-007, JINX-008). */
+  cost: number;
 }
 
 /** One attack, from launch to landing. Effects may add damage that lands with it. */
@@ -22,6 +34,8 @@ export interface Attack {
   crit?: boolean;
   /** 1 for the first attack of the fight. */
   index: number;
+  /** Multiplies the attack's damage (e.g. Jinx's rockets, JINX-002). */
+  amountScale: number;
   /** Extra instances dealt when it lands, after the attack itself and before `onHit`. */
   extra: DamageInstance[];
 }
@@ -38,6 +52,8 @@ export interface EffectContext {
   addBuff: (spec: BuffSpec, stacks?: number) => void;
   removeBuff: (id: string) => void;
   buffStacks: (id: string) => number;
+  attackMode: () => AttackMode;
+  setAttackMode: (mode: AttackMode) => void;
   /** Runs `fn` after `delay` seconds, unless the fight has ended. */
   schedule: (delay: number, fn: (ctx: EffectContext) => void) => void;
 }

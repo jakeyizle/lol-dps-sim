@@ -113,7 +113,7 @@
             20,
             20
           ],
-          "castTime": 0.25,
+          "castTime": 0,
           "values": {
             "RocketAoERadius": [
               250,
@@ -163,6 +163,13 @@
               0.1,
               0.1,
               0.1
+            ],
+            "MinigunFirstStackWeight": [
+              2,
+              2,
+              2,
+              2,
+              2
             ]
           },
           "calculations": {
@@ -195,7 +202,7 @@
             55,
             60
           ],
-          "castTime": 0.25,
+          "castTime": 0.6,
           "values": {
             "JinxLowEndWCastTime": [
               0.4,
