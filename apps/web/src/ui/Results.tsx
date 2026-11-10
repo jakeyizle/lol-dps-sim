@@ -1,26 +1,43 @@
-import { analyze, type Analysis } from "@lol/engine";
-import { useMemo } from "react";
+import type { Analysis } from "@lol/engine";
 
 import type { Build } from "../model/build";
-import { toSimulation } from "../model/simulation";
-import { useApp, usePatch } from "./context";
+import { useApp } from "./context";
 import { DamageChart } from "./DamageChart";
+import { useAnalysis } from "./useAnalysis";
 
 const n = (x: number) => Math.round(x).toLocaleString("en-US");
 
 /** One build vs the dummy: TTK, DPS windows, curve, breakdown, event log. */
 export function Results(props: { build: Build }) {
-  const patch = usePatch();
-  const target = useApp((s) => s.target);
-  const settings = useApp((s) => s.settings);
-  const result: Analysis = useMemo(() => {
-    const sim = toSimulation(props.build, target, patch, settings);
-    return analyze(sim.attacker, sim.target, sim.options);
-  }, [props.build, target, patch, settings]);
-  const duration = result.ttk ?? settings.maxDuration;
-
+  const { result, stale } = useAnalysis(props.build);
+  const maxDuration = useApp((s) => s.settings.maxDuration);
+  if (!result)
+    return (
+      <p role="status" className="text-neutral-600">
+        Computing…
+      </p>
+    );
   return (
-    <section aria-label="Results" className="space-y-5">
+    <section
+      aria-label="Results"
+      aria-busy={stale}
+      className={`space-y-5 transition-opacity ${stale ? "opacity-50" : ""}`}
+    >
+      {stale && (
+        <p role="status" className="text-sm text-neutral-600">
+          Updating…
+        </p>
+      )}
+      <ResultBody result={result} maxDuration={maxDuration} />
+    </section>
+  );
+}
+
+function ResultBody(props: { result: Analysis; maxDuration: number }) {
+  const { result } = props;
+  const duration = result.ttk ?? props.maxDuration;
+  return (
+    <>
       <div className="flex flex-wrap items-baseline gap-6">
         <p className="text-2xl font-semibold" data-testid="ttk">
           {result.killed
@@ -112,7 +129,7 @@ export function Results(props: { build: Build }) {
           </tbody>
         </table>
       </details>
-    </section>
+    </>
   );
 }
 

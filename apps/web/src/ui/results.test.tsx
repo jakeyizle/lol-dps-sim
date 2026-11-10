@@ -3,6 +3,7 @@ import {
   fireEvent,
   render,
   screen,
+  waitFor,
   within,
 } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
@@ -10,15 +11,24 @@ import { afterEach, describe, expect, it } from "vitest";
 import { App } from "../App";
 import { loadLatest } from "../data";
 import { createAppStore } from "../model/store";
+import { inlineRunner } from "../worker/runner";
 
 afterEach(cleanup);
 
 const patch = loadLatest();
 
-function setup() {
+async function setup() {
   const store = createAppStore();
-  render(<App store={store} patch={patch} />);
+  render(
+    <App
+      store={store}
+      patch={patch}
+      runner={inlineRunner(patch)}
+      debounceMs={0}
+    />,
+  );
   fireEvent.click(screen.getByRole("button", { name: "Add build" }));
+  await screen.findByRole("table", { name: "Event log" });
   return store;
 }
 const log = () => within(screen.getByRole("table", { name: "Event log" }));
@@ -27,8 +37,8 @@ describe("event log", () => {
   it(
     "shows time, source, pre/post damage, crit flag and active buffs per instance",
     { tags: ["METRIC-006"] },
-    () => {
-      setup();
+    async () => {
+      await setup();
       const headers = log()
         .getAllByRole("columnheader")
         .map((h) => h.textContent);
@@ -56,8 +66,8 @@ describe("event log", () => {
   it(
     "marks attacks 'averaged' in expected-value mode",
     { tags: ["METRIC-010"] },
-    () => {
-      setup();
+    async () => {
+      await setup();
       const crit = log()
         .getAllByRole("row")
         .slice(1)
@@ -69,8 +79,8 @@ describe("event log", () => {
 });
 
 describe("target dummy", { tags: ["TGT-002"] }, () => {
-  it("uses the entered stats", () => {
-    const store = setup();
+  it("uses the entered stats", async () => {
+    const store = await setup();
     fireEvent.change(screen.getByLabelText("Health"), {
       target: { value: "1000" },
     });
@@ -78,6 +88,9 @@ describe("target dummy", { tags: ["TGT-002"] }, () => {
       target: { value: "0" },
     });
     expect(store.getState().target).toMatchObject({ health: 1000, armor: 0 });
+    await waitFor(() => {
+      expect(screen.queryByText("Updating…")).toBeNull();
+    });
     expect(screen.getByTestId("ttk").textContent).toMatch(/^TTK /);
   });
 });

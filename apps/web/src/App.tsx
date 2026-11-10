@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import { loadLatest } from "./data";
 import { createAppStore, type AppStore } from "./model/store";
+import { defaultRunner, type Runner } from "./worker/runner";
 import { BuildEditor } from "./ui/BuildEditor";
 import { BuildList } from "./ui/BuildList";
 import { useApp, usePatch } from "./ui/context";
@@ -12,10 +13,26 @@ import { TargetEditor } from "./ui/TargetEditor";
 
 const defaultStore = createAppStore();
 
-export function App(props: { store?: AppStore; patch?: PatchData }) {
+/** Edits settle for this long before results recompute (CMP-006). */
+const DEBOUNCE_MS = 150;
+
+export function App(props: {
+  store?: AppStore;
+  patch?: PatchData;
+  runner?: Runner;
+  debounceMs?: number;
+}) {
   const [patch] = useState(() => props.patch ?? loadLatest());
+  const [runner] = useState(() => ({
+    runner: props.runner ?? defaultRunner(patch),
+    debounceMs: props.debounceMs ?? DEBOUNCE_MS,
+  }));
   return (
-    <Providers store={props.store ?? defaultStore} patch={patch}>
+    <Providers
+      store={props.store ?? defaultStore}
+      patch={patch}
+      runner={runner}
+    >
       <Shell />
     </Providers>
   );

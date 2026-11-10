@@ -70,7 +70,7 @@ Each milestone ends deployed, with its scenarios passing.
 - [x] Metrics from trace: TTK, DPS run + windows, curve, breakdown
 - [x] Build editor: champion, level, skills, items, gold, attacker health, game time, stats panel
 - [x] Single build vs. dummy results: table, curve, event log
-- [ ] Sim worker (Comlink), debounced recompute → T-028
+- [x] Sim worker (Comlink), debounced recompute
 
 ## M5 — Runes & targets (RUNE, TGT)
 
