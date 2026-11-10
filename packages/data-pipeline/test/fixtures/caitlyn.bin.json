@@ -1,0 +1,79 @@
+{
+  "Characters/Caitlyn/CharacterRecords/Root": {
+    "mCharacterName": "Caitlyn",
+    "baseHPModifiable": {
+      "baseValue": 580,
+      "__type": "ModifiableFloat"
+    },
+    "hpPerLevelModifiable": {
+      "baseValue": 107,
+      "__type": "ModifiableFloat"
+    },
+    "baseStaticHPRegenModifiable": {
+      "baseValue": 0.699999988079071,
+      "__type": "ModifiableFloat"
+    },
+    "hpRegenPerLevelModifiable": {
+      "baseValue": 0.10999999940395355,
+      "__type": "ModifiableFloat"
+    },
+    "baseDamageModifiable": {
+      "baseValue": 62,
+      "__type": "ModifiableFloat"
+    },
+    "damagePerLevelModifiable": {
+      "baseValue": 3.799999952316284,
+      "__type": "ModifiableFloat"
+    },
+    "baseArmorModifiable": {
+      "baseValue": 27,
+      "__type": "ModifiableFloat"
+    },
+    "armorPerLevelModifiable": {
+      "baseValue": 4.699999809265137,
+      "__type": "ModifiableFloat"
+    },
+    "baseMR": {
+      "baseValue": 33,
+      "__type": "ModifiableFloat"
+    },
+    "mrPerLevel": {
+      "baseValue": 1.100000023841858,
+      "__type": "ModifiableFloat"
+    },
+    "baseMoveSpeedModifiable": {
+      "baseValue": 325,
+      "__type": "ModifiableFloat"
+    },
+    "attackRangeModifiable": {
+      "baseValue": 650,
+      "__type": "ModifiableFloat"
+    },
+    "attackSpeedModifiable": {
+      "baseValue": 0.6809999942779541,
+      "__type": "ModifiableFloat"
+    },
+    "attackSpeedRatioModifiable": {
+      "baseValue": 0.625,
+      "__type": "ModifiableFloat"
+    },
+    "attackSpeedPerLevelModifiable": {
+      "baseValue": 4,
+      "__type": "ModifiableFloat"
+    },
+    "critDamageMultiplier": 2,
+    "basicAttack": {
+      "mAttackDelayCastOffsetPercent": -0.12291666865348816,
+      "mAttackProbability": 1,
+      "mAttackName": "CaitlynBasicAttack",
+      "__type": "AttackSlotData"
+    },
+    "critAttacks": [
+      {
+        "mAttackName": "CaitlynCritAttack",
+        "__type": "AttackSlotData"
+      }
+    ],
+    "__type": "CharacterRecord"
+  }
+}

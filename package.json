@@ -8,7 +8,8 @@
     "typecheck": "tsc --noEmit && pnpm -r --if-present typecheck",
     "test": "vitest run",
     "format": "prettier --write .",
-    "scenarios:check": "node scripts/check-scenarios.ts"
+    "scenarios:check": "node scripts/check-scenarios.ts",
+    "data:update": "tsx packages/data-pipeline/src/cli.ts"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -18,6 +19,7 @@
     "prettier": "^3.9.10",
     "typescript": "~6.0.3",
     "typescript-eslint": "^8.72.0",
-    "vitest": "~4.1.12"
+    "vitest": "~4.1.12",
+    "tsx": "^4.21.0"
   }
 }

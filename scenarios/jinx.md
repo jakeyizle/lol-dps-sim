@@ -1,6 +1,6 @@
 # Jinx
 
-Mechanics to verify against the current patch when the Jinx ticket starts (PLAN §1), including her R changes in 26.1.
+Mechanics to verify against the current patch when the Jinx ticket starts (PLAN §1), including her R changes in 26.1. Her game file has a basic attack slot (17.708% windup) and `JinxQAttack` / `JinxQAttack2` slots (16.875%, matching the wiki): confirm which slots her minigun and rocket attacks use.
 
 ### JINX-001: Minigun attacks ramp attack speed
 

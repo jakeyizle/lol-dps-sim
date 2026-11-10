@@ -1,0 +1,33 @@
+{
+  "type": "champion",
+  "version": "16.22.1",
+  "data": {
+    "Kaisa": {
+      "id": "Kaisa",
+      "key": "145",
+      "name": "Kai'Sa",
+      "stats": {
+        "hp": 640,
+        "hpperlevel": 102,
+        "mp": 345,
+        "mpperlevel": 40,
+        "movespeed": 335,
+        "armor": 25,
+        "armorperlevel": 4.2,
+        "spellblock": 33,
+        "spellblockperlevel": 1.1,
+        "attackrange": 525,
+        "hpregen": 4,
+        "hpregenperlevel": 0.55,
+        "mpregen": 8.2,
+        "mpregenperlevel": 0.7,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 59,
+        "attackdamageperlevel": 0,
+        "attackspeedperlevel": 1.8,
+        "attackspeed": 0.644
+      }
+    }
+  }
+}

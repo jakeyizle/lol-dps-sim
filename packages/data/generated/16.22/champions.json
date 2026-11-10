@@ -1,0 +1,401 @@
+{
+  "patch": "16.22",
+  "champions": {
+    "Jinx": {
+      "id": "Jinx",
+      "key": 222,
+      "name": "Jinx",
+      "stats": {
+        "health": {
+          "base": 610,
+          "perLevel": 105
+        },
+        "healthRegen": {
+          "base": 3.75,
+          "perLevel": 0.5
+        },
+        "mana": {
+          "base": 260,
+          "perLevel": 50
+        },
+        "manaRegen": {
+          "base": 6.7,
+          "perLevel": 1
+        },
+        "armor": {
+          "base": 26,
+          "perLevel": 4.2
+        },
+        "magicResist": {
+          "base": 33,
+          "perLevel": 1.1
+        },
+        "attackDamage": {
+          "base": 59,
+          "perLevel": 3
+        },
+        "attackRange": {
+          "base": 525,
+          "perLevel": 0
+        },
+        "moveSpeed": {
+          "base": 325,
+          "perLevel": 0
+        }
+      },
+      "attack": {
+        "baseAttackSpeed": 0.625,
+        "attackSpeedRatio": 0.625,
+        "attackSpeedPerLevel": 1,
+        "critMultiplier": 2,
+        "slots": {
+          "basic": {
+            "windupPercent": 0.177081,
+            "windupModifier": 1
+          },
+          "JinxBasicAttack2": {
+            "windupPercent": 0.177081,
+            "windupModifier": 1
+          },
+          "JinxQAttack2": {
+            "windupPercent": 0.16875,
+            "windupModifier": 1
+          },
+          "JinxQAttack": {
+            "windupPercent": 0.16875,
+            "windupModifier": 1
+          },
+          "JinxCritAttack": {
+            "windupPercent": 0.177081,
+            "windupModifier": 1
+          },
+          "JinxQCritAttack": {
+            "windupPercent": 0.16875,
+            "windupModifier": 1
+          }
+        },
+        "critSlot": "JinxCritAttack"
+      }
+    },
+    "Caitlyn": {
+      "id": "Caitlyn",
+      "key": 51,
+      "name": "Caitlyn",
+      "stats": {
+        "health": {
+          "base": 580,
+          "perLevel": 107
+        },
+        "healthRegen": {
+          "base": 3.5,
+          "perLevel": 0.55
+        },
+        "mana": {
+          "base": 315,
+          "perLevel": 40
+        },
+        "manaRegen": {
+          "base": 7.4,
+          "perLevel": 0.7
+        },
+        "armor": {
+          "base": 27,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 33,
+          "perLevel": 1.1
+        },
+        "attackDamage": {
+          "base": 62,
+          "perLevel": 3.8
+        },
+        "attackRange": {
+          "base": 650,
+          "perLevel": 0
+        },
+        "moveSpeed": {
+          "base": 325,
+          "perLevel": 0
+        }
+      },
+      "attack": {
+        "baseAttackSpeed": 0.681,
+        "attackSpeedRatio": 0.625,
+        "attackSpeedPerLevel": 4,
+        "critMultiplier": 2,
+        "slots": {
+          "basic": {
+            "windupPercent": 0.177083,
+            "windupModifier": 1
+          },
+          "CaitlynCritAttack": {
+            "windupPercent": 0.177083,
+            "windupModifier": 1
+          }
+        },
+        "critSlot": "CaitlynCritAttack"
+      }
+    },
+    "Ashe": {
+      "id": "Ashe",
+      "key": 22,
+      "name": "Ashe",
+      "stats": {
+        "health": {
+          "base": 610,
+          "perLevel": 101
+        },
+        "healthRegen": {
+          "base": 3.5,
+          "perLevel": 0.55
+        },
+        "mana": {
+          "base": 280,
+          "perLevel": 35
+        },
+        "manaRegen": {
+          "base": 7,
+          "perLevel": 0.65
+        },
+        "armor": {
+          "base": 26,
+          "perLevel": 4.6
+        },
+        "magicResist": {
+          "base": 33,
+          "perLevel": 1.1
+        },
+        "attackDamage": {
+          "base": 59,
+          "perLevel": 3
+        },
+        "attackRange": {
+          "base": 600,
+          "perLevel": 0
+        },
+        "moveSpeed": {
+          "base": 325,
+          "perLevel": 0
+        }
+      },
+      "attack": {
+        "baseAttackSpeed": 0.658,
+        "attackSpeedRatio": 0.658,
+        "attackSpeedPerLevel": 3,
+        "critMultiplier": 1,
+        "slots": {
+          "basic": {
+            "windupPercent": 0.219298,
+            "windupModifier": 1
+          },
+          "AsheBasicAttack2": {
+            "windupPercent": 0.219298,
+            "windupModifier": 1
+          },
+          "AsheCritAttack": {
+            "windupPercent": 0.219298,
+            "windupModifier": 1
+          }
+        },
+        "critSlot": "AsheCritAttack"
+      }
+    },
+    "Kaisa": {
+      "id": "Kaisa",
+      "key": 145,
+      "name": "Kai'Sa",
+      "stats": {
+        "health": {
+          "base": 640,
+          "perLevel": 102
+        },
+        "healthRegen": {
+          "base": 4,
+          "perLevel": 0.55
+        },
+        "mana": {
+          "base": 345,
+          "perLevel": 40
+        },
+        "manaRegen": {
+          "base": 8.2,
+          "perLevel": 0.7
+        },
+        "armor": {
+          "base": 25,
+          "perLevel": 4.2
+        },
+        "magicResist": {
+          "base": 33,
+          "perLevel": 1.1
+        },
+        "attackDamage": {
+          "base": 59,
+          "perLevel": 2.6
+        },
+        "attackRange": {
+          "base": 525,
+          "perLevel": 0
+        },
+        "moveSpeed": {
+          "base": 335,
+          "perLevel": 0
+        }
+      },
+      "attack": {
+        "baseAttackSpeed": 0.644,
+        "attackSpeedRatio": 0.644,
+        "attackSpeedPerLevel": 1.8,
+        "critMultiplier": 2,
+        "slots": {
+          "basic": {
+            "windupPercent": 0.161082,
+            "windupModifier": 1
+          },
+          "KaisaBasicAttack2": {
+            "windupPercent": 0.161082,
+            "windupModifier": 1
+          },
+          "KaisaBasicAttack3": {
+            "windupPercent": 0.161082,
+            "windupModifier": 1
+          },
+          "KaisaEAttack": {
+            "windupPercent": 0.064433,
+            "windupModifier": 1
+          },
+          "KaisaEAttack2": {
+            "windupPercent": 0.064433,
+            "windupModifier": 1
+          },
+          "KaisaEAttack3": {
+            "windupPercent": 0.064433,
+            "windupModifier": 1
+          },
+          "KaisaEAttack4": {
+            "windupPercent": 0.064433,
+            "windupModifier": 1
+          },
+          "KaisaEAttack5": {
+            "windupPercent": 0.064433,
+            "windupModifier": 1
+          },
+          "KaisaPAttack": {
+            "windupPercent": 0.161082,
+            "windupModifier": 1
+          },
+          "KaisaEPAttack": {
+            "windupPercent": 0.064433,
+            "windupModifier": 1
+          },
+          "KaisaCritAttack": {
+            "windupPercent": 0.161082,
+            "windupModifier": 1
+          },
+          "KaisaECritAttack": {
+            "windupPercent": 0.064433,
+            "windupModifier": 1
+          },
+          "KaisaECritAttack2": {
+            "windupPercent": 0.064433,
+            "windupModifier": 1
+          },
+          "KaisaECritAttack3": {
+            "windupPercent": 0.064433,
+            "windupModifier": 1
+          },
+          "KaisaECritAttack4": {
+            "windupPercent": 0.064433,
+            "windupModifier": 1
+          },
+          "KaisaECritAttack5": {
+            "windupPercent": 0.064433,
+            "windupModifier": 1
+          },
+          "KaisaCritAttack2": {
+            "windupPercent": 0.161082,
+            "windupModifier": 1
+          },
+          "KaisaCritAttack3": {
+            "windupPercent": 0.161082,
+            "windupModifier": 1
+          }
+        },
+        "critSlot": "KaisaCritAttack"
+      }
+    },
+    "Vayne": {
+      "id": "Vayne",
+      "key": 67,
+      "name": "Vayne",
+      "stats": {
+        "health": {
+          "base": 580,
+          "perLevel": 98
+        },
+        "healthRegen": {
+          "base": 5.5,
+          "perLevel": 0.4
+        },
+        "mana": {
+          "base": 232,
+          "perLevel": 35
+        },
+        "manaRegen": {
+          "base": 7,
+          "perLevel": 0.4
+        },
+        "armor": {
+          "base": 23,
+          "perLevel": 4.6
+        },
+        "magicResist": {
+          "base": 33,
+          "perLevel": 1.1
+        },
+        "attackDamage": {
+          "base": 60,
+          "perLevel": 2.35
+        },
+        "attackRange": {
+          "base": 550,
+          "perLevel": 0
+        },
+        "moveSpeed": {
+          "base": 330,
+          "perLevel": 0
+        }
+      },
+      "attack": {
+        "baseAttackSpeed": 0.658,
+        "attackSpeedRatio": 0.67,
+        "attackSpeedPerLevel": 2.8,
+        "critMultiplier": 2,
+        "slots": {
+          "basic": {
+            "windupPercent": 0.175439,
+            "windupModifier": 1
+          },
+          "VayneBasicAttack2": {
+            "windupPercent": 0.175439,
+            "windupModifier": 1
+          },
+          "VayneBasicAttack3": {
+            "windupPercent": 0.175439,
+            "windupModifier": 1
+          },
+          "VayneBasicAttack4": {
+            "windupPercent": 0.175439,
+            "windupModifier": 1
+          },
+          "VayneCritAttack": {
+            "windupPercent": 0.175439,
+            "windupModifier": 1
+          }
+        },
+        "critSlot": "VayneCritAttack"
+      }
+    }
+  }
+}

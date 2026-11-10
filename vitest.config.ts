@@ -12,6 +12,16 @@ export default defineConfig({
       },
       {
         extends: true,
+        test: {
+          name: "data",
+          include: [
+            "packages/data/src/**/*.test.ts",
+            "packages/data-pipeline/src/**/*.test.ts",
+          ],
+        },
+      },
+      {
+        extends: true,
         test: { name: "scripts", include: ["scripts/**/*.test.ts"] },
       },
     ],

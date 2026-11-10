@@ -1,0 +1,33 @@
+{
+  "type": "champion",
+  "version": "16.22.1",
+  "data": {
+    "Caitlyn": {
+      "id": "Caitlyn",
+      "key": "51",
+      "name": "Caitlyn",
+      "stats": {
+        "hp": 580,
+        "hpperlevel": 107,
+        "mp": 315,
+        "mpperlevel": 40,
+        "movespeed": 325,
+        "armor": 27,
+        "armorperlevel": 4.7,
+        "spellblock": 33,
+        "spellblockperlevel": 1.1,
+        "attackrange": 650,
+        "hpregen": 3.5,
+        "hpregenperlevel": 0.55,
+        "mpregen": 7.4,
+        "mpregenperlevel": 0.7,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 62,
+        "attackdamageperlevel": 0,
+        "attackspeedperlevel": 4,
+        "attackspeed": 0.681
+      }
+    }
+  }
+}

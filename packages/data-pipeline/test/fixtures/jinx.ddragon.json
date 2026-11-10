@@ -1,0 +1,33 @@
+{
+  "type": "champion",
+  "version": "16.22.1",
+  "data": {
+    "Jinx": {
+      "id": "Jinx",
+      "key": "222",
+      "name": "Jinx",
+      "stats": {
+        "hp": 610,
+        "hpperlevel": 105,
+        "mp": 260,
+        "mpperlevel": 50,
+        "movespeed": 325,
+        "armor": 26,
+        "armorperlevel": 4.2,
+        "spellblock": 33,
+        "spellblockperlevel": 1.1,
+        "attackrange": 525,
+        "hpregen": 3.75,
+        "hpregenperlevel": 0.5,
+        "mpregen": 6.7,
+        "mpregenperlevel": 1,
+        "crit": 0,
+        "critperlevel": 0,
+        "attackdamage": 59,
+        "attackdamageperlevel": 0,
+        "attackspeedperlevel": 1,
+        "attackspeed": 0.625
+      }
+    }
+  }
+}
