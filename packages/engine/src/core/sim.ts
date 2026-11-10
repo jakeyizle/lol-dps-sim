@@ -9,7 +9,13 @@ import {
   type ResolvedDamage,
   type Shield,
 } from "./damage";
-import type { Attack, BuffSpec, Effect, EffectContext } from "./effects";
+import type {
+  Attack,
+  AttackMode,
+  BuffSpec,
+  Effect,
+  EffectContext,
+} from "./effects";
 import { EventQueue } from "./queue";
 import { attackOnly, ruleConditionsTime, type Rotation } from "./rotation";
 import { seededRandom } from "./rng";
@@ -51,7 +57,8 @@ export interface DotSpec {
  */
 export interface SimAbility {
   id: string;
-  castTime: number;
+  /** Seconds, or computed from current stats when the cast starts (JINX-009). */
+  castTime: number | ((stats: StatBlock) => number);
   cooldown: number;
   cost: number;
   /** SIM-005. */
@@ -156,9 +163,17 @@ export function simulate(
   const { champion } = attacker;
   const rotation = attacker.rotation ?? attackOnly;
   const slotName = attacker.attackSlot ?? "basic";
-  const slot = champion.attack.slots[slotName];
-  if (!slot) throw new Error(`${champion.id} has no attack slot ${slotName}`);
-  const attackSlot: AttackSlot = slot;
+  const slotOf = (name: string): AttackSlot => {
+    const slot = champion.attack.slots[name];
+    if (!slot) throw new Error(`${champion.id} has no attack slot ${name}`);
+    return slot;
+  };
+  slotOf(slotName);
+  let attackMode: AttackMode = {
+    slot: slotName,
+    critSlot: slotName === "basic" ? champion.attack.critSlot : slotName,
+    cost: 0,
+  };
   const abilities = new Map((attacker.abilities ?? []).map((a) => [a.id, a]));
   for (const { action } of rotation)
     if (action !== "attack" && !abilities.has(action))
@@ -269,6 +284,12 @@ export function simulate(
         removeBuff(id, time);
       },
       buffStacks: (id) => buffs.get(id)?.stacks ?? 0,
+      attackMode: () => attackMode,
+      setAttackMode: (mode) => {
+        slotOf(mode.slot);
+        slotOf(mode.critSlot);
+        attackMode = mode;
+      },
       schedule: (delay, fn) => {
         queue.push(time + delay, { kind: "callback", fn });
       },
@@ -313,7 +334,7 @@ export function simulate(
     const ability = abilities.get(action);
     const instances =
       action === "attack"
-        ? [attackInstance(slotName)]
+        ? [attackInstance(attackMode.slot)]
         : (ability?.estimate?.(ctx) ??
           (ability?.damage ? [ability.damage] : []));
     const damage = instances.reduce(
@@ -360,15 +381,20 @@ export function simulate(
 
   /** Earliest time the action can be taken, or Infinity if never. */
   function availableAt(action: string, time: number): number {
-    if (action === "attack") return Math.max(time, nextAttackAt);
+    if (action === "attack")
+      return affordableAt(attackMode.cost, Math.max(time, nextAttackAt), time);
     const ability = abilities.get(action);
     if (!ability) throw new Error(`unknown action ${action}`);
     const cooldownAt = Math.max(time, readyAt.get(action) ?? 0);
-    const missing = ability.cost - manaAt(time);
-    if (missing <= 0) return cooldownAt;
-    if (stats.manaRegen <= 0 || ability.cost > stats.mana.total)
-      return Infinity;
-    return Math.max(cooldownAt, time + missing / (stats.manaRegen / 5));
+    return affordableAt(ability.cost, cooldownAt, time);
+  }
+
+  /** Earliest time ≥ `readyAt` with `cost` mana, or Infinity if never. */
+  function affordableAt(cost: number, readyAt: number, time: number) {
+    const missing = cost - manaAt(time);
+    if (missing <= 0) return readyAt;
+    if (stats.manaRegen <= 0 || cost > stats.mana.total) return Infinity;
+    return Math.max(readyAt, time + missing / (stats.manaRegen / 5));
   }
 
   /**
@@ -419,12 +445,10 @@ export function simulate(
     if (action === "attack") {
       // Rolled at the start: a crit uses the crit attack's windup (SIM-022).
       const crit = random ? random() < stats.critChance : undefined;
-      const name =
-        crit === true && slotName === "basic"
-          ? champion.attack.critSlot
-          : slotName;
+      const name = crit === true ? attackMode.critSlot : attackMode.slot;
+      mana = manaAt(time) - attackMode.cost; // JINX-007
       const windup = windupTime(
-        champion.attack.slots[name] ?? attackSlot,
+        slotOf(name),
         champion.attack.baseAttackSpeed,
         stats.attackSpeed,
       );
@@ -433,6 +457,7 @@ export function simulate(
         slot: name,
         crit,
         index: ++attackCount,
+        amountScale: 1,
         extra: [],
       };
       const ctx = context(time);
@@ -448,7 +473,11 @@ export function simulate(
       ability.id,
       time + hastedCooldown(ability.cooldown, stats.abilityHaste),
     );
-    queue.push(time + ability.castTime, { kind: "castEnd", ability });
+    const castTime =
+      typeof ability.castTime === "number"
+        ? ability.castTime
+        : ability.castTime(stats);
+    queue.push(time + castTime, { kind: "castEnd", ability });
   }
 
   for (const { spec, stacks } of attacker.initialBuffs ?? [])
@@ -476,7 +505,12 @@ export function simulate(
         break;
       case "attackLand": {
         const { attack } = event;
-        deal(time, attackInstance(attack.slot), attack.crit);
+        const instance = attackInstance(attack.slot);
+        deal(
+          time,
+          { ...instance, amount: instance.amount * attack.amountScale },
+          attack.crit,
+        );
         for (const instance of attack.extra) deal(time, instance, attack.crit);
         // ITEM-008: on-hit effects run once per landed attack.
         const ctx = context(time);
@@ -509,7 +543,17 @@ export function simulate(
       case "buffExpire": {
         const buff = buffs.get(event.id);
         if (buff?.expiresAt === event.at) {
-          removeBuff(event.id, time);
+          if (buff.spec.decayOneAtATime && buff.stacks > 1) {
+            buff.stacks -= 1;
+            buff.expiresAt = time + buff.spec.duration;
+            queue.push(buff.expiresAt, {
+              kind: "buffExpire",
+              id: event.id,
+              at: buff.expiresAt,
+            });
+            manaAt(time);
+            stats = recompute();
+          } else removeBuff(event.id, time);
           wake(time);
         }
         break;

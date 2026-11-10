@@ -25,6 +25,8 @@ export interface StatBonuses {
   magicPenPercent?: number;
   abilityHaste?: number;
   moveSpeed?: number;
+  /** Fraction of bonus attack speed removed, e.g. 0.1 for Jinx's rockets (JINX-010). */
+  bonusAttackSpeedReduction?: number;
 }
 
 /** A stat split into its level-based part and everything added on top (STAT-003). */
@@ -90,6 +92,7 @@ function sumBonuses(bonuses: readonly StatBonuses[]) {
     magicPenPercent: 0,
     abilityHaste: 0,
     moveSpeed: 0,
+    bonusAttackSpeedReduction: 0,
   };
   for (const b of bonuses)
     for (const key of Object.keys(b) as (keyof StatBonuses)[])
@@ -122,7 +125,8 @@ export function computeStats(opts: {
   const { attack } = champion;
 
   const bonusAttackSpeed =
-    levelValue(0, attack.attackSpeedPerLevel / 100, level) + b.attackSpeed;
+    (levelValue(0, attack.attackSpeedPerLevel / 100, level) + b.attackSpeed) *
+    (1 - b.bonusAttackSpeedReduction);
   const uncappedAttackSpeed =
     attack.baseAttackSpeed + attack.attackSpeedRatio * bonusAttackSpeed;
 

@@ -64,3 +64,88 @@ export const jinx1622: ChampionData = {
 };
 
 export const testConstants: GameConstants = { attackSpeedCap: 2.5 };
+
+const one = <T>(value: T) => [value];
+const calc = (...parts: Record<string, unknown>[]) => ({
+  __type: "GameCalculation",
+  mFormulaParts: parts,
+});
+
+/**
+ * Jinx's kit with round numbers at rank 1 (PLAN §8): no mana regen, Q swap cooldown 100,
+ * minigun windup 20%, rocket windup 25%.
+ */
+export const testJinx: ChampionData = {
+  ...testChampion,
+  id: "Jinx",
+  name: "Jinx",
+  stats: { ...testChampion.stats, manaRegen: { base: 0, perLevel: 0 } },
+  attack: {
+    ...testChampion.attack,
+    slots: {
+      basic: slot,
+      JinxCritAttack: slot,
+      JinxQAttack: { windupPercent: 0.25, windupModifier: 1 },
+      JinxQCritAttack: { windupPercent: 0.25, windupModifier: 1 },
+    },
+    critSlot: "JinxCritAttack",
+  },
+  abilities: {
+    Q: {
+      maxRank: 1,
+      cooldown: one(100),
+      cost: one(20),
+      castTime: 0,
+      values: {
+        MinigunAttackSpeedMax: one(40),
+        MinigunAttackSpeedStacks: one(3),
+        MinigunAttackSpeedDuration: one(2.5),
+        MinigunFirstStackWeight: one(2),
+        RocketTAD: one(1.5),
+        RocketASPDPenalty: one(0.5),
+      },
+      calculations: {},
+    },
+    W: {
+      maxRank: 1,
+      cooldown: one(5),
+      cost: one(50),
+      castTime: 0.6,
+      values: {
+        Damage: one(100),
+        ADRatio: one(1),
+        JinxLowEndWCastTime: one(0.4),
+        JinxWASpeedCastTimeScalarPerHundrethSecond: one(0.1),
+      },
+      calculations: {
+        TotalDamage: calc(
+          { __type: "NamedDataValueCalculationPart", mDataValue: "Damage" },
+          {
+            __type: "StatByNamedDataValueCalculationPart",
+            mStat: 2,
+            mDataValue: "ADRatio",
+          },
+        ),
+      },
+    },
+    E: ability(1),
+    R: {
+      maxRank: 1,
+      cooldown: one(100),
+      cost: one(100),
+      castTime: 0.5,
+      values: { MaxDamage: one(300), PercentDamage: one(20) },
+      calculations: {
+        DamageMax: calc(
+          { __type: "NamedDataValueCalculationPart", mDataValue: "MaxDamage" },
+          {
+            __type: "StatByCoefficientCalculationPart",
+            mStat: 2,
+            mStatFormula: 2,
+            mCoefficient: 1,
+          },
+        ),
+      },
+    },
+  },
+};

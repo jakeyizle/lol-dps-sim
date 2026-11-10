@@ -114,7 +114,10 @@ describe("overrides", () => {
   it("replace generated values", { tags: ["DATA-005"] }, async () => {
     const c = await champion(
       overrides({
-        values: { Vayne: { attack: { attackSpeedRatio: 0.7 } } },
+        values: {
+          ...defaultOverrides.values,
+          Vayne: { attack: { attackSpeedRatio: 0.7 } },
+        },
       }),
     );
     expect(c?.attack.attackSpeedRatio).toBe(0.7);

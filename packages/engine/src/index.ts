@@ -9,3 +9,5 @@ export * from "./core/stats";
 export * from "./required-values";
 export * from "./items";
 export * from "./build";
+export * from "./champions";
+export * from "./core/calc";
