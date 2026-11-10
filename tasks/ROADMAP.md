@@ -42,7 +42,7 @@ Each milestone ends deployed, with its scenarios passing.
 
 - [x] Pipeline: manifest, patch-matched fetch, champion stats + attack data for all 5 MVP champions (both windup formats, modifier, per-slot), schemas, write
 - [x] Ability values; constants + skill-order overrides; overrides merge
-- [ ] Items (incl. exclusive groups) and runes; DATA-001 complete → T-011
+- [x] Items (incl. exclusive groups) and runes; DATA-001 complete
 - [x] Drift report + missing-key check
 - [ ] `packages/data` loaders (old `champion-data/` removed) → T-012
 - [ ] Scheduled `data:update` workflow opening a PR → T-013
