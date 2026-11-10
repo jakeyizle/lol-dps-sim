@@ -3,15 +3,19 @@ import {
   Constants,
   ItemsFile,
   RunesFile,
+  TargetsFile,
   type ChampionData,
   type ItemData,
   type RuneData,
   type RuneTree,
+  type TargetChampion,
 } from "./schema";
 
 export interface PatchData {
   patch: string;
   champions: Record<string, ChampionData>;
+  /** Every champion as a target (defensive stats; game-file stats for kit champions). */
+  targets: Record<string, TargetChampion>;
   items: Record<string, ItemData>;
   runes: Record<string, RuneData>;
   trees: RuneTree[];
@@ -41,13 +45,16 @@ export function parsePatch(files: {
   items: unknown;
   runes: unknown;
   constants: unknown;
+  targets: unknown;
 }): PatchData {
   const champions = ChampionsFile.parse(files.champions);
   const items = ItemsFile.parse(files.items);
   const runes = RunesFile.parse(files.runes);
   const constants = Constants.parse(files.constants);
+  const targets = TargetsFile.parse(files.targets);
   const patches = new Set([
     champions.patch,
+    targets.patch,
     items.patch,
     runes.patch,
     constants.patch,
@@ -57,6 +64,7 @@ export function parsePatch(files: {
   return {
     patch: constants.patch,
     champions: champions.champions,
+    targets: targets.champions,
     items: items.items,
     runes: runes.runes,
     trees: runes.trees,

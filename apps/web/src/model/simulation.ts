@@ -10,14 +10,9 @@ import {
 } from "@lol/engine";
 
 import { ranksOf, type Build } from "./build";
+import { toSimTarget, type Target } from "./target";
 
-/** TGT-002: a custom dummy with entered stats. */
-export interface DummyTarget {
-  kind: "dummy";
-  health: number;
-  armor: number;
-  magicResist: number;
-}
+export { defaultDummy, type DummyTarget } from "./target";
 
 export interface Settings {
   /** Minutes (BUILD-013). */
@@ -34,17 +29,10 @@ export const defaultSettings: Settings = {
   dpsWindows: [3, 6, 10],
 };
 
-export const defaultDummy: DummyTarget = {
-  kind: "dummy",
-  health: 3000,
-  armor: 100,
-  magicResist: 50,
-};
-
 /** Builds the engine's inputs for one build against one target. */
 export function toSimulation(
   build: Build,
-  target: DummyTarget,
+  target: Target,
   patch: PatchData,
   settings: Settings,
 ): {
@@ -85,12 +73,7 @@ export function toSimulation(
       rotation: build.rotation ?? kit.rotation,
       healthFraction: build.healthFraction,
     },
-    target: {
-      maxHealth: target.health,
-      defender: { armor: target.armor, magicResist: target.magicResist },
-      // Practice Tool dummies count as champions (Kraken Slayer, keystones).
-      champion: true,
-    },
+    target: toSimTarget(target, patch, settings.gameTime),
     options: {
       maxDuration: settings.maxDuration,
       critMode: settings.critMode,

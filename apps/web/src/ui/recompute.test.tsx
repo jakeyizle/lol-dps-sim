@@ -81,7 +81,8 @@ describe("recompute", { tags: ["CMP-006"] }, () => {
     });
     expect(screen.queryByText("Updating…")).toBeNull();
     expect(ttk()).not.toBe(first);
-    expect(jobs[2]?.job.target.health).toBe(1000);
+    const target = jobs[2]?.job.target;
+    expect(target?.kind === "dummy" ? target.health : undefined).toBe(1000);
   });
 });
 

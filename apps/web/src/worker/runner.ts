@@ -3,16 +3,13 @@ import { analyze, type Analysis } from "@lol/engine";
 import { wrap } from "comlink";
 
 import type { Build } from "../model/build";
-import {
-  toSimulation,
-  type DummyTarget,
-  type Settings,
-} from "../model/simulation";
+import { toSimulation, type Settings } from "../model/simulation";
+import type { Target } from "../model/target";
 
 /** Plain data only, so a worker can rebuild effects itself. */
 export interface Job {
   build: Build;
-  target: DummyTarget;
+  target: Target;
   settings: Settings;
 }
 

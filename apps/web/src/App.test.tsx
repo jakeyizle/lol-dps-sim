@@ -24,6 +24,7 @@ describe("patch data", { tags: ["DATA-009"] }, () => {
         shards: real.shards,
       }),
       ...file(patch, "constants", real.constants),
+      ...file(patch, "targets", { champions: real.targets }),
     });
     expect(loadLatest({ ...files("26.9"), ...files("26.10") }).patch).toBe(
       "26.10",

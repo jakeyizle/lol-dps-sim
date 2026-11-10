@@ -1,16 +1,22 @@
-import type { Analysis } from "@lol/engine";
+import { hasDefensiveKit, type Analysis } from "@lol/engine";
 
 import type { Build } from "../model/build";
-import { useApp } from "./context";
+import { targetName } from "../model/target";
+import { useApp, usePatch } from "./context";
 import { DamageChart } from "./DamageChart";
 import { useAnalysis } from "./useAnalysis";
 
 const n = (x: number) => Math.round(x).toLocaleString("en-US");
 
-/** One build vs the dummy: TTK, DPS windows, curve, breakdown, event log. */
+/** One build vs the target: TTK, DPS windows, curve, breakdown, event log. */
 export function Results(props: { build: Build }) {
   const { result, stale } = useAnalysis(props.build);
   const maxDuration = useApp((s) => s.settings.maxDuration);
+  const target = useApp((s) => s.target);
+  const patch = usePatch();
+  // BUILD-009: say when the target's own defensive kit isn't modelled.
+  const statsOnly =
+    target.kind === "champion" && !hasDefensiveKit(target.champion);
   if (!result)
     return (
       <p role="status" className="text-neutral-600">
@@ -28,6 +34,10 @@ export function Results(props: { build: Build }) {
           Updating…
         </p>
       )}
+      <p className="text-sm text-neutral-600" data-testid="results-target">
+        vs {targetName(target, patch)}
+        {statsOnly && " (stats only)"}
+      </p>
       <ResultBody result={result} maxDuration={maxDuration} />
     </section>
   );

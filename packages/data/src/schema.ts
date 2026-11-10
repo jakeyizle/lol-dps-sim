@@ -91,6 +91,23 @@ export const ChampionsFile = z.object({
   patch: Patch,
   champions: z.record(z.string(), ChampionData),
 });
+
+/** Any champion as a target: defensive stats only (BUILD-009). */
+export const TargetChampion = z.object({
+  id: z.string().min(1),
+  name: z.string().min(1),
+  stats: z.object({
+    health: StatGrowth,
+    armor: StatGrowth,
+    magicResist: StatGrowth,
+  }),
+});
+export type TargetChampion = z.infer<typeof TargetChampion>;
+
+export const TargetsFile = z.object({
+  patch: Patch,
+  champions: z.record(z.string(), TargetChampion),
+});
 export type ChampionsFile = z.infer<typeof ChampionsFile>;
 
 /** Game-wide rules a patch can change (DATA-015). */

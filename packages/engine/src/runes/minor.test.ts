@@ -5,6 +5,7 @@ import champions from "../../../data/generated/26.22/champions.json";
 import constants from "../../../data/generated/26.22/constants.json";
 import items from "../../../data/generated/26.22/items.json";
 import runes from "../../../data/generated/26.22/runes.json";
+import targets from "../../../data/generated/26.22/targets.json";
 import { testChampion, testConstants } from "../../test/champions";
 import type { Effect } from "../core/effects";
 import { simulate, type SimOptions, type SimTarget } from "../core/sim";
@@ -24,7 +25,7 @@ import {
 } from "./minor";
 
 /** Real 26.22 rune data on the test champion (AD 60, 0.8 AS → an attack every 1.25 s). */
-const data = parsePatch({ champions, items, runes, constants });
+const data = parsePatch({ champions, items, runes, constants, targets });
 const rune = (id: number) => {
   const r = data.runes[String(id)];
   if (!r) throw new Error(`no rune ${String(id)}`);

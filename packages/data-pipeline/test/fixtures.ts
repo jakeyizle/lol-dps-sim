@@ -49,6 +49,7 @@ export function fakeFetch(
   for (const v of versions) {
     const dd = `https://ddragon.leagueoflegends.com/cdn/${v}/data/en_US`;
     routes.set(`${dd}/item.json`, read("item.ddragon.json"));
+    routes.set(`${dd}/champion.json`, read("champions.ddragon.json"));
     routes.set(`${dd}/runesReforged.json`, read("runes.ddragon.json"));
   }
   const cd = "https://raw.communitydragon.org/16.22";

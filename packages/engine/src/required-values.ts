@@ -4,6 +4,7 @@ import { batch2RequiredValues } from "./items/batch2";
 import { batch3RequiredValues } from "./items/batch3";
 import { keystoneRequiredValues } from "./runes/keystones";
 import { minorRuneRequiredValues } from "./runes/minor";
+import { targetRequiredValues } from "./target";
 
 /**
  * Data paths each effect reads, by entity id (e.g. `Jinx: ["abilities.W.values.Damage"]`).
@@ -16,4 +17,5 @@ export const requiredValues: Record<string, readonly string[]> = {
   ...batch3RequiredValues,
   ...keystoneRequiredValues,
   ...minorRuneRequiredValues,
+  ...targetRequiredValues,
 };

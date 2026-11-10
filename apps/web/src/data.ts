@@ -29,5 +29,6 @@ export function loadLatest(
     items: f.items,
     runes: f.runes,
     constants: f.constants,
+    targets: f.targets,
   });
 }

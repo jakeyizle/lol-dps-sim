@@ -20,6 +20,10 @@ const CDRAGON = "https://raw.communitydragon.org";
 
 export const ddragonVersionsUrl = () => `${DDRAGON}/api/versions.json`;
 
+/** Every champion's summary, including base stats. */
+export const ddragonChampionListUrl = (version: string) =>
+  `${DDRAGON}/cdn/${version}/data/en_US/champion.json`;
+
 export const ddragonChampionUrl = (version: string, id: string) =>
   `${DDRAGON}/cdn/${version}/data/en_US/champion/${id}.json`;
 

@@ -1,4 +1,4 @@
-import { ChampionsFile, Constants } from "@lol/data";
+import { ChampionsFile, Constants, TargetsFile } from "@lol/data";
 import { describe, expect, it } from "vitest";
 
 import { fakeFetch, fixture } from "../test/fixtures";
@@ -42,6 +42,7 @@ describe("patch selection", () => {
         "26.22/items.json",
         "26.22/runes.json",
         "26.22/constants.json",
+        "26.22/targets.json",
       ]);
     },
   );
@@ -168,3 +169,32 @@ it("writes a valid champions file for every manifest champion", async () => {
     manifest.champions.map((c) => c.id),
   );
 });
+
+it(
+  "writes every champion as a target, kit champions with game-file stats",
+  { tags: ["BUILD-009"] },
+  async () => {
+    const { run, written } = setup();
+    await run();
+    const targets = TargetsFile.parse(
+      JSON.parse(written.get("26.22/targets.json") ?? ""),
+    ).champions;
+    const champions = ChampionsFile.parse(
+      JSON.parse(written.get("26.22/champions.json") ?? ""),
+    ).champions;
+    expect(Object.keys(targets)).toEqual(
+      expect.arrayContaining(["Garen", "Leona", "Jinx"]),
+    );
+    // Data Dragon's summary: Garen 690 (+98) health, 38 (+4.2) armor, 32 (+1.55) MR
+    expect(targets.Garen).toEqual({
+      id: "Garen",
+      name: "Garen",
+      stats: {
+        health: { base: 690, perLevel: 98 },
+        armor: { base: 38, perLevel: 4.2 },
+        magicResist: { base: 32, perLevel: 1.55 },
+      },
+    });
+    expect(targets.Jinx?.stats.health).toEqual(champions.Jinx?.stats.health);
+  },
+);
