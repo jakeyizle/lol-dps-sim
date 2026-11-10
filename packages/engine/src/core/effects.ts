@@ -14,6 +14,8 @@ export interface BuffSpec {
   attackSpeedCap?: number;
   /** On expiry, lose one stack and restart the duration instead of all stacks. */
   decayOneAtATime?: boolean;
+  /** With `decayOneAtATime`: seconds between later lost stacks (default: the duration). */
+  decayInterval?: number;
 }
 
 /** How basic attacks are made; kits change it (e.g. Jinx's weapons). */

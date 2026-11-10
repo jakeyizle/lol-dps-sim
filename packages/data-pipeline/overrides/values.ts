@@ -7,6 +7,18 @@ export const valueOverrides: Record<string, Record<string, unknown>> = {
   "3124": { values: { PhantomStacks: 2, PhantomHitDelay: 0.15 } },
   // Essence Reaver: League Wiki (26.22) "next basic attack within 10 seconds".
   "3508": { values: { SpellbladeWindow: 10 } },
+  // Lethal Tempo: League Wiki (V25.23) "remaining stacks expire one at a time, every 0.3 seconds".
+  "8008": { values: { DecayInterval: 0.3 } },
+  // Conqueror: League Wiki (V14.24) 2 stacks per melee attack, 1 ranged, 2 per ability;
+  // adaptive force gives 0.6 AD per AP (same ratio as the adaptive shard's StatGain1/2).
+  "8010": {
+    values: {
+      StacksPerAttackMelee: 2,
+      StacksPerAttackRanged: 1,
+      StacksPerAbility: 2,
+      AdaptiveADPerAP: 0.6,
+    },
+  },
   Jinx: {
     abilities: {
       Q: {
