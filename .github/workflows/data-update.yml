@@ -1,0 +1,47 @@
+name: Data update
+
+# PLAN §9: weekly check for a new patch; opens a PR with the drift report when data changed.
+on:
+  schedule:
+    - cron: "0 6 * * 3" # Wednesdays; patches usually land Tuesday/Wednesday
+  workflow_dispatch:
+
+concurrency:
+  group: data-update
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: ./.github/actions/setup
+      - run: pnpm data:update --report "$RUNNER_TEMP/report.md"
+      - name: Open a PR if the data changed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -z "$(git status --porcelain -- packages/data/generated)" ]; then
+            echo "Data unchanged."
+            exit 0
+          fi
+          patch=$(ls packages/data/generated | sort -V | tail -1)
+          branch="data/$patch"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "$branch"
+          git add packages/data/generated
+          git commit -m "update data to patch $patch"
+          git push --force origin "$branch"
+          if gh pr view "$branch" > /dev/null 2>&1; then
+            gh pr edit "$branch" --body-file "$RUNNER_TEMP/report.md"
+          else
+            gh pr create --base main --head "$branch" \
+              --title "update data to patch $patch" \
+              --body-file "$RUNNER_TEMP/report.md"
+          fi
