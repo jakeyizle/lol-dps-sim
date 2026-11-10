@@ -1,8 +1,10 @@
 import type { AbilityKey, ChampionData } from "@lol/data";
 
 import type { RunePage } from "../runes";
+import { caitlyn } from "./caitlyn";
 import { jinx, type ChampionKit } from "./jinx";
 
+export * from "./caitlyn";
 export * from "./jinx";
 
 export type KitFactory = (
@@ -12,7 +14,10 @@ export type KitFactory = (
 ) => ChampionKit;
 
 /** Champions with an implemented kit, by id; only these can be attackers (BUILD-009). */
-export const KITS: Readonly<Record<string, KitFactory>> = { Jinx: jinx };
+export const KITS: Readonly<Record<string, KitFactory>> = {
+  Jinx: jinx,
+  Caitlyn: caitlyn,
+};
 
 /** Each kit's default rune page for new builds (BUILD-001). */
 export const DEFAULT_RUNES: Readonly<Record<string, RunePage>> = {
@@ -21,6 +26,16 @@ export const DEFAULT_RUNES: Readonly<Record<string, RunePage>> = {
   Jinx: {
     primary: 8000,
     keystone: 8008,
+    primaryRunes: [9111, 9104, 8014],
+    secondary: 8200,
+    secondaryRunes: [8233, 8236],
+    shards: [5005, 5008, 5011],
+  },
+  // Press the Attack, Triumph, Legend: Alacrity, Coup de Grace; Absolute Focus,
+  // Gathering Storm; attack speed, adaptive, health.
+  Caitlyn: {
+    primary: 8000,
+    keystone: 8005,
     primaryRunes: [9111, 9104, 8014],
     secondary: 8200,
     secondaryRunes: [8233, 8236],

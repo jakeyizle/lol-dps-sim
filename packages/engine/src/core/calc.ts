@@ -35,6 +35,11 @@ interface Part {
   mLevel1Value?: number;
   mBreakpoints?: Breakpoint[];
   mSubparts?: Part[];
+  /** `StatBySubPartCalculationPart`: the stat times this part. */
+  mSubpart?: Part;
+  /** `ProductOfSubPartsCalculationPart`. */
+  mPart1?: Part;
+  mPart2?: Part;
   mStartValue?: number;
   mEndValue?: number;
   StartDataValue?: string;
@@ -100,6 +105,9 @@ function statValue(stats: StatBlock, stat = 0, formula?: number) {
       return formula === 2 ? stats.bonusAttackSpeed : stats.attackSpeed;
     case 8:
       return stats.critChance;
+    case 9:
+      // The crit damage multiplier (2 at base; Caitlyn's headshot uses it − 1).
+      return stats.critDamage;
     default:
       throw new Error(`unsupported calculation stat ${String(stat)}`);
   }
@@ -122,6 +130,14 @@ function part(p: Part, ctx: CalcContext): number {
         statValue(ctx.stats, p.mStat, p.mStatFormula) *
         round6(p.mCoefficient ?? 0)
       );
+    case "StatBySubPartCalculationPart":
+      if (!p.mSubpart) throw new Error("stat part has no subpart");
+      return (
+        statValue(ctx.stats, p.mStat, p.mStatFormula) * part(p.mSubpart, ctx)
+      );
+    case "ProductOfSubPartsCalculationPart":
+      if (!p.mPart1 || !p.mPart2) throw new Error("product part has no parts");
+      return part(p.mPart1, ctx) * part(p.mPart2, ctx);
     case "SumOfSubPartsCalculationPart":
       return (p.mSubparts ?? []).reduce((sum, s) => sum + part(s, ctx), 0);
     case "ByCharLevelInterpolationCalculationPart":
