@@ -3,6 +3,9 @@ import type { ChampionData, StatGrowth } from "@lol/data";
 /** Game-wide rules a patch can change (DATA-015). */
 export interface GameConstants {
   attackSpeedCap: number;
+  /** ITEM-018; needed only by builds with Energized items. */
+  energizeStacksPerAttack?: number;
+  energizeMaxStacks?: number;
 }
 
 /**
@@ -75,6 +78,11 @@ export function levelValue(base: number, perLevel: number, level: number) {
 const grown = (stat: StatGrowth, level: number) =>
   levelValue(stat.base, stat.perLevel, level);
 
+const MULTIPLICATIVE = new Set<keyof StatBonuses>([
+  "armorPenPercent",
+  "magicPenPercent",
+]);
+
 function sumBonuses(bonuses: readonly StatBonuses[]) {
   const total: Required<StatBonuses> = {
     attackDamage: 0,
@@ -95,8 +103,13 @@ function sumBonuses(bonuses: readonly StatBonuses[]) {
     bonusAttackSpeedReduction: 0,
   };
   for (const b of bonuses)
-    for (const key of Object.keys(b) as (keyof StatBonuses)[])
-      total[key] += b[key] ?? 0;
+    for (const key of Object.keys(b) as (keyof StatBonuses)[]) {
+      const v = b[key] ?? 0;
+      // Percent penetration sources stack multiplicatively: 1 − Π(1 − x).
+      total[key] = MULTIPLICATIVE.has(key)
+        ? 1 - (1 - total[key]) * (1 - v)
+        : total[key] + v;
+    }
   return total;
 }
 

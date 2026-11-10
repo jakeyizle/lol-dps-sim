@@ -187,6 +187,12 @@ export function simulate(
     ...(attacker.items ?? []),
     ...(attacker.runes ?? []),
   ];
+  const executeBelow = Math.max(
+    target.executeBelow ?? 0,
+    ...((target.champion ?? true)
+      ? effects.map((e) => e.executeBelow ?? 0)
+      : []),
+  );
 
   // Short-term state starts empty (SIM-009); abilities start ready (SIM-018).
   const buffs = new Map<string, ActiveBuff>();
@@ -291,6 +297,22 @@ export function simulate(
       },
       buffStacks: (id) => buffs.get(id)?.stacks ?? 0,
       attackMode: () => attackMode,
+      applyOnHit: (attack, delay) => {
+        queue.push(time + delay, {
+          kind: "callback",
+          fn: (later) => {
+            const phantom = { ...attack, phantom: true, extra: [] };
+            for (const e of effects) if (!outcome) e.onHit?.(later, phantom);
+          },
+        });
+      },
+      reduceCooldowns: (ids, fraction) => {
+        for (const id of ids) {
+          const at = readyAt.get(id);
+          if (at !== undefined && at > time)
+            readyAt.set(id, time + (at - time) * (1 - fraction));
+        }
+      },
       setAttackMode: (mode) => {
         slotOf(mode.slot);
         slotOf(mode.critSlot);
@@ -371,11 +393,7 @@ export function simulate(
       healthAfter: health,
     });
     if (health <= 0) outcome = "killed";
-    else if (
-      target.executeBelow !== undefined &&
-      health < target.executeBelow * target.maxHealth
-    )
-      outcome = "executed";
+    else if (health < executeBelow * target.maxHealth) outcome = "executed";
     if (outcome) return;
     for (const e of effects)
       e.onDamageDealt?.(ctx, {

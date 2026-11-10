@@ -36,6 +36,8 @@ export interface Attack {
   index: number;
   /** Multiplies the attack's damage (e.g. Jinx's rockets, JINX-002). */
   amountScale: number;
+  /** A repeat of the attack's on-hit effects (Guinsoo's Phantom Hit, ITEM-016). */
+  phantom?: boolean;
   /** Extra instances dealt when it lands, after the attack itself and before `onHit`. */
   extra: DamageInstance[];
 }
@@ -55,6 +57,10 @@ export interface EffectContext {
   removeBuff: (id: string) => void;
   buffStacks: (id: string) => number;
   attackMode: () => AttackMode;
+  /** Runs every effect's `onHit` again for `attack` after `delay`, marked `phantom`. */
+  applyOnHit: (attack: Attack, delay: number) => void;
+  /** Cuts the remaining cooldown of each ability by `fraction` (ITEM-017). */
+  reduceCooldowns: (abilityIds: readonly string[], fraction: number) => void;
   setAttackMode: (mode: AttackMode) => void;
   /** Runs `fn` after `delay` seconds, unless the fight has ended. */
   schedule: (delay: number, fn: (ctx: EffectContext) => void) => void;
@@ -77,6 +83,8 @@ export interface DealtInfo {
  */
 export interface Effect {
   id: string;
+  /** Champion targets left below this fraction of max health die (ITEM-014, SIM-023). */
+  executeBelow?: number;
   init?: (ctx: EffectContext) => void;
   /** Extra stats, recomputed whenever buffs change (STAT-008). */
   modifyStats?: (ctx: StatContext) => StatBonuses | undefined;

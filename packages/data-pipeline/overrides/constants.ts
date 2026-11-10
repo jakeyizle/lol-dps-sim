@@ -4,4 +4,7 @@ export const constants = {
   attackSpeedCap: 3.003,
   /** Patch 26.1 notes; matches `critDamageMultiplier` in patch 26.22 champion files. */
   baseCritMultiplier: 2,
+  /** League Wiki "Energized" (26.22): 6 stacks per basic attack, capped at 100. */
+  energizeStacksPerAttack: 6,
+  energizeMaxStacks: 100,
 };
