@@ -17,6 +17,8 @@ export interface AppState {
   renameBuild: (id: string, name: string) => void;
   deleteBuild: (id: string) => void;
   updateBuild: (id: string, change: (build: Build) => Build) => void;
+  /** CMP-001: include or leave out a build from the comparison. */
+  toggleCompared: (id: string) => void;
   setTarget: (target: Target) => void;
   /** Saves the current target under `name`, replacing a preset of that name. */
   saveTargetPreset: (name: string) => void;
@@ -62,6 +64,16 @@ export function createAppStore(
     updateBuild: (id, change) => {
       set((s) => ({
         builds: s.builds.map((b) => (b.id === id ? change(b) : b)),
+      }));
+    },
+    toggleCompared: (id) => {
+      set((s) => ({
+        compared: s.compared.includes(id)
+          ? s.compared.filter((c) => c !== id)
+          : // keep build-list order
+            s.builds
+              .map((b) => b.id)
+              .filter((b) => b === id || s.compared.includes(b)),
       }));
     },
     setTarget: (target) => {

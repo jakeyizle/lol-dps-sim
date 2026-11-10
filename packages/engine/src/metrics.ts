@@ -111,3 +111,16 @@ export function analyze(
     fight,
   };
 }
+
+/**
+ * CMP-009: damage needed to kill, before shield decay: health, shields (static and
+ * low-health) and revive health.
+ */
+export function effectiveHealth(target: SimTarget): number {
+  return (
+    target.maxHealth +
+    (target.shields ?? []).reduce((sum, s) => sum + s.amount, 0) +
+    (target.lowHealthShields ?? []).reduce((sum, s) => sum + s.amount, 0) +
+    (target.revive?.health ?? 0)
+  );
+}

@@ -1,5 +1,5 @@
 import type { PatchData } from "@lol/data";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import { loadLatest } from "./data";
 import { createAppStore, type AppStore } from "./model/store";
@@ -8,6 +8,7 @@ import { BuildEditor } from "./ui/BuildEditor";
 import { BuildList } from "./ui/BuildList";
 import { useApp, usePatch } from "./ui/context";
 import { Providers } from "./ui/Providers";
+import { Compare } from "./ui/Compare";
 import { Results } from "./ui/Results";
 import { TargetEditor } from "./ui/TargetEditor";
 
@@ -41,6 +42,15 @@ export function App(props: {
 function Shell() {
   const patch = usePatch();
   const builds = useApp((s) => s.builds);
+  const compared = useApp((s) => s.compared);
+  const comparedBuilds = useMemo(
+    () =>
+      compared.flatMap((id) => {
+        const b = builds.find((x) => x.id === id);
+        return b ? [b] : [];
+      }),
+    [builds, compared],
+  );
   const gameTime = useApp((s) => s.settings.gameTime);
   const setSettings = useApp((s) => s.setSettings);
   const [selected, setSelected] = useState<string>();
@@ -72,6 +82,7 @@ function Shell() {
           <div className="space-y-8">
             <BuildEditor build={build} />
             <TargetEditor />
+            {comparedBuilds.length > 1 && <Compare builds={comparedBuilds} />}
             <Results build={build} />
           </div>
         ) : (
