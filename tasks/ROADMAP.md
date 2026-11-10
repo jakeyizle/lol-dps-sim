@@ -45,7 +45,7 @@ Each milestone ends deployed, with its scenarios passing.
 - [x] Items (incl. exclusive groups) and runes; DATA-001 complete
 - [x] Drift report + missing-key check
 - [x] `packages/data` loaders; remove old `champion-data/`
-- [ ] Scheduled `data:update` workflow opening a PR → T-013
+- [x] Scheduled `data:update` workflow opening a PR
 
 ## M2 — Engine core (STAT, DMG, SIM)
 
