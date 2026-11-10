@@ -94,6 +94,10 @@ describe("runes", () => {
       name: "Lethal Tempo",
       values: { MaxStacks: 6, Duration: 6, TTASPerStackRanged: 0.04 },
     });
+    // the game's formulas, e.g. the 0.8 ranged multiplier on attack speed per stack
+    expect(rune(8008).calculations).toHaveProperty(
+      "ASPerStack.mRangedMultiplier.mNumber",
+    );
   });
 
   it("include stat shards", () => {

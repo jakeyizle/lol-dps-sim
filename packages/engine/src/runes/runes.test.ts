@@ -70,6 +70,7 @@ const shard = (
   key,
   name: key,
   values,
+  calculations: {},
 });
 
 describe("stat shards", { tags: ["RUNE-002"] }, () => {

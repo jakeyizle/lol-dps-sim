@@ -1,8 +1,18 @@
 import type { ChampionData, RuneData, RuneTree } from "@lol/data";
 
-import { flatValues } from "../core/calc";
+import { flatValues, levelInterpolation } from "../core/calc";
 import type { Effect } from "../core/effects";
-import { MAX_LEVEL, type StatBonuses } from "../core/stats";
+import type { StatBonuses } from "../core/stats";
+import {
+  CONQUEROR,
+  conqueror,
+  HAIL_OF_BLADES,
+  hailOfBlades,
+  LETHAL_TEMPO,
+  lethalTempo,
+  PRESS_THE_ATTACK,
+  pressTheAttack,
+} from "./keystones";
 
 /** A rune page: primary tree (keystone + one rune per other row), secondary tree (2), 3 shards. */
 export interface RunePage {
@@ -74,7 +84,7 @@ export function shardStats(
     case "HealthScaling": {
       const min = value("StatGainMin");
       const max = value("StatGainMax");
-      return { health: min + ((max - min) * (level - 1)) / (MAX_LEVEL - 1) };
+      return { health: levelInterpolation(min, max, level) };
     }
     case "Health":
       return { health: value("StatGain") };
@@ -103,8 +113,13 @@ export function runeStats(
 
 type MakeRuneEffect = (rune: RuneData, owner: ChampionData) => Effect;
 
-/** Rune ids with modelled effects; filled in by the keystone and minor rune tickets. */
-const EFFECTS: Partial<Record<number, MakeRuneEffect>> = {};
+/** Rune ids with modelled effects. */
+const EFFECTS: Partial<Record<number, MakeRuneEffect>> = {
+  [LETHAL_TEMPO]: lethalTempo,
+  [PRESS_THE_ATTACK]: pressTheAttack,
+  [HAIL_OF_BLADES]: hailOfBlades,
+  [CONQUEROR]: conqueror,
+};
 
 /** Effects of a page's runes, in page order (SIM-024). */
 export function runeEffects(

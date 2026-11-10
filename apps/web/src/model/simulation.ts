@@ -88,7 +88,8 @@ export function toSimulation(
     target: {
       maxHealth: target.health,
       defender: { armor: target.armor, magicResist: target.magicResist },
-      champion: false,
+      // Practice Tool dummies count as champions (Kraken Slayer, keystones).
+      champion: true,
     },
     options: {
       maxDuration: settings.maxDuration,

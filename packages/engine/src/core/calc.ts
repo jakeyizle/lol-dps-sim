@@ -1,6 +1,6 @@
 import type { AbilityKey, ChampionData } from "@lol/data";
 
-import type { StatBlock } from "./stats";
+import { MAX_LEVEL, type StatBlock } from "./stats";
 
 /** Ability ranks at a level, from the champion's skill order (DATA-016). */
 export function abilityRanks(
@@ -34,6 +34,11 @@ interface Part {
   mNumber?: number;
   mLevel1Value?: number;
   mBreakpoints?: Breakpoint[];
+  mSubparts?: Part[];
+  mStartValue?: number;
+  mEndValue?: number;
+  StartDataValue?: string;
+  EndDataValue?: string;
 }
 
 interface Calculation {
@@ -90,6 +95,9 @@ function statValue(stats: StatBlock, stat = 0, formula?: number) {
       return stats.abilityPower;
     case 2:
       return pick(stats.attackDamage);
+    case 4:
+      // Bonus attack speed is uncapped (Lethal Tempo's bolt, RUNE-011).
+      return formula === 2 ? stats.bonusAttackSpeed : stats.attackSpeed;
     case 8:
       return stats.critChance;
     default:
@@ -114,6 +122,24 @@ function part(p: Part, ctx: CalcContext): number {
         statValue(ctx.stats, p.mStat, p.mStatFormula) *
         round6(p.mCoefficient ?? 0)
       );
+    case "SumOfSubPartsCalculationPart":
+      return (p.mSubparts ?? []).reduce((sum, s) => sum + part(s, ctx), 0);
+    case "ByCharLevelInterpolationCalculationPart":
+      return levelInterpolation(
+        p.mStartValue ?? 0,
+        p.mEndValue ?? 0,
+        ctx.stats.level,
+      );
+    // Unnamed in the game files: level interpolation between two named values.
+    case "{ee18a47b}": {
+      if (p.StartDataValue === undefined || p.EndDataValue === undefined)
+        throw new Error("interpolation part has no data values");
+      return levelInterpolation(
+        ctx.value(p.StartDataValue),
+        ctx.value(p.EndDataValue),
+        ctx.stats.level,
+      );
+    }
     case "ByCharLevelBreakpointsCalculationPart": {
       // Each breakpoint adds a one-off bonus and/or a bonus per level from its level on.
       const level = ctx.stats.level;
@@ -130,6 +156,10 @@ function part(p: Part, ctx: CalcContext): number {
       throw new Error(`unsupported calculation part ${String(p.__type)}`);
   }
 }
+
+/** Linear from level 1 to 18 (League Wiki rune data: `min + (max-min)/17*(x-1)`). */
+export const levelInterpolation = (min: number, max: number, level: number) =>
+  min + ((max - min) * (level - 1)) / (MAX_LEVEL - 1);
 
 /** Evaluates a game-file calculation with the attacker's current stats. */
 export function evaluate(calculation: unknown, ctx: CalcContext): number {

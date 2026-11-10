@@ -8,7 +8,8 @@
       "values": {
         "StatGainMin": 10,
         "StatGainMax": 180
-      }
+      },
+      "calculations": {}
     },
     "5002": {
       "id": 5002,
@@ -16,7 +17,8 @@
       "name": "Armor",
       "values": {
         "StatGain": 6
-      }
+      },
+      "calculations": {}
     },
     "5003": {
       "id": 5003,
@@ -24,7 +26,8 @@
       "name": "Magic Resist",
       "values": {
         "StatGain": 8
-      }
+      },
+      "calculations": {}
     },
     "5005": {
       "id": 5005,
@@ -32,7 +35,8 @@
       "name": "Attack Speed",
       "values": {
         "StatGain": 10
-      }
+      },
+      "calculations": {}
     },
     "5007": {
       "id": 5007,
@@ -40,7 +44,8 @@
       "name": "Ability Haste",
       "values": {
         "HasteGain": 8
-      }
+      },
+      "calculations": {}
     },
     "5008": {
       "id": 5008,
@@ -49,7 +54,8 @@
       "values": {
         "StatGain2": 9,
         "StatGain1": 5.4
-      }
+      },
+      "calculations": {}
     },
     "5010": {
       "id": 5010,
@@ -57,7 +63,8 @@
       "name": "Move Speed",
       "values": {
         "StatGain1": 2.5
-      }
+      },
+      "calculations": {}
     },
     "5011": {
       "id": 5011,
@@ -65,7 +72,8 @@
       "name": "Health",
       "values": {
         "StatGain": 65
-      }
+      },
+      "calculations": {}
     },
     "5013": {
       "id": 5013,
@@ -73,7 +81,8 @@
       "name": "Tenacity and Slow Resist",
       "values": {
         "StatGain": 15
-      }
+      },
+      "calculations": {}
     },
     "8005": {
       "id": 8005,
@@ -95,7 +104,8 @@
         "BonusPercentDamage": 0.08,
         "OutOfCombatTimer": 5,
         "Cooldown": 6
-      }
+      },
+      "calculations": {}
     },
     "8008": {
       "id": 8008,
@@ -110,7 +120,55 @@
         "TTMinNoteDamageMelee": 9,
         "TTMaxNoteDamageMelee": 30,
         "TTMinNoteDamageRanged": 6,
-        "TTMaxNoteDamageRanged": 24
+        "TTMaxNoteDamageRanged": 24,
+        "DecayInterval": 0.3
+      },
+      "calculations": {
+        "NoteDamage": {
+          "mMultiplier": {
+            "mSubparts": [
+              {
+                "mNumber": 1,
+                "__type": "NumberCalculationPart"
+              },
+              {
+                "mStat": 4,
+                "mStatFormula": 2,
+                "mCoefficient": 1,
+                "__type": "StatByCoefficientCalculationPart"
+              }
+            ],
+            "__type": "SumOfSubPartsCalculationPart"
+          },
+          "mFormulaParts": [
+            {
+              "mStartValue": 9,
+              "mEndValue": 30,
+              "__type": "ByCharLevelInterpolationCalculationPart"
+            }
+          ],
+          "mPrecision": 1,
+          "mRangedMultiplier": {
+            "mNumber": 0.6669999957084656,
+            "__type": "NumberCalculationPart"
+          },
+          "__type": "{e9a3c91d}"
+        },
+        "ASPerStack": {
+          "mFormulaParts": [
+            {
+              "mNumber": 0.05999999865889549,
+              "__type": "NumberCalculationPart"
+            }
+          ],
+          "mDisplayAsPercent": true,
+          "mPrecision": 1,
+          "mRangedMultiplier": {
+            "mNumber": 0.800000011920929,
+            "__type": "NumberCalculationPart"
+          },
+          "__type": "{e9a3c91d}"
+        }
       }
     },
     "8009": {
@@ -123,6 +181,50 @@
         "MinFlatRestore": 6,
         "MaxFlatRestore": 50,
         "EnergyRestore": 6
+      },
+      "calculations": {
+        "RegenAmount": {
+          "mFormulaParts": [
+            {
+              "values": [
+                6,
+                6,
+                6.800000190734863,
+                7.599999904632568,
+                8.399999618530273,
+                9.199999809265137,
+                10,
+                12,
+                14,
+                16,
+                18,
+                20,
+                23.200000762939453,
+                26.399999618530273,
+                29.600000381469727,
+                32.79999923706055,
+                36,
+                40,
+                44,
+                52,
+                56,
+                60,
+                60,
+                60,
+                60,
+                60,
+                60,
+                60,
+                60,
+                60,
+                60
+              ],
+              "__type": "ByCharLevelFormulaCalculationPart"
+            }
+          ],
+          "mPrecision": 1,
+          "__type": "GameCalculation"
+        }
       }
     },
     "8010": {
@@ -136,8 +238,13 @@
         "BuffDuration": 5,
         "TimeUntilNextStackFromSameSpell": 4,
         "HealingPercent": 0.08,
-        "RangedHealingPercent": 0.05
-      }
+        "RangedHealingPercent": 0.05,
+        "StacksPerAttackMelee": 2,
+        "StacksPerAttackRanged": 1,
+        "StacksPerAbility": 2,
+        "AdaptiveADPerAP": 0.6
+      },
+      "calculations": {}
     },
     "8014": {
       "id": 8014,
@@ -146,7 +253,8 @@
       "values": {
         "EnemyHealthPercentageThreshold": 0.4,
         "BonusPercentDamage": 0.08
-      }
+      },
+      "calculations": {}
     },
     "8017": {
       "id": 8017,
@@ -159,7 +267,8 @@
         "MaxHealthDifference": 1,
         "EnemyHealthPercentageThreshold": 0.6,
         "BonusPercentDamage": 0.08
-      }
+      },
+      "calculations": {}
     },
     "8021": {
       "id": 8021,
@@ -175,6 +284,59 @@
         "RangedMSMod": 0.75,
         "RangedHealMod": 0.6,
         "MinionHealMod": 0.15
+      },
+      "calculations": {
+        "HealAmount": {
+          "mSimpleTooltipCalculationDisplay": 4,
+          "mFormulaParts": [
+            {
+              "mStartValue": 15,
+              "mEndValue": 160,
+              "mScaleByStatProgressionMultiplier": true,
+              "__type": "ByCharLevelInterpolationCalculationPart"
+            },
+            {
+              "mStat": 2,
+              "mStatFormula": 2,
+              "mDataValue": "HealBonusADRatio",
+              "__type": "StatByNamedDataValueCalculationPart"
+            },
+            {
+              "mDataValue": "HealAPRatio",
+              "__type": "StatByNamedDataValueCalculationPart"
+            }
+          ],
+          "mRangedMultiplier": {
+            "mDataValue": "RangedHealMod",
+            "__type": "NamedDataValueCalculationPart"
+          },
+          "__type": "{e9a3c91d}"
+        },
+        "{ad820ad4}": {
+          "mFormulaParts": [
+            {
+              "mStartValue": 5,
+              "mEndValue": 100,
+              "mScaleByStatProgressionMultiplier": true,
+              "__type": "ByCharLevelInterpolationCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "MoveSpeedCalc": {
+          "mFormulaParts": [
+            {
+              "mDataValue": "MSBuff",
+              "__type": "NamedDataValueCalculationPart"
+            }
+          ],
+          "mDisplayAsPercent": true,
+          "mRangedMultiplier": {
+            "mDataValue": "RangedMSMod",
+            "__type": "NamedDataValueCalculationPart"
+          },
+          "__type": "{e9a3c91d}"
+        }
       }
     },
     "8105": {
@@ -184,7 +346,8 @@
       "values": {
         "OOCMS": 8,
         "StartingOOCMS": 0
-      }
+      },
+      "calculations": {}
     },
     "8106": {
       "id": 8106,
@@ -193,7 +356,8 @@
       "values": {
         "AdditionalUltAH": 5,
         "StartingUltAH": 6
-      }
+      },
+      "calculations": {}
     },
     "8112": {
       "id": 8112,
@@ -207,6 +371,29 @@
         "WindowDuration": 3,
         "APRatio": 0.05,
         "CooldownMin": 20
+      },
+      "calculations": {
+        "TotalDamage": {
+          "mSimpleTooltipCalculationDisplay": 4,
+          "mFormulaParts": [
+            {
+              "mStartValue": 70,
+              "mEndValue": 240,
+              "__type": "ByCharLevelInterpolationCalculationPart"
+            },
+            {
+              "mDataValue": "APRatio",
+              "__type": "StatByNamedDataValueCalculationPart"
+            },
+            {
+              "mStat": 2,
+              "mStatFormula": 2,
+              "mDataValue": "BonusADRatio",
+              "__type": "StatByNamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
       }
     },
     "8126": {
@@ -217,6 +404,19 @@
         "DamageIncMin": 10,
         "DamageIncMax": 45,
         "Cooldown": 4
+      },
+      "calculations": {
+        "DamageCalc": {
+          "mSimpleTooltipCalculationDisplay": 4,
+          "mFormulaParts": [
+            {
+              "mStartValue": 10,
+              "mEndValue": 45,
+              "__type": "ByCharLevelInterpolationCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
       }
     },
     "8128": {
@@ -231,6 +431,28 @@
         "APRatio": 0.05,
         "DamagePerSoulEssence": 11,
         "CooldownResetValue": 1
+      },
+      "calculations": {
+        "TotalDamage": {
+          "mSimpleTooltipCalculationDisplay": 4,
+          "mFormulaParts": [
+            {
+              "mDataValue": "BaseDamage",
+              "__type": "NamedDataValueCalculationPart"
+            },
+            {
+              "mDataValue": "APRatio",
+              "__type": "StatByNamedDataValueCalculationPart"
+            },
+            {
+              "mStat": 2,
+              "mStatFormula": 2,
+              "mDataValue": "ADRatio",
+              "__type": "StatByNamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
       }
     },
     "8135": {
@@ -241,7 +463,8 @@
         "BaseGoldAmount": 50,
         "GoldGrowth": 20,
         "TOOLTIPMaxGoldAmount": 130
-      }
+      },
+      "calculations": {}
     },
     "8137": {
       "id": 8137,
@@ -253,6 +476,36 @@
         "RangedItemCalcValue": 250,
         "LevelThreshold": 11,
         "RevealDuration": 10
+      },
+      "calculations": {
+        "ChampRange": {
+          "mSimpleTooltipCalculationDisplay": 5,
+          "mExpandedTooltipCalculationDisplay": 5,
+          "mDefaultGameCalculation": "{792cf56b}",
+          "mConditionalGameCalculation": "{06387172}",
+          "mConditionalCalculationRequirements": {
+            "__type": "IsRangedCastRequirement"
+          },
+          "__type": "GameCalculationConditional"
+        },
+        "{792cf56b}": {
+          "mFormulaParts": [
+            {
+              "mNumber": 1,
+              "__type": "NumberCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "{06387172}": {
+          "mFormulaParts": [
+            {
+              "mNumber": 2,
+              "__type": "NumberCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
       }
     },
     "8139": {
@@ -266,6 +519,29 @@
         "RegenDuration": 4,
         "ADRatio": 0.1,
         "APRatio": 0.05
+      },
+      "calculations": {
+        "HealCalc": {
+          "mSimpleTooltipCalculationDisplay": 4,
+          "mFormulaParts": [
+            {
+              "mStartValue": 16,
+              "mEndValue": 40,
+              "__type": "ByCharLevelInterpolationCalculationPart"
+            },
+            {
+              "mDataValue": "APRatio",
+              "__type": "StatByNamedDataValueCalculationPart"
+            },
+            {
+              "mStat": 2,
+              "mStatFormula": 2,
+              "mDataValue": "ADRatio",
+              "__type": "StatByNamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
       }
     },
     "8140": {
@@ -277,7 +553,8 @@
         "StacksPerTakedown": 1,
         "SummonerAH": 3,
         "MaxStacks": 18
-      }
+      },
+      "calculations": {}
     },
     "8141": {
       "id": 8141,
@@ -290,6 +567,28 @@
         "TTDurationIncreaseMax": 45,
         "TTTrinketDurationIncreaseMin": 45,
         "TTTrinketDurationIncreaseMax": 150
+      },
+      "calculations": {
+        "DurationIncrease": {
+          "mFormulaParts": [
+            {
+              "mStartValue": 30,
+              "mEndValue": 45,
+              "__type": "ByCharLevelInterpolationCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "TrinketDurationIncrease": {
+          "mFormulaParts": [
+            {
+              "mStartValue": 45,
+              "mEndValue": 150,
+              "__type": "ByCharLevelInterpolationCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
       }
     },
     "8143": {
@@ -301,6 +600,19 @@
         "Cooldown": 10,
         "MinDamageTooltip": 20,
         "MaxDamageTooltip": 80
+      },
+      "calculations": {
+        "BaseDamage": {
+          "mSimpleTooltipCalculationDisplay": 4,
+          "mFormulaParts": [
+            {
+              "mStartValue": 20,
+              "mEndValue": 80,
+              "__type": "ByCharLevelInterpolationCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
       }
     },
     "8210": {
@@ -314,7 +626,8 @@
         "HasteBonus2": 0.05,
         "KillCooldownRefund": 0.2,
         "LevelToTurnOn3": 11
-      }
+      },
+      "calculations": {}
     },
     "8214": {
       "id": 8214,
@@ -330,6 +643,50 @@
         "DamageADRatio": 0.1,
         "ShieldRatioAD": 0.1,
         "ShieldDuration": 2.5
+      },
+      "calculations": {
+        "DamageCalc": {
+          "mSimpleTooltipCalculationDisplay": 4,
+          "mFormulaParts": [
+            {
+              "mStartValue": 10,
+              "mEndValue": 50,
+              "__type": "ByCharLevelInterpolationCalculationPart"
+            },
+            {
+              "mDataValue": "DamageAPRatio",
+              "__type": "StatByNamedDataValueCalculationPart"
+            },
+            {
+              "mStat": 2,
+              "mStatFormula": 2,
+              "mDataValue": "DamageADRatio",
+              "__type": "StatByNamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "ShieldCalc": {
+          "mSimpleTooltipCalculationDisplay": 4,
+          "mFormulaParts": [
+            {
+              "mStartValue": 20,
+              "mEndValue": 100,
+              "__type": "ByCharLevelInterpolationCalculationPart"
+            },
+            {
+              "mDataValue": "ShieldRatio",
+              "__type": "StatByNamedDataValueCalculationPart"
+            },
+            {
+              "mStat": 2,
+              "mStatFormula": 2,
+              "mDataValue": "ShieldRatioAD",
+              "__type": "StatByNamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
       }
     },
     "8224": {
@@ -340,7 +697,8 @@
         "UltimateRefundBase": 7,
         "DamageAmp": 0.12,
         "AOEAmp": 0.08
-      }
+      },
+      "calculations": {}
     },
     "8226": {
       "id": 8226,
@@ -354,7 +712,8 @@
         "MaxManaIncrease": 250,
         "PercentManaRestore": 0.01,
         "PercentManaRestoreCooldown": 5
-      }
+      },
+      "calculations": {}
     },
     "8229": {
       "id": 8229,
@@ -372,6 +731,46 @@
         "AoEPercentRefund": 0.1,
         "MaxDamageAmp": 1,
         "MaxRange": 750
+      },
+      "calculations": {
+        "DamageCalc": {
+          "mSimpleTooltipCalculationDisplay": 4,
+          "mFormulaParts": [
+            {
+              "mStartValue": 15,
+              "mEndValue": 100,
+              "__type": "ByCharLevelInterpolationCalculationPart"
+            },
+            {
+              "mDataValue": "APRatio",
+              "__type": "StatByNamedDataValueCalculationPart"
+            },
+            {
+              "mStat": 2,
+              "mStatFormula": 2,
+              "mDataValue": "ADRatio",
+              "__type": "StatByNamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "CooldownCalc": {
+          "mFormulaParts": [
+            {
+              "mCeiling": 20,
+              "mFloor": 0.30000001192092896,
+              "mSubparts": [
+                {
+                  "mStartValue": 20,
+                  "mEndValue": 8,
+                  "__type": "ByCharLevelInterpolationCalculationPart"
+                }
+              ],
+              "__type": "ClampSubPartsCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
       }
     },
     "8230": {
@@ -387,6 +786,35 @@
         "RangedEffectiveness": 0.75,
         "DamageThreshold": 0.25,
         "HasteMax": 0.48
+      },
+      "calculations": {
+        "CooldownCalc": {
+          "mSimpleTooltipCalculationDisplay": 4,
+          "mFormulaParts": [
+            {
+              "mStartValue": 20,
+              "mEndValue": 10,
+              "__type": "ByCharLevelInterpolationCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "MoveSpeedCalc": {
+          "mSimpleTooltipCalculationDisplay": 4,
+          "mFormulaParts": [
+            {
+              "mStartValue": 0.47999998927116394,
+              "mEndValue": 0.47999998927116394,
+              "__type": "ByCharLevelInterpolationCalculationPart"
+            }
+          ],
+          "mDisplayAsPercent": true,
+          "mRangedMultiplier": {
+            "mDataValue": "RangedEffectiveness",
+            "__type": "NamedDataValueCalculationPart"
+          },
+          "__type": "{e9a3c91d}"
+        }
       }
     },
     "8232": {
@@ -398,6 +826,19 @@
         "{6f2f0d30}": 1,
         "MinAdaptive": 13,
         "MaxAdaptive": 30
+      },
+      "calculations": {
+        "AdaptiveForceCalc": {
+          "mSimpleTooltipCalculationDisplay": 4,
+          "mFormulaParts": [
+            {
+              "mStartValue": 13,
+              "mEndValue": 30,
+              "__type": "ByCharLevelInterpolationCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
       }
     },
     "8233": {
@@ -408,6 +849,19 @@
         "HealthPercent": 0.7,
         "MinAdaptive": 3,
         "MaxAdaptive": 30
+      },
+      "calculations": {
+        "AdaptiveForceCalc": {
+          "mSimpleTooltipCalculationDisplay": 4,
+          "mFormulaParts": [
+            {
+              "mStartValue": 3,
+              "mEndValue": 30,
+              "__type": "ByCharLevelInterpolationCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
       }
     },
     "8234": {
@@ -417,7 +871,8 @@
       "values": {
         "PercentHasteMod": 0.07,
         "PercentMS": 0.01
-      }
+      },
+      "calculations": {}
     },
     "8236": {
       "id": 8236,
@@ -428,7 +883,8 @@
         "AdaptiveAP": 8,
         "AdaptiveAD": 6,
         "{c5d14564}": 8
-      }
+      },
+      "calculations": {}
     },
     "8237": {
       "id": 8237,
@@ -441,6 +897,19 @@
         "DotDuration": 1,
         "OOCTimer": 0,
         "{89367404}": 0.1
+      },
+      "calculations": {
+        "DamageCalc": {
+          "mSimpleTooltipCalculationDisplay": 4,
+          "mFormulaParts": [
+            {
+              "mStartValue": 20,
+              "mEndValue": 40,
+              "__type": "ByCharLevelInterpolationCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
       }
     },
     "8242": {
@@ -451,7 +920,8 @@
         "ResistMin": 10,
         "ResistMax": 10,
         "Duration": 2
-      }
+      },
+      "calculations": {}
     },
     "8275": {
       "id": 8275,
@@ -464,7 +934,8 @@
         "HighCDMSBoost": 0.45,
         "{2fd68801}": 100,
         "{b0d06764}": 250
-      }
+      },
+      "calculations": {}
     },
     "8299": {
       "id": 8299,
@@ -475,7 +946,8 @@
         "MaxBonusDamagePercent": 0.11,
         "HealthThresholdStart": 0.6,
         "HealthThresholdEnd": 0.3
-      }
+      },
+      "calculations": {}
     },
     "8304": {
       "id": 8304,
@@ -486,7 +958,8 @@
         "{c07791e4}": 300,
         "SecondsSoonerPerTakedown": 45,
         "AdditionalMovementSpeed": 10
-      }
+      },
+      "calculations": {}
     },
     "8306": {
       "id": 8306,
@@ -499,7 +972,8 @@
         "ChampionCombatCooldown": 10,
         "MinimumChannelDuration": 1,
         "{d6487c09}": 0.5
-      }
+      },
+      "calculations": {}
     },
     "8313": {
       "id": 8313,
@@ -509,7 +983,8 @@
         "FirstElixirLevel": 3,
         "SecondElixirLevel": 6,
         "ThirdElixirLevel": 9
-      }
+      },
+      "calculations": {}
     },
     "8316": {
       "id": 8316,
@@ -519,7 +994,8 @@
         "{1b48f5ea}": 8,
         "{55d14eea}": 20,
         "HastePerStack": 1
-      }
+      },
+      "calculations": {}
     },
     "8321": {
       "id": 8321,
@@ -537,7 +1013,8 @@
         "{fa03b4f1}": 150,
         "{ebbc116e}": -150,
         "PercentRefund": 0.075
-      }
+      },
+      "calculations": {}
     },
     "8345": {
       "id": 8345,
@@ -552,7 +1029,8 @@
         "FlatHeal": 20,
         "{936e8fc2}": 0.3,
         "MaximumHealIncrease": 1
-      }
+      },
+      "calculations": {}
     },
     "8347": {
       "id": 8347,
@@ -561,7 +1039,8 @@
       "values": {
         "ItemHaste": 10,
         "SummonerHaste": 18
-      }
+      },
+      "calculations": {}
     },
     "8351": {
       "id": 8351,
@@ -580,6 +1059,39 @@
         "SlowZoneSlowAPRatio": 0.06,
         "SlowZoneSlowbADRatio": 0.07,
         "SlowZoneSlowHealShieldRatio": 90
+      },
+      "calculations": {
+        "SlowZoneCalc": {
+          "mMultiplier": {
+            "mNumber": 0.009999999776482582,
+            "__type": "NumberCalculationPart"
+          },
+          "mSimpleTooltipCalculationDisplay": 4,
+          "mFormulaParts": [
+            {
+              "mDataValue": "SlowZoneSlowBase",
+              "__type": "NamedDataValueCalculationPart"
+            },
+            {
+              "mDataValue": "SlowZoneSlowAPRatio",
+              "__type": "StatByNamedDataValueCalculationPart"
+            },
+            {
+              "mStat": 2,
+              "mStatFormula": 2,
+              "mDataValue": "SlowZoneSlowbADRatio",
+              "__type": "StatByNamedDataValueCalculationPart"
+            },
+            {
+              "mStat": 34,
+              "mDataValue": "SlowZoneSlowHealShieldRatio",
+              "__type": "StatByNamedDataValueCalculationPart"
+            }
+          ],
+          "mDisplayAsPercent": true,
+          "mPrecision": 1,
+          "__type": "GameCalculation"
+        }
       }
     },
     "8352": {
@@ -590,7 +1102,8 @@
         "BonusMS": 0,
         "RestorationPercentage": 0.4,
         "Cooldown": 20
-      }
+      },
+      "calculations": {}
     },
     "8360": {
       "id": 8360,
@@ -608,7 +1121,8 @@
         "ShardRechargeReductionSeconds": 25,
         "{a8402a49}": 10,
         "{0bb7b933}": 6
-      }
+      },
+      "calculations": {}
     },
     "8369": {
       "id": 8369,
@@ -629,6 +1143,74 @@
         "ModesCooldownReduction": 1,
         "{b50bc5ec}": 0.5,
         "{7563bf99}": 0.7
+      },
+      "calculations": {
+        "Cooldown": {
+          "mFormulaParts": [
+            {
+              "mPart1": {
+                "mStartValue": 25,
+                "mEndValue": 15,
+                "mScalePastDefaultMaxLevel": false,
+                "__type": "ByCharLevelInterpolationCalculationPart"
+              },
+              "mPart2": {
+                "mDataValue": "ModesCooldownReduction",
+                "__type": "NamedDataValueCalculationPart"
+              },
+              "__type": "ProductOfSubPartsCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "ChampRange": {
+          "mSimpleTooltipCalculationDisplay": 5,
+          "mExpandedTooltipCalculationDisplay": 5,
+          "mDefaultGameCalculation": "{792cf56b}",
+          "mConditionalGameCalculation": "{06387172}",
+          "mConditionalCalculationRequirements": {
+            "__type": "IsRangedCastRequirement"
+          },
+          "__type": "GameCalculationConditional"
+        },
+        "MeleeItemCalcValue": {
+          "mSimpleTooltipCalculationDisplay": 6,
+          "mExpandedTooltipCalculationDisplay": 6,
+          "mFormulaParts": [
+            {
+              "mDataValue": "{b50bc5ec}",
+              "__type": "NamedDataValueCalculationPart"
+            }
+          ],
+          "mDisplayAsPercent": true,
+          "__type": "GameCalculation"
+        },
+        "RangedItemCalcValue": {
+          "mMultiplier": {
+            "mDataValue": "{7563bf99}",
+            "__type": "NamedDataValueCalculationPart"
+          },
+          "mModifiedGameCalculation": "MeleeItemCalcValue",
+          "__type": "GameCalculationModified"
+        },
+        "{792cf56b}": {
+          "mFormulaParts": [
+            {
+              "mNumber": 1,
+              "__type": "NumberCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "{06387172}": {
+          "mFormulaParts": [
+            {
+              "mNumber": 2,
+              "__type": "NumberCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
       }
     },
     "8401": {
@@ -642,7 +1224,8 @@
         "BonusShieldMult": 0.1,
         "ProcBaseMin": 5,
         "ProcBaseMax": 30
-      }
+      },
+      "calculations": {}
     },
     "8410": {
       "id": 8410,
@@ -651,7 +1234,8 @@
       "values": {
         "MovementSpeedPercentBonus": 0.15,
         "ActivationDistance": 1000
-      }
+      },
+      "calculations": {}
     },
     "8429": {
       "id": 8429,
@@ -663,6 +1247,38 @@
         "ExtraResist": 0.03,
         "Range": 800,
         "MinutesRequired": 12
+      },
+      "calculations": {
+        "ArmorCalcTooltip": {
+          "mSimpleTooltipCalculationDisplay": 4,
+          "mFormulaParts": [
+            {
+              "mDataValue": "ArmorBase",
+              "__type": "NamedDataValueCalculationPart"
+            },
+            {
+              "mStat": 1,
+              "mDataValue": "ExtraResist",
+              "__type": "StatByNamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "MagicResistCalcTooltip": {
+          "mSimpleTooltipCalculationDisplay": 4,
+          "mFormulaParts": [
+            {
+              "mDataValue": "MRBase",
+              "__type": "NamedDataValueCalculationPart"
+            },
+            {
+              "mStat": 6,
+              "mDataValue": "ExtraResist",
+              "__type": "StatByNamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
       }
     },
     "8437": {
@@ -678,6 +1294,38 @@
         "RangedPenaltyMod": 0.4,
         "RangedHealthPerProc": 2,
         "MeleeFlatHeal": 0
+      },
+      "calculations": {
+        "DamageCalc": {
+          "mSimpleTooltipCalculationDisplay": 4,
+          "mFormulaParts": [
+            {
+              "mStat": 12,
+              "mDataValue": "PercentHealthDamage",
+              "__type": "StatByNamedDataValueCalculationPart"
+            }
+          ],
+          "mRangedMultiplier": {
+            "mDataValue": "RangedPenaltyMod",
+            "__type": "NamedDataValueCalculationPart"
+          },
+          "__type": "{e9a3c91d}"
+        },
+        "HealCalc": {
+          "mSimpleTooltipCalculationDisplay": 4,
+          "mFormulaParts": [
+            {
+              "mStat": 12,
+              "mDataValue": "PercentHealthHeal",
+              "__type": "StatByNamedDataValueCalculationPart"
+            }
+          ],
+          "mRangedMultiplier": {
+            "mDataValue": "RangedPenaltyMod",
+            "__type": "NamedDataValueCalculationPart"
+          },
+          "__type": "{e9a3c91d}"
+        }
       }
     },
     "8439": {
@@ -695,6 +1343,68 @@
         "BonusResistMin": 80,
         "BonusResistMax": 150,
         "PercentBonusResist": 0.75
+      },
+      "calculations": {
+        "MaxResistCalc": {
+          "mSimpleTooltipCalculationDisplay": 4,
+          "mFormulaParts": [
+            {
+              "mStartValue": 80,
+              "mEndValue": 150,
+              "__type": "ByCharLevelInterpolationCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "ArmorBuff": {
+          "mSimpleTooltipCalculationDisplay": 2,
+          "mFormulaParts": [
+            {
+              "mDataValue": "FlatResists",
+              "__type": "NamedDataValueCalculationPart"
+            },
+            {
+              "mStat": 1,
+              "mStatFormula": 2,
+              "mDataValue": "PercentBonusResist",
+              "__type": "StatByNamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "MagicResistBuff": {
+          "mSimpleTooltipCalculationDisplay": 2,
+          "mFormulaParts": [
+            {
+              "mDataValue": "FlatResists",
+              "__type": "NamedDataValueCalculationPart"
+            },
+            {
+              "mStat": 6,
+              "mStatFormula": 2,
+              "mDataValue": "PercentBonusResist",
+              "__type": "StatByNamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "DamageCalc": {
+          "mSimpleTooltipCalculationDisplay": 4,
+          "mFormulaParts": [
+            {
+              "mStartValue": 25,
+              "mEndValue": 120,
+              "__type": "ByCharLevelInterpolationCalculationPart"
+            },
+            {
+              "mStat": 12,
+              "mStatFormula": 2,
+              "mDataValue": "HealthRatio",
+              "__type": "StatByNamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
       }
     },
     "8444": {
@@ -705,7 +1415,8 @@
         "RegenSeconds": 10,
         "RegenPercentMax": 0.04,
         "RegenFlat": 0
-      }
+      },
+      "calculations": {}
     },
     "8446": {
       "id": 8446,
@@ -719,6 +1430,49 @@
         "BaseDamageRanged": 50,
         "HPRatioMelee": 0.28,
         "HPRatioRanged": 0.2
+      },
+      "calculations": {
+        "DamageCalc": {
+          "mSimpleTooltipCalculationDisplay": 4,
+          "mDefaultGameCalculation": "{4e3f20aa}",
+          "mConditionalGameCalculation": "{5fecac03}",
+          "mConditionalCalculationRequirements": {
+            "__type": "IsMeleeCastRequirement"
+          },
+          "__type": "GameCalculationConditional"
+        },
+        "{4e3f20aa}": {
+          "mSimpleTooltipCalculationDisplay": 4,
+          "DamageType": 0,
+          "mFormulaParts": [
+            {
+              "mDataValue": "BaseDamageRanged",
+              "__type": "NamedDataValueCalculationPart"
+            },
+            {
+              "mStat": 12,
+              "mDataValue": "HPRatioRanged",
+              "__type": "StatByNamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "{5fecac03}": {
+          "mSimpleTooltipCalculationDisplay": 4,
+          "DamageType": 0,
+          "mFormulaParts": [
+            {
+              "mDataValue": "BaseDamageMelee",
+              "__type": "NamedDataValueCalculationPart"
+            },
+            {
+              "mStat": 12,
+              "mDataValue": "HPRatioMelee",
+              "__type": "StatByNamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
       }
     },
     "8451": {
@@ -733,7 +1487,8 @@
         "FlatHealthPerTier": 3,
         "ThresholdUnits": 120,
         "ThresholdMaxHealthRatio": 0.035
-      }
+      },
+      "calculations": {}
     },
     "8453": {
       "id": 8453,
@@ -743,7 +1498,8 @@
         "HealShieldPower": 0.05,
         "HealthCutOff": 40,
         "ExtraAmp": 10
-      }
+      },
+      "calculations": {}
     },
     "8463": {
       "id": 8463,
@@ -752,6 +1508,23 @@
       "values": {
         "Cooldown": 20,
         "RangedMod": 0.7
+      },
+      "calculations": {
+        "BaseHeal": {
+          "mSimpleTooltipCalculationDisplay": 4,
+          "mFormulaParts": [
+            {
+              "mStartValue": 10,
+              "mEndValue": 50,
+              "__type": "ByCharLevelInterpolationCalculationPart"
+            }
+          ],
+          "mRangedMultiplier": {
+            "mDataValue": "RangedMod",
+            "__type": "NamedDataValueCalculationPart"
+          },
+          "__type": "{e9a3c91d}"
+        }
       }
     },
     "8465": {
@@ -770,6 +1543,52 @@
         "CooldownMaxLevel": 40,
         "ThresholdMin": 50,
         "ThresholdMax": 165
+      },
+      "calculations": {
+        "ThresholdCalc": {
+          "mSimpleTooltipCalculationDisplay": 4,
+          "mFormulaParts": [
+            {
+              "mStartValue": 40,
+              "mEndValue": 150,
+              "__type": "ByCharLevelInterpolationCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "ShieldCalc": {
+          "mSimpleTooltipCalculationDisplay": 4,
+          "mFormulaParts": [
+            {
+              "mStartValue": 40,
+              "mEndValue": 150,
+              "__type": "ByCharLevelInterpolationCalculationPart"
+            },
+            {
+              "mStatFormula": 2,
+              "mDataValue": "APRatio",
+              "__type": "StatByNamedDataValueCalculationPart"
+            },
+            {
+              "mStat": 12,
+              "mStatFormula": 2,
+              "mDataValue": "HPRatio",
+              "__type": "StatByNamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "CooldownCalc": {
+          "mSimpleTooltipCalculationDisplay": 4,
+          "mFormulaParts": [
+            {
+              "mStartValue": 75,
+              "mEndValue": 40,
+              "__type": "ByCharLevelInterpolationCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
       }
     },
     "8473": {
@@ -782,6 +1601,19 @@
         "BlockCount": 3,
         "BlockDuration": 1.5,
         "Cooldown": 55
+      },
+      "calculations": {
+        "BlockCalc": {
+          "mSimpleTooltipCalculationDisplay": 4,
+          "mFormulaParts": [
+            {
+              "mStartValue": 30,
+              "mEndValue": 60,
+              "__type": "ByCharLevelInterpolationCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
       }
     },
     "8992": {
@@ -801,6 +1633,29 @@
         "TicksPerSecond": 2,
         "APRatioTT": 2.5,
         "ADRatioTT": 7
+      },
+      "calculations": {
+        "DamageCalc": {
+          "mSimpleTooltipCalculationDisplay": 4,
+          "mFormulaParts": [
+            {
+              "mStartValue": 3,
+              "mEndValue": 12,
+              "__type": "ByCharLevelInterpolationCalculationPart"
+            },
+            {
+              "mDataValue": "APRatio",
+              "__type": "StatByNamedDataValueCalculationPart"
+            },
+            {
+              "mStat": 2,
+              "mStatFormula": 2,
+              "mDataValue": "ADRatio",
+              "__type": "StatByNamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
       }
     },
     "9101": {
@@ -810,6 +1665,30 @@
       "values": {
         "TooltipMinHeal": 1,
         "TooltipMaxHeal": 23
+      },
+      "calculations": {
+        "HealAmount": {
+          "mFormulaParts": [
+            {
+              "mLevel1Value": 1,
+              "mInitialBonusPerLevel": 0.25,
+              "mBreakpoints": [
+                {
+                  "mLevel": 6,
+                  "mBonusPerLevelAtAndAfter": 1,
+                  "__type": "Breakpoint"
+                },
+                {
+                  "mLevel": 11,
+                  "mBonusPerLevelAtAndAfter": 2,
+                  "__type": "Breakpoint"
+                }
+              ],
+              "__type": "ByCharLevelBreakpointsCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
       }
     },
     "9103": {
@@ -826,7 +1705,8 @@
         "LargeMonsterKillValue": 25,
         "MinionKillValue": 4,
         "BonusHealth": 85
-      }
+      },
+      "calculations": {}
     },
     "9104": {
       "id": 9104,
@@ -841,7 +1721,8 @@
         "{f6570baa}": 100,
         "LargeMonsterKillValue": 25,
         "MinionKillValue": 4
-      }
+      },
+      "calculations": {}
     },
     "9105": {
       "id": 9105,
@@ -856,7 +1737,8 @@
         "{f6570baa}": 100,
         "LargeMonsterKillValue": 25,
         "MinionKillValue": 4
-      }
+      },
+      "calculations": {}
     },
     "9111": {
       "id": 9111,
@@ -866,6 +1748,19 @@
         "MissingHealthRestored": 0.05,
         "BonusGold": 20,
         "TriumphMaxHealthRestored": 0.025
+      },
+      "calculations": {
+        "MaxHealthCalc": {
+          "mSimpleTooltipCalculationDisplay": 4,
+          "mFormulaParts": [
+            {
+              "mStat": 12,
+              "mDataValue": "TriumphMaxHealthRestored",
+              "__type": "StatByNamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
       }
     },
     "9923": {
@@ -883,6 +1778,80 @@
         "BonusADRatio": 0.12,
         "APRatio": 0.1,
         "MaxBonusHits": 2
+      },
+      "calculations": {
+        "MeleeItemCalcValue": {
+          "mMultiplier": {
+            "mNumber": 100,
+            "__type": "NumberCalculationPart"
+          },
+          "mFormulaParts": [
+            {
+              "mDataValue": "ASBoost",
+              "__type": "NamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "RangedItemCalcValue": {
+          "mMultiplier": {
+            "mNumber": 100,
+            "__type": "NumberCalculationPart"
+          },
+          "mFormulaParts": [
+            {
+              "mDataValue": "ASBoostRanged",
+              "__type": "NamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "ChampRange": {
+          "mDefaultGameCalculation": "{792cf56b}",
+          "mConditionalGameCalculation": "{06387172}",
+          "mConditionalCalculationRequirements": {
+            "__type": "IsRangedCastRequirement"
+          },
+          "__type": "GameCalculationConditional"
+        },
+        "{792cf56b}": {
+          "mFormulaParts": [
+            {
+              "mNumber": 1,
+              "__type": "NumberCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "{06387172}": {
+          "mFormulaParts": [
+            {
+              "mNumber": 2,
+              "__type": "NumberCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "BonusDamage": {
+          "mFormulaParts": [
+            {
+              "StartDataValue": "BonusDamageMin",
+              "EndDataValue": "BonusDamageMax",
+              "__type": "{ee18a47b}"
+            },
+            {
+              "mDataValue": "APRatio",
+              "__type": "StatByNamedDataValueCalculationPart"
+            },
+            {
+              "mStat": 2,
+              "mStatFormula": 2,
+              "mDataValue": "BonusADRatio",
+              "__type": "StatByNamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
       }
     }
   },

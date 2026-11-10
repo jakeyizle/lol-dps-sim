@@ -4,7 +4,12 @@ interface RawPerk {
   __type?: string;
   mPerkId?: number;
   mPerkName?: string;
-  mScript?: { mSpellScriptData?: { mEffectAmount?: Record<string, number> } };
+  mScript?: {
+    mSpellScriptData?: {
+      mEffectAmount?: Record<string, number>;
+      mCalculations?: Record<string, unknown>;
+    };
+  };
 }
 
 interface RawPerkName {
@@ -27,7 +32,8 @@ export function normalizeRune(bin: unknown, names: unknown, id: number) {
   if (!perk) throw new Error(`game file has no rune ${String(id)}`);
   const name = (names as RawPerkName[]).find((p) => p.id === id)?.name;
   if (!name) throw new Error(`no display name for rune ${String(id)}`);
-  const amounts = perk.mScript?.mSpellScriptData?.mEffectAmount ?? {};
+  const data = perk.mScript?.mSpellScriptData;
+  const amounts = data?.mEffectAmount ?? {};
   return {
     id,
     key: perk.mPerkName ?? String(id),
@@ -35,6 +41,7 @@ export function normalizeRune(bin: unknown, names: unknown, id: number) {
     values: Object.fromEntries(
       Object.entries(amounts).map(([k, v]) => [k, round6(v)]),
     ),
+    calculations: data?.mCalculations ?? {},
   };
 }
 

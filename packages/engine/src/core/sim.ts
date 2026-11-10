@@ -601,7 +601,8 @@ export function simulate(
         if (buff?.expiresAt === event.at) {
           if (buff.spec.decayOneAtATime && buff.stacks > 1) {
             buff.stacks -= 1;
-            buff.expiresAt = time + buff.spec.duration;
+            buff.expiresAt =
+              time + (buff.spec.decayInterval ?? buff.spec.duration);
             queue.push(buff.expiresAt, {
               kind: "buffExpire",
               id: event.id,

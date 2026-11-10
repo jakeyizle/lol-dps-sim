@@ -132,6 +132,8 @@ export const RuneData = z.object({
   key: z.string().min(1),
   name: z.string().min(1),
   values: z.record(z.string(), z.number()),
+  /** Game-file formulas (e.g. Lethal Tempo's ranged multipliers), evaluated by the engine. */
+  calculations: z.record(z.string(), z.unknown()),
 });
 export type RuneData = z.infer<typeof RuneData>;
 
