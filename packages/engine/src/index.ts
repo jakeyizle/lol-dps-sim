@@ -8,3 +8,4 @@ export * from "./core/sim";
 export * from "./core/stats";
 export * from "./required-values";
 export * from "./items";
+export * from "./build";
