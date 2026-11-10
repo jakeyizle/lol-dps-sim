@@ -11,6 +11,7 @@ import { Providers } from "./ui/Providers";
 import { Compare } from "./ui/Compare";
 import { Results } from "./ui/Results";
 import { TargetEditor } from "./ui/TargetEditor";
+import { Timeline } from "./ui/Timeline";
 
 const defaultStore = createAppStore();
 
@@ -83,6 +84,7 @@ function Shell() {
             <BuildEditor build={build} />
             <TargetEditor />
             {comparedBuilds.length > 1 && <Compare builds={comparedBuilds} />}
+            <Timeline builds={comparedBuilds} />
             <Results build={build} />
           </div>
         ) : (

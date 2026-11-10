@@ -83,7 +83,7 @@ Each milestone ends deployed, with its scenarios passing.
 ## M6 — Compare (CMP)
 
 - [x] Multi-build side by side
-- [ ] Item-count timeline → T-035
+- [x] Item-count timeline
 - [ ] Build × target matrix → T-036
 - [ ] Worker pool, RNG mode in UI; perf check (CMP-005) → T-037
 
