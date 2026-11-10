@@ -384,6 +384,13 @@ export function simulate(
             readyAt.set(id, time + (at - time) * (1 - fraction));
         }
       },
+      reduceCooldownsBy: (ids, seconds) => {
+        for (const id of ids) {
+          const at = readyAt.get(id);
+          if (at !== undefined && at > time)
+            readyAt.set(id, Math.max(time, at - seconds));
+        }
+      },
       setAttackMode: (mode) => {
         slotOf(mode.slot);
         slotOf(mode.critSlot);

@@ -43,6 +43,11 @@ interface Part {
   mStartValue?: number;
   mEndValue?: number;
   StartDataValue?: string;
+  /** `EffectValueCalculationPart`: 1-based effect amount, read as `Effect<n>`. */
+  mEffectIndex?: number;
+  /** `ClampSubPartsCalculationPart`; null means no bound. */
+  mFloor?: number | null;
+  mCeiling?: number | null;
   EndDataValue?: string;
 }
 
@@ -101,8 +106,9 @@ function statValue(stats: StatBlock, stat = 0, formula?: number) {
     case 2:
       return pick(stats.attackDamage);
     case 4:
-      // Bonus attack speed is uncapped (Lethal Tempo's bolt, RUNE-011).
-      return formula === 2 ? stats.bonusAttackSpeed : stats.attackSpeed;
+      // The game's attack speed stat is the bonus multiplier, uncapped (Lethal Tempo's
+      // bolt, RUNE-011; Kai'Sa's E charge time).
+      return stats.bonusAttackSpeed;
     case 8:
       return stats.critChance;
     case 9:
@@ -131,6 +137,15 @@ function part(p: Part, ctx: CalcContext): number {
         statValue(ctx.stats, p.mStat, p.mStatFormula) *
         round6(p.mCoefficient ?? 0)
       );
+    case "EffectValueCalculationPart":
+      return ctx.value(`Effect${String(p.mEffectIndex ?? 0)}`);
+    case "ClampSubPartsCalculationPart": {
+      const sum = (p.mSubparts ?? []).reduce((s, x) => s + part(x, ctx), 0);
+      return Math.min(
+        p.mCeiling ?? Infinity,
+        Math.max(p.mFloor ?? -Infinity, sum),
+      );
+    }
     case "StatBySubPartCalculationPart":
       if (!p.mSubpart) throw new Error("stat part has no subpart");
       return (

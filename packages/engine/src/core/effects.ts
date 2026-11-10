@@ -69,6 +69,8 @@ export interface EffectContext {
   applyOnHit: (attack: Attack, delay: number) => void;
   /** Cuts the remaining cooldown of each ability by `fraction` (ITEM-017). */
   reduceCooldowns: (abilityIds: readonly string[], fraction: number) => void;
+  /** Cuts each ability's remaining cooldown by `seconds` (KAISA-009). */
+  reduceCooldownsBy: (abilityIds: readonly string[], seconds: number) => void;
   setAttackMode: (mode: AttackMode) => void;
   /** Runs `fn` after `delay` seconds, unless the fight has ended. */
   schedule: (delay: number, fn: (ctx: EffectContext) => void) => void;

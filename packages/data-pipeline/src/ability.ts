@@ -4,6 +4,8 @@ import { round6 } from "./round";
 
 interface RawSpell {
   DataValues?: { name: string; values?: number[] }[];
+  /** Older-style numbered values, read by `EffectValueCalculationPart` (1-based). */
+  mEffectAmount?: { value?: number[] }[];
   mSpellCalculations?: Record<string, unknown>;
   cooldownTime?: number[];
   mana?: number[];
@@ -27,14 +29,23 @@ function findSpell(bin: RawBin, path: string): RawSpell {
   return entry[1].mSpell;
 }
 
-const valuesOf = (spell: RawSpell, pick: (v: number[]) => number[]) =>
-  Object.fromEntries(
-    (spell.DataValues ?? []).map((v) => [
+function valuesOf(
+  spell: RawSpell,
+  pick: (v: number[]) => number[],
+): Record<string, number[]> {
+  const entries: [string, number[]][] = [
+    ...(spell.DataValues ?? []).map((v): [string, number[]] => [
       v.name,
       // a value with no list is zero at every rank
       pick(v.values ?? Array<number>(7).fill(0)).map(round6),
     ]),
-  );
+    // Effect amounts as `Effect1`, `Effect2`, … (empty slots skipped).
+    ...(spell.mEffectAmount ?? []).flatMap((e, i): [string, number[]][] =>
+      e.value ? [[`Effect${String(i + 1)}`, pick(e.value).map(round6)]] : [],
+    ),
+  ];
+  return Object.fromEntries(entries);
+}
 
 /**
  * DATA-004. Value and cooldown lists start at rank 0 (index 0 is unused);

@@ -36,6 +36,12 @@ export const valueOverrides: Record<string, Record<string, unknown>> = {
       R: { castTime: 0.25 },
     },
   },
+  Kaisa: {
+    abilities: {
+      // League Wiki: Icathian Rain has no cast time (missiles land 0.4 s later).
+      Q: { castTime: 0, values: { MissileDelay: [0.4, 0.4, 0.4, 0.4, 0.4] } },
+    },
+  },
   Caitlyn: {
     abilities: {
       // League Wiki (V26.21) cast times; the game file's spells list 0.

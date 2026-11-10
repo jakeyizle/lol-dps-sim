@@ -57,3 +57,15 @@ it("treats a value without a list as zero", { tags: ["DATA-004"] }, () => {
       .CanBonusDamageCrit,
   ).toEqual([0, 0, 0, 0, 0]);
 });
+
+it(
+  "read effect amounts as Effect1, Effect2 … by rank",
+  { tags: ["DATA-004"] },
+  () => {
+    // game file: KaisaW mEffectAmount[0] = [30, 30, 55, 80, 105, 130, 130]
+    const w = abilities("Kaisa").W?.values as Record<string, number[]>;
+    expect(w.Effect1).toEqual([30, 55, 80, 105, 130]);
+    expect(w.Effect4).toEqual([2, 2, 2, 2, 2]);
+    expect(w.Effect6).toBeUndefined();
+  },
+);
