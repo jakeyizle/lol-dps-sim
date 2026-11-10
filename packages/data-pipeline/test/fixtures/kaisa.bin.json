@@ -478,7 +478,102 @@
         55,
         55
       ],
-      "mCastTime": 0.25
+      "mCastTime": 0.25,
+      "mEffectAmount": [
+        {
+          "value": [
+            40,
+            40,
+            55,
+            70,
+            85,
+            100,
+            115
+          ],
+          "__type": "SpellEffectAmount"
+        },
+        {
+          "value": [
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6
+          ],
+          "__type": "SpellEffectAmount"
+        },
+        {
+          "value": [
+            0.25,
+            0.25,
+            0.25,
+            0.25,
+            0.25,
+            0.25,
+            0.25
+          ],
+          "__type": "SpellEffectAmount"
+        },
+        {
+          "value": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "__type": "SpellEffectAmount"
+        },
+        {
+          "value": [
+            0.3499999940395355,
+            0.3499999940395355,
+            0.3499999940395355,
+            0.3499999940395355,
+            0.3499999940395355,
+            0.3499999940395355,
+            0.3499999940395355
+          ],
+          "__type": "SpellEffectAmount"
+        },
+        {
+          "value": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ],
+          "__type": "SpellEffectAmount"
+        },
+        {
+          "value": [
+            12,
+            12,
+            12,
+            12,
+            12,
+            12,
+            12
+          ],
+          "__type": "SpellEffectAmount"
+        },
+        {
+          "__type": "SpellEffectAmount"
+        },
+        {
+          "__type": "SpellEffectAmount"
+        },
+        {
+          "__type": "SpellEffectAmount"
+        }
+      ]
     },
     "__type": "SpellObject"
   },
@@ -556,7 +651,111 @@
         30,
         30
       ],
-      "mCastTime": 1.5
+      "mCastTime": 1.5,
+      "mEffectAmount": [
+        {
+          "value": [
+            0.550000011920929,
+            0.550000011920929,
+            0.6000000238418579,
+            0.6499999761581421,
+            0.699999988079071,
+            0.75,
+            0.75
+          ],
+          "__type": "SpellEffectAmount"
+        },
+        {
+          "value": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "__type": "SpellEffectAmount"
+        },
+        {
+          "value": [
+            1.2000000476837158,
+            1.2000000476837158,
+            1.2000000476837158,
+            1.2000000476837158,
+            1.2000000476837158,
+            1.2000000476837158,
+            1.2000000476837158
+          ],
+          "__type": "SpellEffectAmount"
+        },
+        {
+          "value": [
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "__type": "SpellEffectAmount"
+        },
+        {
+          "value": [
+            0.4000000059604645,
+            0.4000000059604645,
+            0.5,
+            0.6000000238418579,
+            0.699999988079071,
+            0.800000011920929,
+            0.8999999761581421
+          ],
+          "__type": "SpellEffectAmount"
+        },
+        {
+          "value": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ],
+          "__type": "SpellEffectAmount"
+        },
+        {
+          "value": [
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "__type": "SpellEffectAmount"
+        },
+        {
+          "value": [
+            0.6000000238418579,
+            0.6000000238418579,
+            0.6000000238418579,
+            0.6000000238418579,
+            0.6000000238418579,
+            0.6000000238418579,
+            0.6000000238418579
+          ],
+          "__type": "SpellEffectAmount"
+        },
+        {
+          "__type": "SpellEffectAmount"
+        },
+        {
+          "__type": "SpellEffectAmount"
+        }
+      ]
     },
     "__type": "SpellObject"
   },
@@ -792,7 +991,84 @@
         75,
         85
       ],
-      "mCastTime": 0.4000000059604645
+      "mCastTime": 0.4000000059604645,
+      "mEffectAmount": [
+        {
+          "value": [
+            30,
+            30,
+            55,
+            80,
+            105,
+            130,
+            130
+          ],
+          "__type": "SpellEffectAmount"
+        },
+        {
+          "value": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ],
+          "__type": "SpellEffectAmount"
+        },
+        {
+          "value": [
+            75,
+            75,
+            75,
+            75,
+            75,
+            75,
+            75
+          ],
+          "__type": "SpellEffectAmount"
+        },
+        {
+          "value": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "__type": "SpellEffectAmount"
+        },
+        {
+          "value": [
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3
+          ],
+          "__type": "SpellEffectAmount"
+        },
+        {
+          "__type": "SpellEffectAmount"
+        },
+        {
+          "__type": "SpellEffectAmount"
+        },
+        {
+          "__type": "SpellEffectAmount"
+        },
+        {
+          "__type": "SpellEffectAmount"
+        },
+        {
+          "__type": "SpellEffectAmount"
+        }
+      ]
     },
     "__type": "SpellObject"
   },

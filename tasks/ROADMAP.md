@@ -91,7 +91,7 @@ Each milestone ends deployed, with its scenarios passing.
 
 - [x] Caitlyn
 - [x] Ashe
-- [ ] Kai'Sa → T-040
+- [x] Kai'Sa
 - [ ] Vayne → T-041
 - [ ] Rotation editor UI → T-042
 
