@@ -1,3 +1,4 @@
+import react from "@vitejs/plugin-react";
 import { defineConfig } from "vitest/config";
 
 import { scenarioTags } from "./scripts/scenarios.ts";
@@ -18,6 +19,15 @@ export default defineConfig({
             "packages/data/src/**/*.test.ts",
             "packages/data-pipeline/src/**/*.test.ts",
           ],
+        },
+      },
+      {
+        extends: true,
+        plugins: [react()],
+        test: {
+          name: "web",
+          environment: "jsdom",
+          include: ["apps/web/src/**/*.test.{ts,tsx}"],
         },
       },
       {
