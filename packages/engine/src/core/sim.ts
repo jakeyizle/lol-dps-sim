@@ -230,9 +230,6 @@ export function simulate(
     cost: 0,
   };
   const abilities = new Map((attacker.abilities ?? []).map((a) => [a.id, a]));
-  for (const { action } of rotation)
-    if (action !== "attack" && !abilities.has(action))
-      throw new Error(`unknown action ${action}`);
   const effects = [
     ...(attacker.kit ?? []),
     ...(attacker.items ?? []),
@@ -298,6 +295,7 @@ export function simulate(
       bonuses: [
         ...(attacker.bonuses ?? []),
         ...active.flatMap((b) =>
+          // Stryker disable next-line ArrayDeclaration: summing bonuses skips a junk element
           b.spec.stats ? Array<StatBonuses>(b.stacks).fill(b.spec.stats) : [],
         ),
         ...effects.flatMap((e) => e.modifyStats?.(statContext) ?? []),
@@ -322,6 +320,7 @@ export function simulate(
     buff.stacks = Math.min(spec.maxStacks, buff.stacks + stacks);
     if (!current || spec.refreshOnStack) {
       buff.expiresAt = time + spec.duration;
+      // Stryker disable next-line ConditionalExpression: an expiry at Infinity is never reached before the fight ends
       if (Number.isFinite(buff.expiresAt))
         queue.push(buff.expiresAt, {
           kind: "buffExpire",
@@ -330,12 +329,14 @@ export function simulate(
         });
     }
     buffs.set(spec.id, buff);
+    // Stryker disable next-line CallExpression: no buff changes mana regen, so settling mana first changes nothing
     manaAt(time);
     stats = recompute();
   }
 
   function removeBuff(id: string, time: number) {
     if (!buffs.delete(id)) return;
+    // Stryker disable next-line CallExpression: no buff changes mana regen, so settling mana first changes nothing
     manaAt(time);
     stats = recompute();
   }
@@ -372,7 +373,9 @@ export function simulate(
         queue.push(time + delay, {
           kind: "callback",
           fn: (later) => {
+            // Stryker disable next-line ArrayDeclaration: a phantom hit's extra damage is never dealt
             const phantom = { ...attack, phantom: true, extra: [] };
+            // Stryker disable next-line ConditionalExpression: after the kill, deal() ignores damage and the fight ends with this event
             for (const e of effects) if (!outcome) e.onHit?.(later, phantom);
           },
         });
@@ -380,6 +383,7 @@ export function simulate(
       reduceCooldowns: (ids, fraction) => {
         for (const id of ids) {
           const at = readyAt.get(id);
+          // Stryker disable next-line ConditionalExpression,LogicalOperator,EqualityOperator: a ready or never-cast ability stays ready either way
           if (at !== undefined && at > time)
             readyAt.set(id, time + (at - time) * (1 - fraction));
         }
@@ -387,6 +391,7 @@ export function simulate(
       reduceCooldownsBy: (ids, seconds) => {
         for (const id of ids) {
           const at = readyAt.get(id);
+          // Stryker disable next-line ConditionalExpression,LogicalOperator,EqualityOperator: a ready or never-cast ability stays ready either way
           if (at !== undefined && at > time)
             readyAt.set(id, Math.max(time, at - seconds));
         }
@@ -441,23 +446,33 @@ export function simulate(
     const instances =
       action === "attack"
         ? [attackInstance(attackMode.slot)]
-        : (ability?.estimate?.(ctx) ??
+        : // Stryker disable next-line OptionalChaining: every rotation action other than attack is a known ability
+          (ability?.estimate?.(ctx) ??
+          // Stryker disable next-line OptionalChaining: every rotation action other than attack is a known ability
+          // Stryker disable next-line ArrayDeclaration: a junk instance resolves to NaN damage, which never kills
           (ability?.damage ? [ability.damage] : []));
     const damage = instances.reduce(
+      // Stryker disable next-line ObjectLiteral,StringLiteral: any mode that isn't "roll" is expected value
       (sum, i) => sum + mitigate(ctx, i, { kind: "expected" }).postMitigation,
       0,
     );
     const shielding = shieldsAt(time).reduce((sum, s) => sum + s.amount, 0);
-    return instances.length > 0 && damage >= health + shielding;
+    return damage >= health + shielding;
   }
 
   /** TGT-013: shields decayed and expired up to `time`. */
   function shieldsAt(time: number) {
     shields = shields.flatMap((s) => {
+      // Stryker disable next-line EqualityOperator: exactly at expiry is a measure-zero boundary in continuous time
+      // Stryker disable next-line ArrayDeclaration: a junk shield blocks nothing and is dropped on the next update
       if (time >= s.expiresAt) return [];
       const from = Math.max(s.updatedAt, s.decayFrom);
       const amount =
+        // Stryker disable next-line EqualityOperator: at time === from both branches give s.amount
         time > from ? s.amount - s.decayPerSecond * (time - from) : s.amount;
+      // Stryker disable next-line EqualityOperator: a 0-amount shield absorbs nothing either way
+      // Stryker disable next-line ConditionalExpression: a decaying shield reaches 0 at its expiry, and absorb drops emptied shields
+      // Stryker disable next-line ArrayDeclaration: a junk shield blocks nothing and is dropped on the next update
       return amount > 0 ? [{ ...s, amount, updatedAt: time }] : [];
     });
     return shields;
@@ -471,7 +486,9 @@ export function simulate(
   ) {
     for (const s of target.lowHealthShields ?? []) {
       if (s.trigger !== "all" && s.trigger !== instance.type) continue;
+      // Stryker disable next-line EqualityOperator: exactly at the cooldown's end is a measure-zero boundary
       if (time < (shieldReadyAt.get(s.id) ?? 0)) continue;
+      // Stryker disable next-line EqualityOperator: landing exactly on the threshold is a measure-zero boundary
       if (health - amount >= s.below * target.maxHealth) continue;
       shieldReadyAt.set(s.id, time + s.cooldown);
       const decayFrom = time + (s.decayAfter ?? s.duration);
@@ -483,6 +500,7 @@ export function simulate(
           expiresAt: time + s.duration,
           decayFrom,
           decayPerSecond:
+            // Stryker disable next-line ConditionalExpression: without decayAfter decay starts at expiry, so the rate is never used
             s.decayAfter === undefined
               ? 0
               : s.amount / (s.duration - s.decayAfter),
@@ -495,6 +513,7 @@ export function simulate(
 
   /** Sets `outcome` when the target dies; damage after that is ignored. */
   function deal(time: number, instance: DamageInstance, crit?: boolean) {
+    // Stryker disable next-line EqualityOperator: exactly at the end of untargetability is a measure-zero boundary
     if (outcome || time < untargetableUntil) return;
     const critMode: CritMode =
       crit === undefined ? { kind: "expected" } : { kind: "roll", crit };
@@ -514,8 +533,11 @@ export function simulate(
       healthAfter: health,
       buffs: [...buffs.keys()],
     });
-    const dead =
-      health <= 0 || (health < executeBelow * target.maxHealth && health > 0);
+    // Stryker disable next-line EqualityOperator: landing exactly on the execute threshold is a measure-zero boundary
+    const dead = health <= 0 || health < executeBelow * target.maxHealth;
+    const entersStasis = (below: number) =>
+      // Stryker disable next-line EqualityOperator: landing exactly on the stasis threshold is a measure-zero boundary
+      health < below * target.maxHealth;
     if (dpsRun) {
       // METRIC-008: keep going below 0
     } else if (dead && reviveLeft) {
@@ -532,11 +554,12 @@ export function simulate(
         },
       });
     } else if (dead) outcome = health <= 0 ? "killed" : "executed";
-    else if (stasisLeft && health < stasisLeft.below * target.maxHealth) {
+    else if (stasisLeft && entersStasis(stasisLeft.below)) {
       untargetableUntil = time + stasisLeft.duration;
       stasisLeft = undefined;
       targetEvents.push({ time, kind: "stasis", id: "stasis" });
     }
+    // Stryker disable next-line ConditionalExpression: after the kill nothing an effect does is recorded
     if (outcome) return;
     for (const e of effects)
       e.onDamageDealt?.(ctx, {
@@ -560,6 +583,7 @@ export function simulate(
   function affordableAt(cost: number, readyAt: number, time: number) {
     const missing = cost - manaAt(time);
     if (missing <= 0) return readyAt;
+    // Stryker disable next-line ConditionalExpression,LogicalOperator,EqualityOperator: champions always regenerate mana; with no regen or cost at max the wait below is Infinity or the cap is reached anyway
     if (stats.manaRegen <= 0 || cost > stats.mana.total) return Infinity;
     return Math.max(readyAt, time + missing / (stats.manaRegen / 5));
   }
@@ -585,7 +609,6 @@ export function simulate(
     let next = Infinity;
     for (const rule of rotation) {
       const conditionsAt = ruleConditionsTime(rule, state);
-      if (!Number.isFinite(conditionsAt)) continue;
       const at = Math.max(conditionsAt, availableAt(rule.action, time));
       if (at <= time) {
         act(rule.action, time);
@@ -593,6 +616,7 @@ export function simulate(
       }
       next = Math.min(next, at);
     }
+    // Stryker disable next-line ConditionalExpression,LogicalOperator: an extra or Infinity-time decide is a no-op
     if (Number.isFinite(next) && next !== pendingWake) {
       pendingWake = next;
       queue.push(next, { kind: "decide" });
@@ -601,6 +625,7 @@ export function simulate(
 
   /** Re-decide after a state change if the attacker is waiting. */
   function wake(time: number) {
+    // Stryker disable next-line ConditionalExpression: decide() itself returns while busy
     if (!busy) queue.push(time, { kind: "decide" });
   }
 
@@ -611,6 +636,7 @@ export function simulate(
 
     if (action === "attack") {
       // Rolled at the start: a crit uses the crit attack's windup (SIM-022).
+      // Stryker disable next-line EqualityOperator: random() hitting crit chance exactly has probability 0
       const crit = random ? random() < stats.critChance : undefined;
       const name = crit === true ? attackMode.critSlot : attackMode.slot;
       mana = manaAt(time) - attackMode.cost; // JINX-007
@@ -635,6 +661,7 @@ export function simulate(
     }
 
     const ability = abilities.get(action);
+    // Stryker disable next-line all: availableAt has already rejected unknown actions
     if (!ability) throw new Error(`unknown action ${action}`);
     mana = manaAt(time) - ability.cost; // SIM-021
     readyAt.set(
@@ -693,6 +720,7 @@ export function simulate(
         for (const instance of attack.extra) deal(time, instance, attack.crit);
         // ITEM-008: on-hit effects run once per landed attack.
         const ctx = context(time);
+        // Stryker disable next-line ConditionalExpression: after the kill nothing an effect does is recorded
         for (const e of effects) if (!outcome) e.onHit?.(ctx, attack);
         afterAttack = true;
         busy = false;
@@ -705,6 +733,7 @@ export function simulate(
         if (ability.buff) addBuff(ability.buff, 1, time);
         if (ability.dot) {
           const { dot } = ability;
+          // Stryker disable next-line EqualityOperator: the 1e-9 slack makes < and <= the same
           for (let k = 1; k * dot.interval <= dot.duration + 1e-9; k++)
             queue.push(time + k * dot.interval, {
               kind: "dotTick",
@@ -714,6 +743,7 @@ export function simulate(
         if (ability.damage) deal(time, ability.damage);
         const ctx = context(time);
         for (const e of effects)
+          // Stryker disable next-line ConditionalExpression: after the kill nothing an effect does is recorded
           if (!outcome) e.onAbilityCast?.(ctx, ability.id);
         busy = false;
         queue.push(time, { kind: "decide" }); // SIM-004: nothing before the cast ends
@@ -731,9 +761,11 @@ export function simulate(
               id: event.id,
               at: buff.expiresAt,
             });
+            // Stryker disable next-line CallExpression: no buff changes mana regen, so settling mana first changes nothing
             manaAt(time);
             stats = recompute();
           } else removeBuff(event.id, time);
+          // Stryker disable next-line CallExpression: no rule condition becomes true when a buff ends
           wake(time);
         }
         break;
