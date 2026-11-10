@@ -14,3 +14,4 @@
 
 - Never push to `main`; it deploys to production. Branch (e.g. `t-012-kraken-slayer`), push, open a PR.
 - Wait for all checks, then `gh pr merge --rebase --delete-branch` (keeps history linear).
+- Don't stack PRs: rebase-merge rewrites SHAs, so every PR above a merged one conflicts. Branch each ticket from `main` after the previous PR merges; if work must continue while a PR waits, keep committing on the same branch/PR.
