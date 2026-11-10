@@ -36,7 +36,7 @@ Each milestone ends deployed, with its scenarios passing.
 - [x] pnpm monorepo, TS strict base, ESLint + Prettier, `packages/engine` skeleton with Vitest
 - [x] Scenario parser + `scenarios:check` + Vitest tag config (port from mmr-groups)
 - [x] Vite + React app shell, GitHub Actions checks + GitHub Pages deploy
-- [ ] Playwright harness against `vite preview`
+- [ ] Playwright harness against `vite preview` → T-023
 
 ## M1 — Data (DATA)
 
@@ -57,13 +57,13 @@ Each milestone ends deployed, with its scenarios passing.
 
 ## M3 — Effects, rotation, Jinx (ITEM, ROT, JINX)
 
-- [ ] Effect interface + hook order; shared helpers (every-Nth, stacking buff, empowered attack)
-- [ ] Rotation rules + conditions (incl. would-kill)
-- [ ] Jinx kit + default rotation + accuracy fixtures
-- [ ] Build validation: 6 items, exclusive groups, one boots
-- [ ] Item effects, batch 1: Kraken, BotRK, IE, LDR, on-hit rules; decide MVP item list
-- [ ] Item effects, batch 2: The Collector, Guinsoo's, Navori, Statikk, RFC, Terminus
-- [ ] Item effects, batch 3: remaining MVP items (incl. Nashor's, Wit's End)
+- [ ] Effect interface + hook order; shared helpers (every-Nth, stacking buff, empowered attack) → T-016
+- [ ] Rotation rules + conditions (incl. would-kill) → T-017
+- [ ] Jinx kit + default rotation + accuracy fixtures → T-019
+- [ ] Build validation: 6 items, exclusive groups, one boots → T-018
+- [ ] Item effects, batch 1: Kraken, BotRK, IE, LDR, on-hit rules; decide MVP item list → T-020
+- [ ] Item effects, batch 2: The Collector, Guinsoo's, Navori, Statikk, RFC, Terminus → T-021
+- [ ] Item effects, batch 3: remaining MVP items (incl. Nashor's, Wit's End) → T-022
 
 ## M4 — First usable UI (METRIC, BUILD)
 
