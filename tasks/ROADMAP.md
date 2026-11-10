@@ -98,7 +98,7 @@ Each milestone ends deployed, with its scenarios passing.
 ## M8 — Persistence & launch (SAVE)
 
 - [x] localStorage + schema migrations (incl. user target presets, TGT-005)
-- [ ] Share URLs, patch notices, removed-item handling → T-044 (removed items: T-043)
+- [x] Share URLs, patch notices, removed-item handling
 - [ ] README with disclaimer; E2E journeys; `scenarios:check --strict` in CI
 
 ## M9 — Mutation testing (PLAN §8)
