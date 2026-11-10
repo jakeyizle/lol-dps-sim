@@ -78,3 +78,4 @@
 - **When** it is opened
 - **Then** only champions with an implemented kit are selectable as the attacker
 - **And** any champion in the patch data can be picked as a target
+- **And** a target champion whose defensive kit (passives, abilities) is not modelled is marked "stats only" in the picker and in the results
