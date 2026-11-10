@@ -189,6 +189,7 @@ it(
     expect(targets.Garen).toEqual({
       id: "Garen",
       name: "Garen",
+      ranged: false,
       stats: {
         health: { base: 690, perLevel: 98 },
         armor: { base: 38, perLevel: 4.2 },
@@ -196,5 +197,6 @@ it(
       },
     });
     expect(targets.Jinx?.stats.health).toEqual(champions.Jinx?.stats.health);
+    expect(targets.Jinx?.ranged).toBe(true);
   },
 );

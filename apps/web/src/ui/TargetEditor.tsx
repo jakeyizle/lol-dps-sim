@@ -1,9 +1,11 @@
 import type { DefensiveStat } from "@lol/engine";
-import { hasDefensiveKit } from "@lol/engine";
+import { hasDefensiveKit, ZHONYAS_HOURGLASS } from "@lol/engine";
 import { useState } from "react";
 
 import {
+  championTarget,
   championTargetStats,
+  DEFAULT_ZHONYA_BELOW,
   defaultDummy,
   firstPage,
   shippedPresets,
@@ -30,14 +32,7 @@ export function TargetEditor() {
     if (kind === target.kind) return;
     const [first] = champions;
     if (kind === "dummy") setTarget(defaultDummy);
-    else if (first)
-      setTarget({
-        kind: "champion",
-        champion: first.id,
-        level: 13,
-        items: [],
-        overrides: {},
-      });
+    else if (first) setTarget(championTarget(first.id));
   };
 
   return (
@@ -293,6 +288,33 @@ function ChampionFields(props: {
           </label>
         ))}
       </div>
+
+      {target.items.includes(ZHONYAS_HOURGLASS) && (
+        <label className="flex items-center gap-2">
+          Zhonya&apos;s at
+          <select
+            aria-label="Zhonya's activation"
+            className="rounded border px-1 py-0.5"
+            value={
+              target.zhonyaBelow === null ? "never" : String(target.zhonyaBelow)
+            }
+            onChange={(e) => {
+              onChange({
+                ...target,
+                zhonyaBelow:
+                  e.target.value === "never" ? null : Number(e.target.value),
+              });
+            }}
+          >
+            <option value="never">Never</option>
+            {[0.1, 0.2, DEFAULT_ZHONYA_BELOW, 0.4, 0.5].map((f) => (
+              <option key={f} value={String(f)}>
+                {Math.round(f * 100)}% health
+              </option>
+            ))}
+          </select>
+        </label>
+      )}
 
       <label className="flex items-center gap-2 text-sm">
         <input

@@ -78,7 +78,7 @@ Each milestone ends deployed, with its scenarios passing.
 - [x] Keystones: Lethal Tempo (stacks, bolt, decay, ranged), PtA, HoB, Conqueror
 - [x] Minor runes: Cut Down, Coup de Grace, Last Stand, Legend: Alacrity, Gathering Storm, Absolute Focus
 - [x] Target editor: champion target (items, runes, shards), dummy, overrides, presets
-- [ ] Defensive effects: Randuin's, Steelcaps, shields (typed, decaying), GA, Zhonya's → T-033
+- [x] Defensive effects: Randuin's, Steelcaps, shields (typed, decaying), GA, Zhonya's
 
 ## M6 — Compare (CMP)
 

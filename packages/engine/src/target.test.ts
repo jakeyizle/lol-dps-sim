@@ -13,6 +13,7 @@ import {
 const garen: TargetChampion = {
   id: "Garen",
   name: "Garen",
+  ranged: false,
   stats: {
     health: { base: 690, perLevel: 98 },
     armor: { base: 38, perLevel: 4.2 },

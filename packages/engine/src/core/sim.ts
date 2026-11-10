@@ -5,6 +5,7 @@ import {
   resolveDamage,
   type CritMode,
   type DamageInstance,
+  type DamageType,
   type Defender,
   type ResolvedDamage,
   type Shield,
@@ -97,6 +98,12 @@ export interface SimTarget {
   maxHealth: number;
   defender: Defender;
   shields?: readonly Shield[];
+  /** TGT-008: shields gained when damage would take health below a fraction. */
+  lowHealthShields?: readonly LowHealthShield[];
+  /** TGT-009: on first reaching 0 health, untargetable for `delay`, then back with `health`. */
+  revive?: { delay: number; health: number };
+  /** TGT-010: on first dropping below `below` × max health, untargetable for `duration`. */
+  stasis?: { below: number; duration: number };
   /** Target defenses; only `modifyIncoming` is used. */
   effects?: readonly Effect[];
   /** Health above the champion's base, for effects like Giant Slayer (ITEM-013). Default 0. */
@@ -105,6 +112,36 @@ export interface SimTarget {
   champion?: boolean;
   /** Dies when left below this fraction of max health by the attacker's damage (SIM-023). */
   executeBelow?: number;
+}
+
+export interface LowHealthShield {
+  id: string;
+  /** Fraction of max health. */
+  below: number;
+  /** Only damage of this type triggers it (Maw of Malmortius: magic). */
+  trigger: "all" | DamageType;
+  amount: number;
+  blocks: Shield["blocks"];
+  /** Seconds the shield lasts. */
+  duration: number;
+  /** TGT-013: seconds after which it decays linearly to 0 at `duration`. */
+  decayAfter?: number;
+  cooldown: number;
+}
+
+/** What happened to the target (shields, revive, stasis), for the event log. */
+export interface TargetEvent {
+  time: number;
+  kind: "shield" | "revive" | "stasis";
+  id: string;
+}
+
+/** A shield on the target with its expiry and decay (TGT-013). */
+interface ActiveShield extends Shield {
+  expiresAt: number;
+  decayFrom: number;
+  decayPerSecond: number;
+  updatedAt: number;
 }
 
 export interface SimOptions {
@@ -146,6 +183,7 @@ export interface SimResult {
   trace: TraceEntry[];
   /** Every attack start and ability cast, in order. */
   actions: CastEntry[];
+  targetEvents: TargetEvent[];
   /** The attacker's stats at the start of the fight (METRIC-007). */
   stats: StatBlock;
 }
@@ -217,7 +255,20 @@ export function simulate(
   let mana = stats.mana.total; // SIM-019
   let manaTime = 0;
   let health = target.maxHealth;
-  let shields = target.shields ?? [];
+  let shields: ActiveShield[] = (target.shields ?? []).map((s) => ({
+    ...s,
+    expiresAt: Infinity,
+    decayFrom: Infinity,
+    decayPerSecond: 0,
+    updatedAt: 0,
+  }));
+  const shieldReadyAt = new Map<string, number>();
+  const targetEvents: TargetEvent[] = [];
+  /** Untargetable (revive delay, stasis) until then; damage is dropped (TGT-015). */
+  let untargetableUntil = -Infinity;
+  // METRIC-009: no revive or stasis in the DPS run.
+  let reviveLeft = dpsRun ? undefined : target.revive;
+  let stasisLeft = dpsRun ? undefined : target.stasis;
   let nextAttackAt = 0;
   let afterAttack = false;
   /** In a windup or cast; decisions wait for it to end. */
@@ -389,20 +440,63 @@ export function simulate(
       (sum, i) => sum + mitigate(ctx, i, { kind: "expected" }).postMitigation,
       0,
     );
-    const shielding = shields.reduce((sum, s) => sum + s.amount, 0);
+    const shielding = shieldsAt(time).reduce((sum, s) => sum + s.amount, 0);
     return instances.length > 0 && damage >= health + shielding;
+  }
+
+  /** TGT-013: shields decayed and expired up to `time`. */
+  function shieldsAt(time: number) {
+    shields = shields.flatMap((s) => {
+      if (time >= s.expiresAt) return [];
+      const from = Math.max(s.updatedAt, s.decayFrom);
+      const amount =
+        time > from ? s.amount - s.decayPerSecond * (time - from) : s.amount;
+      return amount > 0 ? [{ ...s, amount, updatedAt: time }] : [];
+    });
+    return shields;
+  }
+
+  /** TGT-008: grants shields this damage would trigger, before it lands. */
+  function triggerShields(
+    time: number,
+    instance: DamageInstance,
+    amount: number,
+  ) {
+    for (const s of target.lowHealthShields ?? []) {
+      if (s.trigger !== "all" && s.trigger !== instance.type) continue;
+      if (time < (shieldReadyAt.get(s.id) ?? 0)) continue;
+      if (health - amount >= s.below * target.maxHealth) continue;
+      shieldReadyAt.set(s.id, time + s.cooldown);
+      const decayFrom = time + (s.decayAfter ?? s.duration);
+      shields = [
+        ...shieldsAt(time),
+        {
+          amount: s.amount,
+          blocks: s.blocks,
+          expiresAt: time + s.duration,
+          decayFrom,
+          decayPerSecond:
+            s.decayAfter === undefined
+              ? 0
+              : s.amount / (s.duration - s.decayAfter),
+          updatedAt: time,
+        },
+      ];
+      targetEvents.push({ time, kind: "shield", id: s.id });
+    }
   }
 
   /** Sets `outcome` when the target dies; damage after that is ignored. */
   function deal(time: number, instance: DamageInstance, crit?: boolean) {
-    if (outcome) return;
+    if (outcome || time < untargetableUntil) return;
     const critMode: CritMode =
       crit === undefined ? { kind: "expected" } : { kind: "roll", crit };
     const ctx = context(time);
     const damage = mitigate(ctx, instance, critMode);
     const { postMitigation } = damage;
 
-    const shielded = absorb(shields, postMitigation, instance.type);
+    triggerShields(time, instance, postMitigation);
+    const shielded = absorb(shieldsAt(time), postMitigation, instance.type);
     shields = shielded.shields;
     health -= shielded.toHealth;
     trace.push({
@@ -413,10 +507,29 @@ export function simulate(
       healthAfter: health,
       buffs: [...buffs.keys()],
     });
+    const dead =
+      health <= 0 || (health < executeBelow * target.maxHealth && health > 0);
     if (dpsRun) {
       // METRIC-008: keep going below 0
-    } else if (health <= 0) outcome = "killed";
-    else if (health < executeBelow * target.maxHealth) outcome = "executed";
+    } else if (dead && reviveLeft) {
+      // TGT-009: TTK counts to the final death (METRIC-001).
+      const { delay, health: revived } = reviveLeft;
+      reviveLeft = undefined;
+      health = 0;
+      untargetableUntil = time + delay;
+      targetEvents.push({ time, kind: "revive", id: "revive" });
+      queue.push(untargetableUntil, {
+        kind: "callback",
+        fn: () => {
+          health = revived;
+        },
+      });
+    } else if (dead) outcome = health <= 0 ? "killed" : "executed";
+    else if (stasisLeft && health < stasisLeft.below * target.maxHealth) {
+      untargetableUntil = time + stasisLeft.duration;
+      stasisLeft = undefined;
+      targetEvents.push({ time, kind: "stasis", id: "stasis" });
+    }
     if (outcome) return;
     for (const e of effects)
       e.onDamageDealt?.(ctx, {
@@ -546,6 +659,7 @@ export function simulate(
     remainingHealth: Math.max(0, health),
     trace,
     actions,
+    targetEvents,
     stats: startStats,
   });
 

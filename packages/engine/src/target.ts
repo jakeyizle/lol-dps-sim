@@ -1,13 +1,40 @@
-import type { RuneData, TargetChampion } from "@lol/data";
+import type { ItemData, RuneData, TargetChampion } from "@lol/data";
 
 import { flatValues } from "./core/calc";
+import type { DamageReduction } from "./core/damage";
+import type { LowHealthShield, SimTarget } from "./core/sim";
 import { levelValue, type SplitStat, type StatBonuses } from "./core/stats";
 import { runeStats, type RunePage } from "./runes";
 
 export const CONDITIONING = 8429;
+export const RANDUINS_OMEN = "3143";
+export const PLATED_STEELCAPS = "3047";
+export const STERAKS_GAGE = "3053";
+export const MAW_OF_MALMORTIUS = "3156";
+export const GUARDIAN_ANGEL = "3026";
+export const ZHONYAS_HOURGLASS = "3157";
 
-/** Rune values the target side reads (DATA-012). */
+/** Values the target side reads (DATA-012). */
 export const targetRequiredValues = {
+  [RANDUINS_OMEN]: ["values.PercentCritDamageReduction"],
+  [PLATED_STEELCAPS]: ["values.BasicDamageReduction"],
+  [STERAKS_GAGE]: [
+    "values.LowHealthThreshold",
+    "values.BaseShieldRatio",
+    "values.ShieldDuration",
+    "values.TimeBeforeDecay",
+    "values.Cooldown",
+  ],
+  [MAW_OF_MALMORTIUS]: [
+    "values.LowHealthThreshold",
+    "values.ShieldSize",
+    "values.ShieldADScaling",
+    "values.RangedShieldMod",
+    "values.ShieldDuration",
+    "values.Cooldown",
+  ],
+  [GUARDIAN_ANGEL]: ["values.ReviveDelay", "values.ReviveBaseHealthRatio"],
+  [ZHONYAS_HOURGLASS]: ["values.Duration"],
   [CONDITIONING]: [
     "values.ArmorBase",
     "values.MRBase",
@@ -112,4 +139,86 @@ export function conditioningStats(
     magicResist:
       value("MRBase") + value("ExtraResist") * current.magicResist.total,
   };
+}
+
+export interface DefenseSetup {
+  stats: DefenderStats;
+  /** Bonus AD from the target's items (Maw of Malmortius). */
+  bonusAttackDamage: number;
+  ranged: boolean;
+  /** TGT-010, TGT-011: Zhonya's at this fraction of max health, or null for never. */
+  zhonyaBelow: number | null;
+}
+
+type Defenses = Pick<SimTarget, "lowHealthShields" | "revive" | "stasis"> & {
+  critDamageReduction?: number;
+  reductions: DamageReduction[];
+};
+
+/** TGT-006–011: what the target's items do when it takes damage. */
+export function targetDefenses(
+  items: readonly ItemData[],
+  setup: DefenseSetup,
+): Defenses {
+  const defenses: Defenses = { reductions: [], lowHealthShields: [] };
+  const shields: LowHealthShield[] = [];
+  for (const item of items) {
+    const value = flatValues(item.values);
+    switch (item.id) {
+      case RANDUINS_OMEN:
+        // TGT-006: the whole critical strike (DMG-014).
+        defenses.critDamageReduction = value("PercentCritDamageReduction");
+        break;
+      case PLATED_STEELCAPS:
+        // TGT-007: basic attack damage, not on-hit effects.
+        defenses.reductions.push({
+          appliesTo: "autoAttack",
+          fraction: value("BasicDamageReduction"),
+        });
+        break;
+      case STERAKS_GAGE:
+        // TGT-008, TGT-013: a share of bonus health, decaying after a delay.
+        shields.push({
+          id: "SteraksGage",
+          below: value("LowHealthThreshold"),
+          trigger: "all",
+          amount: value("BaseShieldRatio") * setup.stats.health.bonus,
+          blocks: "all",
+          duration: value("ShieldDuration"),
+          decayAfter: value("TimeBeforeDecay"),
+          cooldown: value("Cooldown"),
+        });
+        break;
+      case MAW_OF_MALMORTIUS:
+        // TGT-014: triggered by and absorbing magic damage only.
+        shields.push({
+          id: "MawOfMalmortius",
+          below: value("LowHealthThreshold"),
+          trigger: "magic",
+          amount:
+            (value("ShieldSize") +
+              value("ShieldADScaling") * setup.bonusAttackDamage) *
+            (setup.ranged ? value("RangedShieldMod") : 1),
+          blocks: "magic",
+          duration: value("ShieldDuration"),
+          cooldown: value("Cooldown"),
+        });
+        break;
+      case GUARDIAN_ANGEL:
+        defenses.revive = {
+          delay: value("ReviveDelay"),
+          health: value("ReviveBaseHealthRatio") * setup.stats.health.base,
+        };
+        break;
+      case ZHONYAS_HOURGLASS:
+        if (setup.zhonyaBelow !== null)
+          defenses.stasis = {
+            below: setup.zhonyaBelow,
+            duration: value("Duration"),
+          };
+        break;
+    }
+  }
+  defenses.lowHealthShields = shields;
+  return defenses;
 }

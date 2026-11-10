@@ -43,7 +43,9 @@ export function normalizeTargets(
             armor: growth(c.stats, "armor", "armorperlevel"),
             magicResist: growth(c.stats, "spellblock", "spellblockperlevel"),
           };
-      return [c.id, { id: c.id, name: c.name, stats }];
+      const range = kit ? kit.stats.attackRange.base : c.stats.attackrange;
+      if (range === undefined) throw new Error(`${c.id}: no attack range`);
+      return [c.id, { id: c.id, name: c.name, ranged: range > 250, stats }];
     }),
   );
 }

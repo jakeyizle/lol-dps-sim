@@ -14,7 +14,12 @@ import { loadLatest } from "../data";
 import { newBuild } from "../model/build";
 import { defaultSettings, toSimulation } from "../model/simulation";
 import { createAppStore } from "../model/store";
-import { defaultDummy, shippedPresets } from "../model/target";
+import {
+  championTarget,
+  defaultDummy,
+  shippedPresets,
+  toSimTarget,
+} from "../model/target";
 import { inlineRunner } from "../worker/runner";
 
 afterEach(cleanup);
@@ -183,4 +188,44 @@ describe("presets", () => {
     const target = store.getState().target;
     expect(target.kind === "champion" ? target.champion : "").toBe("Garen");
   });
+});
+
+describe("target items", () => {
+  it(
+    "Zhonya's activation is a target setting that can be never",
+    { tags: ["TGT-011"] },
+    () => {
+      const store = setup();
+      toChampion("Garen");
+      expect(screen.queryByLabelText("Zhonya's activation")).toBeNull();
+      fireEvent.change(screen.getByLabelText("Add target item"), {
+        target: { value: "3157" },
+      });
+      fireEvent.change(screen.getByLabelText("Zhonya's activation"), {
+        target: { value: "never" },
+      });
+      const target = store.getState().target;
+      expect(target.kind === "champion" ? target.zhonyaBelow : 0).toBeNull();
+      expect(toSimTarget(target, patch, 30).stasis).toBeUndefined();
+    },
+  );
+
+  it(
+    "give the engine their defenses",
+    { tags: ["TGT-006", "TGT-007", "TGT-009"] },
+    () => {
+      const sim = toSimTarget(
+        { ...championTarget("Garen"), items: ["3143", "3047", "3026"] },
+        patch,
+        30,
+      );
+      expect(sim.defender.critDamageReduction).toBe(
+        patch.items["3143"]?.values.PercentCritDamageReduction,
+      );
+      expect(sim.defender.reductions).toEqual([
+        { appliesTo: "autoAttack", fraction: 0.1 },
+      ]);
+      expect(sim.revive?.delay).toBe(4);
+    },
+  );
 });
