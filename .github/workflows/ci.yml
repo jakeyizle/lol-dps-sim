@@ -21,3 +21,10 @@ jobs:
       # Non-strict until M8 (PLAN §9): reports uncovered scenarios without failing.
       - run: pnpm scenarios:check
       - run: pnpm build
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+      - run: pnpm --filter @lol/web exec playwright install --with-deps chromium
+      - run: pnpm test:e2e

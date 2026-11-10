@@ -11,7 +11,8 @@
     "test": "vitest run",
     "scenarios:check": "node scripts/check-scenarios.ts",
     "data:update": "tsx packages/data-pipeline/src/cli.ts",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "test:e2e": "pnpm --filter @lol/web test:e2e"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
