@@ -1183,6 +1183,13 @@
               1,
               1,
               1
+            ],
+            "FirstFlurryShots": [
+              6,
+              6,
+              6,
+              6,
+              6
             ]
           },
           "calculations": {
@@ -1215,7 +1222,7 @@
             60,
             55
           ],
-          "castTime": 0,
+          "castTime": 0.25,
           "values": {
             "BaseDamage": [
               60,
@@ -1324,7 +1331,7 @@
             100,
             100
           ],
-          "castTime": 0,
+          "castTime": 0.25,
           "values": {
             "RBaseDamage": [
               200,

@@ -106,8 +106,9 @@ function statValue(stats: StatBlock, stat = 0, formula?: number) {
     case 8:
       return stats.critChance;
     case 9:
-      // The crit damage multiplier (2 at base; Caitlyn's headshot uses it − 1).
-      return stats.critDamage;
+      // Formula 2: bonus crit damage only (STAT-010, Ashe's Frost Shot); otherwise the
+      // whole multiplier (2 at base; Caitlyn's headshot uses it − 1).
+      return formula === 2 ? stats.bonusCritDamage : stats.critDamage;
     default:
       throw new Error(`unsupported calculation stat ${String(stat)}`);
   }

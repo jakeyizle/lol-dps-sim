@@ -1,3 +1,4 @@
+import { asheRequiredValues } from "./champions/ashe";
 import { caitlynRequiredValues } from "./champions/caitlyn";
 import { jinxRequiredValues } from "./champions/jinx";
 import { batch1RequiredValues } from "./items/batch1";
@@ -14,6 +15,7 @@ import { targetRequiredValues } from "./target";
 export const requiredValues: Record<string, readonly string[]> = {
   Jinx: jinxRequiredValues,
   Caitlyn: caitlynRequiredValues,
+  Ashe: asheRequiredValues,
   ...batch1RequiredValues,
   ...batch2RequiredValues,
   ...batch3RequiredValues,
