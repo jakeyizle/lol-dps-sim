@@ -30,14 +30,36 @@ export interface SimWorker {
   run: (job: Job) => Analysis;
 }
 
-/** Runs jobs in a Web Worker via Comlink, off the main thread (CMP-011). */
-export function workerRunner(): Runner {
-  const worker = wrap<SimWorker>(
-    new Worker(new URL("./sim.worker.ts", import.meta.url), { type: "module" }),
-  );
-  return (job) => worker.run(job);
+/**
+ * Runs jobs in a pool of Web Workers via Comlink, off the main thread (CMP-011); each job
+ * goes to the worker with the fewest jobs in flight.
+ */
+export function workerPool(size: number): Runner {
+  const workers = Array.from({ length: Math.max(1, size) }, () => ({
+    api: wrap<SimWorker>(
+      new Worker(new URL("./sim.worker.ts", import.meta.url), {
+        type: "module",
+      }),
+    ),
+    busy: 0,
+  }));
+  return async (job) => {
+    const worker = workers.reduce((a, b) => (b.busy < a.busy ? b : a));
+    worker.busy += 1;
+    try {
+      return await worker.api.run(job);
+    } finally {
+      worker.busy -= 1;
+    }
+  };
 }
 
+/** Up to 4 workers, leaving a core for the page. */
+export const poolSize = (cores: number | undefined) =>
+  Math.max(1, Math.min(4, (cores ?? 2) - 1));
+
 export function defaultRunner(patch: PatchData): Runner {
-  return typeof Worker === "undefined" ? inlineRunner(patch) : workerRunner();
+  return typeof Worker === "undefined"
+    ? inlineRunner(patch)
+    : workerPool(poolSize(navigator.hardwareConcurrency));
 }

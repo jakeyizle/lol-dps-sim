@@ -186,3 +186,21 @@ it("records the attacker's active buffs on each damage instance", () => {
   );
   expect(fight.trace.map((t) => t.buffs)).toEqual([[], ["Fury"]]);
 });
+
+it(
+  "analyze adds the spread over runs in RNG mode only",
+  { tags: ["SIM-013"] },
+  () => {
+    const attacker = {
+      champion: testChampion,
+      level: 1,
+      constants: testConstants,
+      bonuses: [{ critChance: 0.5 }],
+    };
+    const target = { maxHealth: 2000, defender: { armor: 0, magicResist: 0 } };
+    expect(analyze(attacker, target).spread).toBeUndefined();
+    const rng = analyze(attacker, target, { critMode: "rng", runs: 30 });
+    expect(rng.spread?.runs).toBe(30);
+    expect(rng.spread?.ttk.p10).toBeLessThanOrEqual(rng.spread?.ttk.p90 ?? 0);
+  },
+);

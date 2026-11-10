@@ -19,6 +19,8 @@ export interface Settings {
   gameTime: number;
   maxDuration: number;
   critMode: "expected" | "rng";
+  /** SIM-013: runs per result in RNG mode. */
+  runs: number;
   dpsWindows: number[];
 }
 
@@ -26,6 +28,7 @@ export const defaultSettings: Settings = {
   gameTime: 30,
   maxDuration: 20,
   critMode: "expected",
+  runs: 200,
   dpsWindows: [3, 6, 10],
 };
 
@@ -38,7 +41,7 @@ export function toSimulation(
 ): {
   attacker: SimAttacker;
   target: SimTarget;
-  options: SimOptions & { dpsWindows: number[] };
+  options: SimOptions & { dpsWindows: number[]; runs: number };
 } {
   const champion = patch.champions[build.champion];
   const kitFactory = KITS[build.champion];
@@ -77,6 +80,7 @@ export function toSimulation(
     options: {
       maxDuration: settings.maxDuration,
       critMode: settings.critMode,
+      runs: settings.runs,
       gameTime: settings.gameTime,
       dpsWindows: settings.dpsWindows,
     },

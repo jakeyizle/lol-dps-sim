@@ -85,7 +85,7 @@ Each milestone ends deployed, with its scenarios passing.
 - [x] Multi-build side by side
 - [x] Item-count timeline
 - [x] Build × target matrix
-- [ ] Worker pool, RNG mode in UI; perf check (CMP-005) → T-037
+- [x] Worker pool, RNG mode in UI; perf check (CMP-005)
 
 ## M7 — Remaining champions (CAIT, ASHE, KAISA, VAYNE, ROT)
 

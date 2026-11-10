@@ -1,4 +1,5 @@
 import type { DamageType } from "./core/damage";
+import { simulateMany, type ManyResult } from "./core/many";
 import {
   simulate,
   type SimAttacker,
@@ -79,8 +80,10 @@ export interface Analysis {
   breakdown: Breakdown;
   /** METRIC-007. */
   stats: StatBlock;
-  /** The normal run (event log, METRIC-006). */
+  /** The normal run (event log, METRIC-006); in RNG mode, the first seed's run. */
   fight: SimResult;
+  /** SIM-013: RNG mode only, the spread over all runs. */
+  spread?: ManyResult;
 }
 
 /**
@@ -90,7 +93,7 @@ export interface Analysis {
 export function analyze(
   attacker: SimAttacker,
   target: SimTarget,
-  options: SimOptions & { dpsWindows?: readonly number[] } = {},
+  options: SimOptions & { dpsWindows?: readonly number[]; runs?: number } = {},
 ): Analysis {
   const windows = options.dpsWindows ?? DEFAULT_DPS_WINDOWS;
   const fight = simulate(attacker, target, options);
@@ -109,6 +112,9 @@ export function analyze(
     breakdown: breakdown(fight.trace),
     stats: fight.stats,
     fight,
+    ...(options.critMode === "rng" && {
+      spread: simulateMany(attacker, target, options),
+    }),
   };
 }
 

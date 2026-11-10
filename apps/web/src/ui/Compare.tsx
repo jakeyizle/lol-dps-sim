@@ -11,6 +11,8 @@ import {
 } from "./useAnalysis";
 
 const n = (x: number) => Math.round(x).toLocaleString("en-US");
+const finite = (v: number | undefined) =>
+  v !== undefined && Number.isFinite(v) ? v : undefined;
 
 interface Row {
   label: string;
@@ -41,6 +43,17 @@ export function Compare(props: { builds: readonly Build[] }) {
       format: (a) => (a.killed ? `${a.ttk?.toFixed(2) ?? "?"}s` : "Not killed"),
       best: "min",
     },
+    ...(ready.some((a) => a.result.spread)
+      ? (["p10", "p50", "p90"] as const).map((p): Row => ({
+          label: `TTK ${p}`,
+          value: (a) => finite(a.spread?.ttk[p]),
+          format: (a) => {
+            const v = finite(a.spread?.ttk[p]);
+            return v === undefined ? "Not killed" : `${v.toFixed(2)}s`;
+          },
+          best: "min",
+        }))
+      : []),
     ...windows.map((seconds, i): Row => ({
       label: `DPS ${String(seconds)}s`,
       value: (a) => a.dps[i]?.dps,
