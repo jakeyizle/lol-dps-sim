@@ -128,6 +128,12 @@ One attacker vs. one target; the target never fights back and is always in range
 - **When** it gains its last stack at time t
 - **Then** it expires at t + T and its effects stop
 
+### SIM-024: Effects run in a fixed order
+
+- **Given** a champion kit, items and runes that react to the same event
+- **When** the event happens
+- **Then** their effects run in this order: champion kit, then items in build order, then runes in page order
+
 ## Stretch
 
 ### SIM-016: Skillshot hit rate
