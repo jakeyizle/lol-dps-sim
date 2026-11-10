@@ -16,3 +16,4 @@
 - T-015 | 2026-11-09 | seeded RNG crit mode (crit slot windup), simulateMany with mean/p10/p50/p90 + kill rate, CMP-005 benchmark (34 ms locally for 4×3×200)
 - T-011 | 2026-11-09 | items (30: stats mapped to engine names, passive values, exclusive groups from ItemGroup max-ownable) and runes (21 incl. shards, values from perks bin, trees from runesReforged); note 26.22 Kraken data is every-3rd-attack (AttackCount 3), not stacks
 - T-012 | 2026-11-09 | data loaders (latestPatch, parsePatch with cross-file patch check), web loads newest generated patch via import.meta.glob and shows it; web Vitest project (jsdom + Testing Library)
+- T-013 | 2026-11-10 | weekly + manual data-update workflow (--report as PR body, branch data/<patch>); dispatch on 26.22 exits with "Data unchanged"; GITHUB_TOKEN PRs don't trigger CI (add a PAT secret if wanted)
