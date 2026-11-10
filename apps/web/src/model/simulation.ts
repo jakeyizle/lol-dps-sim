@@ -2,6 +2,8 @@ import type { ItemData, PatchData } from "@lol/data";
 import {
   equip,
   KITS,
+  runeEffects,
+  runeStats,
   type SimAttacker,
   type SimOptions,
   type SimTarget,
@@ -64,12 +66,19 @@ export function toSimulation(
     patch.constants,
     build.stacks,
   );
+  const ap = bonuses.reduce((sum, b) => sum + (b.abilityPower ?? 0), 0);
+  const ad = bonuses.reduce((sum, b) => sum + (b.attackDamage ?? 0), 0);
+  const page = build.runes;
   return {
     attacker: {
       champion,
       level: build.level,
       constants: patch.constants,
-      bonuses,
+      bonuses: [
+        ...bonuses,
+        ...(page ? runeStats(page, patch.runes, build.level, ap > ad) : []),
+      ],
+      runes: page ? runeEffects(page, patch.runes, champion) : [],
       abilities: kit.abilities,
       kit: kit.kit,
       items: effects,

@@ -147,5 +147,7 @@ export const RunesFile = z.object({
   patch: Patch,
   runes: z.record(z.string(), RuneData),
   trees: z.array(RuneTree),
+  /** Stat shard ids per row: offense, flex, defense (RUNE-001). */
+  shards: z.array(z.array(z.number().int())).length(3),
 });
 export type RunesFile = z.infer<typeof RunesFile>;

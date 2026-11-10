@@ -2,7 +2,18 @@
   "Perks/Styles/Precision/LethalTempo": {
     "mPerkId": 8008,
     "mPerkName": "LethalTempo",
+    "mDisplayNameLocalizationKey": "perk_displayname_LethalTempo",
+    "mTooltipNameLocalizationKey": "perk_tooltip_LethalTempo",
+    "mPingTextLocalizationKey": "perk_pingtip_LethalTempo",
+    "mShortDescLocalizationKey": "perk_short_desc_LethalTempo",
+    "mLongDescLocalizationKey": "perk_long_desc_LethalTempo",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_LethalTempo1"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_LethalTempo",
+    "mIconTextureName": "assets/perks/styles/precision/lethaltempo/lethaltempotemp.tex",
     "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Precision/LethalTempo/LethalTempo.lua",
       "mSpellScriptData": {
         "mEffectAmount": {
           "Duration": 6,
@@ -14,15 +25,104 @@
           "TTMaxNoteDamageMelee": 30,
           "TTMinNoteDamageRanged": 6,
           "TTMaxNoteDamageRanged": 24
-        }
+        },
+        "mCalculations": {
+          "NoteDamage": {
+            "mMultiplier": {
+              "mSubparts": [
+                {
+                  "mNumber": 1,
+                  "__type": "NumberCalculationPart"
+                },
+                {
+                  "mStat": 4,
+                  "mStatFormula": 2,
+                  "mCoefficient": 1,
+                  "__type": "StatByCoefficientCalculationPart"
+                }
+              ],
+              "__type": "SumOfSubPartsCalculationPart"
+            },
+            "mFormulaParts": [
+              {
+                "mStartValue": 9,
+                "mEndValue": 30,
+                "__type": "ByCharLevelInterpolationCalculationPart"
+              }
+            ],
+            "mPrecision": 1,
+            "mRangedMultiplier": {
+              "mNumber": 0.6669999957084656,
+              "__type": "NumberCalculationPart"
+            },
+            "__type": "{e9a3c91d}"
+          },
+          "ASPerStack": {
+            "mFormulaParts": [
+              {
+                "mNumber": 0.05999999865889549,
+                "__type": "NumberCalculationPart"
+              }
+            ],
+            "mDisplayAsPercent": true,
+            "mPrecision": 1,
+            "mRangedMultiplier": {
+              "mNumber": 0.800000011920929,
+              "__type": "NumberCalculationPart"
+            },
+            "__type": "{e9a3c91d}"
+          }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mBuffs": [
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Precision/LethalTempo/LethalTempo.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "Buff_LethalTempo_Tooltip",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
       }
+    ],
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "{15da3293}": "Perks/Styles/Precision/LethalTempo/Particles/Perks_LethalTempo_Stack_1",
+        "{16da3426}": "Perks/Styles/Precision/LethalTempo/Particles/Perks_LethalTempo_Stack_2",
+        "{17da35b9}": "Perks/Styles/Precision/LethalTempo/Particles/Perks_LethalTempo_Stack_3",
+        "{18da374c}": "Perks/Styles/Precision/LethalTempo/Particles/Perks_LethalTempo_Stack_4",
+        "{19da38df}": "Perks/Styles/Precision/LethalTempo/Particles/Perks_LethalTempo_Stack_5",
+        "{1ada3a72}": "Perks/Styles/Precision/LethalTempo/Particles/Perks_LethalTempo_Stack_6",
+        "{6778e480}": "Perks/Styles/Precision/LethalTempo/Particles/Perks_LethalTempo_Mis",
+        "{a70add4c}": "Perks/Styles/Precision/LethalTempo/Particles/Perks_LethalTempo_Tar",
+        "{98d5ca69}": "Perks/Styles/Precision/LethalTempo/Particles/Perks_LethalTempo_PerfectMis",
+        "{95500436}": "Perks/Styles/Precision/LethalTempo/Particles/Perks_LethalTempo_Mis2",
+        "{f38d8d41}": "Perks/Styles/Precision/LethalTempo/Particles/Perks_LethalTempo_PerfectMis2"
+      },
+      "__type": "ResourceResolver"
     },
     "__type": "Perk"
   },
   "Perks/Styles/Precision/PressTheAttack": {
     "mPerkId": 8005,
     "mPerkName": "PressTheAttack",
+    "mDisplayNameLocalizationKey": "perk_displayname_PressTheAttack",
+    "mTooltipNameLocalizationKey": "perk_tooltip_PressTheAttack",
+    "mShortDescLocalizationKey": "perk_short_desc_PressTheAttack",
+    "mLongDescLocalizationKey": "perk_long_desc_PressTheAttack",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_PressTheAttack",
+      "perk_eog_stat_desc_PressTheAttack2"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_total",
+    "mIconTextureName": "assets/perks/styles/precision/presstheattack/presstheattack.tex",
     "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Precision/PressTheAttack/PressTheAttack.lua",
       "mSpellScriptData": {
         "mEffectAmount": {
           "MinDamage": 40,
@@ -40,15 +140,86 @@
           "BonusPercentDamage": 0.07999999821186066,
           "OutOfCombatTimer": 5,
           "Cooldown": 6
-        }
-      }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
     },
+    "mBuffs": [
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Precision/PressTheAttack/PressTheAttackStack.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_PressTheAttack_Stack",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      },
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Precision/PressTheAttack/PressTheAttackDamageAmp.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_PressTheAttack_Amp",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      },
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Precision/PressTheAttack/PressTheAttackLockout.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_PressTheAttackCD",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      },
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Precision/PressTheAttack/PressTheAttackSelfBuff.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_PressTheAttackSelfBuff",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      }
+    ],
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "{8d83eb72}": "Perks/Styles/Precision/PressTheAttack/Particles/Perks_TunnelVision_DamageAmpTar",
+        "Perks_TunnelVision_03": "Perks/Styles/Precision/PressTheAttack/Particles/Perks_TunnelVision_03",
+        "Perks_TunnelVision_07": "Perks/Styles/Precision/PressTheAttack/Particles/Perks_TunnelVision_07",
+        "Perks_TunnelVision_11": "Perks/Styles/Precision/PressTheAttack/Particles/Perks_TunnelVision_11",
+        "Perks_TunnelVision_Target": "Perks/Styles/Precision/PressTheAttack/Particles/Perks_TunnelVision_Target",
+        "Perks_TunnelVision_Tar": "Perks/Styles/Precision/PressTheAttack/Particles/Perks_TunnelVision_Tar"
+      },
+      "__type": "ResourceResolver"
+    },
+    "mDefault": true,
     "__type": "Perk"
   },
   "Perks/Styles/Domination/HailOfBlades": {
     "mPerkId": 9923,
     "mPerkName": "HailOfBlades",
+    "mDisplayNameLocalizationKey": "perk_displayname_HailOfBlades",
+    "mTooltipNameLocalizationKey": "perk_tooltip_HailOfBlades",
+    "mShortDescLocalizationKey": "perk_short_desc_HailOfBlades",
+    "mLongDescLocalizationKey": "perk_long_desc_HailOfBlades",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_HailOfBlades",
+      "perk_eog_stat_desc_HailOfBlades_2"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_total",
+    "mIconTextureName": "assets/perks/styles/domination/hailofblades/hailofblades.tex",
     "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Domination/HailOfBlades/HailOfBlades.lua",
       "mSpellScriptData": {
         "mEffectAmount": {
           "NumHits": 3,
@@ -61,15 +232,175 @@
           "BonusADRatio": 0.11999999731779099,
           "APRatio": 0.10000000149011612,
           "MaxBonusHits": 2
-        }
-      }
+        },
+        "mEffectAmountGameMode": {
+          "ARAM": {
+            "mEffectAmountPerMode": {
+              "ASBoost": 1.2000000476837158,
+              "ASBoostRanged": 0.800000011920929
+            },
+            "__type": "PerkEffectAmountPerMode"
+          }
+        },
+        "mCalculations": {
+          "MeleeItemCalcValue": {
+            "mMultiplier": {
+              "mNumber": 100,
+              "__type": "NumberCalculationPart"
+            },
+            "mFormulaParts": [
+              {
+                "mDataValue": "ASBoost",
+                "__type": "NamedDataValueCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          },
+          "RangedItemCalcValue": {
+            "mMultiplier": {
+              "mNumber": 100,
+              "__type": "NumberCalculationPart"
+            },
+            "mFormulaParts": [
+              {
+                "mDataValue": "ASBoostRanged",
+                "__type": "NamedDataValueCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          },
+          "ChampRange": {
+            "mDefaultGameCalculation": "{792cf56b}",
+            "mConditionalGameCalculation": "{06387172}",
+            "mConditionalCalculationRequirements": {
+              "__type": "IsRangedCastRequirement"
+            },
+            "__type": "GameCalculationConditional"
+          },
+          "{792cf56b}": {
+            "mFormulaParts": [
+              {
+                "mNumber": 1,
+                "__type": "NumberCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          },
+          "{06387172}": {
+            "mFormulaParts": [
+              {
+                "mNumber": 2,
+                "__type": "NumberCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          },
+          "BonusDamage": {
+            "mFormulaParts": [
+              {
+                "StartDataValue": "BonusDamageMin",
+                "EndDataValue": "BonusDamageMax",
+                "__type": "{ee18a47b}"
+              },
+              {
+                "mDataValue": "APRatio",
+                "__type": "StatByNamedDataValueCalculationPart"
+              },
+              {
+                "mStat": 2,
+                "mStatFormula": 2,
+                "mDataValue": "BonusADRatio",
+                "__type": "StatByNamedDataValueCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
     },
+    "mBuffs": [
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Domination/HailOfBlades/HailOfBladesCD.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_HailOfBlades_CombatChecker",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      },
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Domination/HailOfBlades/HailOfBladesReady.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_HailOfBlades_Ready",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      },
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Domination/HailOfBlades/HailOfBladesBuff.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_HailOfBlades_Activated",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      },
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Domination/HailOfBlades/HailOfBladesCD.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_HailOfBlades_CombatChecker",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      },
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Domination/HailOfBlades/HailOfBladesBuff.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_HailOfBlades_CombatChecker",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      }
+    ],
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "Perks_HailOfBlades_Buff_Warning": "Perks/Styles/Domination/HailOfBlades/Particles/Perks_HailOfBlades_Buff_Warning",
+        "Perks_HailOfBlades_Buff": "Perks/Styles/Domination/HailOfBlades/Particles/Perks_HailOfBlades_Buff"
+      },
+      "__type": "ResourceResolver"
+    },
+    "mMajorChangePatchVersion": "16.9",
     "__type": "Perk"
   },
   "Perks/Styles/Precision/Conqueror": {
     "mPerkId": 8010,
     "mPerkName": "Conqueror",
+    "mDisplayNameLocalizationKey": "perk_displayname_Conqueror",
+    "mTooltipNameLocalizationKey": "perk_tooltip_Conqueror",
+    "mShortDescLocalizationKey": "perk_short_desc_Conqueror",
+    "mLongDescLocalizationKey": "perk_long_desc_Conqueror",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_Conqueror"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_total",
+    "mIconTextureName": "assets/perks/styles/precision/conqueror/conqueror.tex",
     "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Precision/Conqueror/Conqueror.lua",
       "mSpellScriptData": {
         "mEffectAmount": {
           "MinAdaptivePerStack": 1.7999999523162842,
@@ -79,15 +410,70 @@
           "TimeUntilNextStackFromSameSpell": 4,
           "HealingPercent": 0.07999999821186066,
           "RangedHealingPercent": 0.05000000074505806
-        }
-      }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
     },
+    "mBuffs": [
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Precision/Conqueror/Conqueror.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_Conqueror_Stacking",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      },
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Precision/Conqueror/ConquerorONH.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_Conqueror_ONH",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      },
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Precision/Conqueror/ConquerorEnrage.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_Conqueror_Enrage",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      }
+    ],
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "Perks_Conqueror_Activate": "Perks/Styles/Precision/Conqueror/Particles/Perks_Conqueror_Activate",
+        "Perks_Conqueror_Buff": "Perks/Styles/Precision/Conqueror/Particles/Perks_Conqueror_Buff"
+      },
+      "__type": "ResourceResolver"
+    },
+    "mMajorChangePatchVersion": "9.4",
     "__type": "Perk"
   },
   "Perks/Styles/Precision/FleetFootwork": {
     "mPerkId": 8021,
     "mPerkName": "FleetFootwork",
+    "mDisplayNameLocalizationKey": "perk_displayname_FleetFootwork",
+    "mTooltipNameLocalizationKey": "perk_tooltip_FleetFootwork",
+    "mShortDescLocalizationKey": "perk_short_desc_FleetFootwork",
+    "mLongDescLocalizationKey": "perk_long_desc_FleetFootwork",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_FleetFootwork1"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_total",
+    "mIconTextureName": "assets/perks/styles/precision/fleetfootwork/fleetfootwork.tex",
     "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Precision/FleetFootwork/FleetFootwork.lua",
       "mSpellScriptData": {
         "mEffectAmount": {
           "HealBonusADRatio": 0.10000000149011612,
@@ -99,28 +485,129 @@
           "RangedMSMod": 0.75,
           "RangedHealMod": 0.6000000238418579,
           "MinionHealMod": 0.15000000596046448
-        }
+        },
+        "mCalculations": {
+          "HealAmount": {
+            "mSimpleTooltipCalculationDisplay": 4,
+            "mFormulaParts": [
+              {
+                "mStartValue": 15,
+                "mEndValue": 160,
+                "mScaleByStatProgressionMultiplier": true,
+                "__type": "ByCharLevelInterpolationCalculationPart"
+              },
+              {
+                "mStat": 2,
+                "mStatFormula": 2,
+                "mDataValue": "HealBonusADRatio",
+                "__type": "StatByNamedDataValueCalculationPart"
+              },
+              {
+                "mDataValue": "HealAPRatio",
+                "__type": "StatByNamedDataValueCalculationPart"
+              }
+            ],
+            "mRangedMultiplier": {
+              "mDataValue": "RangedHealMod",
+              "__type": "NamedDataValueCalculationPart"
+            },
+            "__type": "{e9a3c91d}"
+          },
+          "{ad820ad4}": {
+            "mFormulaParts": [
+              {
+                "mStartValue": 5,
+                "mEndValue": 100,
+                "mScaleByStatProgressionMultiplier": true,
+                "__type": "ByCharLevelInterpolationCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          },
+          "MoveSpeedCalc": {
+            "mFormulaParts": [
+              {
+                "mDataValue": "MSBuff",
+                "__type": "NamedDataValueCalculationPart"
+              }
+            ],
+            "mDisplayAsPercent": true,
+            "mRangedMultiplier": {
+              "mDataValue": "RangedMSMod",
+              "__type": "NamedDataValueCalculationPart"
+            },
+            "__type": "{e9a3c91d}"
+          }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mBuffs": [
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Precision/FleetFootwork/FleetFootworkHaste.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_FleetFootwork",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
       }
+    ],
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "Perks_FleetFootwork_Buff": "Perks/Styles/Precision/FleetFootwork/Particles/Perks_FleetFootwork_Buff",
+        "Perks_FleetFootwork_Haste": "Perks/Styles/Precision/FleetFootwork/Particles/Perks_FleetFootwork_Haste",
+        "Perks_FleetFootwork_Heal_Mis": "Perks/Styles/Precision/FleetFootwork/Particles/Perks_FleetFootwork_Heal_Mis",
+        "Perks_FleetFootwork_Heal": "Perks/Styles/Precision/FleetFootwork/Particles/Perks_FleetFootwork_Heal",
+        "Perks_FleetFootwork_Cas": "Perks/Styles/Precision/FleetFootwork/Particles/Perks_FleetFootwork_Cas"
+      },
+      "__type": "ResourceResolver"
     },
     "__type": "Perk"
   },
   "Perks/Styles/Precision/CoupDeGrace": {
     "mPerkId": 8014,
     "mPerkName": "CoupDeGrace",
+    "mDisplayNameLocalizationKey": "perk_displayname_CoupDeGrace",
+    "mTooltipNameLocalizationKey": "perk_tooltip_CoupDeGrace",
+    "mShortDescLocalizationKey": "perk_short_desc_CoupDeGrace",
+    "mLongDescLocalizationKey": "perk_long_desc_CoupDeGrace",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_CoupDeGrace1"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_total",
+    "mIconTextureName": "assets/perks/styles/precision/coupdegrace/coupdegrace.tex",
     "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Precision/CoupDeGrace/CoupDeGrace.lua",
       "mSpellScriptData": {
         "mEffectAmount": {
           "EnemyHealthPercentageThreshold": 0.4000000059604645,
           "BonusPercentDamage": 0.07999999821186066
-        }
-      }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
     },
+    "mDefault": true,
     "__type": "Perk"
   },
   "Perks/Styles/Precision/CutDown": {
     "mPerkId": 8017,
     "mPerkName": "CutDown",
+    "mDisplayNameLocalizationKey": "perk_displayname_CutDown",
+    "mTooltipNameLocalizationKey": "perk_tooltip_CutDown",
+    "mShortDescLocalizationKey": "perk_short_desc_CutDown",
+    "mLongDescLocalizationKey": "perk_long_desc_CutDown",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_CutDown1"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_total",
+    "mIconTextureName": "assets/perks/styles/precision/cutdown/cutdown.tex",
     "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Precision/CutDown/CutDown.lua",
       "mSpellScriptData": {
         "mEffectAmount": {
           "MinBonusDamagePercent": 0.05000000074505806,
@@ -129,30 +616,54 @@
           "MaxHealthDifference": 1,
           "EnemyHealthPercentageThreshold": 0.6000000238418579,
           "BonusPercentDamage": 0.07999999821186066
-        }
-      }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
     },
     "__type": "Perk"
   },
   "Perks/Styles/Precision/LastStand": {
     "mPerkId": 8299,
     "mPerkName": "LastStand",
+    "mDisplayNameLocalizationKey": "perk_displayname_8234",
+    "mTooltipNameLocalizationKey": "perk_tooltip_8234",
+    "mShortDescLocalizationKey": "perk_short_desc_8234",
+    "mLongDescLocalizationKey": "perk_long_desc_8234",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_LastStand1"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_total",
+    "mIconTextureName": "assets/perks/styles/sorcery/laststand/laststand.tex",
     "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Sorcery/LastStand/LastStand.lua",
       "mSpellScriptData": {
         "mEffectAmount": {
           "MinBonusDamagePercent": 0.05000000074505806,
           "MaxBonusDamagePercent": 0.10999999940395355,
           "HealthThresholdStart": 0.6000000238418579,
           "HealthThresholdEnd": 0.30000001192092896
-        }
-      }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
     },
     "__type": "Perk"
   },
   "Perks/Styles/Precision/LegendAlacrity": {
     "mPerkId": 9104,
     "mPerkName": "LegendAlacrity",
+    "mDisplayNameLocalizationKey": "perk_displayname_9104",
+    "mTooltipNameLocalizationKey": "perk_tooltip_9104",
+    "mShortDescLocalizationKey": "perk_short_desc_LegendHeroism",
+    "mLongDescLocalizationKey": "perk_long_desc_LegendHeroism",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_LegendTimeCompleted"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_percent100",
+    "mIconTextureName": "assets/perks/styles/precision/legendalacrity/legendalacrity.tex",
     "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Precision/LegendAlacrity/LegendAlacrity.lua",
       "mSpellScriptData": {
         "mEffectAmount": {
           "AttackSpeedPerStack": 0.014999999664723873,
@@ -163,15 +674,28 @@
           "{f6570baa}": 100,
           "LargeMonsterKillValue": 25,
           "MinionKillValue": 4
-        }
-      }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
     },
+    "mDefault": true,
     "__type": "Perk"
   },
   "Perks/Styles/Precision/LegendBloodline": {
     "mPerkId": 9103,
     "mPerkName": "LegendBloodline",
+    "mDisplayNameLocalizationKey": "perk_displayname_9103",
+    "mTooltipNameLocalizationKey": "perk_tooltip_9103",
+    "mShortDescLocalizationKey": "perk_short_desc_LegendBloodline",
+    "mLongDescLocalizationKey": "perk_long_desc_LegendBloodline",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_LegendTimeCompleted"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_percent100",
+    "mIconTextureName": "assets/perks/styles/precision/legendbloodline/legendbloodline.tex",
     "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Precision/LegendBloodline/LegendBloodline.lua",
       "mSpellScriptData": {
         "mEffectAmount": {
           "LifeStealPerStack": 0.44999998807907104,
@@ -183,37 +707,149 @@
           "LargeMonsterKillValue": 25,
           "MinionKillValue": 4,
           "BonusHealth": 85
-        }
-      }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mVFXResourceResolver": {
+      "__type": "ResourceResolver"
     },
     "__type": "Perk"
   },
   "Perks/Styles/Sorcery/GatheringStorm": {
     "mPerkId": 8236,
     "mPerkName": "GatheringStorm",
+    "mDisplayNameLocalizationKey": "perk_displayname_GatheringStorm",
+    "mTooltipNameLocalizationKey": "perk_tooltip_GatheringStorm",
+    "mShortDescLocalizationKey": "perk_short_desc_GatheringStorm",
+    "mLongDescLocalizationKey": "perk_long_desc_GatheringStorm",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_GatheringStorm1"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_adaptive",
+    "mIconTextureName": "assets/perks/styles/sorcery/gatheringstorm/gatheringstorm.tex",
     "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Sorcery/GatheringStorm/GatheringStorm.lua",
       "mSpellScriptData": {
         "mEffectAmount": {
           "UpdateAfterMinutes": 10,
           "AdaptiveAP": 8,
           "AdaptiveAD": 6,
           "{c5d14564}": 8
-        }
-      }
+        },
+        "mEffectAmountGameMode": {
+          "NEXUSBLITZ": {
+            "mEffectAmountPerMode": {
+              "UpdateAfterMinutes": 4.5
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "URF": {
+            "mEffectAmountPerMode": {
+              "UpdateAfterMinutes": 6
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "ARAM": {
+            "mEffectAmountPerMode": {
+              "UpdateAfterMinutes": 6
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "KINGPORO": {
+            "mEffectAmountPerMode": {
+              "UpdateAfterMinutes": 6
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "SWIFTPLAY": {
+            "mEffectAmountPerMode": {
+              "UpdateAfterMinutes": 7
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "{a110bc47}": {
+            "mEffectAmountPerMode": {
+              "UpdateAfterMinutes": 4
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "Ruby": {
+            "mEffectAmountPerMode": {
+              "UpdateAfterMinutes": 4
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "RUBY_TRIAL_1": {
+            "mEffectAmountPerMode": {
+              "UpdateAfterMinutes": 4
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "RUBY_TRIAL_2": {
+            "mEffectAmountPerMode": {
+              "UpdateAfterMinutes": 4
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "RUBY_TRIAL_3": {
+            "mEffectAmountPerMode": {
+              "UpdateAfterMinutes": 4
+            },
+            "__type": "PerkEffectAmountPerMode"
+          }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
     },
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "Perks_LegendBloodline_Stack": "Perks/Styles/Precision/LegendBloodline/Particles/Perks_LegendBloodline_Stack",
+        "Perks_GatheringStorm_Active": "Perks/Styles/Sorcery/GatheringStorm/Particles/Perks_GatheringStorm_Active"
+      },
+      "__type": "ResourceResolver"
+    },
+    "mDefault": true,
     "__type": "Perk"
   },
   "Perks/Styles/Sorcery/AbsoluteFocus": {
     "mPerkId": 8233,
     "mPerkName": "AbsoluteFocus",
+    "mDisplayNameLocalizationKey": "perk_displayname_8233",
+    "mTooltipNameLocalizationKey": "perk_tooltip_8233",
+    "mShortDescLocalizationKey": "perk_short_desc_8233",
+    "mLongDescLocalizationKey": "perk_long_desc_8233",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_AbsoluteFocus"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_adaptive",
+    "mIconTextureName": "assets/perks/styles/sorcery/absolutefocus/absolutefocus.tex",
     "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Sorcery/AbsoluteFocus/AbsoluteFocus.lua",
       "mSpellScriptData": {
         "mEffectAmount": {
           "HealthPercent": 0.699999988079071,
           "MinAdaptive": 3,
           "MaxAdaptive": 30
-        }
-      }
+        },
+        "mCalculations": {
+          "AdaptiveForceCalc": {
+            "mSimpleTooltipCalculationDisplay": 4,
+            "mFormulaParts": [
+              {
+                "mStartValue": 3,
+                "mEndValue": 30,
+                "__type": "ByCharLevelInterpolationCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
     },
     "__type": "Perk"
   },
@@ -324,6 +960,3668 @@
           "StatGain": 15
         }
       }
+    },
+    "__type": "Perk"
+  },
+  "Perks/Styles/Domination/Electrocute": {
+    "mPerkId": 8112,
+    "mPerkName": "Electrocute",
+    "mDisplayNameLocalizationKey": "perk_displayname_Electrocute",
+    "mTooltipNameLocalizationKey": "perk_tooltip_Electrocute",
+    "mShortDescLocalizationKey": "perk_short_desc_8112",
+    "mLongDescLocalizationKey": "perk_long_desc_8112",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_Electrocute1"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_total",
+    "mIconTextureName": "assets/perks/styles/domination/electrocute/electrocute.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Domination/Electrocute/Electrocute.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "Cooldown": 20,
+          "DamageBase": 70,
+          "DamageMax": 240,
+          "BonusADRatio": 0.10000000149011612,
+          "WindowDuration": 3,
+          "APRatio": 0.05000000074505806,
+          "CooldownMin": 20
+        },
+        "mEffectAmountGameMode": {
+          "NEXUSBLITZ": {
+            "mEffectAmountPerMode": {
+              "Cooldown": 20,
+              "CooldownMin": 15
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "URF": {
+            "mEffectAmountPerMode": {
+              "Cooldown": 10,
+              "CooldownMin": 10
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "ARAM": {
+            "mEffectAmountPerMode": {
+              "Cooldown": 15,
+              "CooldownMin": 10,
+              "DamageBase": 65,
+              "DamageMax": 250,
+              "BonusADRatio": 0.15000000596046448,
+              "APRatio": 0.10000000149011612
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "KINGPORO": {
+            "mEffectAmountPerMode": {
+              "Cooldown": 15,
+              "CooldownMin": 10
+            },
+            "__type": "PerkEffectAmountPerMode"
+          }
+        },
+        "mCalculations": {
+          "TotalDamage": {
+            "mSimpleTooltipCalculationDisplay": 4,
+            "mFormulaParts": [
+              {
+                "mStartValue": 70,
+                "mEndValue": 240,
+                "__type": "ByCharLevelInterpolationCalculationPart"
+              },
+              {
+                "mDataValue": "APRatio",
+                "__type": "StatByNamedDataValueCalculationPart"
+              },
+              {
+                "mStat": 2,
+                "mStatFormula": 2,
+                "mDataValue": "BonusADRatio",
+                "__type": "StatByNamedDataValueCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mBuffs": [
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Domination/Electrocute/PerkElectrocuteLockout.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_8112Cooldown",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      },
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Domination/Electrocute/Electrocute.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_8112Ready",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      }
+    ],
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "Perks_Electrocute_AOE": "Perks/Styles/Domination/Electrocute/Particles/Perks_Electrocute_AOE",
+        "{4b0f2c4b}": "Shared/Particles/CU_ThunderlordsDecree_Impact"
+      },
+      "__type": "ResourceResolver"
+    },
+    "mDefault": true,
+    "__type": "Perk"
+  },
+  "Perks/Styles/Domination/DarkHarvest": {
+    "mPerkId": 8128,
+    "mPerkName": "DarkHarvest",
+    "mDisplayNameLocalizationKey": "perk_displayname_DarkHarvest",
+    "mTooltipNameLocalizationKey": "perk_tooltip_DarkHarvest",
+    "mShortDescLocalizationKey": "perk_short_desc_DarkHarvest",
+    "mLongDescLocalizationKey": "perk_long_desc_DarkHarvest",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_DarkHarvest1",
+      "perk_eog_stat_desc_DarkHarvest2"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_DarkHarvest",
+    "mIconTextureName": "assets/perks/styles/domination/darkharvest/darkharvest.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Domination/DarkHarvest/DarkHarvest.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "HarvestThreshold": 0.5,
+          "Cooldown": 35,
+          "BaseDamage": 30,
+          "ADRatio": 0.10000000149011612,
+          "APRatio": 0.05000000074505806,
+          "DamagePerSoulEssence": 11,
+          "CooldownResetValue": 1
+        },
+        "mEffectAmountGameMode": {
+          "NEXUSBLITZ": {
+            "mEffectAmountPerMode": {
+              "DamagePerSoulEssence": 2,
+              "BaseDamage": 15
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "URF": {
+            "mEffectAmountPerMode": {
+              "Cooldown": 12,
+              "DamagePerSoulEssence": 2,
+              "BaseDamage": 10,
+              "APRatio": 0.10000000149011612,
+              "ADRatio": 0.20000000298023224
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "ARAM": {
+            "mEffectAmountPerMode": {
+              "DamagePerSoulEssence": 5
+            },
+            "__type": "PerkEffectAmountPerMode"
+          }
+        },
+        "mCalculations": {
+          "TotalDamage": {
+            "mSimpleTooltipCalculationDisplay": 4,
+            "mFormulaParts": [
+              {
+                "mDataValue": "BaseDamage",
+                "__type": "NamedDataValueCalculationPart"
+              },
+              {
+                "mDataValue": "APRatio",
+                "__type": "StatByNamedDataValueCalculationPart"
+              },
+              {
+                "mStat": 2,
+                "mStatFormula": 2,
+                "mDataValue": "ADRatio",
+                "__type": "StatByNamedDataValueCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mBuffs": [
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Domination/DarkHarvest/DarkHarvest.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_8128_Soul_Counter",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      },
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Domination/DarkHarvest/DarkHarvestCooldown.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_DarkHarvestCooldown",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      }
+    ],
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "Perks_SoulReaper_Soul_Idle": "Perks/Styles/Domination/DarkHarvest/Particles/Perks_SoulReaper_Soul_Idle",
+        "Perks_SoulReaper_Mis": "Perks/Styles/Domination/DarkHarvest/Particles/Perks_SoulReaper_Mis",
+        "Perks_SoulReaper_Burst": "Perks/Styles/Domination/DarkHarvest/Particles/Perks_SoulReaper_Burst",
+        "Perks_SoulReaper_Buff": "Perks/Styles/Domination/DarkHarvest/Particles/Perks_SoulReaper_Buff",
+        "Perks_SoulReaper_Tar": "Perks/Styles/Domination/DarkHarvest/Particles/Perks_SoulReaper_Tar",
+        "Perks_SoulReaper_Minion_Soul": "Perks/Styles/Domination/DarkHarvest/Particles/Perks_SoulReaper_Minion_Soul"
+      },
+      "__type": "ResourceResolver"
+    },
+    "mMajorChangePatchVersion": "8.23",
+    "__type": "Perk"
+  },
+  "Perks/Styles/Domination/CheapShot": {
+    "mPerkId": 8126,
+    "mPerkName": "CheapShot",
+    "mDisplayNameLocalizationKey": "perk_displayname_CheapShot",
+    "mTooltipNameLocalizationKey": "perk_tooltip_CheapShot",
+    "mShortDescLocalizationKey": "perk_short_desc_CheapShot",
+    "mLongDescLocalizationKey": "perk_long_desc_CheapShot",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_CheapShot"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_CheapShot",
+    "mIconTextureName": "assets/perks/styles/domination/cheapshot/cheapshot.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Domination/CheapShot/CheapShot.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "DamageIncMin": 10,
+          "DamageIncMax": 45,
+          "Cooldown": 4
+        },
+        "mCalculations": {
+          "DamageCalc": {
+            "mSimpleTooltipCalculationDisplay": 4,
+            "mFormulaParts": [
+              {
+                "mStartValue": 10,
+                "mEndValue": 45,
+                "__type": "ByCharLevelInterpolationCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mMajorChangePatchVersion": "9.9",
+    "__type": "Perk"
+  },
+  "Perks/Styles/Domination/TasteOfBlood": {
+    "mPerkId": 8139,
+    "mPerkName": "TasteOfBlood",
+    "mDisplayNameLocalizationKey": "perk_displayname_TasteOfBlood",
+    "mTooltipNameLocalizationKey": "perk_tooltip_TasteOfBlood",
+    "mShortDescLocalizationKey": "perk_short_desc_TasteOfBlood",
+    "mLongDescLocalizationKey": "perk_long_desc_TasteOfBlood",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_TasteOfBlood1"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_TasteOfBlood",
+    "mIconTextureName": "assets/perks/styles/domination/tasteofblood/greenterror_tasteofblood.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Domination/TasteOfBlood/TasteOfBloodTemp.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "HealAmount": 16,
+          "Cooldown": 20,
+          "HealAmountMax": 40,
+          "RegenDuration": 4,
+          "ADRatio": 0.10000000149011612,
+          "APRatio": 0.05000000074505806
+        },
+        "mEffectAmountGameMode": {
+          "NEXUSBLITZ": {
+            "mEffectAmountPerMode": {
+              "Cooldown": 10
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "URF": {
+            "mEffectAmountPerMode": {
+              "Cooldown": 10
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "ARAM": {
+            "mEffectAmountPerMode": {
+              "Cooldown": 15
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "KINGPORO": {
+            "mEffectAmountPerMode": {
+              "Cooldown": 15
+            },
+            "__type": "PerkEffectAmountPerMode"
+          }
+        },
+        "mCalculations": {
+          "HealCalc": {
+            "mSimpleTooltipCalculationDisplay": 4,
+            "mFormulaParts": [
+              {
+                "mStartValue": 16,
+                "mEndValue": 40,
+                "__type": "ByCharLevelInterpolationCalculationPart"
+              },
+              {
+                "mDataValue": "APRatio",
+                "__type": "StatByNamedDataValueCalculationPart"
+              },
+              {
+                "mStat": 2,
+                "mStatFormula": 2,
+                "mDataValue": "ADRatio",
+                "__type": "StatByNamedDataValueCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mBuffs": [
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Domination/TasteOfBlood/TasteOfBloodLockout.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_TasteOfBlood",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      },
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Domination/TasteOfBlood/TasteOfBloodTemp.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_TasteOfBloodReady",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      }
+    ],
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "Perks_TasteOfBlood_Heal": "Perks/Styles/Domination/TasteOfBlood/Particles/Perks_TasteOfBlood_Heal"
+      },
+      "__type": "ResourceResolver"
+    },
+    "mDefault": true,
+    "__type": "Perk"
+  },
+  "Perks/Styles/Domination/SuddenImpact": {
+    "mPerkId": 8143,
+    "mPerkName": "SuddenImpact",
+    "mDisplayNameLocalizationKey": "perk_displayname_SuddenImpact",
+    "mTooltipNameLocalizationKey": "perk_tooltip_SuddenImpact",
+    "mShortDescLocalizationKey": "perk_short_desc_SuddenImpact",
+    "mLongDescLocalizationKey": "perk_long_desc_SuddenImpact",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_SuddenImpact1"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_SuddenImpact",
+    "mIconTextureName": "assets/perks/styles/domination/suddenimpact/suddenimpact.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Domination/SuddenImpact/SuddenImpact.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "ArmedDuration": 4,
+          "Cooldown": 10,
+          "MinDamageTooltip": 20,
+          "MaxDamageTooltip": 80
+        },
+        "mCalculations": {
+          "BaseDamage": {
+            "mSimpleTooltipCalculationDisplay": 4,
+            "mFormulaParts": [
+              {
+                "mStartValue": 20,
+                "mEndValue": 80,
+                "__type": "ByCharLevelInterpolationCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "__type": "Perk"
+  },
+  "Perks/Styles/Domination/SixthSense": {
+    "mPerkId": 8137,
+    "mPerkName": "SixthSense",
+    "mDisplayNameLocalizationKey": "perk_displayname_SixthSense",
+    "mTooltipNameLocalizationKey": "perk_tooltip_SixthSense",
+    "mPingTextLocalizationKey": "perk_pingtip_SixthSense",
+    "mShortDescLocalizationKey": "perk_short_desc_SixthSense",
+    "mLongDescLocalizationKey": "perk_long_desc_SixthSense",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_SixthSense"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_SixthSense",
+    "mIconTextureName": "assets/perks/styles/domination/sixthsense/sixthsense.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Domination/SixthSense/SixthSense_SEASONAL.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "{d3bd04a2}": 900,
+          "MeleeItemCalcValue": 250,
+          "RangedItemCalcValue": 250,
+          "LevelThreshold": 11,
+          "RevealDuration": 10
+        },
+        "mCalculations": {
+          "ChampRange": {
+            "mSimpleTooltipCalculationDisplay": 5,
+            "mExpandedTooltipCalculationDisplay": 5,
+            "mDefaultGameCalculation": "{792cf56b}",
+            "mConditionalGameCalculation": "{06387172}",
+            "mConditionalCalculationRequirements": {
+              "__type": "IsRangedCastRequirement"
+            },
+            "__type": "GameCalculationConditional"
+          },
+          "{792cf56b}": {
+            "mFormulaParts": [
+              {
+                "mNumber": 1,
+                "__type": "NumberCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          },
+          "{06387172}": {
+            "mFormulaParts": [
+              {
+                "mNumber": 2,
+                "__type": "NumberCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mBuffs": [
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Domination/SixthSense/SixthSenseCD.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_SixthSenseCD",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      }
+    ],
+    "mMajorChangePatchVersion": "14.1",
+    "__type": "Perk"
+  },
+  "Perks/Styles/Domination/GrislyMementos": {
+    "mPerkId": 8140,
+    "mPerkName": "GrislyMementos",
+    "mDisplayNameLocalizationKey": "perk_displayname_GrislyMementos",
+    "mTooltipNameLocalizationKey": "perk_tooltip_GrislyMementos",
+    "mShortDescLocalizationKey": "perk_short_desc_GrislyMementos",
+    "mLongDescLocalizationKey": "perk_long_desc_GrislyMementos",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_GrislyMementos"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_GrislyMementos",
+    "mIconTextureName": "assets/perks/styles/domination/grislymementos/grislymementos.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Domination/GrislyMementos/GrislyMementos.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "TrinketAH": 6,
+          "StacksPerTakedown": 1,
+          "SummonerAH": 3,
+          "MaxStacks": 18
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mDefault": true,
+    "mMajorChangePatchVersion": "14.1",
+    "__type": "Perk"
+  },
+  "Perks/Styles/Domination/DeepWard": {
+    "mPerkId": 8141,
+    "mPerkName": "DeepWard",
+    "mDisplayNameLocalizationKey": "perk_displayname_DeepWard",
+    "mTooltipNameLocalizationKey": "perk_tooltip_DeepWard",
+    "mShortDescLocalizationKey": "perk_short_desc_DeepWard",
+    "mLongDescLocalizationKey": "perk_long_desc_DeepWard",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_DeepWard"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_DeepWard",
+    "mIconTextureName": "assets/perks/styles/domination/deepward/deepward.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Domination/DeepWard/DeepWard.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "ExtraHealth": 1,
+          "LevelThreshold": 9,
+          "TTDurationIncreaseMin": 30,
+          "TTDurationIncreaseMax": 45,
+          "TTTrinketDurationIncreaseMin": 45,
+          "TTTrinketDurationIncreaseMax": 150
+        },
+        "mCalculations": {
+          "DurationIncrease": {
+            "mFormulaParts": [
+              {
+                "mStartValue": 30,
+                "mEndValue": 45,
+                "__type": "ByCharLevelInterpolationCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          },
+          "TrinketDurationIncrease": {
+            "mFormulaParts": [
+              {
+                "mStartValue": 45,
+                "mEndValue": 150,
+                "__type": "ByCharLevelInterpolationCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "{27802a1f}": "Perks/Styles/Domination/DeepWard/Particles/Perks_DeepWard"
+      },
+      "__type": "ResourceResolver"
+    },
+    "mMajorChangePatchVersion": "14.1",
+    "__type": "Perk"
+  },
+  "Perks/Styles/Domination/TreasureHunter": {
+    "mPerkId": 8135,
+    "mPerkName": "TreasureHunter",
+    "mDisplayNameLocalizationKey": "perk_displayname_TreasureHunter",
+    "mTooltipNameLocalizationKey": "perk_tooltip_TreasureHunter",
+    "mShortDescLocalizationKey": "perk_short_desc_TreasureHunter",
+    "mLongDescLocalizationKey": "perk_long_desc_TreasureHunter",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_TreasureHunter2",
+      "perk_eog_stat_desc_TreasureHunter1"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_BountyHunter",
+    "mIconTextureName": "assets/perks/styles/domination/treasurehunter/treasurehunter.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Domination/TreasureHunter/TreasureHunter.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "BaseGoldAmount": 50,
+          "GoldGrowth": 20,
+          "TOOLTIPMaxGoldAmount": 130
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "Perks_BountyHunter_Buff": "Perks/Styles/Domination/TreasureHunter/Particles/Perks_BountyHunter_Buff",
+        "Perks_BountyHunter_Debuff": "Perks/Styles/Domination/TreasureHunter/Particles/Perks_BountyHunter_Debuff",
+        "{b2ec89f5}": "Perks/Styles/Domination/TreasureHunter/Particles/Perks_TreasureHunter_RewardMis",
+        "{21adcb25}": "Perks/Styles/Domination/TreasureHunter/Particles/Perks_TreasureHunter_GoldFX"
+      },
+      "__type": "ResourceResolver"
+    },
+    "mDefault": true,
+    "__type": "Perk"
+  },
+  "Perks/Styles/Domination/RelentlessHunter": {
+    "mPerkId": 8105,
+    "mPerkName": "RelentlessHunter",
+    "mDisplayNameLocalizationKey": "perk_displayname_8105",
+    "mTooltipNameLocalizationKey": "perk_tooltip_8105",
+    "mShortDescLocalizationKey": "perk_short_desc_8105",
+    "mLongDescLocalizationKey": "perk_long_desc_8105",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_RelentlessHunter1",
+      "perk_eog_stat_desc_RelentlessHunter2"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_BountyHunter",
+    "mIconTextureName": "assets/perks/styles/domination/relentlesshunter/relentlesshunter.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Domination/RelentlessHunter/RelentlessHunter.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "OOCMS": 8,
+          "StartingOOCMS": 0
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mVFXResourceResolver": {
+      "__type": "ResourceResolver"
+    },
+    "mMajorChangePatchVersion": "9.9",
+    "__type": "Perk"
+  },
+  "Perks/Styles/Domination/UltimateHunter": {
+    "mPerkId": 8106,
+    "mPerkName": "UltimateHunter",
+    "mDisplayNameLocalizationKey": "perk_displayname_UltimateHunter",
+    "mTooltipNameLocalizationKey": "perk_tooltip_UltimateHunter",
+    "mShortDescLocalizationKey": "perk_short_desc_UltimateHunter",
+    "mLongDescLocalizationKey": "perk_long_desc_UltimateHunter",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_UltimateHunter",
+      "perk_eog_stat_desc_UltimateHunter2"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_BountyHunter",
+    "mIconTextureName": "assets/perks/styles/domination/ultimatehunter/ultimatehunter.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Domination/UltimateHunter/UltimateHunter.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "AdditionalUltAH": 5,
+          "StartingUltAH": 6
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mVFXResourceResolver": {
+      "__type": "ResourceResolver"
+    },
+    "mMajorChangePatchVersion": "9.9",
+    "__type": "Perk"
+  },
+  "Perks/Styles/Inspiration/GlacialAugment": {
+    "mPerkId": 8351,
+    "mPerkName": "GlacialAugment",
+    "mDisplayNameLocalizationKey": "perk_displayname_GlacialAugment",
+    "mTooltipNameLocalizationKey": "perk_tooltip_GlacialAugment",
+    "mShortDescLocalizationKey": "perk_short_desc_GlacialAugment",
+    "mLongDescLocalizationKey": "perk_long_desc_GlacialAugment",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_GlacialAugment1",
+      "perk_eog_stat_desc_GlacialAugment2"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat",
+    "mIconTextureName": "assets/perks/styles/inspiration/glacialaugment/glacialaugment.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Inspiration/GlacialAugment/GlacialAugment.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "SlowZoneDuration": 3,
+          "SlowZoneSlowBase": 20,
+          "SlowZoneLength": 700,
+          "SlowZoneWidth": 80,
+          "RayCount": 3,
+          "Cooldown": 25,
+          "BeamPosIndent": 100,
+          "CCCarryOverRatio": 100,
+          "DmgReduction": 0.15000000596046448,
+          "SlowZoneSlowAPRatio": 0.05999999865889549,
+          "SlowZoneSlowbADRatio": 0.07000000029802322,
+          "SlowZoneSlowHealShieldRatio": 90
+        },
+        "mEffectAmountGameMode": {
+          "URF": {
+            "mEffectAmountPerMode": {
+              "Cooldown": 15
+            },
+            "__type": "PerkEffectAmountPerMode"
+          }
+        },
+        "mCalculations": {
+          "SlowZoneCalc": {
+            "mMultiplier": {
+              "mNumber": 0.009999999776482582,
+              "__type": "NumberCalculationPart"
+            },
+            "mSimpleTooltipCalculationDisplay": 4,
+            "mFormulaParts": [
+              {
+                "mDataValue": "SlowZoneSlowBase",
+                "__type": "NamedDataValueCalculationPart"
+              },
+              {
+                "mDataValue": "SlowZoneSlowAPRatio",
+                "__type": "StatByNamedDataValueCalculationPart"
+              },
+              {
+                "mStat": 2,
+                "mStatFormula": 2,
+                "mDataValue": "SlowZoneSlowbADRatio",
+                "__type": "StatByNamedDataValueCalculationPart"
+              },
+              {
+                "mStat": 34,
+                "mDataValue": "SlowZoneSlowHealShieldRatio",
+                "__type": "StatByNamedDataValueCalculationPart"
+              }
+            ],
+            "mDisplayAsPercent": true,
+            "mPrecision": 1,
+            "__type": "GameCalculation"
+          }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mBuffs": [
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Inspiration/GlacialAugment/GlacialAugmentCooldown.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_GlacialAugmentCooldown",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      },
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Inspiration/GlacialAugment/GlacialAugmentSlow.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_GlacialAugmentSlow",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      },
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Inspiration/GlacialAugment/GlacialAugment.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_GlacialAugment",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      }
+    ],
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "Perks_GlacialAugment_Mis": "Perks/Styles/Inspiration/GlacialAugment/Particles/Perks_GlacialAugment_Mis",
+        "Perks_GlacialAugment_Slow": "Perks/Styles/Inspiration/GlacialAugment/Particles/Perks_GlacialAugment_Slow",
+        "Perks_GlacialAugment_Slow_Off": "Perks/Styles/Inspiration/GlacialAugment/Particles/Perks_GlacialAugment_Slow_Off",
+        "Perks_GlacialAugment_Beam": "Perks/Styles/Inspiration/GlacialAugment/Particles/Perks_GlacialAugment_Beam",
+        "Perks_GlacialAugment_Melee": "Perks/Styles/Inspiration/GlacialAugment/Particles/Perks_GlacialAugment_Melee",
+        "Perks_GlacialAugment_Beam_Enemy": "Perks/Styles/Inspiration/GlacialAugment/Particles/Perks_GlacialAugment_Beam_Enemy",
+        "{79c3fb04}": "Perks/Styles/Inspiration/GlacialAugment/Particles/Perks_GlacialAugment_Zone",
+        "{2b41341f}": "Perks/Styles/Inspiration/GlacialAugment/Particles/Perks_GlacialAugment_Zone_Enemy"
+      },
+      "__type": "ResourceResolver"
+    },
+    "mDefault": true,
+    "__type": "Perk"
+  },
+  "Perks/Styles/Inspiration/UnsealedSpellbook": {
+    "mPerkId": 8360,
+    "mPerkName": "UnsealedSpellbook",
+    "mDisplayNameLocalizationKey": "perk_displayname_UnsealedSpellbook",
+    "mTooltipNameLocalizationKey": "perk_tooltip_UnsealedSpellbook",
+    "mShortDescLocalizationKey": "perk_short_desc_UnsealedSpellbook",
+    "mLongDescLocalizationKey": "perk_long_desc_UnsealedSpellbook",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_UnsealedSpellbook"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_ratio_UnsealedSpellbook",
+    "mIconTextureName": "assets/perks/styles/inspiration/unsealedspellbook/unsealedspellbook.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Inspiration/UnsealedSpellbook/UnsealedSpellbook.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "{ea768132}": 1,
+          "{9a847429}": 0,
+          "{0f920874}": 1,
+          "ShardRechargeMinutes": 4.5,
+          "ShardFirstMinutes": 6,
+          "{9d01feeb}": 5,
+          "{b7e0131f}": 5,
+          "NumSummonersBeforeRepeat": 3,
+          "ShardRechargeReductionSeconds": 25,
+          "{a8402a49}": 10,
+          "{0bb7b933}": 6
+        },
+        "mEffectAmountGameMode": {
+          "ARAM": {
+            "mEffectAmountPerMode": {
+              "ShardFirstMinutes": 3,
+              "ShardRechargeMinutes": 2.5,
+              "ShardRechargeReductionSeconds": 20
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "{a110bc47}": {
+            "mEffectAmountPerMode": {
+              "ShardFirstMinutes": 2,
+              "ShardRechargeMinutes": 1.5,
+              "ShardRechargeReductionSeconds": 15
+            },
+            "__type": "PerkEffectAmountPerMode"
+          }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mBuffs": [
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Inspiration/UnsealedSpellbook/UnsealedSpellbookNextChargeTrackerBuff.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_UnsealedSpellbook_ChargeTracker",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      },
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Inspiration/UnsealedSpellbook/UnsealedSpellbookSwapAvailableBuff.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_UnsealedSpellbook_SwapAvailable",
+            "mShowDuration": false,
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      },
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Inspiration/UnsealedSpellbook/UnsealedSpellbookSummonerCooldownBuff.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_UnsealedSpellbookBackgroundCD",
+            "mShowDuration": false,
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      },
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Inspiration/UnsealedSpellbook/UnsealedSpellbookSummonerTwoCooldownBuff.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_UnsealedSpellbookBackgroundCD",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      },
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Inspiration/UnsealedSpellbook/UnsealedSpellbookOOCTracker.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_UnsealedSpellbook_OOCTracker",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      }
+    ],
+    "mMajorChangePatchVersion": "8.9",
+    "__type": "Perk"
+  },
+  "Perks/Styles/Inspiration/FirstStrike": {
+    "mPerkId": 8369,
+    "mPerkName": "FirstStrike",
+    "mDisplayNameLocalizationKey": "perk_displayname_FirstStrike",
+    "mTooltipNameLocalizationKey": "perk_tooltip_FirstStrike",
+    "mShortDescLocalizationKey": "perk_short_desc_FirstStrike",
+    "mLongDescLocalizationKey": "perk_long_desc_FirstStrike",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_FirstStrike",
+      "perk_eog2_stat_desc_FirstStrike"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_FirstStrike",
+    "mIconTextureName": "assets/perks/styles/inspiration/firststrike/firststrike.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Inspiration/FirstStrike/FirstStrike.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "Duration": 3,
+          "DamageAmp": 0.07000000029802322,
+          "OOCTimer": 10,
+          "GoldProcBonus": 10,
+          "GoldPercentBonus": 0.5,
+          "GoldPercentBonusRanged": 0.3499999940395355,
+          "GraceWindow": 0.25,
+          "TooltipOnlyCooldownStartAmount": 25,
+          "TooltipOnlyCooldownEndAmount": 15,
+          "MissileNoiseNumberLimiter": 3,
+          "MissileNoiseRangeLimiter": 1500,
+          "ModesCooldownReduction": 1,
+          "{b50bc5ec}": 0.5,
+          "{7563bf99}": 0.699999988079071
+        },
+        "mEffectAmountGameMode": {
+          "URF": {
+            "mEffectAmountPerMode": {
+              "ModesCooldownReduction": 0.6000000238418579
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "ARAM": {
+            "mEffectAmountPerMode": {
+              "GoldProcBonus": 15,
+              "GoldPercentBonus": 0.6000000238418579,
+              "GoldPercentBonusRanged": 0.44999998807907104,
+              "{b50bc5ec}": 0.6000000238418579
+            },
+            "__type": "PerkEffectAmountPerMode"
+          }
+        },
+        "mCalculations": {
+          "Cooldown": {
+            "mFormulaParts": [
+              {
+                "mPart1": {
+                  "mStartValue": 25,
+                  "mEndValue": 15,
+                  "mScalePastDefaultMaxLevel": false,
+                  "__type": "ByCharLevelInterpolationCalculationPart"
+                },
+                "mPart2": {
+                  "mDataValue": "ModesCooldownReduction",
+                  "__type": "NamedDataValueCalculationPart"
+                },
+                "__type": "ProductOfSubPartsCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          },
+          "ChampRange": {
+            "mSimpleTooltipCalculationDisplay": 5,
+            "mExpandedTooltipCalculationDisplay": 5,
+            "mDefaultGameCalculation": "{792cf56b}",
+            "mConditionalGameCalculation": "{06387172}",
+            "mConditionalCalculationRequirements": {
+              "__type": "IsRangedCastRequirement"
+            },
+            "__type": "GameCalculationConditional"
+          },
+          "MeleeItemCalcValue": {
+            "mSimpleTooltipCalculationDisplay": 6,
+            "mExpandedTooltipCalculationDisplay": 6,
+            "mFormulaParts": [
+              {
+                "mDataValue": "{b50bc5ec}",
+                "__type": "NamedDataValueCalculationPart"
+              }
+            ],
+            "mDisplayAsPercent": true,
+            "__type": "GameCalculation"
+          },
+          "RangedItemCalcValue": {
+            "mMultiplier": {
+              "mDataValue": "{7563bf99}",
+              "__type": "NamedDataValueCalculationPart"
+            },
+            "mModifiedGameCalculation": "MeleeItemCalcValue",
+            "__type": "GameCalculationModified"
+          },
+          "{792cf56b}": {
+            "mFormulaParts": [
+              {
+                "mNumber": 1,
+                "__type": "NumberCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          },
+          "{06387172}": {
+            "mFormulaParts": [
+              {
+                "mNumber": 2,
+                "__type": "NumberCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mBuffs": [
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Inspiration/FirstStrike/FirstStrikeCD.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "Buff_Perks_FirstStrike_Cooldown",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      },
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Inspiration/FirstStrike/FirstStrikeAvailable.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_FirstStrike_Available",
+            "PersistentEffectConditions": [
+              {
+                "PersistentVfxs": [
+                  {
+                    "boneName": "C_Buffbone_Glb_Layout_Loc",
+                    "effectKey": "{0e8e91a5}",
+                    "__type": "PersistentVfxData"
+                  }
+                ],
+                "__type": "PersistentEffectConditionData"
+              }
+            ],
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      },
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Inspiration/FirstStrike/FirstStrike.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_FirstStrike",
+            "PersistentEffectConditions": [
+              {
+                "PersistentVfxs": [
+                  {
+                    "boneName": "C_Buffbone_Glb_Layout_Loc",
+                    "effectKey": "{601bd6a1}",
+                    "__type": "PersistentVfxData"
+                  }
+                ],
+                "__type": "PersistentEffectConditionData"
+              }
+            ],
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      }
+    ],
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "{03659ab7}": "Perks/Styles/Inspiration/FirstStrike/Particles/Perks_FirstStrike_Mis",
+        "{2978064b}": "Perks/Styles/Inspiration/FirstStrike/Particles/Perks_FirstStrike_Tar",
+        "{0e8e91a5}": "Perks/Styles/Inspiration/FirstStrike/Particles/Perks_FirstStrike_Buff",
+        "{41cbbf7e}": "Perks/Styles/Inspiration/FirstStrike/Particles/Perks_FirstStrike_Buff_Start",
+        "{0604a5cd}": "Perks/Styles/Inspiration/FirstStrike/Particles/Perks_FirstStrike_GoldReward",
+        "{601bd6a1}": "Perks/Styles/Inspiration/FirstStrike/Particles/Perks_FirstStrike_Buff_Activated",
+        "{37975d3a}": "Perks/Styles/Inspiration/FirstStrike/Particles/Perks_FirstStrike_Fail"
+      },
+      "__type": "ResourceResolver"
+    },
+    "mMajorChangePatchVersion": "11.23",
+    "__type": "Perk"
+  },
+  "Perks/Styles/Inspiration/HextechFlashtraption": {
+    "mPerkId": 8306,
+    "mPerkName": "HextechFlashtraption",
+    "mDisplayNameLocalizationKey": "perk_displayname_HextechFlashtraption",
+    "mTooltipNameLocalizationKey": "perk_tooltip_HextechFlashtraption",
+    "mShortDescLocalizationKey": "perk_short_desc_8306",
+    "mLongDescLocalizationKey": "perk_long_desc_8306",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_HextechFlashtraption1"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_Blank",
+    "mIconTextureName": "assets/perks/styles/inspiration/hextechflashtraption/hextechflashtraption.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Inspiration/HextechFlashtraption/HextechFlashtraption.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "ChannelDuration": 2,
+          "{c85ef93c}": 10,
+          "CooldownTime": 20,
+          "ChampionCombatCooldown": 10,
+          "MinimumChannelDuration": 1,
+          "{d6487c09}": 0.5
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "Perks_HextechFlashtraption_Cas": "Perks/Styles/Inspiration/HextechFlashtraption/Particles/Perks_HextechFlashtraption_Cas",
+        "Perks_HextechFlashtraption_Channel": "Perks/Styles/Inspiration/HextechFlashtraption/Particles/Perks_HextechFlashtraption_Channel",
+        "Perks_Dontblink_Tar": "Perks/Styles/Inspiration/HextechFlashtraption/Particles/Perks_Dontblink_Tar"
+      },
+      "__type": "ResourceResolver"
+    },
+    "mSummonerPerkReplacements": {
+      "mReplacements": [
+        {
+          "mSummonerSpellRequired": "Shared/Spells/SummonerFlash",
+          "mReplaceCurrentPerkWith": "{fcf87363}",
+          "__type": "SummonerSpellPerkReplacement"
+        }
+      ],
+      "__type": "SummonerSpellPerkReplacementList"
+    },
+    "__type": "Perk"
+  },
+  "Perks/Styles/Inspiration/MagicalFootwear": {
+    "mPerkId": 8304,
+    "mPerkName": "MagicalFootwear",
+    "mDisplayNameLocalizationKey": "perk_displayname_MagicalFootwear",
+    "mTooltipNameLocalizationKey": "perk_tooltip_MagicalFootwear",
+    "mShortDescLocalizationKey": "perk_short_desc_8304",
+    "mLongDescLocalizationKey": "perk_long_desc_8304",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_MagicalFootwear1"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_MagicalFootwear",
+    "mIconTextureName": "assets/perks/styles/inspiration/magicalfootwear/magicalfootwear.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Inspiration/MagicalFootwear/MagicalFootwear.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "GiveBootsAtMinute": 12,
+          "{c07791e4}": 300,
+          "SecondsSoonerPerTakedown": 45,
+          "AdditionalMovementSpeed": 10
+        },
+        "mEffectAmountGameMode": {
+          "NEXUSBLITZ": {
+            "mEffectAmountPerMode": {
+              "GiveBootsAtMinute": 6,
+              "SecondsSoonerPerTakedown": 30
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "URF": {
+            "mEffectAmountPerMode": {
+              "GiveBootsAtMinute": 6,
+              "SecondsSoonerPerTakedown": 30
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "ARAM": {
+            "mEffectAmountPerMode": {
+              "GiveBootsAtMinute": 8,
+              "SecondsSoonerPerTakedown": 30
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "FIRSTBLOOD": {
+            "mEffectAmountPerMode": {
+              "GiveBootsAtMinute": 6,
+              "SecondsSoonerPerTakedown": 30
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "KINGPORO": {
+            "mEffectAmountPerMode": {
+              "GiveBootsAtMinute": 8,
+              "SecondsSoonerPerTakedown": 30
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "SWIFTPLAY": {
+            "mEffectAmountPerMode": {
+              "GiveBootsAtMinute": 8,
+              "SecondsSoonerPerTakedown": 30
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "{a110bc47}": {
+            "mEffectAmountPerMode": {
+              "GiveBootsAtMinute": 6,
+              "SecondsSoonerPerTakedown": 20
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "Ruby": {
+            "mEffectAmountPerMode": {
+              "GiveBootsAtMinute": 6
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "RUBY_TRIAL_1": {
+            "mEffectAmountPerMode": {
+              "GiveBootsAtMinute": 6
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "RUBY_TRIAL_2": {
+            "mEffectAmountPerMode": {
+              "GiveBootsAtMinute": 6
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "RUBY_TRIAL_3": {
+            "mEffectAmountPerMode": {
+              "GiveBootsAtMinute": 6
+            },
+            "__type": "PerkEffectAmountPerMode"
+          }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "Perks_MagicalFootwear_Fanfare": "Perks/Styles/Inspiration/MagicalFootwear/Particles/Perks_MagicalFootwear_Fanfare"
+      },
+      "__type": "ResourceResolver"
+    },
+    "mMajorChangePatchVersion": "9.9",
+    "__type": "Perk"
+  },
+  "Perks/Styles/Inspiration/CashBack": {
+    "mPerkId": 8321,
+    "mPerkName": "CashBack",
+    "mDisplayNameLocalizationKey": "perk_displayname_FuturesMarket",
+    "mTooltipNameLocalizationKey": "perk_tooltip_FuturesMarket",
+    "mShortDescLocalizationKey": "perk_short_desc_FuturesMarket",
+    "mLongDescLocalizationKey": "perk_long_desc_FuturesMarket",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_FuturesMarket1"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat",
+    "mIconTextureName": "assets/perks/styles/inspiration/cashback/cashback2.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Inspiration/CashBack/CashBack.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "{d856a8af}": 0,
+          "GoldLowerBoundPerMinute": 8,
+          "{c0de5a7f}": 8,
+          "DebtAccumulationStartsAtMinute": 2,
+          "{7957e8a3}": 20,
+          "{8d08b1b5}": 0,
+          "ExcessCostPenaltyFlat": 50,
+          "GoldLowerBoundInitial": 100,
+          "{fa03b4f1}": 150,
+          "{ebbc116e}": -150,
+          "PercentRefund": 0.07500000298023224
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mDefault": true,
+    "__type": "Perk"
+  },
+  "Perks/Styles/Inspiration/PerfectTiming": {
+    "mPerkId": 8313,
+    "mPerkName": "PerfectTiming",
+    "mDisplayNameLocalizationKey": "perk_displayname_PerfectTiming",
+    "mTooltipNameLocalizationKey": "perk_tooltip_PerfectTiming",
+    "mShortDescLocalizationKey": "perk_short_desc_8313",
+    "mLongDescLocalizationKey": "perk_long_desc_8313",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_PerfectTiming1"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_total",
+    "mIconTextureName": "assets/perks/styles/inspiration/perfecttiming/alchemistcabinet.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Inspiration/TillGottenGains/TillGottenGains.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "FirstElixirLevel": 3,
+          "SecondElixirLevel": 6,
+          "ThirdElixirLevel": 9
+        },
+        "mEffectAmountGameMode": {
+          "NEXUSBLITZ": {
+            "mEffectAmountPerMode": {
+              "InitialCooldown": 4
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "URF": {
+            "mEffectAmountPerMode": {
+              "InitialCooldown": 4
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "ARAM": {
+            "mEffectAmountPerMode": {
+              "InitialCooldown": 4
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "KINGPORO": {
+            "mEffectAmountPerMode": {
+              "InitialCooldown": 4
+            },
+            "__type": "PerkEffectAmountPerMode"
+          }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mDefault": true,
+    "__type": "Perk"
+  },
+  "Perks/Styles/Inspiration/TimeWarpTonic": {
+    "mPerkId": 8352,
+    "mPerkName": "TimeWarpTonic",
+    "mDisplayNameLocalizationKey": "perk_displayname_TimeWarpTonic",
+    "mTooltipNameLocalizationKey": "perk_tooltip_TimeWarpTonic",
+    "mShortDescLocalizationKey": "perk_short_desc_TimeWarpTonic",
+    "mLongDescLocalizationKey": "perk_long_desc_TimeWarpTonic",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_TimeWarpTonic2"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_seconds",
+    "mIconTextureName": "assets/perks/styles/inspiration/timewarptonic/timewarptonic.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Inspiration/TimeWarpTonic/TimeWarpTonic_SRI.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "BonusMS": 0,
+          "RestorationPercentage": 0.4000000059604645,
+          "Cooldown": 20
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mMajorChangePatchVersion": "8.22",
+    "__type": "Perk"
+  },
+  "Perks/Styles/Inspiration/BiscuitDelivery": {
+    "mPerkId": 8345,
+    "mPerkName": "BiscuitDelivery",
+    "mDisplayNameLocalizationKey": "perk_displayname_BiscuitDelivery",
+    "mTooltipNameLocalizationKey": "perk_tooltip_BiscuitDelivery",
+    "mShortDescLocalizationKey": "perk_short_desc_BiscuitDelivery",
+    "mLongDescLocalizationKey": "perk_long_desc_BiscuitDelivery",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_BiscuitDelivery1",
+      "perk_eog_stat_desc_BiscuitDelivery2"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_ratio",
+    "mIconTextureName": "assets/perks/styles/inspiration/biscuitdelivery/biscuitdelivery.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Inspiration/BiscuitDelivery/BiscuitDelivery.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "BiscuitMinuteInterval": 2,
+          "SwapOverMinute": 6,
+          "PermanentHP": 30,
+          "HealthHealPercent": 0.014999999664723873,
+          "DurationOfEffect": 5,
+          "FlatHeal": 20,
+          "{936e8fc2}": 0.30000001192092896,
+          "MaximumHealIncrease": 1
+        },
+        "mEffectAmountGameMode": {
+          "NEXUSBLITZ": {
+            "mEffectAmountPerMode": {
+              "BiscuitMinuteInterval": 1.5
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "URF": {
+            "mEffectAmountPerMode": {
+              "BiscuitMinuteInterval": 1.5
+            },
+            "__type": "PerkEffectAmountPerMode"
+          }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "__type": "Perk"
+  },
+  "Perks/Styles/Inspiration/CosmicInsight": {
+    "mPerkId": 8347,
+    "mPerkName": "CosmicInsight",
+    "mDisplayNameLocalizationKey": "perk_displayname_CosmicInsight",
+    "mTooltipNameLocalizationKey": "perk_tooltip_CosmicInsight",
+    "mShortDescLocalizationKey": "perk_short_desc_CosmicInsight",
+    "mLongDescLocalizationKey": "perk_long_desc_CosmicInsight",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_CosmicInsight1"
+    ],
+    "mIconTextureName": "assets/perks/styles/inspiration/cosmicinsight/cosmicinsight.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Inspiration/CosmicInsight/CosmicInsight.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "ItemHaste": 10,
+          "SummonerHaste": 18
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mDefault": true,
+    "__type": "Perk"
+  },
+  "Perks/Styles/Inspiration/ApproachVelocity": {
+    "mPerkId": 8410,
+    "mPerkName": "ApproachVelocity",
+    "mDisplayNameLocalizationKey": "perk_displayname_ApproachVelocity",
+    "mTooltipNameLocalizationKey": "perk_tooltip_ApproachVelocity",
+    "mShortDescLocalizationKey": "perk_short_desc_ApproachVelocity",
+    "mLongDescLocalizationKey": "perk_long_desc_ApproachVelocity",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_SecondsOfUse1"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_seconds",
+    "mIconTextureName": "assets/perks/styles/resolve/approachvelocity/approachvelocity.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Resolve/ApproachVelocity/ApproachVelocity.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "MovementSpeedPercentBonus": 0.15000000596046448,
+          "ActivationDistance": 1000
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "__type": "Perk"
+  },
+  "Perks/Styles/Inspiration/JackOfAllTrades": {
+    "mPerkId": 8316,
+    "mPerkName": "JackOfAllTrades",
+    "mDisplayNameLocalizationKey": "perk_displayname_MinionDematerializer",
+    "mTooltipNameLocalizationKey": "perk_tooltip_MinionDematerializer",
+    "mShortDescLocalizationKey": "perk_short_desc_MinionDematerializer",
+    "mLongDescLocalizationKey": "perk_long_desc_MinionDematerializer",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_JackOfAllTrades"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_MinionDematerializer",
+    "mIconTextureName": "assets/perks/styles/inspiration/jackofalltrades/jackofalltrades2.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Inspiration/JackOfAllTrades/JackOfAllTrades.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "{1b48f5ea}": 8,
+          "{55d14eea}": 20,
+          "HastePerStack": 1
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mVFXResourceResolver": {
+      "__type": "ResourceResolver"
+    },
+    "mMajorChangePatchVersion": "9.6",
+    "__type": "Perk"
+  },
+  "Perks/Styles/Precision/AbsorbLife": {
+    "mPerkId": 9101,
+    "mPerkName": "AbsorbLife",
+    "mDisplayNameLocalizationKey": "perk_displayname_9101",
+    "mTooltipNameLocalizationKey": "perk_tooltip_9101",
+    "mShortDescLocalizationKey": "perk_short_desc_9101",
+    "mLongDescLocalizationKey": "perk_long_desc_9101",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_Overheal2"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_total",
+    "mIconTextureName": "assets/perks/styles/precision/absorblife/absorblife.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Precision/AbsorbLife/AbsorbLife.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "TooltipMinHeal": 1,
+          "TooltipMaxHeal": 23
+        },
+        "mCalculations": {
+          "HealAmount": {
+            "mFormulaParts": [
+              {
+                "mLevel1Value": 1,
+                "mInitialBonusPerLevel": 0.25,
+                "mBreakpoints": [
+                  {
+                    "mLevel": 6,
+                    "mBonusPerLevelAtAndAfter": 1,
+                    "__type": "Breakpoint"
+                  },
+                  {
+                    "mLevel": 11,
+                    "mBonusPerLevelAtAndAfter": 2,
+                    "__type": "Breakpoint"
+                  }
+                ],
+                "__type": "ByCharLevelBreakpointsCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "{1808f82c}": "Perks/Styles/Precision/AbsorbLife/Particles/AbsorbLifeHeal"
+      },
+      "__type": "ResourceResolver"
+    },
+    "__type": "Perk"
+  },
+  "Perks/Styles/Precision/Triumph": {
+    "mPerkId": 9111,
+    "mPerkName": "Triumph",
+    "mDisplayNameLocalizationKey": "perk_displayname_9111",
+    "mTooltipNameLocalizationKey": "perk_tooltip_9111",
+    "mShortDescLocalizationKey": "perk_short_desc_9111",
+    "mLongDescLocalizationKey": "perk_long_desc_9111",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_Triumph1",
+      "perk_eog_stat_desc_Triumph2"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_Triumph",
+    "mIconTextureName": "assets/perks/styles/precision/triumph.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Precision/Triumph.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "MissingHealthRestored": 0.05000000074505806,
+          "BonusGold": 20,
+          "TriumphMaxHealthRestored": 0.02500000037252903
+        },
+        "mEffectAmountGameMode": {
+          "ARAM": {
+            "mEffectAmountPerMode": {
+              "MissingHealthRestored": 0.029999999329447746,
+              "BonusGold": 10,
+              "TriumphMaxHealthRestored": 0.014999999664723873
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "KINGPORO": {
+            "mEffectAmountPerMode": {
+              "MissingHealthRestored": 0.05999999865889549,
+              "BonusGold": 10
+            },
+            "__type": "PerkEffectAmountPerMode"
+          }
+        },
+        "mCalculations": {
+          "MaxHealthCalc": {
+            "mSimpleTooltipCalculationDisplay": 4,
+            "mFormulaParts": [
+              {
+                "mStat": 12,
+                "mDataValue": "TriumphMaxHealthRestored",
+                "__type": "StatByNamedDataValueCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "Perks_Triumph_Mis": "Perks/Styles/Precision/Triumph/Particles/Perks_Triumph_Mis"
+      },
+      "__type": "ResourceResolver"
+    },
+    "mDefault": true,
+    "__type": "Perk"
+  },
+  "Perks/Styles/Precision/PresenceOfMind": {
+    "mPerkId": 8009,
+    "mPerkName": "PresenceOfMind",
+    "mDisplayNameLocalizationKey": "perk_displayname_PresenceOfMind",
+    "mTooltipNameLocalizationKey": "perk_tooltip_PresenceOfMind",
+    "mShortDescLocalizationKey": "perk_short_desc_PresenceOfMind",
+    "mLongDescLocalizationKey": "perk_long_desc_PresenceOfMind",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_PresenceOfMind"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_total",
+    "mIconTextureName": "assets/perks/styles/precision/presenceofmind/presenceofmind.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Precision/PresenceOfMind/PresenceOfMind.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "PercentManaRestore": 0.15000000596046448,
+          "CooldownDuration": 8,
+          "MinFlatRestore": 6,
+          "MaxFlatRestore": 50,
+          "EnergyRestore": 6
+        },
+        "mEffectAmountGameMode": {
+          "ARAM": {
+            "mEffectAmountPerMode": {
+              "PercentManaRestore": 0.10000000149011612
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "KINGPORO": {
+            "mEffectAmountPerMode": {
+              "PercentManaRestore": 0.10000000149011612
+            },
+            "__type": "PerkEffectAmountPerMode"
+          }
+        },
+        "mCalculations": {
+          "RegenAmount": {
+            "mFormulaParts": [
+              {
+                "values": [
+                  6,
+                  6,
+                  6.800000190734863,
+                  7.599999904632568,
+                  8.399999618530273,
+                  9.199999809265137,
+                  10,
+                  12,
+                  14,
+                  16,
+                  18,
+                  20,
+                  23.200000762939453,
+                  26.399999618530273,
+                  29.600000381469727,
+                  32.79999923706055,
+                  36,
+                  40,
+                  44,
+                  52,
+                  56,
+                  60,
+                  60,
+                  60,
+                  60,
+                  60,
+                  60,
+                  60,
+                  60,
+                  60,
+                  60
+                ],
+                "__type": "ByCharLevelFormulaCalculationPart"
+              }
+            ],
+            "mPrecision": 1,
+            "__type": "GameCalculation"
+          }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mBuffs": [
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Precision/PresenceOfMind/PresenceOfMind_Lockout.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_PresenceOfMind",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      }
+    ],
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "Perks_PresenceOfMind_Mis": "Perks/Styles/Precision/PresenceOfMind/Particles/Perks_PresenceOfMind_Mis"
+      },
+      "__type": "ResourceResolver"
+    },
+    "mMajorChangePatchVersion": "8.7",
+    "__type": "Perk"
+  },
+  "Perks/Styles/Precision/LegendHaste": {
+    "mPerkId": 9105,
+    "mPerkName": "LegendHaste",
+    "mDisplayNameLocalizationKey": "perk_displayname_9105",
+    "mTooltipNameLocalizationKey": "perk_tooltip_9105",
+    "mShortDescLocalizationKey": "perk_short_desc_LegendHaste",
+    "mLongDescLocalizationKey": "perk_long_desc_LegendHaste",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_LegendTimeCompleted"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_LegendHaste",
+    "mIconTextureName": "assets/perks/styles/precision/legendhaste/legendhaste.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Precision/LegendHaste/LegendHaste.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "HastePerStack": 1.5,
+          "HasteBase": 0,
+          "MaxLegendStacks": 10,
+          "{3e1fdd4a}": 100,
+          "{8fb410e2}": 100,
+          "{f6570baa}": 100,
+          "LargeMonsterKillValue": 25,
+          "MinionKillValue": 4
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "__type": "Perk"
+  },
+  "Perks/Styles/Resolve/GraspOfTheUndying": {
+    "mPerkId": 8437,
+    "mPerkName": "GraspOfTheUndying",
+    "mDisplayNameLocalizationKey": "perk_displayname_GraspOfTheUndying",
+    "mTooltipNameLocalizationKey": "perk_tooltip_GraspOfTheUndying",
+    "mShortDescLocalizationKey": "perk_short_desc_GraspOfTheUndying",
+    "mLongDescLocalizationKey": "perk_long_desc_GraspOfTheUndying",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_GraspOfTheUndying",
+      "perk_eog_stat_desc_GraspOfTheUndyingHeal"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_GraspOfTheUndying",
+    "mIconTextureName": "assets/perks/styles/resolve/graspoftheundying/graspoftheundying.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Resolve/GraspOfTheUndying/GraspOfTheUndying.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "PercentHealthDamage": 0.03500000014901161,
+          "Window": 5,
+          "TriggerTime": 4,
+          "PercentHealthHeal": 0.013000000268220901,
+          "MaxHealthPerProc": 5,
+          "RangedPenaltyMod": 0.4000000059604645,
+          "RangedHealthPerProc": 2,
+          "MeleeFlatHeal": 0
+        },
+        "mEffectAmountGameMode": {
+          "NEXUSBLITZ": {
+            "mEffectAmountPerMode": {
+              "MaxHealthPerProc": 15,
+              "RangedHealthPerProc": 6
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "URF": {
+            "mEffectAmountPerMode": {
+              "MaxHealthPerProc": 15,
+              "RangedHealthPerProc": 6
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "ARAM": {
+            "mEffectAmountPerMode": {
+              "MaxHealthPerProc": 10,
+              "RangedHealthPerProc": 4
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "KINGPORO": {
+            "mEffectAmountPerMode": {
+              "MaxHealthPerProc": 10,
+              "RangedHealthPerProc": 4
+            },
+            "__type": "PerkEffectAmountPerMode"
+          }
+        },
+        "mCalculations": {
+          "DamageCalc": {
+            "mSimpleTooltipCalculationDisplay": 4,
+            "mFormulaParts": [
+              {
+                "mStat": 12,
+                "mDataValue": "PercentHealthDamage",
+                "__type": "StatByNamedDataValueCalculationPart"
+              }
+            ],
+            "mRangedMultiplier": {
+              "mDataValue": "RangedPenaltyMod",
+              "__type": "NamedDataValueCalculationPart"
+            },
+            "__type": "{e9a3c91d}"
+          },
+          "HealCalc": {
+            "mSimpleTooltipCalculationDisplay": 4,
+            "mFormulaParts": [
+              {
+                "mStat": 12,
+                "mDataValue": "PercentHealthHeal",
+                "__type": "StatByNamedDataValueCalculationPart"
+              }
+            ],
+            "mRangedMultiplier": {
+              "mDataValue": "RangedPenaltyMod",
+              "__type": "NamedDataValueCalculationPart"
+            },
+            "__type": "{e9a3c91d}"
+          }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mBuffs": [
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Resolve/GraspOfTheUndying/GraspOfTheUndying.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_8437Counter",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      },
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Resolve/GraspOfTheUndying/GraspOfTheUndyingONH.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_8437",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      },
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Resolve/GraspOfTheUndying/GraspOfTheUndyingSelf.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_GraspOfTheUndyingSelf",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      }
+    ],
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "Perks_RuinedKing_Buff": "Perks/Styles/Resolve/GraspOfTheUndying/Particles/Perks_RuinedKing_Buff",
+        "Perks_RuinedKing_Heal_Mis": "Perks/Styles/Resolve/GraspOfTheUndying/Particles/Perks_RuinedKing_Heal_Mis",
+        "Perks_RuinedKing_Tar": "Perks/Styles/Resolve/GraspOfTheUndying/Particles/Perks_RuinedKing_Tar",
+        "Perks_RuinedKing_Heal": "Perks/Styles/Resolve/GraspOfTheUndying/Particles/Perks_RuinedKing_Heal"
+      },
+      "__type": "ResourceResolver"
+    },
+    "mDefault": true,
+    "__type": "Perk"
+  },
+  "Perks/Styles/Resolve/Aftershock": {
+    "mPerkId": 8439,
+    "mPerkName": "Aftershock",
+    "mDisplayNameLocalizationKey": "perk_displayname_VeteranAftershock",
+    "mTooltipNameLocalizationKey": "perk_tooltip_VeteranAftershock",
+    "mShortDescLocalizationKey": "perk_short_desc_VeteranAftershock",
+    "mLongDescLocalizationKey": "perk_long_desc_VeteranAftershock",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_Aftershock1",
+      "perk_eog_stat_desc_Aftershock2"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_total",
+    "mIconTextureName": "assets/perks/styles/resolve/veteranaftershock/veteranaftershock.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Resolve/VeteranAftershock/VeteranAftershock.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "DamageRadius": 350,
+          "Cooldown": 20,
+          "StartingBaseDamage": 25,
+          "MaxBaseDamage": 120,
+          "DelayBeforeBurst": 2.5,
+          "HealthRatio": 0.07999999821186066,
+          "FlatResists": 45,
+          "BonusResistMin": 80,
+          "BonusResistMax": 150,
+          "PercentBonusResist": 0.75
+        },
+        "mEffectAmountGameMode": {
+          "URF": {
+            "mEffectAmountPerMode": {
+              "Cooldown": 15
+            },
+            "__type": "PerkEffectAmountPerMode"
+          }
+        },
+        "mCalculations": {
+          "MaxResistCalc": {
+            "mSimpleTooltipCalculationDisplay": 4,
+            "mFormulaParts": [
+              {
+                "mStartValue": 80,
+                "mEndValue": 150,
+                "__type": "ByCharLevelInterpolationCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          },
+          "ArmorBuff": {
+            "mSimpleTooltipCalculationDisplay": 2,
+            "mFormulaParts": [
+              {
+                "mDataValue": "FlatResists",
+                "__type": "NamedDataValueCalculationPart"
+              },
+              {
+                "mStat": 1,
+                "mStatFormula": 2,
+                "mDataValue": "PercentBonusResist",
+                "__type": "StatByNamedDataValueCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          },
+          "MagicResistBuff": {
+            "mSimpleTooltipCalculationDisplay": 2,
+            "mFormulaParts": [
+              {
+                "mDataValue": "FlatResists",
+                "__type": "NamedDataValueCalculationPart"
+              },
+              {
+                "mStat": 6,
+                "mStatFormula": 2,
+                "mDataValue": "PercentBonusResist",
+                "__type": "StatByNamedDataValueCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          },
+          "DamageCalc": {
+            "mSimpleTooltipCalculationDisplay": 4,
+            "mFormulaParts": [
+              {
+                "mStartValue": 25,
+                "mEndValue": 120,
+                "__type": "ByCharLevelInterpolationCalculationPart"
+              },
+              {
+                "mStat": 12,
+                "mStatFormula": 2,
+                "mDataValue": "HealthRatio",
+                "__type": "StatByNamedDataValueCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mBuffs": [
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Resolve/VeteranAftershock/VeteranAftershockDelay.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_VegeanceDelay",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      },
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Resolve/VeteranAftershock/VeteranAftershockCooldownBuff.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_VegeanceCD",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      },
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Resolve/VeteranAftershock/VeteranAftershockSlowDebuff.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_Aftershock_Debuff",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      }
+    ],
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "Perks_Aftershock_AOE": "Perks/Styles/Resolve/Aftershock/Particles/Perks_Aftershock_AOE",
+        "Perks_Aftershock_Tar": "Perks/Styles/Resolve/Aftershock/Particles/Perks_Aftershock_Tar",
+        "Perks_Aftershock_Buff": "Perks/Styles/Resolve/Aftershock/Particles/Perks_Aftershock_Buff"
+      },
+      "__type": "ResourceResolver"
+    },
+    "mMajorChangePatchVersion": "9.9",
+    "__type": "Perk"
+  },
+  "Perks/Styles/Resolve/Guardian": {
+    "mPerkId": 8465,
+    "mPerkName": "Guardian",
+    "mDisplayNameLocalizationKey": "perk_displayname_Guardian",
+    "mTooltipNameLocalizationKey": "perk_tooltip_Guardian",
+    "mShortDescLocalizationKey": "perk_short_desc_Guardian",
+    "mLongDescLocalizationKey": "perk_long_desc_Guardian",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_Guardian1"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_Guardian",
+    "mIconTextureName": "assets/perks/styles/resolve/guardian/guardian.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Resolve/Guardian/Guardian.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "SnuggleRange": 350,
+          "ShieldBase": 40,
+          "ShieldMax": 150,
+          "APRatio": 0.20000000298023224,
+          "HPRatio": 0.05999999865889549,
+          "ShieldDuration": 1.5,
+          "Cooldown": 75,
+          "GuardDuration": 2.5,
+          "CooldownMaxLevel": 40,
+          "ThresholdMin": 50,
+          "ThresholdMax": 165
+        },
+        "mEffectAmountGameMode": {
+          "ARAM": {
+            "mEffectAmountPerMode": {
+              "Cooldown": 60,
+              "CooldownMaxLevel": 30
+            },
+            "__type": "PerkEffectAmountPerMode"
+          }
+        },
+        "mCalculations": {
+          "ThresholdCalc": {
+            "mSimpleTooltipCalculationDisplay": 4,
+            "mFormulaParts": [
+              {
+                "mStartValue": 40,
+                "mEndValue": 150,
+                "__type": "ByCharLevelInterpolationCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          },
+          "ShieldCalc": {
+            "mSimpleTooltipCalculationDisplay": 4,
+            "mFormulaParts": [
+              {
+                "mStartValue": 40,
+                "mEndValue": 150,
+                "__type": "ByCharLevelInterpolationCalculationPart"
+              },
+              {
+                "mStatFormula": 2,
+                "mDataValue": "APRatio",
+                "__type": "StatByNamedDataValueCalculationPart"
+              },
+              {
+                "mStat": 12,
+                "mStatFormula": 2,
+                "mDataValue": "HPRatio",
+                "__type": "StatByNamedDataValueCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          },
+          "CooldownCalc": {
+            "mSimpleTooltipCalculationDisplay": 4,
+            "mFormulaParts": [
+              {
+                "mStartValue": 75,
+                "mEndValue": 40,
+                "__type": "ByCharLevelInterpolationCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mBuffs": [
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Resolve/Guardian/GuardianCooldown.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "perk_buff_desc_Guardian_CD",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      },
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Resolve/Guardian/GuardianShield.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "perk_desc_Guardian_Shield",
+            "PersistentEffectConditions": [
+              {
+                "PersistentVfxs": [
+                  {
+                    "boneName": "C_BUFFBONE_GLB_CENTER_LOC",
+                    "effectKey": "Perk_Guardian_Shield",
+                    "__type": "PersistentVfxData"
+                  }
+                ],
+                "__type": "PersistentEffectConditionData"
+              }
+            ],
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      },
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Resolve/Guardian/Guardian.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_Guardian_Available",
+            "PersistentEffectConditions": [
+              {
+                "PersistentVfxs": [
+                  {
+                    "effectKey": "Perk_Guardian_Orb",
+                    "FaceTarget": true,
+                    "__type": "PersistentVfxData"
+                  }
+                ],
+                "__type": "PersistentEffectConditionData"
+              }
+            ],
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      },
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Resolve/Guardian/GuardianWillProtect.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_Guardian_Ally",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      }
+    ],
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "Perks_Guardian_Active": "Perks/Styles/Resolve/Guardian/Particles/Perks_Guardian_Active",
+        "Perk_Guardian_Shield": "Perks/Styles/Resolve/Guardian/Particles/Perk_Guardian_Shield",
+        "Perk_Guardian_Break": "Perks/Styles/Resolve/Guardian/Particles/Perk_Guardian_Break",
+        "Perk_Guardian_GroundIndicator": "Perks/Styles/Resolve/Guardian/Particles/Perk_Guardian_GroundIndicator",
+        "Perk_Guardian_Mis": "Perks/Styles/Resolve/Guardian/Particles/Perk_Guardian_Mis",
+        "Perk_Guardian_Orb": "Perks/Styles/Resolve/Guardian/Particles/Perk_Guardian_Orb",
+        "Perks_Guardian_Timer": "Perks/Styles/Resolve/Guardian/Particles/Perks_Guardian_Timer",
+        "Perks_Guardian_Shield_AOE_Ally": "Perks/Styles/Resolve/Guardian/Particles/Perks_Guardian_Shield_AOE_Ally"
+      },
+      "__type": "ResourceResolver"
+    },
+    "__type": "Perk"
+  },
+  "Perks/Styles/Resolve/Demolish": {
+    "mPerkId": 8446,
+    "mPerkName": "Demolish",
+    "mDisplayNameLocalizationKey": "perk_displayname_8446",
+    "mTooltipNameLocalizationKey": "perk_tooltip_8446",
+    "mShortDescLocalizationKey": "perk_short_desc_8446",
+    "mLongDescLocalizationKey": "perk_long_desc_8446",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_Demolish1"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_Demolish",
+    "mIconTextureName": "assets/perks/styles/resolve/demolish/demolish.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Resolve/Demolish/Demolish_SEASONAL.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "CooldownSeconds": 30,
+          "{8d810998}": 8,
+          "{97664ba4}": 3,
+          "BaseDamageMelee": 85,
+          "BaseDamageRanged": 50,
+          "HPRatioMelee": 0.2800000011920929,
+          "HPRatioRanged": 0.20000000298023224
+        },
+        "mEffectAmountGameMode": {
+          "NEXUSBLITZ": {
+            "mEffectAmountPerMode": {
+              "CooldownSeconds": 30
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "URF": {
+            "mEffectAmountPerMode": {
+              "CooldownSeconds": 30
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "ARAM": {
+            "mEffectAmountPerMode": {
+              "MaxHealthPercentDamage": 0.20000000298023224,
+              "OutputDamagePerStack": 50
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "FIRSTBLOOD": {
+            "mEffectAmountPerMode": {
+              "MaxHealthPercentDamage": 0.10000000149011612,
+              "OutputDamagePerStack": 35
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "KINGPORO": {
+            "mEffectAmountPerMode": {
+              "MaxHealthPercentDamage": 0.20000000298023224,
+              "OutputDamagePerStack": 50
+            },
+            "__type": "PerkEffectAmountPerMode"
+          }
+        },
+        "mCalculations": {
+          "DamageCalc": {
+            "mSimpleTooltipCalculationDisplay": 4,
+            "mDefaultGameCalculation": "{4e3f20aa}",
+            "mConditionalGameCalculation": "{5fecac03}",
+            "mConditionalCalculationRequirements": {
+              "__type": "IsMeleeCastRequirement"
+            },
+            "__type": "GameCalculationConditional"
+          },
+          "{4e3f20aa}": {
+            "mSimpleTooltipCalculationDisplay": 4,
+            "DamageType": 0,
+            "mFormulaParts": [
+              {
+                "mDataValue": "BaseDamageRanged",
+                "__type": "NamedDataValueCalculationPart"
+              },
+              {
+                "mStat": 12,
+                "mDataValue": "HPRatioRanged",
+                "__type": "StatByNamedDataValueCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          },
+          "{5fecac03}": {
+            "mSimpleTooltipCalculationDisplay": 4,
+            "DamageType": 0,
+            "mFormulaParts": [
+              {
+                "mDataValue": "BaseDamageMelee",
+                "__type": "NamedDataValueCalculationPart"
+              },
+              {
+                "mStat": 12,
+                "mDataValue": "HPRatioMelee",
+                "__type": "StatByNamedDataValueCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mBuffs": [
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Resolve/Demolish/SR_2026_S1_DemolishCooldown.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "perk_buff_description_Demolish_CD",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      }
+    ],
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "Perks_Demolish_Crystal": "Perks/Styles/Resolve/Demolish/Particles/Perks_Demolish_Crystal",
+        "Perks_Demolish_Floor_Diamonds": "Perks/Styles/Resolve/Demolish/Particles/Perks_Demolish_Floor_Diamonds",
+        "Perks_Demolish_Crystal_Pop": "Perks/Styles/Resolve/Demolish/Particles/Perks_Demolish_Crystal_Pop",
+        "Perks_Demolish_Crystal_6": "Perks/Styles/Resolve/Demolish/Particles/Perks_Demolish_Crystal_6",
+        "Perks_Demolish_Crystal_5_Pop": "Perks/Styles/Resolve/Demolish/Particles/Perks_Demolish_Crystal_5_Pop",
+        "Perks_Demolish_Crystal_4_Pop": "Perks/Styles/Resolve/Demolish/Particles/Perks_Demolish_Crystal_4_Pop",
+        "Perks_Demolish_Crystal_3_Pop": "Perks/Styles/Resolve/Demolish/Particles/Perks_Demolish_Crystal_3_Pop",
+        "Perks_Demolish_Crystal_2_Pop": "Perks/Styles/Resolve/Demolish/Particles/Perks_Demolish_Crystal_2_Pop",
+        "Perks_Demolish_Crystal_1_Pop": "Perks/Styles/Resolve/Demolish/Particles/Perks_Demolish_Crystal_1_Pop",
+        "Perks_Demolish_Crystal_0_Pop": "Perks/Styles/Resolve/Demolish/Particles/Perks_Demolish_Crystal_0_Pop",
+        "Perks_Demolish_Crystal_1_Pop_Ally": "Perks/Styles/Resolve/Demolish/Particles/Perks_Demolish_Crystal_1_Pop_Ally",
+        "Perks_Demolish_Crystal_Ally": "Perks/Styles/Resolve/Demolish/Particles/Perks_Demolish_Crystal_Ally",
+        "Perks_Demolish_Crystal_6_Ally": "Perks/Styles/Resolve/Demolish/Particles/Perks_Demolish_Crystal_6_Ally",
+        "Perks_Demolish_Crystal_5_Pop_Ally": "Perks/Styles/Resolve/Demolish/Particles/Perks_Demolish_Crystal_5_Pop_Ally",
+        "Perks_Demolish_Crystal_4_Pop_Ally": "Perks/Styles/Resolve/Demolish/Particles/Perks_Demolish_Crystal_4_Pop_Ally",
+        "Perks_Demolish_Crystal_3_Pop_Ally": "Perks/Styles/Resolve/Demolish/Particles/Perks_Demolish_Crystal_3_Pop_Ally",
+        "Perks_Demolish_Crystal_2_Pop_Ally": "Perks/Styles/Resolve/Demolish/Particles/Perks_Demolish_Crystal_2_Pop_Ally",
+        "Perks_Demolish_Crystal_0_Pop_Ally": "Perks/Styles/Resolve/Demolish/Particles/Perks_Demolish_Crystal_0_Pop_Ally",
+        "Perks_Demolish_Floor_Diamonds_Ally": "Perks/Styles/Resolve/Demolish/Particles/Perks_Demolish_Floor_Diamonds_Ally",
+        "Perks_Demolish_Tar": "Perks/Styles/Resolve/Demolish/Particles/Perks_Demolish_Tar",
+        "Perks_Demolish_Energy_Beam": "Perks/Styles/Resolve/Demolish/Particles/Perks_Demolish_Energy_Beam",
+        "Perks_Demolish_Empowered": "Perks/Styles/Resolve/Demolish/Particles/Perks_Demolish_Empowered",
+        "Perks_Demolish_Range": "Perks/Styles/Resolve/Demolish/Particles/Perks_Demolish_Range",
+        "Perks_Demolish_Floor_Diamonds_Ready": "Perks/Styles/Resolve/Demolish/Particles/Perks_Demolish_Floor_Diamonds_Ready",
+        "Perks_Demolish_Tar_Self": "Perks/Styles/Resolve/Demolish/Particles/Perks_Demolish_Tar_Self",
+        "{27df50d8}": "Perks/Styles/Resolve/Demolish/Particles/Rework_Demolish_Decal_0",
+        "{28df526b}": "Perks/Styles/Resolve/Demolish/Particles/Rework_Demolish_Decal_1",
+        "{29df53fe}": "Perks/Styles/Resolve/Demolish/Particles/Rework_Demolish_Decal_2",
+        "{2adf5591}": "Perks/Styles/Resolve/Demolish/Particles/Rework_Demolish_Decal_3",
+        "{79a4ee47}": "Perks/Styles/Resolve/Demolish/Particles/Rework_Demolish_Decal_0_Ally",
+        "{84c69bfa}": "Perks/Styles/Resolve/Demolish/Particles/Rework_Demolish_Decal_1_Ally",
+        "{17e98d6d}": "Perks/Styles/Resolve/Demolish/Particles/Rework_Demolish_Decal_2_Ally",
+        "{2eb36d78}": "Perks/Styles/Resolve/Demolish/Particles/Rework_Demolish_Decal_3_Ally",
+        "{6cd94f70}": "Perks/Styles/Resolve/Demolish/Particles/Rework_Demolish_Child",
+        "{f188886f}": "Perks/Styles/Resolve/Demolish/Particles/Rework_Demolish_Child_Ally",
+        "{c4b10c8b}": "Perks/Styles/Resolve/Demolish/Particles/Rework_Demolish_Target_Death_Child",
+        "{f68b83f4}": "Perks/Styles/Resolve/Demolish/Particles/Rework_Demolish_Target_Death_Ally_Child"
+      },
+      "__type": "ResourceResolver"
+    },
+    "mDefault": true,
+    "__type": "Perk"
+  },
+  "Perks/Styles/Resolve/FontOfLife": {
+    "mPerkId": 8463,
+    "mPerkName": "FontOfLife",
+    "mDisplayNameLocalizationKey": "perk_displayname_FontOfLife",
+    "mTooltipNameLocalizationKey": "perk_tooltip_FontOfLife",
+    "mShortDescLocalizationKey": "perk_short_desc_FontOfLife",
+    "mLongDescLocalizationKey": "perk_long_desc_FontOfLife",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_FontOfLife1"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_total",
+    "mIconTextureName": "assets/perks/styles/resolve/fontoflife/fontoflife.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Resolve/FontOfLife/FontOfLife.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "Cooldown": 20,
+          "RangedMod": 0.699999988079071
+        },
+        "mCalculations": {
+          "BaseHeal": {
+            "mSimpleTooltipCalculationDisplay": 4,
+            "mFormulaParts": [
+              {
+                "mStartValue": 10,
+                "mEndValue": 50,
+                "__type": "ByCharLevelInterpolationCalculationPart"
+              }
+            ],
+            "mRangedMultiplier": {
+              "mDataValue": "RangedMod",
+              "__type": "NamedDataValueCalculationPart"
+            },
+            "__type": "{e9a3c91d}"
+          }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mBuffs": [
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Resolve/FontOfLife/FontOfLifeCD.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_FontOfLife",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      }
+    ],
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "Perks_FontofLife_Marker": "Perks/Styles/Resolve/FontOfLife/Particles/Perks_FontofLife_Marker",
+        "Perks_FontofLife_Heal": "Perks/Styles/Resolve/FontOfLife/Particles/Perks_FontofLife_Heal",
+        "Perks_FontofLife_Beam": "Perks/Styles/Resolve/FontOfLife/Particles/Perks_FontofLife_Beam",
+        "Perks_FontofLife_Marker_Pulse": "Perks/Styles/Resolve/FontOfLife/Particles/Perks_FontofLife_Marker_Pulse"
+      },
+      "__type": "ResourceResolver"
+    },
+    "__type": "Perk"
+  },
+  "Perks/Styles/Resolve/ShieldBash": {
+    "mPerkId": 8401,
+    "mPerkName": "ShieldBash",
+    "mDisplayNameLocalizationKey": "perk_displayname_ShieldBash",
+    "mTooltipNameLocalizationKey": "perk_tooltip_ShieldBash",
+    "mShortDescLocalizationKey": "perk_short_desc_ShieldBash",
+    "mLongDescLocalizationKey": "perk_long_desc_ShieldBash",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_ShieldBash1"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_ShieldBash",
+    "mIconTextureName": "assets/perks/styles/resolve/mirrorshell/mirrorshell.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Resolve/ShieldBash/ShieldBash.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "ProcDuration": 2,
+          "ShieldRatio": 15,
+          "BonusHealthRatio": 2.5,
+          "BonusShieldMult": 0.10000000149011612,
+          "ProcBaseMin": 5,
+          "ProcBaseMax": 30
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mBuffs": [
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Resolve/ShieldBash/ShieldBashProc.lua",
+        "__type": "PerkBuff"
+      }
+    ],
+    "mMajorChangePatchVersion": "8.23",
+    "__type": "Perk"
+  },
+  "Perks/Styles/Resolve/Conditioning": {
+    "mPerkId": 8429,
+    "mPerkName": "Conditioning",
+    "mDisplayNameLocalizationKey": "perk_displayname_Conditioning",
+    "mTooltipNameLocalizationKey": "perk_tooltip_Conditioning",
+    "mShortDescLocalizationKey": "perk_short_desc_Conditioning",
+    "mLongDescLocalizationKey": "perk_long_desc_Conditioning",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_Conditioning",
+      "perk_eog_stat_desc_ConditioningArmor",
+      "perk_eog_stat_desc_ConditioningMR"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_Conditioning",
+    "mIconTextureName": "assets/perks/styles/resolve/conditioning/conditioning.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Resolve/Conditioning/Conditioning.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "ArmorBase": 8,
+          "MRBase": 8,
+          "ExtraResist": 0.029999999329447746,
+          "Range": 800,
+          "MinutesRequired": 12
+        },
+        "mEffectAmountGameMode": {
+          "NEXUSBLITZ": {
+            "mEffectAmountPerMode": {
+              "MinutesRequired": 6
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "URF": {
+            "mEffectAmountPerMode": {
+              "MinutesRequired": 6
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "ARAM": {
+            "mEffectAmountPerMode": {
+              "MinutesRequired": 8
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "KINGPORO": {
+            "mEffectAmountPerMode": {
+              "MinutesRequired": 8
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "SWIFTPLAY": {
+            "mEffectAmountPerMode": {
+              "MinutesRequired": 8
+            },
+            "__type": "PerkEffectAmountPerMode"
+          }
+        },
+        "mCalculations": {
+          "ArmorCalcTooltip": {
+            "mSimpleTooltipCalculationDisplay": 4,
+            "mFormulaParts": [
+              {
+                "mDataValue": "ArmorBase",
+                "__type": "NamedDataValueCalculationPart"
+              },
+              {
+                "mStat": 1,
+                "mDataValue": "ExtraResist",
+                "__type": "StatByNamedDataValueCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          },
+          "MagicResistCalcTooltip": {
+            "mSimpleTooltipCalculationDisplay": 4,
+            "mFormulaParts": [
+              {
+                "mDataValue": "MRBase",
+                "__type": "NamedDataValueCalculationPart"
+              },
+              {
+                "mStat": 6,
+                "mDataValue": "ExtraResist",
+                "__type": "StatByNamedDataValueCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "Perks_Conditioning_Active": "Perks/Styles/Resolve/Conditioning/Particles/Perks_Conditioning_Active"
+      },
+      "__type": "ResourceResolver"
+    },
+    "mMajorChangePatchVersion": "9.9",
+    "__type": "Perk"
+  },
+  "Perks/Styles/Resolve/SecondWind": {
+    "mPerkId": 8444,
+    "mPerkName": "SecondWind",
+    "mDisplayNameLocalizationKey": "perk_displayname_SecondWind",
+    "mTooltipNameLocalizationKey": "perk_tooltip_SecondWind",
+    "mShortDescLocalizationKey": "perk_short_desc_SecondWind",
+    "mLongDescLocalizationKey": "perk_long_desc_SecondWind",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_SecondWind1"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_total",
+    "mIconTextureName": "assets/perks/styles/resolve/secondwind/secondwind.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Resolve/SecondWind/SecondWind.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "RegenSeconds": 10,
+          "RegenPercentMax": 0.03999999910593033,
+          "RegenFlat": 0
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mDefault": true,
+    "__type": "Perk"
+  },
+  "Perks/Styles/Resolve/BonePlating": {
+    "mPerkId": 8473,
+    "mPerkName": "BonePlating",
+    "mDisplayNameLocalizationKey": "perk_displayname_BonePlating",
+    "mTooltipNameLocalizationKey": "perk_tooltip_BonePlatingTooltip",
+    "mShortDescLocalizationKey": "perk_short_desc_BonePlating",
+    "mLongDescLocalizationKey": "perk_long_desc_BonePlating",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_BonePlating"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_total",
+    "mIconTextureName": "assets/perks/styles/resolve/boneplating/boneplating.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Resolve/BonePlating/BonePlating.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "BlockBase": 30,
+          "BlockMax": 60,
+          "BlockCount": 3,
+          "BlockDuration": 1.5,
+          "Cooldown": 55
+        },
+        "mEffectAmountGameMode": {
+          "ARAM": {
+            "mEffectAmountPerMode": {
+              "Cooldown": 40
+            },
+            "__type": "PerkEffectAmountPerMode"
+          }
+        },
+        "mCalculations": {
+          "BlockCalc": {
+            "mSimpleTooltipCalculationDisplay": 4,
+            "mFormulaParts": [
+              {
+                "mStartValue": 30,
+                "mEndValue": 60,
+                "__type": "ByCharLevelInterpolationCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mBuffs": [
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Resolve/BonePlating/BonePlating.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_BonePlatingBlocking",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      },
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Resolve/BonePlating/BonePlatingCD.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_BonePlatingCD",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      },
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Resolve/BonePlating/BonePlatingReady.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_BonePlatingBlocking",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      }
+    ],
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "BonePlating_Buckler2": "Perks/Styles/Resolve/BonePlating/Particles/BonePlating_Buckler2",
+        "Perks_BonePlating_Break": "Perks/Styles/Resolve/BonePlating/Particles/Perks_BonePlating_Break"
+      },
+      "__type": "ResourceResolver"
+    },
+    "mMajorChangePatchVersion": "9.9",
+    "__type": "Perk"
+  },
+  "Perks/Styles/Resolve/Overgrowth": {
+    "mPerkId": 8451,
+    "mPerkName": "Overgrowth",
+    "mDisplayNameLocalizationKey": "perk_displayname_Overgrowth",
+    "mTooltipNameLocalizationKey": "perk_tooltip_Overgrowth",
+    "mShortDescLocalizationKey": "perk_short_desc_Overgrowth",
+    "mLongDescLocalizationKey": "perk_long_desc_Overgrowth",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_Overgrowth1"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_total",
+    "mIconTextureName": "assets/perks/styles/resolve/overgrowth/overgrowth.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Resolve/Overgrowth/Overgrowth.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "{1663f8e7}": 0.75,
+          "Range": 1400,
+          "UnitsPerTier": 8,
+          "{ca029a2b}": 2,
+          "FlatHealthPerTier": 3,
+          "ThresholdUnits": 120,
+          "ThresholdMaxHealthRatio": 0.03500000014901161
+        },
+        "mEffectAmountGameMode": {
+          "NEXUSBLITZ": {
+            "mEffectAmountPerMode": {
+              "ThresholdUnits": 80,
+              "FlatHealthPerTier": 5
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "ARAM": {
+            "mEffectAmountPerMode": {
+              "ThresholdUnits": 80,
+              "FlatHealthPerTier": 5
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "KINGPORO": {
+            "mEffectAmountPerMode": {
+              "ThresholdUnits": 80,
+              "FlatHealthPerTier": 5
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "{a110bc47}": {
+            "mEffectAmountPerMode": {
+              "ThresholdUnits": 40,
+              "FlatHealthPerTier": 12
+            },
+            "__type": "PerkEffectAmountPerMode"
+          }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "Perks_Overgrowth_Stack": "Perks/Styles/Resolve/Overgrowth/Particles/Perks_Overgrowth_Stack"
+      },
+      "__type": "ResourceResolver"
+    },
+    "mDefault": true,
+    "mMajorChangePatchVersion": "8.23",
+    "__type": "Perk"
+  },
+  "Perks/Styles/Resolve/Revitalize": {
+    "mPerkId": 8453,
+    "mPerkName": "Revitalize",
+    "mDisplayNameLocalizationKey": "perk_displayname_Revitalize",
+    "mTooltipNameLocalizationKey": "perk_tooltip_Revitalize",
+    "mShortDescLocalizationKey": "perk_short_desc_Revitalize",
+    "mLongDescLocalizationKey": "perk_long_desc_Revitalize",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_Revitalize1",
+      "perk_eog_stat_desc_Revitalize2"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_veteran",
+    "mIconTextureName": "assets/perks/styles/resolve/revitalize/revitalize.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Resolve/Revitalize/Revitalize.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "HealShieldPower": 0.05000000074505806,
+          "HealthCutOff": 40,
+          "ExtraAmp": 10
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "__type": "Perk"
+  },
+  "Perks/Styles/Resolve/Unflinching": {
+    "mPerkId": 8242,
+    "mPerkName": "Unflinching",
+    "mDisplayNameLocalizationKey": "perk_displayname_Unflinching",
+    "mTooltipNameLocalizationKey": "perk_tooltip_Unflinching",
+    "mShortDescLocalizationKey": "perk_short_desc_Unflinching",
+    "mLongDescLocalizationKey": "perk_long_desc_Unflinching",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_Unflinching1"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_Eyeball",
+    "mIconTextureName": "assets/perks/styles/sorcery/unflinching/unflinching.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Resolve/UnflinchingResists/UnflinchingResists.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "ResistMin": 10,
+          "ResistMax": 10,
+          "Duration": 2
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mBuffs": [
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Resolve/UnflinchingResists/UnflinchingResists.lua",
+        "__type": "PerkBuff"
+      }
+    ],
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "Perks_Perseverance_Buff": "Perks/Styles/Resolve/Unflinching/Particles/Perks_Perseverance_Buff"
+      },
+      "__type": "ResourceResolver"
+    },
+    "__type": "Perk"
+  },
+  "Perks/Styles/Sorcery/SummonAery": {
+    "mPerkId": 8214,
+    "mPerkName": "SummonAery",
+    "mDisplayNameLocalizationKey": "perk_displayname_SummonAery",
+    "mTooltipNameLocalizationKey": "perk_tooltip_SummonAery",
+    "mShortDescLocalizationKey": "perk_short_desc_SummonAery",
+    "mLongDescLocalizationKey": "perk_long_desc_SummonAery",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_SummonAery1",
+      "perk_eog_stat_desc_SummonAery2"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_veteran",
+    "mIconTextureName": "assets/perks/styles/sorcery/summonaery/summonaery.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Sorcery/SummonAery/SummonAery.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "ShieldBase": 20,
+          "ShieldMax": 100,
+          "ShieldRatio": 0.05000000074505806,
+          "DamageMax": 50,
+          "DamageBase": 10,
+          "DamageAPRatio": 0.05000000074505806,
+          "DamageADRatio": 0.10000000149011612,
+          "ShieldRatioAD": 0.10000000149011612,
+          "ShieldDuration": 2.5
+        },
+        "mCalculations": {
+          "DamageCalc": {
+            "mSimpleTooltipCalculationDisplay": 4,
+            "mFormulaParts": [
+              {
+                "mStartValue": 10,
+                "mEndValue": 50,
+                "__type": "ByCharLevelInterpolationCalculationPart"
+              },
+              {
+                "mDataValue": "DamageAPRatio",
+                "__type": "StatByNamedDataValueCalculationPart"
+              },
+              {
+                "mStat": 2,
+                "mStatFormula": 2,
+                "mDataValue": "DamageADRatio",
+                "__type": "StatByNamedDataValueCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          },
+          "ShieldCalc": {
+            "mSimpleTooltipCalculationDisplay": 4,
+            "mFormulaParts": [
+              {
+                "mStartValue": 20,
+                "mEndValue": 100,
+                "__type": "ByCharLevelInterpolationCalculationPart"
+              },
+              {
+                "mDataValue": "ShieldRatio",
+                "__type": "StatByNamedDataValueCalculationPart"
+              },
+              {
+                "mStat": 2,
+                "mStatFormula": 2,
+                "mDataValue": "ShieldRatioAD",
+                "__type": "StatByNamedDataValueCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mBuffs": [
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Sorcery/SummonAery/8214Ally.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_SummonAeryAlly",
+            "PersistentEffectConditions": [
+              {
+                "PersistentVfxs": [
+                  {
+                    "boneName": "C_BUFFBONE_GLB_CENTER_LOC",
+                    "effectKey": "SummonAery_Shield",
+                    "__type": "PersistentVfxData"
+                  }
+                ],
+                "__type": "PersistentEffectConditionData"
+              }
+            ],
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      },
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Sorcery/SummonAery/SummonAery.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_SummonAeryReady",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      }
+    ],
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "{e68448f5}": "Perks/Styles/Sorcery/SummonAery/Particles/Perks_Aery_Attack_Mis",
+        "SummonAery_Shield": "Perks/Styles/Sorcery/SummonAery/Particles/SummonAery_Shield",
+        "SummonAery_OnHit_Tar": "Perks/Styles/Sorcery/SummonAery/Particles/SummonAery_OnHit_Tar",
+        "SummonAery_Recall_TailBlur": "Perks/Styles/Sorcery/SummonAery/Particles/SummonAery_Recall_TailBlur",
+        "SummonAery_Ally_Mis": "Perks/Styles/Sorcery/SummonAery/Particles/SummonAery_Ally_Mis",
+        "SummonAery_Mis_Self": "Perks/Styles/Sorcery/SummonAery/Particles/SummonAery_Mis_Self",
+        "SummonAery_Persist_Enemy": "Perks/Styles/Sorcery/SummonAery/Particles/SummonAery_Persist_Enemy",
+        "SummonAery_Child_PersistEnemy": "Perks/Styles/Sorcery/SummonAery/Particles/SummonAery_Child_PersistEnemy",
+        "SummonAery_Child_Mis_Self": "Perks/Styles/Sorcery/SummonAery/Particles/SummonAery_Child_Mis_Self",
+        "SummonAery_Return_Spawn": "Perks/Styles/Sorcery/SummonAery/Particles/SummonAery_Return_Spawn",
+        "SummonAery_Target_Despawn": "Perks/Styles/Sorcery/SummonAery/Particles/SummonAery_Target_Despawn",
+        "SummonAery_Child_PersistEnemy_Death": "Perks/Styles/Sorcery/SummonAery/Particles/SummonAery_Child_PersistEnemy_Death",
+        "SummonAery_Child_ShieldDeath": "Perks/Styles/Sorcery/SummonAery/Particles/SummonAery_Child_ShieldDeath",
+        "{b4ab561b}": "Perks/Styles/Sorcery/SummonAery/Particles/SummonAery_Footstep_Sound",
+        "{a56792d0}": "Perks/Styles/Sorcery/SummonAery/Particles/SummonAery_Despawn_Hide",
+        "{e783fee6}": "Perks/Styles/Sorcery/SummonAery/Particles/SummonAery_Child_PersistEnemy_Death"
+      },
+      "__type": "ResourceResolver"
+    },
+    "mCharacters": [
+      "Characters/PerksPerxie"
+    ],
+    "__type": "Perk"
+  },
+  "Perks/Styles/Sorcery/ArcaneComet": {
+    "mPerkId": 8229,
+    "mPerkName": "ArcaneComet",
+    "mDisplayNameLocalizationKey": "perk_displayname_ArcaneComet",
+    "mTooltipNameLocalizationKey": "perk_tooltip_ArcaneComet",
+    "mShortDescLocalizationKey": "perk_short_desc_ArcaneComet",
+    "mLongDescLocalizationKey": "perk_long_desc_ArcaneComet",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_ArcaneComet1"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_total",
+    "mIconTextureName": "assets/perks/styles/sorcery/arcanecomet/arcanecomet.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Sorcery/ArcaneComet/ArcaneCometSnipe.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "RechargeTime": 20,
+          "DamageBase": 15,
+          "DamageMax": 100,
+          "APRatio": 0.05000000074505806,
+          "ADRatio": 0.10000000149011612,
+          "RechargeTimeMin": 8,
+          "PercentRefund": 0.20000000298023224,
+          "DotPercentRefund": 0.05000000074505806,
+          "AoEPercentRefund": 0.10000000149011612,
+          "MaxDamageAmp": 1,
+          "MaxRange": 750
+        },
+        "mEffectAmountGameMode": {
+          "ARAM": {
+            "mEffectAmountPerMode": {
+              "RechargeTime": 15
+            },
+            "__type": "PerkEffectAmountPerMode"
+          }
+        },
+        "mCalculations": {
+          "DamageCalc": {
+            "mSimpleTooltipCalculationDisplay": 4,
+            "mFormulaParts": [
+              {
+                "mStartValue": 15,
+                "mEndValue": 100,
+                "__type": "ByCharLevelInterpolationCalculationPart"
+              },
+              {
+                "mDataValue": "APRatio",
+                "__type": "StatByNamedDataValueCalculationPart"
+              },
+              {
+                "mStat": 2,
+                "mStatFormula": 2,
+                "mDataValue": "ADRatio",
+                "__type": "StatByNamedDataValueCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          },
+          "CooldownCalc": {
+            "mFormulaParts": [
+              {
+                "mCeiling": 20,
+                "mFloor": 0.30000001192092896,
+                "mSubparts": [
+                  {
+                    "mStartValue": 20,
+                    "mEndValue": 8,
+                    "__type": "ByCharLevelInterpolationCalculationPart"
+                  }
+                ],
+                "__type": "ClampSubPartsCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mBuffs": [
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Sorcery/ArcaneComet/ArcaneCometSnipe.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_8229_Ready",
+            "PersistentEffectConditions": [
+              {
+                "PersistentVfxs": [
+                  {
+                    "effectKey": "Perks_Meteor_Ready_Idle_Offset",
+                    "__type": "PersistentVfxData"
+                  }
+                ],
+                "__type": "PersistentEffectConditionData"
+              }
+            ],
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      },
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Sorcery/ArcaneComet/ArcaneCometRechargeSnipe.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_8229_Cooldown",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      }
+    ],
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "Perks_Meteor_Mis": "Perks/Styles/Sorcery/ArcaneComet/Particles/Perks_Meteor_Mis",
+        "Perks_Meteor_AOE_Tar": "Perks/Styles/Sorcery/ArcaneComet/Particles/Perks_Meteor_AOE_Tar",
+        "Perks_Meteor_Ready_Idle": "Perks/Styles/Sorcery/ArcaneComet/Particles/Perks_Meteor_Ready_Idle",
+        "Perks_Meteor_Cas": "Perks/Styles/Sorcery/ArcaneComet/Particles/Perks_Meteor_Cas",
+        "Perks_Meteor_AOE_Ring": "Perks/Styles/Sorcery/ArcaneComet/Particles/Perks_Meteor_AOE_Ring",
+        "Perks_Meteor_Tar": "Perks/Styles/Sorcery/ArcaneComet/Particles/Perks_Meteor_Tar",
+        "Perks_Meteor_Ready_Idle_Offset": "Perks/Styles/Sorcery/ArcaneComet/Particles/Perks_Meteor_Ready_Idle_Offset",
+        "Perks_Meteor_Ready_Idle_Offset_Child": "Perks/Styles/Sorcery/ArcaneComet/Particles/Perks_Meteor_Ready_Idle_Offset_Child",
+        "Perks_Meteor_AOE_Ring_Enemy": "Perks/Styles/Sorcery/ArcaneComet/Particles/Perks_Meteor_AOE_Ring_Enemy"
+      },
+      "__type": "ResourceResolver"
+    },
+    "mDefault": true,
+    "__type": "Perk"
+  },
+  "Perks/Styles/Sorcery/PhaseRush": {
+    "mPerkId": 8230,
+    "mPerkName": "PhaseRush",
+    "mDisplayNameLocalizationKey": "perk_displayname_PhaseRush",
+    "mTooltipNameLocalizationKey": "perk_tooltip_PhaseRush",
+    "mShortDescLocalizationKey": "perk_short_desc_PhaseRush",
+    "mLongDescLocalizationKey": "perk_long_desc_PhaseRush",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_PhaseRush"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_PhaseRush",
+    "mIconTextureName": "assets/perks/styles/sorcery/phaserush/stormraiderssurgeruneicon2.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Sorcery/PhaseRush/StormraidersSurge.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "SlowResist": 0.5,
+          "Duration": 4,
+          "Window": 3,
+          "MinCooldown": 10,
+          "MaxCooldown": 20,
+          "RangedEffectiveness": 0.75,
+          "DamageThreshold": 0.25,
+          "HasteMax": 0.47999998927116394
+        },
+        "mEffectAmountGameMode": {
+          "URF": {
+            "mEffectAmountPerMode": {
+              "MinCooldown": 10,
+              "MaxCooldown": 10
+            },
+            "__type": "PerkEffectAmountPerMode"
+          }
+        },
+        "mCalculations": {
+          "CooldownCalc": {
+            "mSimpleTooltipCalculationDisplay": 4,
+            "mFormulaParts": [
+              {
+                "mStartValue": 20,
+                "mEndValue": 10,
+                "__type": "ByCharLevelInterpolationCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          },
+          "MoveSpeedCalc": {
+            "mSimpleTooltipCalculationDisplay": 4,
+            "mFormulaParts": [
+              {
+                "mStartValue": 0.47999998927116394,
+                "mEndValue": 0.47999998927116394,
+                "__type": "ByCharLevelInterpolationCalculationPart"
+              }
+            ],
+            "mDisplayAsPercent": true,
+            "mRangedMultiplier": {
+              "mDataValue": "RangedEffectiveness",
+              "__type": "NamedDataValueCalculationPart"
+            },
+            "__type": "{e9a3c91d}"
+          }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mBuffs": [
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Sorcery/PhaseRush/PhaseRush.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_8230_Ready",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      },
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Sorcery/PhaseRush/PhaseRushBuff.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_8230_Buff",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      },
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Sorcery/PhaseRush/PhaseRushLockout.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_8230_Cooldown",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      }
+    ],
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "Perks_Spellslingers_Active": "Perks/Styles/Sorcery/PhaseRush/Particles/Perks_Spellslingers_Active",
+        "Perks_Spellslingers_Haste": "Perks/Styles/Sorcery/PhaseRush/Particles/Perks_Spellslingers_Haste"
+      },
+      "__type": "ResourceResolver"
+    },
+    "mMajorChangePatchVersion": "16.9",
+    "__type": "Perk"
+  },
+  "Perks/Styles/Sorcery/DeathfireTouch": {
+    "mPerkId": 8992,
+    "mPerkName": "DeathfireTouch",
+    "mDisplayNameLocalizationKey": "perk_displayname_DeathfireTouch",
+    "mTooltipNameLocalizationKey": "perk_tooltip_DeathfireTouch",
+    "mShortDescLocalizationKey": "perk_short_desc_DeathfireTouch",
+    "mLongDescLocalizationKey": "perk_long_desc_DeathfireTouch",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_DeathfireTouch"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_total",
+    "mIconTextureName": "assets/perks/styles/sorcery/deathfiretouch/deathfire_touch_keystone.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Sorcery/DeathfireTouch/DeathfireTouchManager.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "ADRatio": 0.07000000029802322,
+          "APRatio": 0.02500000037252903,
+          "Duration": 4,
+          "TimeToAmp": 3,
+          "DamageMultiplier": 0.75,
+          "AoEDuration": 2,
+          "DotDuration": 1,
+          "Level1DamageTOOLTIP": 3,
+          "{2156e250}": 12,
+          "TicksPerSecond": 2,
+          "APRatioTT": 2.5,
+          "ADRatioTT": 7
+        },
+        "mCalculations": {
+          "DamageCalc": {
+            "mSimpleTooltipCalculationDisplay": 4,
+            "mFormulaParts": [
+              {
+                "mStartValue": 3,
+                "mEndValue": 12,
+                "__type": "ByCharLevelInterpolationCalculationPart"
+              },
+              {
+                "mDataValue": "APRatio",
+                "__type": "StatByNamedDataValueCalculationPart"
+              },
+              {
+                "mStat": 2,
+                "mStatFormula": 2,
+                "mDataValue": "ADRatio",
+                "__type": "StatByNamedDataValueCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mBuffs": [
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Sorcery/DeathfireTouch/DeathfireTouchManager.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_DFT_On",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      },
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Sorcery/DeathfireTouch/DeathfireTouchBurn.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_DFT_burn",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      }
+    ],
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "{1eaac5b4}": "Perks/Styles/Sorcery/DeathfireTouch/Particles/TargetBurn",
+        "{3196bce7}": "Perks/Styles/Sorcery/DeathfireTouch/Particles/TargetBurnEnhanced"
+      },
+      "__type": "ResourceResolver"
+    },
+    "mMajorChangePatchVersion": "16.9",
+    "__type": "Perk"
+  },
+  "Perks/Styles/Sorcery/NullifyingOrb": {
+    "mPerkId": 8224,
+    "mPerkName": "NullifyingOrb",
+    "mDisplayNameLocalizationKey": "perk_displayname_AxiomArcanist",
+    "mTooltipNameLocalizationKey": "perk_tooltip_AxiomArcanist",
+    "mShortDescLocalizationKey": "perk_short_desc_AxiomArcanist",
+    "mLongDescLocalizationKey": "perk_long_desc_AxiomArcanist",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_AxiomArcanist",
+      "perk_eog_stat_desc_AxiomArcanist_2"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_AxiomArcanist",
+    "mIconTextureName": "assets/perks/styles/sorcery/nullifyingorb/axiom_arcanist.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Sorcery/NullifyingOrb/AxiomArcanist.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "UltimateRefundBase": 7,
+          "DamageAmp": 0.11999999731779099,
+          "AOEAmp": 0.07999999821186066
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "Perks_NullifyingOrb_Shield": "Perks/Styles/Sorcery/NullifyingOrb/Particles/Perks_NullifyingOrb_Shield",
+        "Perks_NullifyingOrb_Shield_Break": "Perks/Styles/Sorcery/NullifyingOrb/Particles/Perks_NullifyingOrb_Shield_Break"
+      },
+      "__type": "ResourceResolver"
+    },
+    "mMajorChangePatchVersion": "14.1",
+    "__type": "Perk"
+  },
+  "Perks/Styles/Sorcery/ManaflowBand": {
+    "mPerkId": 8226,
+    "mPerkName": "ManaflowBand",
+    "mDisplayNameLocalizationKey": "perk_displayname_8226",
+    "mTooltipNameLocalizationKey": "perk_tooltip_8226",
+    "mShortDescLocalizationKey": "perk_short_desc_8226",
+    "mLongDescLocalizationKey": "perk_long_desc_8226",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_ManaflowBand",
+      "perk_eog_stat_desc_ManaflowBand2"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_total",
+    "mIconTextureName": "assets/perks/styles/sorcery/manaflowband/manaflowband.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Sorcery/ManaflowBand/ManaflowBand.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "{2f748280}": 0.10000000149011612,
+          "Cooldown": 15,
+          "{2cde474e}": 0.4000000059604645,
+          "ManaIncrease": 25,
+          "MaxManaIncrease": 250,
+          "PercentManaRestore": 0.009999999776482582,
+          "PercentManaRestoreCooldown": 5
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mBuffs": [
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Sorcery/PotentialEnergy/PerkSorceryOutOfCombatCooldownBuff.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_ManaflowBandCD",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      },
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Sorcery/ManaflowBand/PerkManaflowBandBuff.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_ManaflowBand",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      }
+    ],
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "Perks_ManaflowBand_Buff": "Perks/Styles/Sorcery/ManaflowBand/Particles/Perks_ManaflowBand_Buff",
+        "Perks_ManaflowBand_Cas": "Perks/Styles/Sorcery/ManaflowBand/Particles/Perks_ManaflowBand_Cas",
+        "Perks_ManaflowBand_Burst": "Perks/Styles/Sorcery/ManaflowBand/Particles/Perks_ManaflowBand_Burst",
+        "Perks_ManaflowBand_Completion": "Perks/Styles/Sorcery/ManaflowBand/Particles/Perks_ManaflowBand_Completion"
+      },
+      "__type": "ResourceResolver"
+    },
+    "mDefault": true,
+    "mMajorChangePatchVersion": "8.7",
+    "__type": "Perk"
+  },
+  "Perks/Styles/Sorcery/NimbusCloak": {
+    "mPerkId": 8275,
+    "mPerkName": "NimbusCloak",
+    "mDisplayNameLocalizationKey": "perk_displayname_NimbusCloak",
+    "mTooltipNameLocalizationKey": "perk_tooltip_NimbusCloak",
+    "mShortDescLocalizationKey": "perk_short_desc_NimbusCloak",
+    "mLongDescLocalizationKey": "perk_long_desc_NimbusCloak",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_NimbusCloak"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_NimbusCloak",
+    "mIconTextureName": "assets/perks/styles/sorcery/nimbuscloak/6361.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Sorcery/NimbusCloak/NimbusCloak.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "Duration": 2,
+          "LowCDMSBoost": 0.15000000596046448,
+          "{1c32110c}": 0.3499999940395355,
+          "HighCDMSBoost": 0.44999998807907104,
+          "{2fd68801}": 100,
+          "{b0d06764}": 250
+        },
+        "mEffectAmountGameMode": {
+          "URF": {
+            "mEffectAmountPerMode": {
+              "{b0d06764}": 50,
+              "{2fd68801}": 20
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "ARAM": {
+            "mEffectAmountPerMode": {
+              "{b0d06764}": 150,
+              "{2fd68801}": 60
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "KINGPORO": {
+            "mEffectAmountPerMode": {
+              "{b0d06764}": 150,
+              "{2fd68801}": 60
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "FIRSTBLOOD": {
+            "mEffectAmountPerMode": {
+              "{b0d06764}": 150,
+              "{2fd68801}": 60
+            },
+            "__type": "PerkEffectAmountPerMode"
+          }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mBuffs": [
+      {
+        "mBuffScriptName": "ASSETS/Perks/Styles/Sorcery/NimbusCloak/NimbusCloakBuff.lua",
+        "mBuffSpellObject": {
+          "mBuff": {
+            "mDescription": "buff_desc_NimbusCloakCastBuff",
+            "__type": "BuffData"
+          },
+          "__type": "SpellObject"
+        },
+        "__type": "PerkBuff"
+      }
+    ],
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "Perks_NimbusCloak_Buff": "Perks/Styles/Sorcery/NimbusCloak/Particles/Perks_NimbusCloak_Buff",
+        "NimbusCloakBlast": "Perks/Styles/Sorcery/NimbusCloak/Particles/NimbusCloakBlast",
+        "NimbusCloakBuildUp": "Perks/Styles/Sorcery/NimbusCloak/Particles/NimbusCloakBuildUp",
+        "NimbusCloakCharge": "Perks/Styles/Sorcery/NimbusCloak/Particles/NimbusCloakCharge"
+      },
+      "__type": "ResourceResolver"
+    },
+    "mMajorChangePatchVersion": "8.11",
+    "__type": "Perk"
+  },
+  "Perks/Styles/Sorcery/Transcendence": {
+    "mPerkId": 8210,
+    "mPerkName": "Transcendence",
+    "mDisplayNameLocalizationKey": "perk_displayname_Transcendence",
+    "mTooltipNameLocalizationKey": "perk_tooltip_Transcendence",
+    "mShortDescLocalizationKey": "perk_short_desc_Transcendence",
+    "mLongDescLocalizationKey": "perk_long_desc_Transcendence",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_Transcendence"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_Transcendence",
+    "mIconTextureName": "assets/perks/styles/sorcery/transcendence/transcendence.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Sorcery/Transcendence/Transcendence.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "HasteBonus1": 0.05000000074505806,
+          "LevelToTurnOn": 5,
+          "LevelToTurnOn2": 8,
+          "HasteBonus2": 0.05000000074505806,
+          "KillCooldownRefund": 0.20000000298023224,
+          "LevelToTurnOn3": 11
+        },
+        "mEffectAmountGameMode": {
+          "NEXUSBLITZ": {
+            "mEffectAmountPerMode": {
+              "LevelToTurnOn": 5
+            },
+            "__type": "PerkEffectAmountPerMode"
+          },
+          "URF": {
+            "mEffectAmountPerMode": {
+              "LevelToTurnOn": 5
+            },
+            "__type": "PerkEffectAmountPerMode"
+          }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "Perks_Transcendence_Active": "Perks/Styles/Sorcery/Transcendence/Particles/Perks_Transcendence_Active"
+      },
+      "__type": "ResourceResolver"
+    },
+    "mDefault": true,
+    "__type": "Perk"
+  },
+  "Perks/Styles/Sorcery/Celerity": {
+    "mPerkId": 8234,
+    "mPerkName": "Celerity",
+    "mDisplayNameLocalizationKey": "perk_displayname_Celerity",
+    "mTooltipNameLocalizationKey": "perk_tooltip_Celerity",
+    "mShortDescLocalizationKey": "perk_short_desc_Celerity",
+    "mLongDescLocalizationKey": "perk_long_desc_Celerity",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_Celerity1"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_celerity",
+    "mIconTextureName": "assets/perks/styles/sorcery/celerity/celeritytemp.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Sorcery/Celerity/Celerity.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "PercentHasteMod": 0.07000000029802322,
+          "PercentMS": 0.009999999776482582
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mMajorChangePatchVersion": "9.9",
+    "__type": "Perk"
+  },
+  "Perks/Styles/Sorcery/Scorch": {
+    "mPerkId": 8237,
+    "mPerkName": "Scorch",
+    "mDisplayNameLocalizationKey": "perk_displayname_Scorch",
+    "mTooltipNameLocalizationKey": "perk_tooltip_Scorch",
+    "mShortDescLocalizationKey": "perk_short_desc_Scorch",
+    "mLongDescLocalizationKey": "perk_long_desc_Scorch",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_Scorch1"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_total",
+    "mIconTextureName": "assets/perks/styles/sorcery/scorch/scorch.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Sorcery/Scorch/Scorch.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "BurnlockoutDuration": 10,
+          "Damage": 20,
+          "DamageMax": 40,
+          "DotDuration": 1,
+          "OOCTimer": 0,
+          "{89367404}": 0.10000000149011612
+        },
+        "mCalculations": {
+          "DamageCalc": {
+            "mSimpleTooltipCalculationDisplay": 4,
+            "mFormulaParts": [
+              {
+                "mStartValue": 20,
+                "mEndValue": 40,
+                "__type": "ByCharLevelInterpolationCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
+    },
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "Perks_Scorch_Buildup": "Perks/Styles/Sorcery/Scorch/Particles/Perks_Scorch_Buildup",
+        "Perks_Scorch_GroundParticle": "Perks/Styles/Sorcery/Scorch/Particles/Perks_Scorch_GroundParticle",
+        "Perks_Scorch_Tar": "Perks/Styles/Sorcery/Scorch/Particles/Perks_Scorch_Tar"
+      },
+      "__type": "ResourceResolver"
+    },
+    "mMajorChangePatchVersion": "9.9",
+    "__type": "Perk"
+  },
+  "Perks/Styles/Sorcery/Waterwalking": {
+    "mPerkId": 8232,
+    "mPerkName": "Waterwalking",
+    "mDisplayNameLocalizationKey": "perk_displayname_Waterwalking",
+    "mTooltipNameLocalizationKey": "perk_tooltip_Waterwalking",
+    "mShortDescLocalizationKey": "perk_short_desc_8232",
+    "mLongDescLocalizationKey": "perk_long_desc_8232",
+    "mEndOfGameStatDescriptions": [
+      "perk_eog_stat_desc_Waterwalking1"
+    ],
+    "mDisplayStatLocalizationKey": "perk_display_stat_Waterwalking",
+    "mIconTextureName": "assets/perks/styles/sorcery/waterwalking/waterwalking.tex",
+    "mScript": {
+      "mSpellScriptName": "ASSETS/Perks/Styles/Sorcery/Waterwalking/Waterwalking.lua",
+      "mSpellScriptData": {
+        "mEffectAmount": {
+          "MovementSpeed": 10,
+          "{6f2f0d30}": 1,
+          "MinAdaptive": 13,
+          "MaxAdaptive": 30
+        },
+        "mCalculations": {
+          "AdaptiveForceCalc": {
+            "mSimpleTooltipCalculationDisplay": 4,
+            "mFormulaParts": [
+              {
+                "mStartValue": 13,
+                "mEndValue": 30,
+                "__type": "ByCharLevelInterpolationCalculationPart"
+              }
+            ],
+            "__type": "GameCalculation"
+          }
+        },
+        "__type": "PerkScriptData"
+      },
+      "__type": "PerkScript"
     },
     "__type": "Perk"
   }
