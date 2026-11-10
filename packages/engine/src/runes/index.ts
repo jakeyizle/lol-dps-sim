@@ -13,6 +13,21 @@ import {
   PRESS_THE_ATTACK,
   pressTheAttack,
 } from "./keystones";
+import type { LongTermStack } from "../items";
+import {
+  ABSOLUTE_FOCUS,
+  absoluteFocus,
+  COUP_DE_GRACE,
+  coupDeGrace,
+  CUT_DOWN,
+  cutDown,
+  GATHERING_STORM,
+  gatheringStorm,
+  LAST_STAND,
+  lastStand,
+  LEGEND_ALACRITY,
+  legendAlacrity,
+} from "./minor";
 
 /** A rune page: primary tree (keystone + one rune per other row), secondary tree (2), 3 shards. */
 export interface RunePage {
@@ -111,7 +126,11 @@ export function runeStats(
   });
 }
 
-type MakeRuneEffect = (rune: RuneData, owner: ChampionData) => Effect;
+type MakeRuneEffect = (
+  rune: RuneData,
+  owner: ChampionData,
+  stacks: number,
+) => Effect;
 
 /** Rune ids with modelled effects. */
 const EFFECTS: Partial<Record<number, MakeRuneEffect>> = {
@@ -119,19 +138,36 @@ const EFFECTS: Partial<Record<number, MakeRuneEffect>> = {
   [PRESS_THE_ATTACK]: pressTheAttack,
   [HAIL_OF_BLADES]: hailOfBlades,
   [CONQUEROR]: conqueror,
+  [CUT_DOWN]: cutDown,
+  [COUP_DE_GRACE]: coupDeGrace,
+  [LAST_STAND]: lastStand,
+  [ABSOLUTE_FOCUS]: absoluteFocus,
+  [GATHERING_STORM]: gatheringStorm,
+  [LEGEND_ALACRITY]: (rune, _owner, stacks) => legendAlacrity(rune, stacks),
 };
 
-/** Effects of a page's runes, in page order (SIM-024). */
+/** BUILD-007: the rune's long-term stack input (keyed by rune id), if it has one. */
+export function runeLongTermStack(rune: RuneData): LongTermStack | undefined {
+  if (rune.id !== LEGEND_ALACRITY) return undefined;
+  return {
+    id: String(rune.id),
+    label: `${rune.name} stacks`,
+    max: flatValues(rune.values)("MaxLegendStacks"),
+  };
+}
+
+/** Effects of a page's runes, in page order (SIM-024); `stacks` by rune id (RUNE-009). */
 export function runeEffects(
   page: RunePage,
   runes: Readonly<Record<string, RuneData>>,
   owner: ChampionData,
+  stacks: Readonly<Record<string, number>> = {},
 ): Effect[] {
   return [page.keystone, ...page.primaryRunes, ...page.secondaryRunes].flatMap(
     (id) => {
       const rune = runes[String(id)];
       const make = EFFECTS[id];
-      return rune && make ? [make(rune, owner)] : [];
+      return rune && make ? [make(rune, owner, stacks[String(id)] ?? 0)] : [];
     },
   );
 }

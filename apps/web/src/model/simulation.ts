@@ -78,7 +78,7 @@ export function toSimulation(
         ...bonuses,
         ...(page ? runeStats(page, patch.runes, build.level, ap > ad) : []),
       ],
-      runes: page ? runeEffects(page, patch.runes, champion) : [],
+      runes: page ? runeEffects(page, patch.runes, champion, build.stacks) : [],
       abilities: kit.abilities,
       kit: kit.kit,
       items: effects,

@@ -848,7 +848,8 @@
       "values": {
         "HealthPercent": 0.7,
         "MinAdaptive": 3,
-        "MaxAdaptive": 30
+        "MaxAdaptive": 30,
+        "AdaptiveADPerAP": 0.6
       },
       "calculations": {
         "AdaptiveForceCalc": {

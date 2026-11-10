@@ -86,7 +86,8 @@ describe("long-term stacks", { tags: ["BUILD-007"] }, () => {
   it("shows an input only for the build's stacking items", () => {
     setup();
     addItem(IE);
-    expect(screen.queryByText("Long-term stacks")).toBeNull();
+    expect(screen.queryByLabelText(`${IE} stacks`)).toBeNull();
+    expect(screen.queryByLabelText(`${YUN_TAL} stacks`)).toBeNull();
     addItem(YUN_TAL);
     const input = screen.getByLabelText(`${YUN_TAL} stacks`);
     fireEvent.change(input, { target: { value: "50" } });
