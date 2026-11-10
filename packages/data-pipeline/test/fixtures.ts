@@ -12,7 +12,7 @@ export const MANIFEST_IDS = {
 } as const;
 export type FixtureChampion = keyof typeof MANIFEST_IDS;
 
-const read = (name: string): unknown =>
+export const read = (name: string): unknown =>
   JSON.parse(readFileSync(join(import.meta.dirname, "fixtures", name), "utf8"));
 
 /** Trimmed real game version 16.22 (patch 26.22) files: Data Dragon champion JSON and the game file's CharacterRecord. */
@@ -46,6 +46,18 @@ export function fakeFetch(
       f.bin,
     );
   }
+  for (const v of versions) {
+    const dd = `https://ddragon.leagueoflegends.com/cdn/${v}/data/en_US`;
+    routes.set(`${dd}/item.json`, read("item.ddragon.json"));
+    routes.set(`${dd}/runesReforged.json`, read("runes.ddragon.json"));
+  }
+  const cd = "https://raw.communitydragon.org/16.22";
+  routes.set(`${cd}/game/items.cdtb.bin.json`, read("items.bin.json"));
+  routes.set(`${cd}/game/perks.cdtb.bin.json`, read("perks.bin.json"));
+  routes.set(
+    `${cd}/plugins/rcp-be-lol-game-data/global/default/v1/perks.json`,
+    read("perks.names.json"),
+  );
   for (const [url, body] of Object.entries(overrides)) routes.set(url, body);
 
   const urls: string[] = [];

@@ -100,3 +100,47 @@ export const Constants = z.object({
   baseCritMultiplier: z.number().min(1),
 });
 export type Constants = z.infer<typeof Constants>;
+
+export const ItemData = z.object({
+  id: z.string().min(1),
+  name: z.string().min(1),
+  /** Total gold. */
+  cost: z.number().int().min(0),
+  /** Engine `StatBonuses` names; percents as fractions. */
+  stats: z.record(z.string(), z.number()),
+  otherStats: z.record(z.string(), z.number()),
+  values: z.record(z.string(), z.number()),
+  calculations: z.record(z.string(), z.unknown()),
+  /** Exclusive groups (DATA-017). */
+  groups: z.array(z.string()),
+});
+export type ItemData = z.infer<typeof ItemData>;
+
+export const ItemsFile = z.object({
+  patch: Patch,
+  items: z.record(z.string(), ItemData),
+});
+export type ItemsFile = z.infer<typeof ItemsFile>;
+
+export const RuneData = z.object({
+  id: z.number().int().positive(),
+  key: z.string().min(1),
+  name: z.string().min(1),
+  values: z.record(z.string(), z.number()),
+});
+export type RuneData = z.infer<typeof RuneData>;
+
+export const RuneTree = z.object({
+  id: z.number().int().positive(),
+  key: z.string(),
+  name: z.string(),
+  slots: z.array(z.array(z.number().int())),
+});
+export type RuneTree = z.infer<typeof RuneTree>;
+
+export const RunesFile = z.object({
+  patch: Patch,
+  runes: z.record(z.string(), RuneData),
+  trees: z.array(RuneTree),
+});
+export type RunesFile = z.infer<typeof RunesFile>;

@@ -67,6 +67,8 @@ describe("drift report", { tags: ["DATA-008"] }, () => {
         files: {
           "champions.json": { ...champions, patch: "26.21" },
           "constants.json": { ...parse("constants.json"), patch: "26.21" },
+          "items.json": { ...parse("items.json"), patch: "26.21" },
+          "runes.json": { ...parse("runes.json"), patch: "26.21" },
         },
       }),
     );
