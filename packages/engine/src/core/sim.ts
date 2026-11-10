@@ -482,6 +482,7 @@ export function simulate(
         crit,
         index: ++attackCount,
         amountScale: 1,
+        critable: true,
         extra: [],
       };
       const ctx = context(time);
@@ -495,7 +496,11 @@ export function simulate(
     mana = manaAt(time) - ability.cost; // SIM-021
     readyAt.set(
       ability.id,
-      time + hastedCooldown(ability.cooldown, stats.abilityHaste),
+      time +
+        hastedCooldown(
+          ability.cooldown,
+          stats.abilityHaste + (ability.id === "R" ? stats.ultimateHaste : 0),
+        ),
     );
     const castTime =
       typeof ability.castTime === "number"
@@ -532,7 +537,11 @@ export function simulate(
         const instance = attackInstance(attack.slot);
         deal(
           time,
-          { ...instance, amount: instance.amount * attack.amountScale },
+          {
+            ...instance,
+            amount: instance.amount * attack.amountScale,
+            critable: attack.critable,
+          },
           attack.crit,
         );
         for (const instance of attack.extra) deal(time, instance, attack.crit);

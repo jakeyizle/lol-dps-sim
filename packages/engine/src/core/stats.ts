@@ -27,6 +27,8 @@ export interface StatBonuses {
   magicPenFlat?: number;
   magicPenPercent?: number;
   abilityHaste?: number;
+  /** Extra haste for R only (ITEM-028). */
+  ultimateHaste?: number;
   moveSpeed?: number;
   /** Fraction of bonus attack speed removed, e.g. 0.1 for Jinx's rockets (JINX-010). */
   bonusAttackSpeedReduction?: number;
@@ -65,6 +67,7 @@ export interface StatBlock {
   magicPenFlat: number;
   magicPenPercent: number;
   abilityHaste: number;
+  ultimateHaste: number;
 }
 
 export const MAX_LEVEL = 18;
@@ -99,6 +102,7 @@ function sumBonuses(bonuses: readonly StatBonuses[]) {
     magicPenFlat: 0,
     magicPenPercent: 0,
     abilityHaste: 0,
+    ultimateHaste: 0,
     moveSpeed: 0,
     bonusAttackSpeedReduction: 0,
   };
@@ -166,5 +170,6 @@ export function computeStats(opts: {
     magicPenFlat: b.magicPenFlat,
     magicPenPercent: b.magicPenPercent,
     abilityHaste: b.abilityHaste,
+    ultimateHaste: b.ultimateHaste,
   };
 }

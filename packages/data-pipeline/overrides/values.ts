@@ -5,6 +5,8 @@
 export const valueOverrides: Record<string, Record<string, unknown>> = {
   // Guinsoo's Rageblade: League Wiki (V26.14) Phantom Hit, not in the item's values.
   "3124": { values: { PhantomStacks: 2, PhantomHitDelay: 0.15 } },
+  // Essence Reaver: League Wiki (26.22) "next basic attack within 10 seconds".
+  "3508": { values: { SpellbladeWindow: 10 } },
   Jinx: {
     abilities: {
       Q: {

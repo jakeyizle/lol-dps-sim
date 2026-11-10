@@ -1,6 +1,6 @@
 # Items
 
-Item stats come from data (STAT-002). These scenarios cover item effects. Each item's scenario is checked against the current patch when its ticket starts (PLAN §1). The MVP item list (decided in T-020) is the data manifest's items: 26.22 legendary attack damage, crit, attack speed and on-hit items for the MVP champions, plus target defensive items. Items whose passives don't change damage or timing against one target (e.g. Phantom Dancer, Bloodthirster, Immortal Shieldbow) are stat-only (ITEM-001). Effects for Yun Tal Wildarrows, Stormrazor, Hexoptics C44, Fiendhunter Bolts, Essence Reaver and Youmuu's Ghostblade get scenarios in their ticket.
+Item stats come from data (STAT-002). These scenarios cover item effects. Each item's scenario is checked against the current patch when its ticket starts (PLAN §1). The MVP item list (decided in T-020) is the data manifest's items: 26.22 legendary attack damage, crit, attack speed and on-hit items for the MVP champions, plus target defensive items. Items whose passives don't change damage or timing against one target (e.g. Phantom Dancer, Bloodthirster, Immortal Shieldbow) are stat-only (ITEM-001). Two readings need a Practice Tool check: Hexoptics' amp is taken as linear in distance up to its max range, with the attacker at its attack range; Fiendhunter Bolts' non-crit empowered attacks use the item's crit modifier on bonus crit damage.
 
 ### ITEM-001: Items without effects only add stats
 
@@ -127,6 +127,48 @@ Item stats come from data (STAT-002). These scenarios cover item effects. Each i
 - **Given** a build with Wit's End
 - **When** an attack lands
 - **Then** it deals the item's on-hit magic damage
+
+### ITEM-024: Yun Tal Wildarrows crit stacks
+
+- **Given** a build with Yun Tal Wildarrows and a set number of stacks (SIM-010)
+- **When** attacks are launched
+- **Then** each adds a stack; each stack gives the item's crit chance per stack (times its ranged multiplier for ranged champions), up to the item's max crit chance
+
+### ITEM-025: Yun Tal Wildarrows Flurry
+
+- **Given** a build with Yun Tal Wildarrows and a champion target, with Flurry off cooldown
+- **When** an attack is launched
+- **Then** the attacker gains the item's attack speed for its duration and Flurry goes on cooldown; each landed attack cuts that cooldown by the item's on-hit reduction, or its crit reduction when the attack crits (in expected-value mode, weighted by crit chance)
+
+### ITEM-026: Stormrazor energized attacks
+
+- **Given** a build with Stormrazor
+- **When** an energized attack lands (ITEM-018)
+- **Then** it deals the item's proc damage as magic on-hit damage
+
+### ITEM-027: Hexoptics C44 distance amp
+
+- **Given** a build with Hexoptics C44, attacking from the champion's attack range
+- **When** an attack deals damage
+- **Then** the attack damage is increased by the item's max damage amp times the attack range over the item's max range, capped at the max amp
+
+### ITEM-028: Fiendhunter Bolts ultimate haste
+
+- **Given** a build with Fiendhunter Bolts
+- **When** R's cooldown is calculated
+- **Then** the item's ultimate haste is added to ability haste for R only
+
+### ITEM-029: Fiendhunter Bolts Opening Barrage
+
+- **Given** a build with Fiendhunter Bolts, off cooldown
+- **When** the attacker casts R
+- **Then** the item goes on cooldown and the next of the item's number of attacks within its duration gain its bonus attack speed and always crit: a would-be non-crit uses the item's crit modifier on bonus crit damage, and a crit also deals the item's bonus true damage as a percent of the attack's pre-mitigation damage (in expected-value mode, weighted by crit chance)
+
+### ITEM-030: Essence Reaver Spellblade
+
+- **Given** a build with Essence Reaver, with Spellblade off cooldown
+- **When** the attacker casts an ability, then an attack lands
+- **Then** the attack deals the item's Spellblade damage (base AD ratio plus crit chance ratio) as bonus physical on-hit damage, and Spellblade goes on its cooldown
 
 ### ITEM-008: On-hit effects apply once per landed attack
 

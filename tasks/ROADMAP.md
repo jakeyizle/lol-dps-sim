@@ -63,7 +63,7 @@ Each milestone ends deployed, with its scenarios passing.
 - [x] Build validation: 6 items, exclusive groups, one boots
 - [x] Item effects, batch 1: Kraken, BotRK, IE, LDR, on-hit rules; decide MVP item list
 - [x] Item effects, batch 2: The Collector, Guinsoo's, Navori, Statikk, RFC, Terminus
-- [ ] Item effects, batch 3: remaining MVP items (incl. Nashor's, Wit's End) → T-022
+- [x] Item effects, batch 3: remaining MVP items (incl. Nashor's, Wit's End)
 
 ## M4 — First usable UI (METRIC, BUILD)
 

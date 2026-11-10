@@ -1230,7 +1230,8 @@
         "BaseADRatio": 1.25,
         "CritChanceMultiplier": 50,
         "SpellbladeCooldown": 1.5,
-        "Cooldown": 1.5
+        "Cooldown": 1.5,
+        "SpellbladeWindow": 10
       },
       "calculations": {
         "TotalManaRefund": {

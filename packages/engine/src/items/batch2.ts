@@ -11,12 +11,6 @@ export const STATIKK_SHIV = "3087";
 export const RAPID_FIRECANNON = "3094";
 export const TERMINUS = "3302";
 
-/** Items that use the Energized meter (ITEM-018). */
-export const ENERGIZED_ITEMS: ReadonlySet<string> = new Set([
-  STATIKK_SHIV,
-  RAPID_FIRECANNON,
-]);
-
 /** Every value each effect reads (DATA-012). */
 export const batch2RequiredValues = {
   [THE_COLLECTOR]: ["values.LethalityAmount", "values.ExecuteThreshold"],
@@ -106,6 +100,9 @@ export function navoriFlickerblade(item: ItemData): Effect {
 
 const energized = new WeakSet<Attack>();
 
+/** The attack spent a full Energized meter (ITEM-018). */
+export const isEnergized = (attack: Attack) => energized.has(attack);
+
 /**
  * ITEM-018: the shared Energized meter, added once for a build with Energized items.
  * Stationary attacker: only attacks add stacks. At max, the next attack spends them.
@@ -147,7 +144,7 @@ export function statikkShiv(item: ItemData): Effect {
   return {
     id: "StatikkShiv",
     onHit: (ctx, attack) => {
-      if (attack.phantom || !energized.has(attack)) return;
+      if (attack.phantom || !isEnergized(attack)) return;
       const amount = value(
         ctx.targetIsChampion ? "ChainDamage" : "NonChampChainDamage",
       );
@@ -162,7 +159,7 @@ export function rapidFirecannon(item: ItemData): Effect {
   return {
     id: "RapidFirecannon",
     onHit: (ctx, attack) => {
-      if (attack.phantom || !energized.has(attack)) return;
+      if (attack.phantom || !isEnergized(attack)) return;
       ctx.deal(magicOnHit("RapidFirecannon", value("BonusDamage")));
     },
   };
