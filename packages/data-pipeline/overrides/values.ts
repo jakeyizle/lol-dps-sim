@@ -36,6 +36,20 @@ export const valueOverrides: Record<string, Record<string, unknown>> = {
       R: { castTime: 0.25 },
     },
   },
+  Vayne: {
+    abilities: {
+      // League Wiki (V26.20): Tumble dashes 300 units at 500 + 100% move speed, and she
+      // can't attack until it ends.
+      Q: {
+        values: {
+          DashRange: [300, 300, 300, 300, 300],
+          DashSpeed: [500, 500, 500, 500, 500],
+        },
+      },
+      // Condemn's 0.25 s cast (wiki); the game file lists 0.
+      E: { castTime: 0.25 },
+    },
+  },
   Kaisa: {
     abilities: {
       // League Wiki: Icathian Rain has no cast time (missiles land 0.4 s later).

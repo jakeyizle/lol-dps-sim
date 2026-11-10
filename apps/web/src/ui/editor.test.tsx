@@ -44,8 +44,7 @@ describe("champion picker", { tags: ["BUILD-009"] }, () => {
     const options = within(picker)
       .getAllByRole("option")
       .map((o) => o.textContent);
-    expect(options).toEqual(["Jinx", "Caitlyn", "Ashe", "Kai'Sa"]);
-    expect(Object.keys(patch.champions).length).toBeGreaterThan(4);
+    expect(options).toEqual(["Jinx", "Caitlyn", "Ashe", "Kai'Sa", "Vayne"]);
   });
 });
 

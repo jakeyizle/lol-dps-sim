@@ -2,6 +2,7 @@ import { asheRequiredValues } from "./champions/ashe";
 import { caitlynRequiredValues } from "./champions/caitlyn";
 import { jinxRequiredValues } from "./champions/jinx";
 import { kaisaRequiredValues } from "./champions/kaisa";
+import { vayneRequiredValues } from "./champions/vayne";
 import { batch1RequiredValues } from "./items/batch1";
 import { batch2RequiredValues } from "./items/batch2";
 import { batch3RequiredValues } from "./items/batch3";
@@ -18,6 +19,7 @@ export const requiredValues: Record<string, readonly string[]> = {
   Caitlyn: caitlynRequiredValues,
   Ashe: asheRequiredValues,
   Kaisa: kaisaRequiredValues,
+  Vayne: vayneRequiredValues,
   ...batch1RequiredValues,
   ...batch2RequiredValues,
   ...batch3RequiredValues,
