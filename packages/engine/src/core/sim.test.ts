@@ -3,8 +3,7 @@ import { describe, expect, it } from "vitest";
 
 import { testChampion, testConstants } from "../../test/champions";
 import { EventQueue } from "./queue";
-import { simulate, windupTime, type SimTarget } from "./sim";
-import { computeStats } from "./stats";
+import { simulate, windupTime, type SimAttacker, type SimTarget } from "./sim";
 
 /** Base AS 0.6; slots: basic (20%, K 1), slow (30%, K 0.5), crit (10%, K 1). */
 const champion: ChampionData = {
@@ -21,13 +20,16 @@ const champion: ChampionData = {
 };
 
 /** Level 1: 60 AD; +40% AS → 0.6 + 0.5 × 0.4 = 0.8 attacks/s (1.25 s apart). */
-const stats = computeStats({
+const attacker: SimAttacker = {
   champion,
   level: 1,
   constants: testConstants,
   bonuses: [{ attackSpeed: 0.4 }],
+};
+const withCrit = (critChance: number): SimAttacker => ({
+  ...attacker,
+  bonuses: [{ attackSpeed: 0.4, critChance }],
 });
-const attacker = { champion, stats };
 const target = (maxHealth: number, extra: Partial<SimTarget> = {}) => ({
   maxHealth,
   defender: { armor: 0, magicResist: 0 },
@@ -80,11 +82,7 @@ describe("attack timing", () => {
     "expected-value mode never uses the crit slot",
     { tags: ["SIM-022"] },
     () => {
-      const r = simulate(
-        { champion, stats: { ...stats, critChance: 1 } },
-        target(1e9),
-        { maxDuration: 1 },
-      );
+      const r = simulate(withCrit(1), target(1e9), { maxDuration: 1 });
       expect(landTimes(r)[0]).toBeCloseTo(0.25, 9); // basic, not crit (0.125)
       expect(r.trace[0]?.damage.instance.sourceId).toBe("basic");
     },
@@ -136,7 +134,7 @@ describe("ending", () => {
 describe("damage", () => {
   it("applies the attacker's crit as expected value and the target's armor", () => {
     const r = simulate(
-      { champion, stats: { ...stats, critChance: 0.5 } },
+      withCrit(0.5),
       target(1e9, { defender: { armor: 100, magicResist: 0 } }),
       { maxDuration: 1 },
     );
@@ -158,7 +156,7 @@ describe("damage", () => {
 it("expected-value mode is deterministic", { tags: ["SIM-011"] }, () => {
   const run = () =>
     simulate(
-      { champion, stats: { ...stats, critChance: 0.3 } },
+      withCrit(0.3),
       target(2000, { defender: { armor: 50, magicResist: 0 } }),
     );
   expect(run()).toEqual(run());

@@ -39,6 +39,8 @@ export interface StatBlock {
   attackDamage: SplitStat;
   health: SplitStat;
   mana: SplitStat;
+  /** Mana regenerated per 5 seconds. */
+  manaRegen: number;
   armor: SplitStat;
   magicResist: SplitStat;
   moveSpeed: SplitStat;
@@ -106,6 +108,8 @@ export function computeStats(opts: {
   level: number;
   constants: GameConstants;
   bonuses?: readonly StatBonuses[];
+  /** Replaces the patch cap while an effect lifts it (STAT-006). */
+  attackSpeedCap?: number;
 }): StatBlock {
   const { champion, level, constants } = opts;
   if (!Number.isInteger(level) || level < 1 || level > MAX_LEVEL)
@@ -127,11 +131,15 @@ export function computeStats(opts: {
     attackDamage: split(grown(s.attackDamage, level), b.attackDamage),
     health: split(grown(s.health, level), b.health),
     mana: split(grown(s.mana, level), b.mana),
+    manaRegen: grown(s.manaRegen, level),
     armor: split(grown(s.armor, level), b.armor),
     magicResist: split(grown(s.magicResist, level), b.magicResist),
     moveSpeed: split(grown(s.moveSpeed, level), b.moveSpeed),
     abilityPower: b.abilityPower,
-    attackSpeed: Math.min(uncappedAttackSpeed, constants.attackSpeedCap),
+    attackSpeed: Math.min(
+      uncappedAttackSpeed,
+      opts.attackSpeedCap ?? constants.attackSpeedCap,
+    ),
     bonusAttackSpeed,
     critChance: Math.min(b.critChance, 1),
     critDamage: attack.critMultiplier + b.critDamage,

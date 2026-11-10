@@ -12,3 +12,4 @@
 - T-009 | 2026-11-09 | ability values per rank (values/cooldowns from rank 0, mana from rank 1, missing lists = 0), raw spell calculations, passive values
 - T-010 | 2026-11-09 | drift report vs newest older patch (checked 16.18 → 16.22), required-values check from `@lol/engine/required-values`; note: 16.12 game files lack `mrPerLevel`
 - T-003 | 2026-11-09 | React 19 + Vite 8 + Tailwind 4 shell, CI workflow (lint, typecheck, test, scenarios:check, build), GitHub Pages deploy on main
+- T-014 | 2026-11-09 | buffs (stacks, expiry, stat bonuses, AS cap lift), casts (cast time, haste cooldowns, AA resets), DoTs, mana (start full, regen, costs); policy callback until rotations
