@@ -1,4 +1,11 @@
-import { abilityRanks, jinx, simulate, type Effect } from "@lol/engine";
+import {
+  abilityRanks,
+  DEFAULT_RUNES,
+  jinx,
+  pageProblem,
+  simulate,
+  type Effect,
+} from "@lol/engine";
 import { describe, expect, it } from "vitest";
 
 import { loadLatest } from "../data";
@@ -45,9 +52,13 @@ describe("builds", () => {
         champion: "Jinx",
         level: 18,
         items: [],
-        runes: [],
         healthFraction: 1,
       });
+      expect(build.runes).toEqual(DEFAULT_RUNES.Jinx);
+      if (!build.runes) throw new Error("no default rune page");
+      expect(
+        pageProblem(build.runes, patch.trees, patch.shards),
+      ).toBeUndefined();
       expect(ranksOf(build, champion)).toEqual(abilityRanks(champion, 18));
       const { attacker } = toSimulation(build, dummy, patch, defaultSettings);
       expect(attacker.rotation).toEqual(jinx(champion, 18).rotation);

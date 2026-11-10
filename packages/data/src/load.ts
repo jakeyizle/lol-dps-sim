@@ -15,6 +15,7 @@ export interface PatchData {
   items: Record<string, ItemData>;
   runes: Record<string, RuneData>;
   trees: RuneTree[];
+  shards: number[][];
   constants: Constants;
 }
 
@@ -59,6 +60,7 @@ export function parsePatch(files: {
     items: items.items,
     runes: runes.runes,
     trees: runes.trees,
+    shards: runes.shards,
     constants,
   };
 }

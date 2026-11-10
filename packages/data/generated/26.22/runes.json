@@ -113,6 +113,18 @@
         "TTMaxNoteDamageRanged": 24
       }
     },
+    "8009": {
+      "id": 8009,
+      "key": "PresenceOfMind",
+      "name": "Presence of Mind",
+      "values": {
+        "PercentManaRestore": 0.15,
+        "CooldownDuration": 8,
+        "MinFlatRestore": 6,
+        "MaxFlatRestore": 50,
+        "EnergyRestore": 6
+      }
+    },
     "8010": {
       "id": 8010,
       "key": "Conqueror",
@@ -165,6 +177,229 @@
         "MinionHealMod": 0.15
       }
     },
+    "8105": {
+      "id": 8105,
+      "key": "RelentlessHunter",
+      "name": "Relentless Hunter",
+      "values": {
+        "OOCMS": 8,
+        "StartingOOCMS": 0
+      }
+    },
+    "8106": {
+      "id": 8106,
+      "key": "UltimateHunter",
+      "name": "Ultimate Hunter",
+      "values": {
+        "AdditionalUltAH": 5,
+        "StartingUltAH": 6
+      }
+    },
+    "8112": {
+      "id": 8112,
+      "key": "Electrocute",
+      "name": "Electrocute",
+      "values": {
+        "Cooldown": 20,
+        "DamageBase": 70,
+        "DamageMax": 240,
+        "BonusADRatio": 0.1,
+        "WindowDuration": 3,
+        "APRatio": 0.05,
+        "CooldownMin": 20
+      }
+    },
+    "8126": {
+      "id": 8126,
+      "key": "CheapShot",
+      "name": "Cheap Shot",
+      "values": {
+        "DamageIncMin": 10,
+        "DamageIncMax": 45,
+        "Cooldown": 4
+      }
+    },
+    "8128": {
+      "id": 8128,
+      "key": "DarkHarvest",
+      "name": "Dark Harvest",
+      "values": {
+        "HarvestThreshold": 0.5,
+        "Cooldown": 35,
+        "BaseDamage": 30,
+        "ADRatio": 0.1,
+        "APRatio": 0.05,
+        "DamagePerSoulEssence": 11,
+        "CooldownResetValue": 1
+      }
+    },
+    "8135": {
+      "id": 8135,
+      "key": "TreasureHunter",
+      "name": "Treasure Hunter",
+      "values": {
+        "BaseGoldAmount": 50,
+        "GoldGrowth": 20,
+        "TOOLTIPMaxGoldAmount": 130
+      }
+    },
+    "8137": {
+      "id": 8137,
+      "key": "SixthSense",
+      "name": "Sixth Sense",
+      "values": {
+        "{d3bd04a2}": 900,
+        "MeleeItemCalcValue": 250,
+        "RangedItemCalcValue": 250,
+        "LevelThreshold": 11,
+        "RevealDuration": 10
+      }
+    },
+    "8139": {
+      "id": 8139,
+      "key": "TasteOfBlood",
+      "name": "Taste of Blood",
+      "values": {
+        "HealAmount": 16,
+        "Cooldown": 20,
+        "HealAmountMax": 40,
+        "RegenDuration": 4,
+        "ADRatio": 0.1,
+        "APRatio": 0.05
+      }
+    },
+    "8140": {
+      "id": 8140,
+      "key": "GrislyMementos",
+      "name": "Grisly Mementos",
+      "values": {
+        "TrinketAH": 6,
+        "StacksPerTakedown": 1,
+        "SummonerAH": 3,
+        "MaxStacks": 18
+      }
+    },
+    "8141": {
+      "id": 8141,
+      "key": "DeepWard",
+      "name": "Deep Ward",
+      "values": {
+        "ExtraHealth": 1,
+        "LevelThreshold": 9,
+        "TTDurationIncreaseMin": 30,
+        "TTDurationIncreaseMax": 45,
+        "TTTrinketDurationIncreaseMin": 45,
+        "TTTrinketDurationIncreaseMax": 150
+      }
+    },
+    "8143": {
+      "id": 8143,
+      "key": "SuddenImpact",
+      "name": "Sudden Impact",
+      "values": {
+        "ArmedDuration": 4,
+        "Cooldown": 10,
+        "MinDamageTooltip": 20,
+        "MaxDamageTooltip": 80
+      }
+    },
+    "8210": {
+      "id": 8210,
+      "key": "Transcendence",
+      "name": "Transcendence",
+      "values": {
+        "HasteBonus1": 0.05,
+        "LevelToTurnOn": 5,
+        "LevelToTurnOn2": 8,
+        "HasteBonus2": 0.05,
+        "KillCooldownRefund": 0.2,
+        "LevelToTurnOn3": 11
+      }
+    },
+    "8214": {
+      "id": 8214,
+      "key": "SummonAery",
+      "name": "Summon Aery",
+      "values": {
+        "ShieldBase": 20,
+        "ShieldMax": 100,
+        "ShieldRatio": 0.05,
+        "DamageMax": 50,
+        "DamageBase": 10,
+        "DamageAPRatio": 0.05,
+        "DamageADRatio": 0.1,
+        "ShieldRatioAD": 0.1,
+        "ShieldDuration": 2.5
+      }
+    },
+    "8224": {
+      "id": 8224,
+      "key": "NullifyingOrb",
+      "name": "Axiom Arcanist",
+      "values": {
+        "UltimateRefundBase": 7,
+        "DamageAmp": 0.12,
+        "AOEAmp": 0.08
+      }
+    },
+    "8226": {
+      "id": 8226,
+      "key": "ManaflowBand",
+      "name": "Manaflow Band",
+      "values": {
+        "{2f748280}": 0.1,
+        "Cooldown": 15,
+        "{2cde474e}": 0.4,
+        "ManaIncrease": 25,
+        "MaxManaIncrease": 250,
+        "PercentManaRestore": 0.01,
+        "PercentManaRestoreCooldown": 5
+      }
+    },
+    "8229": {
+      "id": 8229,
+      "key": "ArcaneComet",
+      "name": "Arcane Comet",
+      "values": {
+        "RechargeTime": 20,
+        "DamageBase": 15,
+        "DamageMax": 100,
+        "APRatio": 0.05,
+        "ADRatio": 0.1,
+        "RechargeTimeMin": 8,
+        "PercentRefund": 0.2,
+        "DotPercentRefund": 0.05,
+        "AoEPercentRefund": 0.1,
+        "MaxDamageAmp": 1,
+        "MaxRange": 750
+      }
+    },
+    "8230": {
+      "id": 8230,
+      "key": "PhaseRush",
+      "name": "Stormraider's Surge",
+      "values": {
+        "SlowResist": 0.5,
+        "Duration": 4,
+        "Window": 3,
+        "MinCooldown": 10,
+        "MaxCooldown": 20,
+        "RangedEffectiveness": 0.75,
+        "DamageThreshold": 0.25,
+        "HasteMax": 0.48
+      }
+    },
+    "8232": {
+      "id": 8232,
+      "key": "Waterwalking",
+      "name": "Waterwalking",
+      "values": {
+        "MovementSpeed": 10,
+        "{6f2f0d30}": 1,
+        "MinAdaptive": 13,
+        "MaxAdaptive": 30
+      }
+    },
     "8233": {
       "id": 8233,
       "key": "AbsoluteFocus",
@@ -173,6 +408,15 @@
         "HealthPercent": 0.7,
         "MinAdaptive": 3,
         "MaxAdaptive": 30
+      }
+    },
+    "8234": {
+      "id": 8234,
+      "key": "Celerity",
+      "name": "Celerity",
+      "values": {
+        "PercentHasteMod": 0.07,
+        "PercentMS": 0.01
       }
     },
     "8236": {
@@ -186,6 +430,42 @@
         "{c5d14564}": 8
       }
     },
+    "8237": {
+      "id": 8237,
+      "key": "Scorch",
+      "name": "Scorch",
+      "values": {
+        "BurnlockoutDuration": 10,
+        "Damage": 20,
+        "DamageMax": 40,
+        "DotDuration": 1,
+        "OOCTimer": 0,
+        "{89367404}": 0.1
+      }
+    },
+    "8242": {
+      "id": 8242,
+      "key": "Unflinching",
+      "name": "Unflinching",
+      "values": {
+        "ResistMin": 10,
+        "ResistMax": 10,
+        "Duration": 2
+      }
+    },
+    "8275": {
+      "id": 8275,
+      "key": "NimbusCloak",
+      "name": "Nimbus Cloak",
+      "values": {
+        "Duration": 2,
+        "LowCDMSBoost": 0.15,
+        "{1c32110c}": 0.35,
+        "HighCDMSBoost": 0.45,
+        "{2fd68801}": 100,
+        "{b0d06764}": 250
+      }
+    },
     "8299": {
       "id": 8299,
       "key": "LastStand",
@@ -195,6 +475,341 @@
         "MaxBonusDamagePercent": 0.11,
         "HealthThresholdStart": 0.6,
         "HealthThresholdEnd": 0.3
+      }
+    },
+    "8304": {
+      "id": 8304,
+      "key": "MagicalFootwear",
+      "name": "Magical Footwear",
+      "values": {
+        "GiveBootsAtMinute": 12,
+        "{c07791e4}": 300,
+        "SecondsSoonerPerTakedown": 45,
+        "AdditionalMovementSpeed": 10
+      }
+    },
+    "8306": {
+      "id": 8306,
+      "key": "HextechFlashtraption",
+      "name": "Hextech Flashtraption",
+      "values": {
+        "ChannelDuration": 2,
+        "{c85ef93c}": 10,
+        "CooldownTime": 20,
+        "ChampionCombatCooldown": 10,
+        "MinimumChannelDuration": 1,
+        "{d6487c09}": 0.5
+      }
+    },
+    "8313": {
+      "id": 8313,
+      "key": "PerfectTiming",
+      "name": "Triple Tonic",
+      "values": {
+        "FirstElixirLevel": 3,
+        "SecondElixirLevel": 6,
+        "ThirdElixirLevel": 9
+      }
+    },
+    "8316": {
+      "id": 8316,
+      "key": "JackOfAllTrades",
+      "name": "Jack Of All Trades",
+      "values": {
+        "{1b48f5ea}": 8,
+        "{55d14eea}": 20,
+        "HastePerStack": 1
+      }
+    },
+    "8321": {
+      "id": 8321,
+      "key": "CashBack",
+      "name": "Cash Back",
+      "values": {
+        "{d856a8af}": 0,
+        "GoldLowerBoundPerMinute": 8,
+        "{c0de5a7f}": 8,
+        "DebtAccumulationStartsAtMinute": 2,
+        "{7957e8a3}": 20,
+        "{8d08b1b5}": 0,
+        "ExcessCostPenaltyFlat": 50,
+        "GoldLowerBoundInitial": 100,
+        "{fa03b4f1}": 150,
+        "{ebbc116e}": -150,
+        "PercentRefund": 0.075
+      }
+    },
+    "8345": {
+      "id": 8345,
+      "key": "BiscuitDelivery",
+      "name": "Biscuit Delivery",
+      "values": {
+        "BiscuitMinuteInterval": 2,
+        "SwapOverMinute": 6,
+        "PermanentHP": 30,
+        "HealthHealPercent": 0.015,
+        "DurationOfEffect": 5,
+        "FlatHeal": 20,
+        "{936e8fc2}": 0.3,
+        "MaximumHealIncrease": 1
+      }
+    },
+    "8347": {
+      "id": 8347,
+      "key": "CosmicInsight",
+      "name": "Cosmic Insight",
+      "values": {
+        "ItemHaste": 10,
+        "SummonerHaste": 18
+      }
+    },
+    "8351": {
+      "id": 8351,
+      "key": "GlacialAugment",
+      "name": "Glacial Augment",
+      "values": {
+        "SlowZoneDuration": 3,
+        "SlowZoneSlowBase": 20,
+        "SlowZoneLength": 700,
+        "SlowZoneWidth": 80,
+        "RayCount": 3,
+        "Cooldown": 25,
+        "BeamPosIndent": 100,
+        "CCCarryOverRatio": 100,
+        "DmgReduction": 0.15,
+        "SlowZoneSlowAPRatio": 0.06,
+        "SlowZoneSlowbADRatio": 0.07,
+        "SlowZoneSlowHealShieldRatio": 90
+      }
+    },
+    "8352": {
+      "id": 8352,
+      "key": "TimeWarpTonic",
+      "name": "Time Warp Tonic",
+      "values": {
+        "BonusMS": 0,
+        "RestorationPercentage": 0.4,
+        "Cooldown": 20
+      }
+    },
+    "8360": {
+      "id": 8360,
+      "key": "UnsealedSpellbook",
+      "name": "Unsealed Spellbook",
+      "values": {
+        "{ea768132}": 1,
+        "{9a847429}": 0,
+        "{0f920874}": 1,
+        "ShardRechargeMinutes": 4.5,
+        "ShardFirstMinutes": 6,
+        "{9d01feeb}": 5,
+        "{b7e0131f}": 5,
+        "NumSummonersBeforeRepeat": 3,
+        "ShardRechargeReductionSeconds": 25,
+        "{a8402a49}": 10,
+        "{0bb7b933}": 6
+      }
+    },
+    "8369": {
+      "id": 8369,
+      "key": "FirstStrike",
+      "name": "First Strike",
+      "values": {
+        "Duration": 3,
+        "DamageAmp": 0.07,
+        "OOCTimer": 10,
+        "GoldProcBonus": 10,
+        "GoldPercentBonus": 0.5,
+        "GoldPercentBonusRanged": 0.35,
+        "GraceWindow": 0.25,
+        "TooltipOnlyCooldownStartAmount": 25,
+        "TooltipOnlyCooldownEndAmount": 15,
+        "MissileNoiseNumberLimiter": 3,
+        "MissileNoiseRangeLimiter": 1500,
+        "ModesCooldownReduction": 1,
+        "{b50bc5ec}": 0.5,
+        "{7563bf99}": 0.7
+      }
+    },
+    "8401": {
+      "id": 8401,
+      "key": "ShieldBash",
+      "name": "Shield Bash",
+      "values": {
+        "ProcDuration": 2,
+        "ShieldRatio": 15,
+        "BonusHealthRatio": 2.5,
+        "BonusShieldMult": 0.1,
+        "ProcBaseMin": 5,
+        "ProcBaseMax": 30
+      }
+    },
+    "8410": {
+      "id": 8410,
+      "key": "ApproachVelocity",
+      "name": "Approach Velocity",
+      "values": {
+        "MovementSpeedPercentBonus": 0.15,
+        "ActivationDistance": 1000
+      }
+    },
+    "8429": {
+      "id": 8429,
+      "key": "Conditioning",
+      "name": "Conditioning",
+      "values": {
+        "ArmorBase": 8,
+        "MRBase": 8,
+        "ExtraResist": 0.03,
+        "Range": 800,
+        "MinutesRequired": 12
+      }
+    },
+    "8437": {
+      "id": 8437,
+      "key": "GraspOfTheUndying",
+      "name": "Grasp of the Undying",
+      "values": {
+        "PercentHealthDamage": 0.035,
+        "Window": 5,
+        "TriggerTime": 4,
+        "PercentHealthHeal": 0.013,
+        "MaxHealthPerProc": 5,
+        "RangedPenaltyMod": 0.4,
+        "RangedHealthPerProc": 2,
+        "MeleeFlatHeal": 0
+      }
+    },
+    "8439": {
+      "id": 8439,
+      "key": "Aftershock",
+      "name": "Aftershock",
+      "values": {
+        "DamageRadius": 350,
+        "Cooldown": 20,
+        "StartingBaseDamage": 25,
+        "MaxBaseDamage": 120,
+        "DelayBeforeBurst": 2.5,
+        "HealthRatio": 0.08,
+        "FlatResists": 45,
+        "BonusResistMin": 80,
+        "BonusResistMax": 150,
+        "PercentBonusResist": 0.75
+      }
+    },
+    "8444": {
+      "id": 8444,
+      "key": "SecondWind",
+      "name": "Second Wind",
+      "values": {
+        "RegenSeconds": 10,
+        "RegenPercentMax": 0.04,
+        "RegenFlat": 0
+      }
+    },
+    "8446": {
+      "id": 8446,
+      "key": "Demolish",
+      "name": "Demolish",
+      "values": {
+        "CooldownSeconds": 30,
+        "{8d810998}": 8,
+        "{97664ba4}": 3,
+        "BaseDamageMelee": 85,
+        "BaseDamageRanged": 50,
+        "HPRatioMelee": 0.28,
+        "HPRatioRanged": 0.2
+      }
+    },
+    "8451": {
+      "id": 8451,
+      "key": "Overgrowth",
+      "name": "Overgrowth",
+      "values": {
+        "{1663f8e7}": 0.75,
+        "Range": 1400,
+        "UnitsPerTier": 8,
+        "{ca029a2b}": 2,
+        "FlatHealthPerTier": 3,
+        "ThresholdUnits": 120,
+        "ThresholdMaxHealthRatio": 0.035
+      }
+    },
+    "8453": {
+      "id": 8453,
+      "key": "Revitalize",
+      "name": "Revitalize",
+      "values": {
+        "HealShieldPower": 0.05,
+        "HealthCutOff": 40,
+        "ExtraAmp": 10
+      }
+    },
+    "8463": {
+      "id": 8463,
+      "key": "FontOfLife",
+      "name": "Font of Life",
+      "values": {
+        "Cooldown": 20,
+        "RangedMod": 0.7
+      }
+    },
+    "8465": {
+      "id": 8465,
+      "key": "Guardian",
+      "name": "Guardian",
+      "values": {
+        "SnuggleRange": 350,
+        "ShieldBase": 40,
+        "ShieldMax": 150,
+        "APRatio": 0.2,
+        "HPRatio": 0.06,
+        "ShieldDuration": 1.5,
+        "Cooldown": 75,
+        "GuardDuration": 2.5,
+        "CooldownMaxLevel": 40,
+        "ThresholdMin": 50,
+        "ThresholdMax": 165
+      }
+    },
+    "8473": {
+      "id": 8473,
+      "key": "BonePlating",
+      "name": "Bone Plating",
+      "values": {
+        "BlockBase": 30,
+        "BlockMax": 60,
+        "BlockCount": 3,
+        "BlockDuration": 1.5,
+        "Cooldown": 55
+      }
+    },
+    "8992": {
+      "id": 8992,
+      "key": "DeathfireTouch",
+      "name": "Deathfire Touch",
+      "values": {
+        "ADRatio": 0.07,
+        "APRatio": 0.025,
+        "Duration": 4,
+        "TimeToAmp": 3,
+        "DamageMultiplier": 0.75,
+        "AoEDuration": 2,
+        "DotDuration": 1,
+        "Level1DamageTOOLTIP": 3,
+        "{2156e250}": 12,
+        "TicksPerSecond": 2,
+        "APRatioTT": 2.5,
+        "ADRatioTT": 7
+      }
+    },
+    "9101": {
+      "id": 9101,
+      "key": "AbsorbLife",
+      "name": "Absorb Life",
+      "values": {
+        "TooltipMinHeal": 1,
+        "TooltipMaxHeal": 23
       }
     },
     "9103": {
@@ -226,6 +841,31 @@
         "{f6570baa}": 100,
         "LargeMonsterKillValue": 25,
         "MinionKillValue": 4
+      }
+    },
+    "9105": {
+      "id": 9105,
+      "key": "LegendHaste",
+      "name": "Legend: Haste",
+      "values": {
+        "HastePerStack": 1.5,
+        "HasteBase": 0,
+        "MaxLegendStacks": 10,
+        "{3e1fdd4a}": 100,
+        "{8fb410e2}": 100,
+        "{f6570baa}": 100,
+        "LargeMonsterKillValue": 25,
+        "MinionKillValue": 4
+      }
+    },
+    "9111": {
+      "id": 9111,
+      "key": "Triumph",
+      "name": "Triumph",
+      "values": {
+        "MissingHealthRestored": 0.05,
+        "BonusGold": 20,
+        "TriumphMaxHealthRestored": 0.025
       }
     },
     "9923": {
@@ -384,5 +1024,22 @@
         ]
       ]
     }
+  ],
+  "shards": [
+    [
+      5008,
+      5005,
+      5007
+    ],
+    [
+      5008,
+      5010,
+      5001
+    ],
+    [
+      5011,
+      5013,
+      5001
+    ]
   ]
 }

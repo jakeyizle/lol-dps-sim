@@ -1,5 +1,11 @@
 import type { AbilityKey, ChampionData, ItemData, PatchData } from "@lol/data";
-import { abilityRanks, addItem, type Rotation } from "@lol/engine";
+import {
+  abilityRanks,
+  addItem,
+  DEFAULT_RUNES,
+  type RunePage,
+  type Rotation,
+} from "@lol/engine";
 
 export type Ranks = Record<AbilityKey, number>;
 
@@ -14,8 +20,8 @@ export interface Build {
   items: string[];
   /** Long-term stacks by item id or champion passive (SIM-010). */
   stacks: Record<string, number>;
-  /** Rune and shard ids; empty until rune pages land (M5). */
-  runes: number[];
+  /** Undefined: no runes. */
+  runes?: RunePage;
   /** Undefined uses the champion's default rotation (ROT-007). */
   rotation?: Rotation;
   /** Attacker health, fraction of max (BUILD-012). */
@@ -33,7 +39,7 @@ export function newBuild(id: string, champion: string, name = champion): Build {
     level: MAX_LEVEL,
     items: [],
     stacks: {},
-    runes: [],
+    runes: DEFAULT_RUNES[champion] && structuredClone(DEFAULT_RUNES[champion]),
     healthFraction: 1,
   };
 }

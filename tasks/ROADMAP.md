@@ -74,7 +74,7 @@ Each milestone ends deployed, with its scenarios passing.
 
 ## M5 — Runes & targets (RUNE, TGT)
 
-- [ ] Rune page editor + shards → T-029
+- [x] Rune page editor + shards
 - [ ] Keystones: Lethal Tempo (stacks, bolt, decay, ranged), PtA, HoB, Conqueror → T-030
 - [ ] Minor runes: Cut Down, Coup de Grace, Last Stand, Legend: Alacrity, Gathering Storm, Absolute Focus → T-031
 - [ ] Target editor: champion target (items, runes, shards), dummy, overrides, presets → T-032

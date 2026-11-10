@@ -12,3 +12,4 @@ export * from "./build";
 export * from "./champions";
 export * from "./core/calc";
 export * from "./metrics";
+export * from "./runes";

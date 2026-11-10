@@ -18,7 +18,11 @@ describe("patch data", { tags: ["DATA-009"] }, () => {
     const files = (patch: string) => ({
       ...file(patch, "champions", { champions: real.champions }),
       ...file(patch, "items", { items: real.items }),
-      ...file(patch, "runes", { runes: real.runes, trees: real.trees }),
+      ...file(patch, "runes", {
+        runes: real.runes,
+        trees: real.trees,
+        shards: real.shards,
+      }),
       ...file(patch, "constants", real.constants),
     });
     expect(loadLatest({ ...files("26.9"), ...files("26.10") }).patch).toBe(

@@ -197,7 +197,12 @@ export async function runPipeline(opts: {
   const files: Record<string, unknown> = {
     "champions.json": ChampionsFile.parse({ patch, champions }),
     "items.json": ItemsFile.parse({ patch, items }),
-    "runes.json": RunesFile.parse({ patch, runes, trees: runeTrees.data }),
+    "runes.json": RunesFile.parse({
+      patch,
+      runes,
+      trees: runeTrees.data,
+      shards: opts.manifest.shardRows,
+    }),
     "constants.json": constantsFile.data,
   };
   const previous = await opts.readPrevious?.(patch);

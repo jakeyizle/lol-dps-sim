@@ -12,6 +12,7 @@ import {
   type Build,
 } from "../model/build";
 import { toSimulation } from "../model/simulation";
+import { RuneEditor } from "./RuneEditor";
 import { StatsPanel } from "./StatsPanel";
 import { useApp, usePatch } from "./context";
 
@@ -185,6 +186,15 @@ export function BuildEditor(props: { build: Build }) {
             </p>
           )}
         </fieldset>
+
+        {build.runes && (
+          <RuneEditor
+            page={build.runes}
+            onChange={(runes) => {
+              change((b) => ({ ...b, runes }));
+            }}
+          />
+        )}
 
         {stackInputs.length > 0 && (
           <fieldset className="space-y-1">
