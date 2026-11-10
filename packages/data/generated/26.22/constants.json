@@ -1,5 +1,7 @@
 {
   "patch": "26.22",
   "attackSpeedCap": 3.003,
-  "baseCritMultiplier": 2
+  "baseCritMultiplier": 2,
+  "energizeStacksPerAttack": 6,
+  "energizeMaxStacks": 100
 }

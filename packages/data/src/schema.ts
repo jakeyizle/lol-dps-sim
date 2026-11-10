@@ -98,6 +98,9 @@ export const Constants = z.object({
   patch: Patch,
   attackSpeedCap: z.number().positive(),
   baseCritMultiplier: z.number().min(1),
+  /** Energized stacks per basic attack, and the max (ITEM-018). */
+  energizeStacksPerAttack: z.number().positive(),
+  energizeMaxStacks: z.number().positive(),
 });
 export type Constants = z.infer<typeof Constants>;
 

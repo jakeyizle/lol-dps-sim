@@ -771,7 +771,9 @@
         "BuffDuration": 4,
         "CritChancePerStep": 0,
         "DamageAmountPerCritStep": 0,
-        "MaxDamageFromCrit": 0
+        "MaxDamageFromCrit": 0,
+        "PhantomStacks": 2,
+        "PhantomHitDelay": 0.15
       },
       "calculations": {
         "MaxAttackSpeedCalc": {
