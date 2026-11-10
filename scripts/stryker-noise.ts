@@ -16,13 +16,18 @@ interface Node {
   object?: Node;
 }
 
-/** Labels that no engine logic reads: effect and buff ids, a damage instance's source. */
-const LABEL_KEYS = new Set(["id", "source"]);
+/**
+ * Labels that no engine logic reads: effect and buff ids, a damage instance's `source`
+ * and `onHit` flag (kept for the event log and DMG-013's wording).
+ */
+const LABEL_KEYS = new Set(["id", "source", "onHit"]);
 /** Helpers whose last argument only names the value in an error message. */
 const ERROR_LABEL_CALLS = new Set(["at"]);
 
 const isLiteral = (type: string) =>
-  type === "StringLiteral" || type === "TemplateLiteral";
+  type === "StringLiteral" ||
+  type === "TemplateLiteral" ||
+  type === "BooleanLiteral";
 
 /**
  * PLAN §8 noise: logging, error messages (internal invariants: `throw new Error(...)` only

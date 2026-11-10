@@ -92,3 +92,36 @@ it(
     expect(hasDefensiveKit("Garen")).toBe(false);
   },
 );
+
+describe("target stat details", () => {
+  it(
+    "health and magic resist overrides work like armor",
+    { tags: ["TGT-003"] },
+    () => {
+      const s = stats({ overrides: { health: 3000, magicResist: 80 } });
+      expect(s.health).toEqual({
+        base: levelValue(690, 98, 10),
+        bonus: 3000 - levelValue(690, 98, 10),
+        total: 3000,
+      });
+      expect(s.magicResist.total).toBe(80);
+    },
+  );
+
+  it(
+    "Conditioning needs the rune and adds to both resistances",
+    { tags: ["TGT-012"] },
+    () => {
+      const armor = levelValue(38, 4.2, 10);
+      const mr = levelValue(32, 1.55, 10);
+      const without = stats({
+        runes: { ...page, secondaryRunes: [20, 21] },
+        gameTime: 30,
+      });
+      expect(without.armor.total).toBeCloseTo(armor, 9);
+      const withIt = stats({ runes: page, gameTime: 30 });
+      expect(withIt.armor.bonus).toBeCloseTo(8 + 0.03 * armor, 9);
+      expect(withIt.magicResist.total).toBeCloseTo(mr + 8 + 0.03 * mr, 9);
+    },
+  );
+});

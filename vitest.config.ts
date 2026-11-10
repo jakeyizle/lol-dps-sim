@@ -9,7 +9,16 @@ export default defineConfig({
     projects: [
       {
         extends: true,
-        test: { name: "engine", include: ["packages/engine/src/**/*.test.ts"] },
+        test: {
+          name: "engine",
+          include: ["packages/engine/src/**/*.test.ts"],
+          exclude: ["packages/engine/src/bench.test.ts"],
+        },
+      },
+      // CMP-005 times the engine, so it runs on its own (`pnpm test:bench`).
+      {
+        extends: true,
+        test: { name: "bench", include: ["packages/engine/src/bench.test.ts"] },
       },
       {
         extends: true,

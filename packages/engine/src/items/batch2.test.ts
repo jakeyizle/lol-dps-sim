@@ -174,14 +174,16 @@ describe("Guinsoo's Rageblade", () => {
 describe("Navori Flickerblade", { tags: ["ITEM-017"] }, () => {
   it("cuts remaining basic ability cooldowns on each attack", () => {
     // Q at 0 (cd 2). Launch at 0: 2 → 1.7. Launch at 1.25: 0.45 left → 0.3825, ready 1.6325.
-    const r = run([navori], {
-      abilities: [{ id: "Q", castTime: 0, cooldown: 2, cost: 0 }],
-      rotation: [{ action: "Q" }, { action: "attack" }],
-      maxDuration: 2,
-    });
-    const q = r.actions.filter((a) => a.action === "Q").map((a) => a.time);
-    expect(q).toHaveLength(2);
-    expect(q[1]).toBeCloseTo(1.6325, 9);
+    for (const id of ["Q", "W", "E"]) {
+      const r = run([navori], {
+        abilities: [{ id, castTime: 0, cooldown: 2, cost: 0 }],
+        rotation: [{ action: id }, { action: "attack" }],
+        maxDuration: 2,
+      });
+      const q = r.actions.filter((a) => a.action === id).map((a) => a.time);
+      expect(q, id).toHaveLength(2);
+      expect(q[1], id).toBeCloseTo(1.6325, 9);
+    }
   });
 });
 
@@ -201,6 +203,13 @@ describe("Energized", { tags: ["ITEM-018"] }, () => {
 
   it("needs the patch constants", () => {
     expect(() => equip([rfc], testChampion)).toThrow(/constants/);
+    for (const partial of [
+      { energizeStacksPerAttack: 6 },
+      { energizeMaxStacks: 100 },
+    ])
+      expect(() =>
+        equip([rfc], testChampion, { ...testConstants, ...partial }),
+      ).toThrow(/energize constants/);
   });
 });
 
@@ -227,10 +236,32 @@ describe("Rapid Firecannon", { tags: ["ITEM-020"] }, () => {
 describe("Terminus", { tags: ["ITEM-021"] }, () => {
   it("deals on-hit damage and stacks penetration on every 2nd hit", () => {
     const { seen, effect } = atLaunch((ctx) => ctx.stats.armorPenPercent);
-    const r = run([terminus], { extra: [effect], maxDuration: 9, bonusAD: 50 });
-    expect(seen.map((v) => Math.round(v * 100) / 100)).toEqual([
-      0, 0, 0.1, 0.1, 0.2, 0.2, 0.3, 0.3,
-    ]);
+    const magic = atLaunch((ctx) => ctx.stats.magicPenPercent);
+    const r = run([terminus], {
+      extra: [effect, magic.effect],
+      maxDuration: 9,
+      bonusAD: 50,
+    });
+    const pct = (xs: number[]) => xs.map((v) => Math.round(v * 100) / 100);
+    expect(pct(seen)).toEqual([0, 0, 0.1, 0.1, 0.2, 0.2, 0.3, 0.3]);
+    expect(pct(magic.seen)).toEqual(pct(seen));
+    // the same effect in a second fight starts from Light again
+    const again = atLaunch((ctx) => ctx.stats.armorPenPercent);
+    const [terminusEffect] = equip([terminus], testChampion, constants).effects;
+    if (!terminusEffect) throw new Error("no effect");
+    for (const extra of [[], [again.effect]])
+      simulate(
+        {
+          champion: testChampion,
+          level: 1,
+          constants,
+          bonuses: [{ attackSpeed: 0.4 }],
+          items: [terminusEffect, ...extra],
+        },
+        big,
+        { maxDuration: 3 },
+      );
+    expect(pct(again.seen)).toEqual([0, 0, 0.1]);
     // 30 + 10% of 50 bonus AD
     expect(hits(r, "Terminus")[0]?.damage.postMitigation).toBeCloseTo(35, 9);
   });

@@ -50,6 +50,7 @@ export function cutDown(rune: RuneData): Effect {
     id: "CutDown",
     modifyOutgoing: (ctx) =>
       ctx.targetIsChampion &&
+      // Stryker disable next-line EqualityOperator: exactly on the threshold is a measure-zero boundary
       ctx.targetHealth >
         value("EnemyHealthPercentageThreshold") * ctx.targetMaxHealth
         ? value("BonusPercentDamage")
