@@ -7,4 +7,6 @@ export const constants = {
   /** League Wiki "Energized" (26.22): 6 stacks per basic attack, capped at 100. */
   energizeStacksPerAttack: 6,
   energizeMaxStacks: 100,
+  /** League Wiki "Champion ability" (26.22): R ranks at levels 6, 11 and 16. */
+  ultimateLevels: [6, 11, 16],
 };
