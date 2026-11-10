@@ -101,7 +101,7 @@ Every test that verifies a scenario carries the scenario ID as a tag. A test may
 | ------------- | ------------------------------------------------------------------- |
 | Language      | TypeScript (strict) everywhere                                      |
 | Monorepo      | pnpm workspaces                                                     |
-| Web           | React + Vite, Tailwind, Zustand (`persist`), Recharts               |
+| Web           | React + Vite, Tailwind, Zustand (`persist`), inline SVG charts      |
 | Heavy compute | Web Workers via Comlink, pool sized to `hardwareConcurrency`        |
 | Validation    | zod (generated data, URL and localStorage payloads)                 |
 | Tests         | Vitest 4.1 (projects: engine, data, scripts, web/jsdom), Playwright |
