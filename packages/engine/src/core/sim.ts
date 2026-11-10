@@ -111,6 +111,11 @@ export interface SimOptions {
   /** `expected` averages crits (default, SIM-011); `rng` rolls them from `seed` (SIM-012). */
   critMode?: "expected" | "rng";
   seed?: number;
+  /**
+   * The DPS run (METRIC-008, METRIC-009): health keeps falling below 0 and the fight runs
+   * to the max duration; effects see missing health capped at 100%; executes are off.
+   */
+  dpsRun?: boolean;
 }
 
 export interface TraceEntry {
@@ -119,6 +124,8 @@ export interface TraceEntry {
   absorbed: number;
   toHealth: number;
   healthAfter: number;
+  /** The attacker's active buff ids when it landed (METRIC-006). */
+  buffs: string[];
 }
 
 export interface CastEntry {
@@ -135,6 +142,8 @@ export interface SimResult {
   trace: TraceEntry[];
   /** Every attack start and ability cast, in order. */
   actions: CastEntry[];
+  /** The attacker's stats at the start of the fight (METRIC-007). */
+  stats: StatBlock;
 }
 
 type SimEvent =
@@ -187,12 +196,15 @@ export function simulate(
     ...(attacker.items ?? []),
     ...(attacker.runes ?? []),
   ];
-  const executeBelow = Math.max(
-    target.executeBelow ?? 0,
-    ...((target.champion ?? true)
-      ? effects.map((e) => e.executeBelow ?? 0)
-      : []),
-  );
+  const dpsRun = options.dpsRun ?? false;
+  const executeBelow = dpsRun
+    ? 0
+    : Math.max(
+        target.executeBelow ?? 0,
+        ...((target.champion ?? true)
+          ? effects.map((e) => e.executeBelow ?? 0)
+          : []),
+      );
 
   // Short-term state starts empty (SIM-009); abilities start ready (SIM-018).
   const buffs = new Map<string, ActiveBuff>();
@@ -278,7 +290,7 @@ export function simulate(
         return stats;
       },
       get targetHealth() {
-        return health;
+        return Math.max(0, health); // METRIC-008: missing health caps at 100%
       },
       targetMaxHealth: target.maxHealth,
       targetBonusHealth: target.bonusHealth ?? 0,
@@ -391,8 +403,11 @@ export function simulate(
       absorbed: shielded.absorbed,
       toHealth: shielded.toHealth,
       healthAfter: health,
+      buffs: [...buffs.keys()],
     });
-    if (health <= 0) outcome = "killed";
+    if (dpsRun) {
+      // METRIC-008: keep going below 0
+    } else if (health <= 0) outcome = "killed";
     else if (health < executeBelow * target.maxHealth) outcome = "executed";
     if (outcome) return;
     for (const e of effects)
@@ -434,7 +449,7 @@ export function simulate(
       mana: manaAt(time),
       maxMana: stats.mana.total,
       manaRegen: stats.manaRegen / 5,
-      targetHealth: health,
+      targetHealth: Math.max(0, health),
       targetMaxHealth: target.maxHealth,
       buffStacks: (id: string) => buffs.get(id)?.stacks ?? 0,
       wouldKill: (action: string) => wouldKill(action, time),
@@ -515,6 +530,7 @@ export function simulate(
   for (const e of effects) e.init?.(start);
   queue.push(0, { kind: "decide" });
 
+  const startStats = stats;
   const end = (killed: boolean, time: number | null, executed = false) => ({
     killed,
     ttk: time,
@@ -522,6 +538,7 @@ export function simulate(
     remainingHealth: Math.max(0, health),
     trace,
     actions,
+    stats: startStats,
   });
 
   for (let next = queue.pop(); next; next = queue.pop()) {
