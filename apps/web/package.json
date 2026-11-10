@@ -12,6 +12,7 @@
   "dependencies": {
     "@lol/data": "workspace:*",
     "@lol/engine": "workspace:*",
+    "comlink": "^4.4.2",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "zustand": "^5.1.0"
