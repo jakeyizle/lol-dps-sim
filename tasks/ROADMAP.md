@@ -99,7 +99,7 @@ Each milestone ends deployed, with its scenarios passing.
 
 - [x] localStorage + schema migrations (incl. user target presets, TGT-005)
 - [x] Share URLs, patch notices, removed-item handling
-- [ ] README with disclaimer; E2E journeys; `scenarios:check --strict` in CI → T-045
+- [x] README with disclaimer; E2E journeys; `scenarios:check --strict` in CI
 
 ## M9 — Mutation testing (PLAN §8)
 
