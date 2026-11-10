@@ -13,6 +13,7 @@ const files = (patch: string) => ({
   items: file(patch, "items"),
   runes: file(patch, "runes"),
   constants: file(patch, "constants"),
+  targets: file(patch, "targets"),
 });
 
 describe("latest patch", { tags: ["DATA-009"] }, () => {
@@ -32,6 +33,8 @@ describe("parsePatch", () => {
     const data = parsePatch(files("26.22"));
     expect(data.patch).toBe("26.22");
     expect(Object.keys(data.champions)).toContain("Jinx");
+    // BUILD-009: every champion can be a target
+    expect(data.targets.Garen?.stats.armor.base).toBeGreaterThan(0);
     expect(data.items["6672"]?.name).toBe("Kraken Slayer");
     expect(data.constants.attackSpeedCap).toBeGreaterThan(2);
   });

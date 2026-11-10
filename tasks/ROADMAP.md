@@ -77,7 +77,7 @@ Each milestone ends deployed, with its scenarios passing.
 - [x] Rune page editor + shards
 - [x] Keystones: Lethal Tempo (stacks, bolt, decay, ranged), PtA, HoB, Conqueror
 - [x] Minor runes: Cut Down, Coup de Grace, Last Stand, Legend: Alacrity, Gathering Storm, Absolute Focus
-- [ ] Target editor: champion target (items, runes, shards), dummy, overrides, presets → T-032
+- [x] Target editor: champion target (items, runes, shards), dummy, overrides, presets
 - [ ] Defensive effects: Randuin's, Steelcaps, shields (typed, decaying), GA, Zhonya's → T-033
 
 ## M6 — Compare (CMP)
@@ -96,7 +96,7 @@ Each milestone ends deployed, with its scenarios passing.
 
 ## M8 — Persistence & launch (SAVE)
 
-- [ ] localStorage + schema migrations
+- [ ] localStorage + schema migrations (incl. user target presets, TGT-005)
 - [ ] Share URLs, patch notices, removed-item handling
 - [ ] README with disclaimer; E2E journeys; `scenarios:check --strict` in CI
 

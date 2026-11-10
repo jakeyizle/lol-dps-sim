@@ -7,8 +7,10 @@ import { usePatch } from "./context";
 export function RuneEditor(props: {
   page: RunePage;
   onChange: (page: RunePage) => void;
+  /** Prefixes every control's label, e.g. "Target " (several editors on one page). */
+  prefix?: string;
 }) {
-  const { page, onChange } = props;
+  const { page, onChange, prefix = "" } = props;
   const patch = usePatch();
   const name = (id: number) => patch.runes[String(id)]?.name ?? String(id);
   const tree = (id: number) => patch.trees.find((t) => t.id === id);
@@ -57,7 +59,7 @@ export function RuneEditor(props: {
     <label className="flex items-center gap-2 text-sm">
       <span className="w-28 text-neutral-600">{label}</span>
       <select
-        aria-label={label}
+        aria-label={prefix + label}
         className="rounded border px-1 py-0.5"
         value={value}
         onChange={(e) => {
@@ -81,7 +83,7 @@ export function RuneEditor(props: {
     <label className="flex items-center gap-2 text-sm">
       <span className="w-28 text-neutral-600">{label}</span>
       <select
-        aria-label={label}
+        aria-label={prefix + label}
         className="rounded border px-1 py-0.5"
         value={value}
         onChange={(e) => {
@@ -99,7 +101,7 @@ export function RuneEditor(props: {
 
   return (
     <fieldset className="space-y-2">
-      <legend className="font-medium">Runes</legend>
+      <legend className="font-medium">{prefix}Runes</legend>
       <div className="grid gap-x-6 gap-y-1 md:grid-cols-2">
         <div className="space-y-1">
           {treeSelect("Primary tree", page.primary, setPrimary)}

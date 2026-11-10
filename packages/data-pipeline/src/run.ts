@@ -6,6 +6,7 @@ import {
   ItemsFile,
   RuneData,
   RunesFile,
+  TargetsFile,
   RuneTree,
 } from "@lol/data";
 import { requiredValues } from "@lol/engine/required-values";
@@ -20,6 +21,7 @@ import { normalizeItem } from "./item";
 import type { Manifest } from "./manifest";
 import { deepMerge } from "./merge";
 import { normalizeRune, normalizeTrees } from "./rune";
+import { normalizeTargets } from "./target";
 import { expandSkillOrder, type SkillPlan } from "./skill-order";
 import { resolvePatch } from "./patch";
 import {
@@ -27,6 +29,7 @@ import {
   cdragonItemsUrl,
   cdragonPerkNamesUrl,
   cdragonPerksUrl,
+  ddragonChampionListUrl,
   ddragonChampionUrl,
   ddragonItemsUrl,
   ddragonRunesUrl,
@@ -180,6 +183,16 @@ export async function runPipeline(opts: {
   );
   if (!runeTrees.success) problems.push(...issues("trees", runeTrees.error));
 
+  let targets: Record<string, unknown> = {};
+  try {
+    targets = normalizeTargets(
+      await opts.fetchJson(ddragonChampionListUrl(ddragonVersion)),
+      champions,
+    );
+  } catch (e) {
+    problems.push(`targets: ${(e as Error).message}`);
+  }
+
   const constantsFile = Constants.safeParse({ patch, ...overrides.constants });
   if (!constantsFile.success)
     problems.push(...issues("constants", constantsFile.error));
@@ -204,6 +217,7 @@ export async function runPipeline(opts: {
       shards: opts.manifest.shardRows,
     }),
     "constants.json": constantsFile.data,
+    "targets.json": TargetsFile.parse({ patch, champions: targets }),
   };
   const previous = await opts.readPrevious?.(patch);
   const drift = previous

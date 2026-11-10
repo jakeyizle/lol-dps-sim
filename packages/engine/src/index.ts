@@ -13,3 +13,4 @@ export * from "./champions";
 export * from "./core/calc";
 export * from "./metrics";
 export * from "./runes";
+export * from "./target";

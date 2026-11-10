@@ -5,6 +5,7 @@ import champions from "../../../data/generated/26.22/champions.json";
 import constants from "../../../data/generated/26.22/constants.json";
 import items from "../../../data/generated/26.22/items.json";
 import runes from "../../../data/generated/26.22/runes.json";
+import targets from "../../../data/generated/26.22/targets.json";
 import type { Effect } from "../core/effects";
 import type { Rotation } from "../core/rotation";
 import { simulate, type SimTarget } from "../core/sim";
@@ -15,7 +16,7 @@ import { jinx } from "./jinx";
  * Jinx level 18, no items (AD 59 + 3 × 17 = 110, bonus AS 1% × 17 = 17%), all ranks maxed.
  * Update these by hand when the patch changes them; never from the sim's output.
  */
-const data = parsePatch({ champions, items, runes, constants });
+const data = parsePatch({ champions, items, runes, constants, targets });
 const champion = data.champions.Jinx;
 if (!champion) throw new Error("no Jinx in 26.22 data");
 const kit = jinx(champion, 18);

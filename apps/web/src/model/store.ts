@@ -1,25 +1,25 @@
 import { createStore } from "zustand/vanilla";
 
 import { duplicateBuild, newBuild, type Build } from "./build";
-import {
-  defaultDummy,
-  defaultSettings,
-  type DummyTarget,
-  type Settings,
-} from "./simulation";
+import { defaultSettings, type Settings } from "./simulation";
+import { defaultDummy, type Target, type TargetPreset } from "./target";
 
 export interface AppState {
   builds: Build[];
   /** Build ids shown in comparisons, in order. */
   compared: string[];
-  target: DummyTarget;
+  target: Target;
+  /** TGT-005: saved by the user (kept across reloads from M8, SAVE-001). */
+  targetPresets: TargetPreset[];
   settings: Settings;
   addBuild: (champion: string) => Build;
   duplicateBuild: (id: string) => void;
   renameBuild: (id: string, name: string) => void;
   deleteBuild: (id: string) => void;
   updateBuild: (id: string, change: (build: Build) => Build) => void;
-  setTarget: (target: DummyTarget) => void;
+  setTarget: (target: Target) => void;
+  /** Saves the current target under `name`, replacing a preset of that name. */
+  saveTargetPreset: (name: string) => void;
   setSettings: (settings: Partial<Settings>) => void;
 }
 
@@ -30,6 +30,7 @@ export function createAppStore(
     builds: [],
     compared: [],
     target: defaultDummy,
+    targetPresets: [],
     settings: defaultSettings,
     addBuild: (champion) => {
       const build = newBuild(makeId(), champion);
@@ -65,6 +66,14 @@ export function createAppStore(
     },
     setTarget: (target) => {
       set({ target });
+    },
+    saveTargetPreset: (name) => {
+      set((s) => ({
+        targetPresets: [
+          ...s.targetPresets.filter((p) => p.name !== name),
+          { name, target: s.target },
+        ],
+      }));
     },
     setSettings: (settings) => {
       set((s) => ({ settings: { ...s.settings, ...settings } }));

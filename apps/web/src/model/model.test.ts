@@ -34,6 +34,7 @@ const dummy: DummyTarget = {
   health: 2000,
   armor: 80,
   magicResist: 40,
+  damageReduction: 0,
 };
 
 const IE = "3031";

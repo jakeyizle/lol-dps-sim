@@ -1,0 +1,3119 @@
+{
+  "patch": "26.22",
+  "champions": {
+    "Aatrox": {
+      "id": "Aatrox",
+      "name": "Aatrox",
+      "stats": {
+        "health": {
+          "base": 650,
+          "perLevel": 114
+        },
+        "armor": {
+          "base": 38,
+          "perLevel": 4.8
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Ahri": {
+      "id": "Ahri",
+      "name": "Ahri",
+      "stats": {
+        "health": {
+          "base": 590,
+          "perLevel": 104
+        },
+        "armor": {
+          "base": 21,
+          "perLevel": 4.2
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Akali": {
+      "id": "Akali",
+      "name": "Akali",
+      "stats": {
+        "health": {
+          "base": 600,
+          "perLevel": 119
+        },
+        "armor": {
+          "base": 23,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 37,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Akshan": {
+      "id": "Akshan",
+      "name": "Akshan",
+      "stats": {
+        "health": {
+          "base": 610,
+          "perLevel": 107
+        },
+        "armor": {
+          "base": 26,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 33,
+          "perLevel": 1.1
+        }
+      }
+    },
+    "Alistar": {
+      "id": "Alistar",
+      "name": "Alistar",
+      "stats": {
+        "health": {
+          "base": 685,
+          "perLevel": 120
+        },
+        "armor": {
+          "base": 40,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Ambessa": {
+      "id": "Ambessa",
+      "name": "Ambessa",
+      "stats": {
+        "health": {
+          "base": 630,
+          "perLevel": 110
+        },
+        "armor": {
+          "base": 35,
+          "perLevel": 4.9
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Amumu": {
+      "id": "Amumu",
+      "name": "Amumu",
+      "stats": {
+        "health": {
+          "base": 685,
+          "perLevel": 94
+        },
+        "armor": {
+          "base": 33,
+          "perLevel": 4
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Anivia": {
+      "id": "Anivia",
+      "name": "Anivia",
+      "stats": {
+        "health": {
+          "base": 550,
+          "perLevel": 92
+        },
+        "armor": {
+          "base": 19,
+          "perLevel": 4.1
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Annie": {
+      "id": "Annie",
+      "name": "Annie",
+      "stats": {
+        "health": {
+          "base": 560,
+          "perLevel": 96
+        },
+        "armor": {
+          "base": 23,
+          "perLevel": 4
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Aphelios": {
+      "id": "Aphelios",
+      "name": "Aphelios",
+      "stats": {
+        "health": {
+          "base": 600,
+          "perLevel": 102
+        },
+        "armor": {
+          "base": 26,
+          "perLevel": 4.2
+        },
+        "magicResist": {
+          "base": 33,
+          "perLevel": 1.1
+        }
+      }
+    },
+    "Ashe": {
+      "id": "Ashe",
+      "name": "Ashe",
+      "stats": {
+        "health": {
+          "base": 610,
+          "perLevel": 101
+        },
+        "armor": {
+          "base": 26,
+          "perLevel": 4.6
+        },
+        "magicResist": {
+          "base": 33,
+          "perLevel": 1.1
+        }
+      }
+    },
+    "AurelionSol": {
+      "id": "AurelionSol",
+      "name": "Aurelion Sol",
+      "stats": {
+        "health": {
+          "base": 600,
+          "perLevel": 90
+        },
+        "armor": {
+          "base": 22,
+          "perLevel": 4
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Aurora": {
+      "id": "Aurora",
+      "name": "Aurora",
+      "stats": {
+        "health": {
+          "base": 607,
+          "perLevel": 110
+        },
+        "armor": {
+          "base": 23,
+          "perLevel": 4.5
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Azir": {
+      "id": "Azir",
+      "name": "Azir",
+      "stats": {
+        "health": {
+          "base": 575,
+          "perLevel": 108
+        },
+        "armor": {
+          "base": 25,
+          "perLevel": 5
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Bard": {
+      "id": "Bard",
+      "name": "Bard",
+      "stats": {
+        "health": {
+          "base": 630,
+          "perLevel": 103
+        },
+        "armor": {
+          "base": 32,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Belveth": {
+      "id": "Belveth",
+      "name": "Bel'Veth",
+      "stats": {
+        "health": {
+          "base": 580,
+          "perLevel": 105
+        },
+        "armor": {
+          "base": 28,
+          "perLevel": 5
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Blitzcrank": {
+      "id": "Blitzcrank",
+      "name": "Blitzcrank",
+      "stats": {
+        "health": {
+          "base": 600,
+          "perLevel": 109
+        },
+        "armor": {
+          "base": 37,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Brand": {
+      "id": "Brand",
+      "name": "Brand",
+      "stats": {
+        "health": {
+          "base": 570,
+          "perLevel": 105
+        },
+        "armor": {
+          "base": 24,
+          "perLevel": 4.2
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Braum": {
+      "id": "Braum",
+      "name": "Braum",
+      "stats": {
+        "health": {
+          "base": 610,
+          "perLevel": 112
+        },
+        "armor": {
+          "base": 35,
+          "perLevel": 5
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Briar": {
+      "id": "Briar",
+      "name": "Briar",
+      "stats": {
+        "health": {
+          "base": 625,
+          "perLevel": 95
+        },
+        "armor": {
+          "base": 30,
+          "perLevel": 4.5
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Caitlyn": {
+      "id": "Caitlyn",
+      "name": "Caitlyn",
+      "stats": {
+        "health": {
+          "base": 580,
+          "perLevel": 107
+        },
+        "armor": {
+          "base": 27,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 33,
+          "perLevel": 1.1
+        }
+      }
+    },
+    "Camille": {
+      "id": "Camille",
+      "name": "Camille",
+      "stats": {
+        "health": {
+          "base": 650,
+          "perLevel": 99
+        },
+        "armor": {
+          "base": 35,
+          "perLevel": 4.5
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Cassiopeia": {
+      "id": "Cassiopeia",
+      "name": "Cassiopeia",
+      "stats": {
+        "health": {
+          "base": 610,
+          "perLevel": 98
+        },
+        "armor": {
+          "base": 18,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Chogath": {
+      "id": "Chogath",
+      "name": "Cho'Gath",
+      "stats": {
+        "health": {
+          "base": 644,
+          "perLevel": 94
+        },
+        "armor": {
+          "base": 38,
+          "perLevel": 4.5
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Corki": {
+      "id": "Corki",
+      "name": "Corki",
+      "stats": {
+        "health": {
+          "base": 610,
+          "perLevel": 100
+        },
+        "armor": {
+          "base": 27,
+          "perLevel": 4.5
+        },
+        "magicResist": {
+          "base": 33,
+          "perLevel": 1.1
+        }
+      }
+    },
+    "Darius": {
+      "id": "Darius",
+      "name": "Darius",
+      "stats": {
+        "health": {
+          "base": 652,
+          "perLevel": 114
+        },
+        "armor": {
+          "base": 37,
+          "perLevel": 5.2
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Diana": {
+      "id": "Diana",
+      "name": "Diana",
+      "stats": {
+        "health": {
+          "base": 640,
+          "perLevel": 109
+        },
+        "armor": {
+          "base": 31,
+          "perLevel": 4.3
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Draven": {
+      "id": "Draven",
+      "name": "Draven",
+      "stats": {
+        "health": {
+          "base": 675,
+          "perLevel": 104
+        },
+        "armor": {
+          "base": 29,
+          "perLevel": 4.5
+        },
+        "magicResist": {
+          "base": 33,
+          "perLevel": 1.1
+        }
+      }
+    },
+    "DrMundo": {
+      "id": "DrMundo",
+      "name": "Dr. Mundo",
+      "stats": {
+        "health": {
+          "base": 640,
+          "perLevel": 103
+        },
+        "armor": {
+          "base": 32,
+          "perLevel": 4.5
+        },
+        "magicResist": {
+          "base": 29,
+          "perLevel": 2.3
+        }
+      }
+    },
+    "Ekko": {
+      "id": "Ekko",
+      "name": "Ekko",
+      "stats": {
+        "health": {
+          "base": 655,
+          "perLevel": 99
+        },
+        "armor": {
+          "base": 32,
+          "perLevel": 4.2
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Elise": {
+      "id": "Elise",
+      "name": "Elise",
+      "stats": {
+        "health": {
+          "base": 620,
+          "perLevel": 109
+        },
+        "armor": {
+          "base": 30,
+          "perLevel": 4.5
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Evelynn": {
+      "id": "Evelynn",
+      "name": "Evelynn",
+      "stats": {
+        "health": {
+          "base": 642,
+          "perLevel": 98
+        },
+        "armor": {
+          "base": 37,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Ezreal": {
+      "id": "Ezreal",
+      "name": "Ezreal",
+      "stats": {
+        "health": {
+          "base": 600,
+          "perLevel": 102
+        },
+        "armor": {
+          "base": 24,
+          "perLevel": 4.2
+        },
+        "magicResist": {
+          "base": 33,
+          "perLevel": 1.1
+        }
+      }
+    },
+    "Fiddlesticks": {
+      "id": "Fiddlesticks",
+      "name": "Fiddlesticks",
+      "stats": {
+        "health": {
+          "base": 650,
+          "perLevel": 106
+        },
+        "armor": {
+          "base": 34,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Fiora": {
+      "id": "Fiora",
+      "name": "Fiora",
+      "stats": {
+        "health": {
+          "base": 620,
+          "perLevel": 105
+        },
+        "armor": {
+          "base": 33,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Fizz": {
+      "id": "Fizz",
+      "name": "Fizz",
+      "stats": {
+        "health": {
+          "base": 640,
+          "perLevel": 106
+        },
+        "armor": {
+          "base": 26,
+          "perLevel": 4.6
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Galio": {
+      "id": "Galio",
+      "name": "Galio",
+      "stats": {
+        "health": {
+          "base": 600,
+          "perLevel": 126
+        },
+        "armor": {
+          "base": 24,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Gangplank": {
+      "id": "Gangplank",
+      "name": "Gangplank",
+      "stats": {
+        "health": {
+          "base": 630,
+          "perLevel": 114
+        },
+        "armor": {
+          "base": 31,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Garen": {
+      "id": "Garen",
+      "name": "Garen",
+      "stats": {
+        "health": {
+          "base": 690,
+          "perLevel": 98
+        },
+        "armor": {
+          "base": 38,
+          "perLevel": 4.2
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 1.55
+        }
+      }
+    },
+    "Gnar": {
+      "id": "Gnar",
+      "name": "Gnar",
+      "stats": {
+        "health": {
+          "base": 540,
+          "perLevel": 79
+        },
+        "armor": {
+          "base": 32,
+          "perLevel": 3.7
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Gragas": {
+      "id": "Gragas",
+      "name": "Gragas",
+      "stats": {
+        "health": {
+          "base": 640,
+          "perLevel": 115
+        },
+        "armor": {
+          "base": 38,
+          "perLevel": 5
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Graves": {
+      "id": "Graves",
+      "name": "Graves",
+      "stats": {
+        "health": {
+          "base": 625,
+          "perLevel": 106
+        },
+        "armor": {
+          "base": 33,
+          "perLevel": 4.6
+        },
+        "magicResist": {
+          "base": 33,
+          "perLevel": 1.1
+        }
+      }
+    },
+    "Gwen": {
+      "id": "Gwen",
+      "name": "Gwen",
+      "stats": {
+        "health": {
+          "base": 620,
+          "perLevel": 115
+        },
+        "armor": {
+          "base": 39,
+          "perLevel": 4.9
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Hecarim": {
+      "id": "Hecarim",
+      "name": "Hecarim",
+      "stats": {
+        "health": {
+          "base": 625,
+          "perLevel": 106
+        },
+        "armor": {
+          "base": 32,
+          "perLevel": 5.45
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Heimerdinger": {
+      "id": "Heimerdinger",
+      "name": "Heimerdinger",
+      "stats": {
+        "health": {
+          "base": 558,
+          "perLevel": 105
+        },
+        "armor": {
+          "base": 19,
+          "perLevel": 4.2
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Hwei": {
+      "id": "Hwei",
+      "name": "Hwei",
+      "stats": {
+        "health": {
+          "base": 580,
+          "perLevel": 109
+        },
+        "armor": {
+          "base": 21,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Illaoi": {
+      "id": "Illaoi",
+      "name": "Illaoi",
+      "stats": {
+        "health": {
+          "base": 656,
+          "perLevel": 115
+        },
+        "armor": {
+          "base": 35,
+          "perLevel": 5
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Irelia": {
+      "id": "Irelia",
+      "name": "Irelia",
+      "stats": {
+        "health": {
+          "base": 630,
+          "perLevel": 115
+        },
+        "armor": {
+          "base": 36,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Ivern": {
+      "id": "Ivern",
+      "name": "Ivern",
+      "stats": {
+        "health": {
+          "base": 630,
+          "perLevel": 99
+        },
+        "armor": {
+          "base": 27,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Janna": {
+      "id": "Janna",
+      "name": "Janna",
+      "stats": {
+        "health": {
+          "base": 570,
+          "perLevel": 90
+        },
+        "armor": {
+          "base": 28,
+          "perLevel": 4.5
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "JarvanIV": {
+      "id": "JarvanIV",
+      "name": "Jarvan IV",
+      "stats": {
+        "health": {
+          "base": 640,
+          "perLevel": 104
+        },
+        "armor": {
+          "base": 36,
+          "perLevel": 4.6
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Jax": {
+      "id": "Jax",
+      "name": "Jax",
+      "stats": {
+        "health": {
+          "base": 650,
+          "perLevel": 103
+        },
+        "armor": {
+          "base": 36,
+          "perLevel": 4.2
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Jayce": {
+      "id": "Jayce",
+      "name": "Jayce",
+      "stats": {
+        "health": {
+          "base": 590,
+          "perLevel": 109
+        },
+        "armor": {
+          "base": 22,
+          "perLevel": 5
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Jhin": {
+      "id": "Jhin",
+      "name": "Jhin",
+      "stats": {
+        "health": {
+          "base": 655,
+          "perLevel": 107
+        },
+        "armor": {
+          "base": 24,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 33,
+          "perLevel": 1.1
+        }
+      }
+    },
+    "Jinx": {
+      "id": "Jinx",
+      "name": "Jinx",
+      "stats": {
+        "health": {
+          "base": 610,
+          "perLevel": 105
+        },
+        "armor": {
+          "base": 26,
+          "perLevel": 4.2
+        },
+        "magicResist": {
+          "base": 33,
+          "perLevel": 1.1
+        }
+      }
+    },
+    "Kaisa": {
+      "id": "Kaisa",
+      "name": "Kai'Sa",
+      "stats": {
+        "health": {
+          "base": 640,
+          "perLevel": 102
+        },
+        "armor": {
+          "base": 25,
+          "perLevel": 4.2
+        },
+        "magicResist": {
+          "base": 33,
+          "perLevel": 1.1
+        }
+      }
+    },
+    "Kalista": {
+      "id": "Kalista",
+      "name": "Kalista",
+      "stats": {
+        "health": {
+          "base": 560,
+          "perLevel": 114
+        },
+        "armor": {
+          "base": 24,
+          "perLevel": 5.2
+        },
+        "magicResist": {
+          "base": 33,
+          "perLevel": 1.1
+        }
+      }
+    },
+    "Karma": {
+      "id": "Karma",
+      "name": "Karma",
+      "stats": {
+        "health": {
+          "base": 630,
+          "perLevel": 109
+        },
+        "armor": {
+          "base": 28,
+          "perLevel": 5
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Karthus": {
+      "id": "Karthus",
+      "name": "Karthus",
+      "stats": {
+        "health": {
+          "base": 620,
+          "perLevel": 110
+        },
+        "armor": {
+          "base": 21,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Kassadin": {
+      "id": "Kassadin",
+      "name": "Kassadin",
+      "stats": {
+        "health": {
+          "base": 646,
+          "perLevel": 113
+        },
+        "armor": {
+          "base": 21,
+          "perLevel": 4
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Katarina": {
+      "id": "Katarina",
+      "name": "Katarina",
+      "stats": {
+        "health": {
+          "base": 672,
+          "perLevel": 108
+        },
+        "armor": {
+          "base": 32,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Kayle": {
+      "id": "Kayle",
+      "name": "Kayle",
+      "stats": {
+        "health": {
+          "base": 670,
+          "perLevel": 92
+        },
+        "armor": {
+          "base": 26,
+          "perLevel": 4.2
+        },
+        "magicResist": {
+          "base": 22,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Kayn": {
+      "id": "Kayn",
+      "name": "Kayn",
+      "stats": {
+        "health": {
+          "base": 655,
+          "perLevel": 103
+        },
+        "armor": {
+          "base": 38,
+          "perLevel": 4.5
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Kennen": {
+      "id": "Kennen",
+      "name": "Kennen",
+      "stats": {
+        "health": {
+          "base": 580,
+          "perLevel": 98
+        },
+        "armor": {
+          "base": 29,
+          "perLevel": 4.95
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Khazix": {
+      "id": "Khazix",
+      "name": "Kha'Zix",
+      "stats": {
+        "health": {
+          "base": 643,
+          "perLevel": 99
+        },
+        "armor": {
+          "base": 32,
+          "perLevel": 4.2
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Kindred": {
+      "id": "Kindred",
+      "name": "Kindred",
+      "stats": {
+        "health": {
+          "base": 595,
+          "perLevel": 104
+        },
+        "armor": {
+          "base": 29,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 33,
+          "perLevel": 1.1
+        }
+      }
+    },
+    "Kled": {
+      "id": "Kled",
+      "name": "Kled",
+      "stats": {
+        "health": {
+          "base": 410,
+          "perLevel": 84
+        },
+        "armor": {
+          "base": 35,
+          "perLevel": 5.2
+        },
+        "magicResist": {
+          "base": 28,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "KogMaw": {
+      "id": "KogMaw",
+      "name": "Kog'Maw",
+      "stats": {
+        "health": {
+          "base": 635,
+          "perLevel": 99
+        },
+        "armor": {
+          "base": 24,
+          "perLevel": 4.45
+        },
+        "magicResist": {
+          "base": 33,
+          "perLevel": 1.1
+        }
+      }
+    },
+    "KSante": {
+      "id": "KSante",
+      "name": "K'Sante",
+      "stats": {
+        "health": {
+          "base": 625,
+          "perLevel": 120
+        },
+        "armor": {
+          "base": 36,
+          "perLevel": 5.2
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 2.1
+        }
+      }
+    },
+    "Leblanc": {
+      "id": "Leblanc",
+      "name": "LeBlanc",
+      "stats": {
+        "health": {
+          "base": 598,
+          "perLevel": 108
+        },
+        "armor": {
+          "base": 22,
+          "perLevel": 4.2
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "LeeSin": {
+      "id": "LeeSin",
+      "name": "Lee Sin",
+      "stats": {
+        "health": {
+          "base": 645,
+          "perLevel": 108
+        },
+        "armor": {
+          "base": 36,
+          "perLevel": 4.5
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Leona": {
+      "id": "Leona",
+      "name": "Leona",
+      "stats": {
+        "health": {
+          "base": 646,
+          "perLevel": 101
+        },
+        "armor": {
+          "base": 43,
+          "perLevel": 4.8
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Lillia": {
+      "id": "Lillia",
+      "name": "Lillia",
+      "stats": {
+        "health": {
+          "base": 605,
+          "perLevel": 105
+        },
+        "armor": {
+          "base": 24,
+          "perLevel": 4.5
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 1.55
+        }
+      }
+    },
+    "Lissandra": {
+      "id": "Lissandra",
+      "name": "Lissandra",
+      "stats": {
+        "health": {
+          "base": 620,
+          "perLevel": 110
+        },
+        "armor": {
+          "base": 22,
+          "perLevel": 4.2
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Locke": {
+      "id": "Locke",
+      "name": "Locke",
+      "stats": {
+        "health": {
+          "base": 620,
+          "perLevel": 109
+        },
+        "armor": {
+          "base": 32,
+          "perLevel": 4.2
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Lucian": {
+      "id": "Lucian",
+      "name": "Lucian",
+      "stats": {
+        "health": {
+          "base": 641,
+          "perLevel": 100
+        },
+        "armor": {
+          "base": 28,
+          "perLevel": 4.2
+        },
+        "magicResist": {
+          "base": 33,
+          "perLevel": 1.1
+        }
+      }
+    },
+    "Lulu": {
+      "id": "Lulu",
+      "name": "Lulu",
+      "stats": {
+        "health": {
+          "base": 565,
+          "perLevel": 92
+        },
+        "armor": {
+          "base": 26,
+          "perLevel": 4.6
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Lux": {
+      "id": "Lux",
+      "name": "Lux",
+      "stats": {
+        "health": {
+          "base": 580,
+          "perLevel": 99
+        },
+        "armor": {
+          "base": 21,
+          "perLevel": 5.2
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Malphite": {
+      "id": "Malphite",
+      "name": "Malphite",
+      "stats": {
+        "health": {
+          "base": 665,
+          "perLevel": 104
+        },
+        "armor": {
+          "base": 40,
+          "perLevel": 4.95
+        },
+        "magicResist": {
+          "base": 28,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Malzahar": {
+      "id": "Malzahar",
+      "name": "Malzahar",
+      "stats": {
+        "health": {
+          "base": 580,
+          "perLevel": 101
+        },
+        "armor": {
+          "base": 18,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Maokai": {
+      "id": "Maokai",
+      "name": "Maokai",
+      "stats": {
+        "health": {
+          "base": 665,
+          "perLevel": 109
+        },
+        "armor": {
+          "base": 35,
+          "perLevel": 5.2
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "MasterYi": {
+      "id": "MasterYi",
+      "name": "Master Yi",
+      "stats": {
+        "health": {
+          "base": 640,
+          "perLevel": 105
+        },
+        "armor": {
+          "base": 33,
+          "perLevel": 5
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Mel": {
+      "id": "Mel",
+      "name": "Mel",
+      "stats": {
+        "health": {
+          "base": 590,
+          "perLevel": 107
+        },
+        "armor": {
+          "base": 21,
+          "perLevel": 5.4
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Milio": {
+      "id": "Milio",
+      "name": "Milio",
+      "stats": {
+        "health": {
+          "base": 560,
+          "perLevel": 88
+        },
+        "armor": {
+          "base": 26,
+          "perLevel": 4.6
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "MissFortune": {
+      "id": "MissFortune",
+      "name": "Miss Fortune",
+      "stats": {
+        "health": {
+          "base": 625,
+          "perLevel": 100
+        },
+        "armor": {
+          "base": 25,
+          "perLevel": 4
+        },
+        "magicResist": {
+          "base": 33,
+          "perLevel": 1.1
+        }
+      }
+    },
+    "MonkeyKing": {
+      "id": "MonkeyKing",
+      "name": "Wukong",
+      "stats": {
+        "health": {
+          "base": 610,
+          "perLevel": 99
+        },
+        "armor": {
+          "base": 31,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 28,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Mordekaiser": {
+      "id": "Mordekaiser",
+      "name": "Mordekaiser",
+      "stats": {
+        "health": {
+          "base": 645,
+          "perLevel": 104
+        },
+        "armor": {
+          "base": 37,
+          "perLevel": 4.2
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Morgana": {
+      "id": "Morgana",
+      "name": "Morgana",
+      "stats": {
+        "health": {
+          "base": 630,
+          "perLevel": 104
+        },
+        "armor": {
+          "base": 25,
+          "perLevel": 4.2
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Naafiri": {
+      "id": "Naafiri",
+      "name": "Naafiri",
+      "stats": {
+        "health": {
+          "base": 610,
+          "perLevel": 105
+        },
+        "armor": {
+          "base": 28,
+          "perLevel": 4.2
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Nami": {
+      "id": "Nami",
+      "name": "Nami",
+      "stats": {
+        "health": {
+          "base": 560,
+          "perLevel": 88
+        },
+        "armor": {
+          "base": 29,
+          "perLevel": 5.2
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Nasus": {
+      "id": "Nasus",
+      "name": "Nasus",
+      "stats": {
+        "health": {
+          "base": 650,
+          "perLevel": 104
+        },
+        "armor": {
+          "base": 34,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Nautilus": {
+      "id": "Nautilus",
+      "name": "Nautilus",
+      "stats": {
+        "health": {
+          "base": 646,
+          "perLevel": 100
+        },
+        "armor": {
+          "base": 39,
+          "perLevel": 4.95
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Neeko": {
+      "id": "Neeko",
+      "name": "Neeko",
+      "stats": {
+        "health": {
+          "base": 610,
+          "perLevel": 104
+        },
+        "armor": {
+          "base": 21,
+          "perLevel": 5.2
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Nidalee": {
+      "id": "Nidalee",
+      "name": "Nidalee",
+      "stats": {
+        "health": {
+          "base": 610,
+          "perLevel": 109
+        },
+        "armor": {
+          "base": 32,
+          "perLevel": 5
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.45
+        }
+      }
+    },
+    "Nilah": {
+      "id": "Nilah",
+      "name": "Nilah",
+      "stats": {
+        "health": {
+          "base": 570,
+          "perLevel": 101
+        },
+        "armor": {
+          "base": 27,
+          "perLevel": 4.2
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Nocturne": {
+      "id": "Nocturne",
+      "name": "Nocturne",
+      "stats": {
+        "health": {
+          "base": 640,
+          "perLevel": 109
+        },
+        "armor": {
+          "base": 36,
+          "perLevel": 4.2
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 1.55
+        }
+      }
+    },
+    "Nunu": {
+      "id": "Nunu",
+      "name": "Nunu & Willump",
+      "stats": {
+        "health": {
+          "base": 610,
+          "perLevel": 90
+        },
+        "armor": {
+          "base": 29,
+          "perLevel": 4.2
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Olaf": {
+      "id": "Olaf",
+      "name": "Olaf",
+      "stats": {
+        "health": {
+          "base": 645,
+          "perLevel": 119
+        },
+        "armor": {
+          "base": 35,
+          "perLevel": 4.2
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Orianna": {
+      "id": "Orianna",
+      "name": "Orianna",
+      "stats": {
+        "health": {
+          "base": 565,
+          "perLevel": 110
+        },
+        "armor": {
+          "base": 20,
+          "perLevel": 4.2
+        },
+        "magicResist": {
+          "base": 26,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Ornn": {
+      "id": "Ornn",
+      "name": "Ornn",
+      "stats": {
+        "health": {
+          "base": 660,
+          "perLevel": 109
+        },
+        "armor": {
+          "base": 33,
+          "perLevel": 5.2
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Pantheon": {
+      "id": "Pantheon",
+      "name": "Pantheon",
+      "stats": {
+        "health": {
+          "base": 650,
+          "perLevel": 109
+        },
+        "armor": {
+          "base": 40,
+          "perLevel": 4.95
+        },
+        "magicResist": {
+          "base": 28,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Poppy": {
+      "id": "Poppy",
+      "name": "Poppy",
+      "stats": {
+        "health": {
+          "base": 610,
+          "perLevel": 110
+        },
+        "armor": {
+          "base": 35,
+          "perLevel": 5
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Pyke": {
+      "id": "Pyke",
+      "name": "Pyke",
+      "stats": {
+        "health": {
+          "base": 670,
+          "perLevel": 110
+        },
+        "armor": {
+          "base": 37,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Qiyana": {
+      "id": "Qiyana",
+      "name": "Qiyana",
+      "stats": {
+        "health": {
+          "base": 590,
+          "perLevel": 115
+        },
+        "armor": {
+          "base": 31,
+          "perLevel": 4.5
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Quinn": {
+      "id": "Quinn",
+      "name": "Quinn",
+      "stats": {
+        "health": {
+          "base": 565,
+          "perLevel": 107
+        },
+        "armor": {
+          "base": 28,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 33,
+          "perLevel": 1.1
+        }
+      }
+    },
+    "Rakan": {
+      "id": "Rakan",
+      "name": "Rakan",
+      "stats": {
+        "health": {
+          "base": 610,
+          "perLevel": 99
+        },
+        "armor": {
+          "base": 30,
+          "perLevel": 4.9
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Rammus": {
+      "id": "Rammus",
+      "name": "Rammus",
+      "stats": {
+        "health": {
+          "base": 645,
+          "perLevel": 100
+        },
+        "armor": {
+          "base": 35,
+          "perLevel": 4.5
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "RekSai": {
+      "id": "RekSai",
+      "name": "Rek'Sai",
+      "stats": {
+        "health": {
+          "base": 600,
+          "perLevel": 99
+        },
+        "armor": {
+          "base": 35,
+          "perLevel": 4.5
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Rell": {
+      "id": "Rell",
+      "name": "Rell",
+      "stats": {
+        "health": {
+          "base": 620,
+          "perLevel": 104
+        },
+        "armor": {
+          "base": 30,
+          "perLevel": 4
+        },
+        "magicResist": {
+          "base": 28,
+          "perLevel": 1.8
+        }
+      }
+    },
+    "Renata": {
+      "id": "Renata",
+      "name": "Renata Glasc",
+      "stats": {
+        "health": {
+          "base": 545,
+          "perLevel": 94
+        },
+        "armor": {
+          "base": 27,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Renekton": {
+      "id": "Renekton",
+      "name": "Renekton",
+      "stats": {
+        "health": {
+          "base": 660,
+          "perLevel": 111
+        },
+        "armor": {
+          "base": 35,
+          "perLevel": 5.2
+        },
+        "magicResist": {
+          "base": 28,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Rengar": {
+      "id": "Rengar",
+      "name": "Rengar",
+      "stats": {
+        "health": {
+          "base": 590,
+          "perLevel": 104
+        },
+        "armor": {
+          "base": 34,
+          "perLevel": 4.2
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Riven": {
+      "id": "Riven",
+      "name": "Riven",
+      "stats": {
+        "health": {
+          "base": 630,
+          "perLevel": 100
+        },
+        "armor": {
+          "base": 33,
+          "perLevel": 4.4
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Rumble": {
+      "id": "Rumble",
+      "name": "Rumble",
+      "stats": {
+        "health": {
+          "base": 640,
+          "perLevel": 105
+        },
+        "armor": {
+          "base": 36,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 28,
+          "perLevel": 1.55
+        }
+      }
+    },
+    "Ryze": {
+      "id": "Ryze",
+      "name": "Ryze",
+      "stats": {
+        "health": {
+          "base": 620,
+          "perLevel": 124
+        },
+        "armor": {
+          "base": 22,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Samira": {
+      "id": "Samira",
+      "name": "Samira",
+      "stats": {
+        "health": {
+          "base": 630,
+          "perLevel": 108
+        },
+        "armor": {
+          "base": 26,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 33,
+          "perLevel": 1.1
+        }
+      }
+    },
+    "Sejuani": {
+      "id": "Sejuani",
+      "name": "Sejuani",
+      "stats": {
+        "health": {
+          "base": 630,
+          "perLevel": 114
+        },
+        "armor": {
+          "base": 34,
+          "perLevel": 5.45
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Senna": {
+      "id": "Senna",
+      "name": "Senna",
+      "stats": {
+        "health": {
+          "base": 530,
+          "perLevel": 89
+        },
+        "armor": {
+          "base": 25,
+          "perLevel": 4
+        },
+        "magicResist": {
+          "base": 33,
+          "perLevel": 1.1
+        }
+      }
+    },
+    "Seraphine": {
+      "id": "Seraphine",
+      "name": "Seraphine",
+      "stats": {
+        "health": {
+          "base": 570,
+          "perLevel": 95
+        },
+        "armor": {
+          "base": 26,
+          "perLevel": 4.2
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Sett": {
+      "id": "Sett",
+      "name": "Sett",
+      "stats": {
+        "health": {
+          "base": 670,
+          "perLevel": 114
+        },
+        "armor": {
+          "base": 33,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 28,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Shaco": {
+      "id": "Shaco",
+      "name": "Shaco",
+      "stats": {
+        "health": {
+          "base": 630,
+          "perLevel": 99
+        },
+        "armor": {
+          "base": 30,
+          "perLevel": 4
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Shen": {
+      "id": "Shen",
+      "name": "Shen",
+      "stats": {
+        "health": {
+          "base": 610,
+          "perLevel": 99
+        },
+        "armor": {
+          "base": 34,
+          "perLevel": 4.2
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Shyvana": {
+      "id": "Shyvana",
+      "name": "Shyvana",
+      "stats": {
+        "health": {
+          "base": 625,
+          "perLevel": 95
+        },
+        "armor": {
+          "base": 35,
+          "perLevel": 4
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Singed": {
+      "id": "Singed",
+      "name": "Singed",
+      "stats": {
+        "health": {
+          "base": 650,
+          "perLevel": 96
+        },
+        "armor": {
+          "base": 34,
+          "perLevel": 4.2
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Sion": {
+      "id": "Sion",
+      "name": "Sion",
+      "stats": {
+        "health": {
+          "base": 655,
+          "perLevel": 95
+        },
+        "armor": {
+          "base": 36,
+          "perLevel": 4.2
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Sivir": {
+      "id": "Sivir",
+      "name": "Sivir",
+      "stats": {
+        "health": {
+          "base": 600,
+          "perLevel": 104
+        },
+        "armor": {
+          "base": 30,
+          "perLevel": 4
+        },
+        "magicResist": {
+          "base": 33,
+          "perLevel": 1.1
+        }
+      }
+    },
+    "Skarner": {
+      "id": "Skarner",
+      "name": "Skarner",
+      "stats": {
+        "health": {
+          "base": 630,
+          "perLevel": 110
+        },
+        "armor": {
+          "base": 33,
+          "perLevel": 4.5
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Smolder": {
+      "id": "Smolder",
+      "name": "Smolder",
+      "stats": {
+        "health": {
+          "base": 575,
+          "perLevel": 100
+        },
+        "armor": {
+          "base": 24,
+          "perLevel": 4
+        },
+        "magicResist": {
+          "base": 33,
+          "perLevel": 1.1
+        }
+      }
+    },
+    "Sona": {
+      "id": "Sona",
+      "name": "Sona",
+      "stats": {
+        "health": {
+          "base": 550,
+          "perLevel": 91
+        },
+        "armor": {
+          "base": 26,
+          "perLevel": 4.2
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Soraka": {
+      "id": "Soraka",
+      "name": "Soraka",
+      "stats": {
+        "health": {
+          "base": 605,
+          "perLevel": 88
+        },
+        "armor": {
+          "base": 32,
+          "perLevel": 5
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Swain": {
+      "id": "Swain",
+      "name": "Swain",
+      "stats": {
+        "health": {
+          "base": 595,
+          "perLevel": 99
+        },
+        "armor": {
+          "base": 23,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 34,
+          "perLevel": 1.55
+        }
+      }
+    },
+    "Sylas": {
+      "id": "Sylas",
+      "name": "Sylas",
+      "stats": {
+        "health": {
+          "base": 600,
+          "perLevel": 122
+        },
+        "armor": {
+          "base": 29,
+          "perLevel": 5.2
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.55
+        }
+      }
+    },
+    "Syndra": {
+      "id": "Syndra",
+      "name": "Syndra",
+      "stats": {
+        "health": {
+          "base": 583,
+          "perLevel": 100
+        },
+        "armor": {
+          "base": 25,
+          "perLevel": 4
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "TahmKench": {
+      "id": "TahmKench",
+      "name": "Tahm Kench",
+      "stats": {
+        "health": {
+          "base": 640,
+          "perLevel": 103
+        },
+        "armor": {
+          "base": 39,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Taliyah": {
+      "id": "Taliyah",
+      "name": "Taliyah",
+      "stats": {
+        "health": {
+          "base": 550,
+          "perLevel": 104
+        },
+        "armor": {
+          "base": 18,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 28,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Talon": {
+      "id": "Talon",
+      "name": "Talon",
+      "stats": {
+        "health": {
+          "base": 658,
+          "perLevel": 109
+        },
+        "armor": {
+          "base": 30,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 36,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Taric": {
+      "id": "Taric",
+      "name": "Taric",
+      "stats": {
+        "health": {
+          "base": 645,
+          "perLevel": 99
+        },
+        "armor": {
+          "base": 40,
+          "perLevel": 4.3
+        },
+        "magicResist": {
+          "base": 28,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Teemo": {
+      "id": "Teemo",
+      "name": "Teemo",
+      "stats": {
+        "health": {
+          "base": 615,
+          "perLevel": 104
+        },
+        "armor": {
+          "base": 24,
+          "perLevel": 4.5
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Thresh": {
+      "id": "Thresh",
+      "name": "Thresh",
+      "stats": {
+        "health": {
+          "base": 620,
+          "perLevel": 120
+        },
+        "armor": {
+          "base": 33,
+          "perLevel": 0
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.55
+        }
+      }
+    },
+    "Tristana": {
+      "id": "Tristana",
+      "name": "Tristana",
+      "stats": {
+        "health": {
+          "base": 640,
+          "perLevel": 102
+        },
+        "armor": {
+          "base": 30,
+          "perLevel": 4
+        },
+        "magicResist": {
+          "base": 33,
+          "perLevel": 1.1
+        }
+      }
+    },
+    "Trundle": {
+      "id": "Trundle",
+      "name": "Trundle",
+      "stats": {
+        "health": {
+          "base": 650,
+          "perLevel": 110
+        },
+        "armor": {
+          "base": 37,
+          "perLevel": 4.5
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Tryndamere": {
+      "id": "Tryndamere",
+      "name": "Tryndamere",
+      "stats": {
+        "health": {
+          "base": 696,
+          "perLevel": 108
+        },
+        "armor": {
+          "base": 33,
+          "perLevel": 4.8
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "TwistedFate": {
+      "id": "TwistedFate",
+      "name": "Twisted Fate",
+      "stats": {
+        "health": {
+          "base": 604,
+          "perLevel": 108
+        },
+        "armor": {
+          "base": 24,
+          "perLevel": 4.35
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Twitch": {
+      "id": "Twitch",
+      "name": "Twitch",
+      "stats": {
+        "health": {
+          "base": 630,
+          "perLevel": 98
+        },
+        "armor": {
+          "base": 27,
+          "perLevel": 4
+        },
+        "magicResist": {
+          "base": 33,
+          "perLevel": 1.1
+        }
+      }
+    },
+    "Udyr": {
+      "id": "Udyr",
+      "name": "Udyr",
+      "stats": {
+        "health": {
+          "base": 664,
+          "perLevel": 92
+        },
+        "armor": {
+          "base": 31,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Urgot": {
+      "id": "Urgot",
+      "name": "Urgot",
+      "stats": {
+        "health": {
+          "base": 655,
+          "perLevel": 102
+        },
+        "armor": {
+          "base": 36,
+          "perLevel": 5
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Varus": {
+      "id": "Varus",
+      "name": "Varus",
+      "stats": {
+        "health": {
+          "base": 600,
+          "perLevel": 105
+        },
+        "armor": {
+          "base": 24,
+          "perLevel": 4
+        },
+        "magicResist": {
+          "base": 33,
+          "perLevel": 1.1
+        }
+      }
+    },
+    "Vayne": {
+      "id": "Vayne",
+      "name": "Vayne",
+      "stats": {
+        "health": {
+          "base": 580,
+          "perLevel": 98
+        },
+        "armor": {
+          "base": 23,
+          "perLevel": 4.6
+        },
+        "magicResist": {
+          "base": 33,
+          "perLevel": 1.1
+        }
+      }
+    },
+    "Veigar": {
+      "id": "Veigar",
+      "name": "Veigar",
+      "stats": {
+        "health": {
+          "base": 580,
+          "perLevel": 108
+        },
+        "armor": {
+          "base": 18,
+          "perLevel": 5.2
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Velkoz": {
+      "id": "Velkoz",
+      "name": "Vel'Koz",
+      "stats": {
+        "health": {
+          "base": 590,
+          "perLevel": 102
+        },
+        "armor": {
+          "base": 22,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Vex": {
+      "id": "Vex",
+      "name": "Vex",
+      "stats": {
+        "health": {
+          "base": 590,
+          "perLevel": 104
+        },
+        "armor": {
+          "base": 23,
+          "perLevel": 4.45
+        },
+        "magicResist": {
+          "base": 28,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Vi": {
+      "id": "Vi",
+      "name": "Vi",
+      "stats": {
+        "health": {
+          "base": 655,
+          "perLevel": 105
+        },
+        "armor": {
+          "base": 30,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Viego": {
+      "id": "Viego",
+      "name": "Viego",
+      "stats": {
+        "health": {
+          "base": 630,
+          "perLevel": 109
+        },
+        "armor": {
+          "base": 34,
+          "perLevel": 4.6
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Viktor": {
+      "id": "Viktor",
+      "name": "Viktor",
+      "stats": {
+        "health": {
+          "base": 600,
+          "perLevel": 105
+        },
+        "armor": {
+          "base": 23,
+          "perLevel": 4.4
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Vladimir": {
+      "id": "Vladimir",
+      "name": "Vladimir",
+      "stats": {
+        "health": {
+          "base": 600,
+          "perLevel": 110
+        },
+        "armor": {
+          "base": 24,
+          "perLevel": 4.5
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Volibear": {
+      "id": "Volibear",
+      "name": "Volibear",
+      "stats": {
+        "health": {
+          "base": 650,
+          "perLevel": 104
+        },
+        "armor": {
+          "base": 35,
+          "perLevel": 5.2
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Warwick": {
+      "id": "Warwick",
+      "name": "Warwick",
+      "stats": {
+        "health": {
+          "base": 620,
+          "perLevel": 99
+        },
+        "armor": {
+          "base": 33,
+          "perLevel": 4.4
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Xayah": {
+      "id": "Xayah",
+      "name": "Xayah",
+      "stats": {
+        "health": {
+          "base": 630,
+          "perLevel": 107
+        },
+        "armor": {
+          "base": 25,
+          "perLevel": 4.2
+        },
+        "magicResist": {
+          "base": 33,
+          "perLevel": 1.1
+        }
+      }
+    },
+    "Xerath": {
+      "id": "Xerath",
+      "name": "Xerath",
+      "stats": {
+        "health": {
+          "base": 575,
+          "perLevel": 106
+        },
+        "armor": {
+          "base": 22,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "XinZhao": {
+      "id": "XinZhao",
+      "name": "Xin Zhao",
+      "stats": {
+        "health": {
+          "base": 620,
+          "perLevel": 106
+        },
+        "armor": {
+          "base": 35,
+          "perLevel": 4.4
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Yasuo": {
+      "id": "Yasuo",
+      "name": "Yasuo",
+      "stats": {
+        "health": {
+          "base": 590,
+          "perLevel": 110
+        },
+        "armor": {
+          "base": 32,
+          "perLevel": 4.6
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Yone": {
+      "id": "Yone",
+      "name": "Yone",
+      "stats": {
+        "health": {
+          "base": 620,
+          "perLevel": 105
+        },
+        "armor": {
+          "base": 33,
+          "perLevel": 4.6
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Yorick": {
+      "id": "Yorick",
+      "name": "Yorick",
+      "stats": {
+        "health": {
+          "base": 650,
+          "perLevel": 114
+        },
+        "armor": {
+          "base": 36,
+          "perLevel": 4.5
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Yunara": {
+      "id": "Yunara",
+      "name": "Yunara",
+      "stats": {
+        "health": {
+          "base": 590,
+          "perLevel": 110
+        },
+        "armor": {
+          "base": 25,
+          "perLevel": 4.4
+        },
+        "magicResist": {
+          "base": 33,
+          "perLevel": 1.1
+        }
+      }
+    },
+    "Yuumi": {
+      "id": "Yuumi",
+      "name": "Yuumi",
+      "stats": {
+        "health": {
+          "base": 500,
+          "perLevel": 69
+        },
+        "armor": {
+          "base": 25,
+          "perLevel": 4.2
+        },
+        "magicResist": {
+          "base": 25,
+          "perLevel": 1.1
+        }
+      }
+    },
+    "Zaahen": {
+      "id": "Zaahen",
+      "name": "Zaahen",
+      "stats": {
+        "health": {
+          "base": 640,
+          "perLevel": 114
+        },
+        "armor": {
+          "base": 36,
+          "perLevel": 5
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Zac": {
+      "id": "Zac",
+      "name": "Zac",
+      "stats": {
+        "health": {
+          "base": 685,
+          "perLevel": 109
+        },
+        "armor": {
+          "base": 33,
+          "perLevel": 5.2
+        },
+        "magicResist": {
+          "base": 32,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Zed": {
+      "id": "Zed",
+      "name": "Zed",
+      "stats": {
+        "health": {
+          "base": 654,
+          "perLevel": 99
+        },
+        "armor": {
+          "base": 32,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 29,
+          "perLevel": 2.05
+        }
+      }
+    },
+    "Zeri": {
+      "id": "Zeri",
+      "name": "Zeri",
+      "stats": {
+        "health": {
+          "base": 600,
+          "perLevel": 110
+        },
+        "armor": {
+          "base": 24,
+          "perLevel": 4.2
+        },
+        "magicResist": {
+          "base": 33,
+          "perLevel": 1.1
+        }
+      }
+    },
+    "Ziggs": {
+      "id": "Ziggs",
+      "name": "Ziggs",
+      "stats": {
+        "health": {
+          "base": 606,
+          "perLevel": 106
+        },
+        "armor": {
+          "base": 21,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Zilean": {
+      "id": "Zilean",
+      "name": "Zilean",
+      "stats": {
+        "health": {
+          "base": 574,
+          "perLevel": 96
+        },
+        "armor": {
+          "base": 24,
+          "perLevel": 5
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Zoe": {
+      "id": "Zoe",
+      "name": "Zoe",
+      "stats": {
+        "health": {
+          "base": 630,
+          "perLevel": 106
+        },
+        "armor": {
+          "base": 21,
+          "perLevel": 4.7
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    },
+    "Zyra": {
+      "id": "Zyra",
+      "name": "Zyra",
+      "stats": {
+        "health": {
+          "base": 574,
+          "perLevel": 93
+        },
+        "armor": {
+          "base": 29,
+          "perLevel": 4.2
+        },
+        "magicResist": {
+          "base": 30,
+          "perLevel": 1.3
+        }
+      }
+    }
+  }
+}
