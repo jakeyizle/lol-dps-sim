@@ -14,6 +14,8 @@ export function BuildList(props: {
   const duplicate = useApp((s) => s.duplicateBuild);
   const rename = useApp((s) => s.renameBuild);
   const remove = useApp((s) => s.deleteBuild);
+  const compared = useApp((s) => s.compared);
+  const toggleCompared = useApp((s) => s.toggleCompared);
   const attackers = Object.keys(KITS).filter((id) => patch.champions[id]);
   const [champion, setChampion] = useState(attackers[0] ?? "");
 
@@ -56,6 +58,15 @@ export function BuildList(props: {
               b.id === props.selected ? "bg-neutral-100" : ""
             }`}
           >
+            <input
+              type="checkbox"
+              aria-label={`Compare ${b.name}`}
+              title="Compare"
+              checked={compared.includes(b.id)}
+              onChange={() => {
+                toggleCompared(b.id);
+              }}
+            />
             <input
               aria-label="Build name"
               className="min-w-0 flex-1 bg-transparent"

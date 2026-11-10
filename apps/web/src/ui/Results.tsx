@@ -4,7 +4,7 @@ import type { Build } from "../model/build";
 import { targetName } from "../model/target";
 import { useApp, usePatch } from "./context";
 import { DamageChart } from "./DamageChart";
-import { useAnalysis } from "./useAnalysis";
+import { useAnalysis, useEffectiveHealth } from "./useAnalysis";
 
 const n = (x: number) => Math.round(x).toLocaleString("en-US");
 
@@ -38,13 +38,24 @@ export function Results(props: { build: Build }) {
         vs {targetName(target, patch)}
         {statsOnly && " (stats only)"}
       </p>
-      <ResultBody result={result} maxDuration={maxDuration} />
+      <ResultBody
+        result={result}
+        maxDuration={maxDuration}
+        name={props.build.name}
+        id={props.build.id}
+      />
     </section>
   );
 }
 
-function ResultBody(props: { result: Analysis; maxDuration: number }) {
+function ResultBody(props: {
+  result: Analysis;
+  maxDuration: number;
+  name: string;
+  id: string;
+}) {
   const { result } = props;
+  const health = useEffectiveHealth();
   const duration = result.ttk ?? props.maxDuration;
   return (
     <>
@@ -79,7 +90,11 @@ function ResultBody(props: { result: Analysis; maxDuration: number }) {
         </table>
       </div>
 
-      <DamageChart curve={result.curve} duration={Math.max(duration, 1)} />
+      <DamageChart
+        series={[{ id: props.id, label: props.name, curve: result.curve }]}
+        duration={Math.max(duration, 1)}
+        reference={{ value: health, label: `Effective health ${n(health)}` }}
+      />
 
       <div className="flex flex-wrap gap-8 text-sm">
         <table aria-label="Damage by type">

@@ -1,6 +1,9 @@
 @import "tailwindcss";
 
-/* Chart tokens (dataviz reference palette, slot 1); dark steps are their own values. */
+/*
+ * Chart tokens: dataviz reference categorical palette in fixed order (validated light and
+ * dark; light slots 3–5 are under 3:1, so charts carry labels and a table view).
+ */
 .viz-root {
   color-scheme: light;
   --surface-1: #fcfcfb;
@@ -8,6 +11,13 @@
   --text-secondary: #52514e;
   --grid: #e4e3df;
   --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --series-3: #1baf7a;
+  --series-4: #eda100;
+  --series-5: #e87ba4;
+  --series-6: #008300;
+  --series-7: #6250d6;
+  --series-8: #e34948;
 }
 @media (prefers-color-scheme: dark) {
   :root:where(:not([data-theme="light"])) .viz-root {
@@ -17,6 +27,13 @@
     --text-secondary: #c3c2b7;
     --grid: #33332f;
     --series-1: #3987e5;
+    --series-2: #d95926;
+    --series-3: #199e70;
+    --series-4: #c98500;
+    --series-5: #d55181;
+    --series-6: #008300;
+    --series-7: #9085e9;
+    --series-8: #e66767;
   }
 }
 :root[data-theme="dark"] .viz-root {
@@ -26,4 +43,11 @@
   --text-secondary: #c3c2b7;
   --grid: #33332f;
   --series-1: #3987e5;
+  --series-2: #d95926;
+  --series-3: #199e70;
+  --series-4: #c98500;
+  --series-5: #d55181;
+  --series-6: #008300;
+  --series-7: #9085e9;
+  --series-8: #e66767;
 }
