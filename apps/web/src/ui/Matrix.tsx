@@ -11,7 +11,12 @@ const n = (x: number) => Math.round(x).toLocaleString("en-US");
 type Metric = { kind: "ttk" } | { kind: "dps"; seconds: number };
 
 function metricValue(metric: Metric, a: Analysis): number | undefined {
-  if (metric.kind === "ttk") return a.killed ? (a.ttk ?? undefined) : undefined;
+  if (metric.kind === "ttk") {
+    // RNG mode: the median over runs (SIM-013).
+    if (a.spread)
+      return Number.isFinite(a.spread.ttk.p50) ? a.spread.ttk.p50 : undefined;
+    return a.killed ? (a.ttk ?? undefined) : undefined;
+  }
   return a.dps.find((w) => w.seconds === metric.seconds)?.dps;
 }
 

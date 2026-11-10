@@ -1,4 +1,4 @@
-import { hasDefensiveKit, type Analysis } from "@lol/engine";
+import { hasDefensiveKit, type Analysis, type ManyResult } from "@lol/engine";
 
 import type { Build } from "../model/build";
 import { targetName } from "../model/target";
@@ -90,6 +90,8 @@ function ResultBody(props: {
         </table>
       </div>
 
+      {result.spread && <SpreadLine spread={result.spread} />}
+
       <DamageChart
         series={[{ id: props.id, label: props.name, curve: result.curve }]}
         duration={Math.max(duration, 1)}
@@ -155,6 +157,20 @@ function ResultBody(props: {
         </table>
       </details>
     </>
+  );
+}
+
+/** SIM-013: TTK percentiles and kill rate over the RNG runs. */
+function SpreadLine(props: { spread: ManyResult }) {
+  const { spread } = props;
+  const t = (v: number) =>
+    Number.isFinite(v) ? `${v.toFixed(2)}s` : "not killed";
+  return (
+    <p className="text-sm text-neutral-700" data-testid="spread">
+      Random crits, {spread.runs} runs: TTK p10 {t(spread.ttk.p10)} · p50{" "}
+      {t(spread.ttk.p50)} · p90 {t(spread.ttk.p90)} · killed in{" "}
+      {Math.round(spread.killRate * 100)}% of runs
+    </p>
   );
 }
 

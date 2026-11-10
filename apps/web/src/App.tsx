@@ -54,6 +54,8 @@ function Shell() {
     [builds, compared],
   );
   const gameTime = useApp((s) => s.settings.gameTime);
+  const critMode = useApp((s) => s.settings.critMode);
+  const runs = useApp((s) => s.settings.runs);
   const setSettings = useApp((s) => s.setSettings);
   const [selected, setSelected] = useState<string>();
   const build = builds.find((b) => b.id === selected) ?? builds[0];
@@ -75,6 +77,43 @@ function Shell() {
               }}
             />
           </label>
+          <label className="flex items-center gap-2">
+            Crits
+            <select
+              aria-label="Crit mode"
+              className="rounded border px-1 py-0.5"
+              value={critMode}
+              onChange={(e) => {
+                setSettings({
+                  critMode: e.target.value === "rng" ? "rng" : "expected",
+                });
+              }}
+            >
+              <option value="expected">Expected value</option>
+              <option value="rng">Random</option>
+            </select>
+          </label>
+          {critMode === "rng" && (
+            <label className="flex items-center gap-2">
+              Runs
+              <input
+                type="number"
+                aria-label="RNG runs"
+                className="w-20 rounded border px-1"
+                min={1}
+                max={2000}
+                value={runs}
+                onChange={(e) => {
+                  setSettings({
+                    runs: Math.max(
+                      1,
+                      Math.min(2000, Math.round(Number(e.target.value))),
+                    ),
+                  });
+                }}
+              />
+            </label>
+          )}
           <span>Patch {patch.patch}</span>
         </div>
       </header>
