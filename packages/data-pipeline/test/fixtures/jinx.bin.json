@@ -110,6 +110,565 @@
         "__type": "AttackSlotData"
       }
     ],
+    "spellNames": [
+      "JinxQAbility/JinxQ",
+      "JinxWAbility/JinxW",
+      "JinxEAbility/JinxE",
+      "JinxRAbility/JinxR"
+    ],
+    "mCharacterPassiveSpell": "Characters/Jinx/Spells/JinxPassiveMarkerAbility/JinxPassiveMarker",
     "__type": "CharacterRecord"
+  },
+  "Characters/Jinx/Spells/JinxWAbility/JinxW": {
+    "mScriptName": "JinxW",
+    "mSpell": {
+      "DataValues": [
+        {
+          "name": "JinxLowEndWCastTime",
+          "values": [
+            0.4000000059604645,
+            0.4000000059604645,
+            0.4000000059604645,
+            0.4000000059604645,
+            0.4000000059604645,
+            0.4000000059604645,
+            0.4000000059604645
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "JinxWASpeedCastTimeScalarPerHundrethSecond",
+          "values": [
+            0.07999999821186066,
+            0.07999999821186066,
+            0.07999999821186066,
+            0.07999999821186066,
+            0.07999999821186066,
+            0.07999999821186066,
+            0.07999999821186066
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "Damage",
+          "values": [
+            -40,
+            10,
+            60,
+            110,
+            160,
+            210,
+            260
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "SlowPercent",
+          "values": [
+            30,
+            40,
+            50,
+            60,
+            70,
+            80,
+            90
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "SlowDuration",
+          "values": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "ADRatio",
+          "values": [
+            1.399999976158142,
+            1.399999976158142,
+            1.399999976158142,
+            1.399999976158142,
+            1.399999976158142,
+            1.399999976158142,
+            1.399999976158142
+          ],
+          "__type": "SpellDataValue"
+        }
+      ],
+      "mSpellCalculations": {
+        "TotalDamage": {
+          "mFormulaParts": [
+            {
+              "mDataValue": "Damage",
+              "__type": "NamedDataValueCalculationPart"
+            },
+            {
+              "mStat": 2,
+              "mDataValue": "ADRatio",
+              "__type": "StatByNamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
+      },
+      "cooldownTime": [
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3
+      ],
+      "mana": [
+        40,
+        45,
+        50,
+        55,
+        60,
+        65
+      ],
+      "mCastTime": 0.25
+    },
+    "__type": "SpellObject"
+  },
+  "Characters/Jinx/Spells/JinxEAbility/JinxE": {
+    "mScriptName": "JinxE",
+    "mSpell": {
+      "DataValues": [
+        {
+          "name": "Damage",
+          "values": [
+            40,
+            90,
+            140,
+            190,
+            240,
+            290,
+            340
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "RootDuration",
+          "values": [
+            1.5,
+            1.5,
+            1.5,
+            1.5,
+            1.5,
+            1.5,
+            1.5
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "GrenadeDuration",
+          "values": [
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "GrenadeArmTime",
+          "values": [
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "__type": "SpellDataValue"
+        }
+      ],
+      "mSpellCalculations": {
+        "TotalDamage": {
+          "mFormulaParts": [
+            {
+              "mDataValue": "Damage",
+              "__type": "NamedDataValueCalculationPart"
+            },
+            {
+              "mCoefficient": 1,
+              "__type": "StatByCoefficientCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
+      },
+      "cooldownTime": [
+        27.5,
+        24,
+        20.5,
+        17,
+        13.5,
+        10,
+        10
+      ],
+      "mana": [
+        90,
+        90,
+        90,
+        90,
+        90,
+        90
+      ],
+      "mCastTime": 0.25
+    },
+    "__type": "SpellObject"
+  },
+  "Characters/Jinx/Spells/JinxQAbility/JinxQ": {
+    "mScriptName": "JinxQ",
+    "mSpell": {
+      "DataValues": [
+        {
+          "name": "RocketAoERadius",
+          "values": [
+            250,
+            250,
+            250,
+            250,
+            250,
+            250,
+            250
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "RocketBonusRange",
+          "values": [
+            75,
+            100,
+            125,
+            150,
+            175,
+            200,
+            225
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "MinigunAttackSpeedMax",
+          "values": [
+            5,
+            30,
+            55,
+            80,
+            105,
+            130,
+            155
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "MinigunAttackSpeedDuration",
+          "values": [
+            2.5,
+            2.5,
+            2.5,
+            2.5,
+            2.5,
+            2.5,
+            2.5
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "MinigunAttackSpeedStacks",
+          "values": [
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "RocketTAD",
+          "values": [
+            1.100000023841858,
+            1.100000023841858,
+            1.100000023841858,
+            1.100000023841858,
+            1.100000023841858,
+            1.100000023841858,
+            1.100000023841858
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "RocketASPDPenalty",
+          "values": [
+            0.10000000149011612,
+            0.10000000149011612,
+            0.10000000149011612,
+            0.10000000149011612,
+            0.10000000149011612,
+            0.10000000149011612,
+            0.10000000149011612
+          ],
+          "__type": "SpellDataValue"
+        }
+      ],
+      "mSpellCalculations": {
+        "RocketDamage": {
+          "DamageType": 0,
+          "mFormulaParts": [
+            {
+              "mStat": 2,
+              "mDataValue": "RocketTAD",
+              "__type": "StatByNamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
+      },
+      "cooldownTime": [
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421
+      ],
+      "mana": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "mCastTime": 0.25
+    },
+    "__type": "SpellObject"
+  },
+  "Characters/Jinx/Spells/JinxPassiveMarkerAbility/JinxPassiveMarker": {
+    "mScriptName": "JinxPassiveMarker",
+    "mSpell": {
+      "DataValues": [
+        {
+          "name": "BuffDuration",
+          "values": [
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "ASBuff",
+          "values": [
+            25,
+            25,
+            25,
+            25,
+            25,
+            25,
+            25
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "MSBuff",
+          "values": [
+            175,
+            175,
+            175,
+            175,
+            175,
+            175,
+            175
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "MSDecayRate",
+          "values": [
+            0.875,
+            0.875,
+            0.875,
+            0.875,
+            0.875,
+            0.875,
+            0.875
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "AssistMarkerDuration",
+          "values": [
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3
+          ],
+          "__type": "SpellDataValue"
+        }
+      ]
+    },
+    "__type": "SpellObject"
+  },
+  "Characters/Jinx/Spells/JinxRAbility/JinxR": {
+    "mScriptName": "JinxR",
+    "mSpell": {
+      "DataValues": [
+        {
+          "name": "BaseDamage",
+          "values": [
+            5,
+            20,
+            35,
+            50,
+            65,
+            80,
+            95
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "MaxDamage",
+          "values": [
+            50,
+            200,
+            350,
+            500,
+            650,
+            800,
+            950
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "PercentDamage",
+          "values": [
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "AoEDamageMult",
+          "values": [
+            0.800000011920929,
+            0.800000011920929,
+            0.800000011920929,
+            0.800000011920929,
+            0.800000011920929,
+            0.800000011920929,
+            0.800000011920929
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "MonsterExecuteMax",
+          "values": [
+            1200,
+            1200,
+            1200,
+            1200,
+            1200,
+            1200,
+            1200
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "AoERadius",
+          "values": [
+            400,
+            400,
+            400,
+            400,
+            400,
+            400,
+            400
+          ],
+          "__type": "SpellDataValue"
+        }
+      ],
+      "mSpellCalculations": {
+        "DamageFloor": {
+          "mFormulaParts": [
+            {
+              "mDataValue": "BaseDamage",
+              "__type": "NamedDataValueCalculationPart"
+            },
+            {
+              "mStat": 2,
+              "mStatFormula": 2,
+              "mCoefficient": 0.11999999731779099,
+              "__type": "StatByCoefficientCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "DamageMax": {
+          "mFormulaParts": [
+            {
+              "mDataValue": "MaxDamage",
+              "__type": "NamedDataValueCalculationPart"
+            },
+            {
+              "mStat": 2,
+              "mStatFormula": 2,
+              "mCoefficient": 1.2000000476837158,
+              "__type": "StatByCoefficientCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
+      },
+      "cooldownTime": [
+        85,
+        85,
+        65,
+        45,
+        45,
+        45,
+        45
+      ],
+      "mana": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "mCastTime": 0.6000000238418579
+    },
+    "__type": "SpellObject"
   }
 }

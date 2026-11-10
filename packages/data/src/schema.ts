@@ -18,6 +18,26 @@ export type AttackSlot = z.infer<typeof AttackSlot>;
 export const AbilityKey = z.enum(["Q", "W", "E", "R"]);
 export type AbilityKey = z.infer<typeof AbilityKey>;
 
+/** Per-rank lists hold ranks 1…maxRank in order (DATA-004). */
+export const Ability = z
+  .object({
+    maxRank: z.number().int().min(1),
+    cooldown: z.array(z.number().min(0)),
+    cost: z.array(z.number().min(0)),
+    castTime: z.number().min(0),
+    values: z.record(z.string(), z.array(z.number())),
+    /** Raw game formulas (ratios); normalized when the first kit needs them. */
+    calculations: z.record(z.string(), z.unknown()),
+  })
+  .refine(
+    (a) =>
+      [a.cooldown, a.cost, ...Object.values(a.values)].every(
+        (list) => list.length === a.maxRank,
+      ),
+    { message: "per-rank lists must have maxRank entries" },
+  );
+export type Ability = z.infer<typeof Ability>;
+
 export const ChampionData = z
   .object({
     id: z.string().min(1),
@@ -47,6 +67,12 @@ export const ChampionData = z
     }),
     /** Ability levelled at each champion level 1–18 (DATA-016). */
     skillOrder: z.array(AbilityKey).length(18),
+    abilities: z.object({ Q: Ability, W: Ability, E: Ability, R: Ability }),
+    passive: z.object({
+      /** Raw lists as in the game file (often per champion level). */
+      values: z.record(z.string(), z.array(z.number())),
+      calculations: z.record(z.string(), z.unknown()),
+    }),
   })
   .refine((c) => "basic" in c.attack.slots, {
     message: "missing basic attack slot",

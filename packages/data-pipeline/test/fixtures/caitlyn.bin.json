@@ -74,6 +74,619 @@
         "__type": "AttackSlotData"
       }
     ],
+    "spellNames": [
+      "CaitlynQAbility/CaitlynQ",
+      "CaitlynWAbility/CaitlynW",
+      "CaitlynEAbility/CaitlynE",
+      "CaitlynRAbility/CaitlynR"
+    ],
+    "mCharacterPassiveSpell": "Characters/Caitlyn/Spells/CaitlynPassiveAbility/CaitlynPassive",
     "__type": "CharacterRecord"
+  },
+  "Characters/Caitlyn/Spells/CaitlynPassiveAbility/CaitlynPassive": {
+    "mScriptName": "CaitlynPassive",
+    "mSpell": {
+      "DataValues": [
+        {
+          "name": "CriticalStrikeScaling",
+          "values": [
+            0.800000011920929,
+            0.800000011920929,
+            0.800000011920929,
+            0.800000011920929,
+            0.800000011920929,
+            0.800000011920929,
+            0.800000011920929
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "TowerCap",
+          "values": [
+            2.5,
+            2.5,
+            2.5,
+            2.5,
+            2.5,
+            2.5,
+            2.5
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "AttacksPerHeadshot",
+          "values": [
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "BrushStackBonus",
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "__type": "SpellDataValue"
+        }
+      ],
+      "mSpellCalculations": {
+        "HeadShotBonusDamage": {
+          "mFormulaParts": [
+            {
+              "mStat": 2,
+              "mSubpart": {
+                "mSubparts": [
+                  {
+                    "mLevel1Value": 0.6000000238418579,
+                    "mBreakpoints": [
+                      {
+                        "mLevel": 7,
+                        "mAdditionalBonusAtThisLevel": 0.10000000149011612,
+                        "__type": "Breakpoint"
+                      },
+                      {
+                        "mLevel": 13,
+                        "mAdditionalBonusAtThisLevel": 0.10000000149011612,
+                        "__type": "Breakpoint"
+                      }
+                    ],
+                    "__type": "ByCharLevelBreakpointsCalculationPart"
+                  },
+                  {
+                    "mPart1": {
+                      "mStat": 8,
+                      "mDataValue": "CriticalStrikeScaling",
+                      "__type": "StatByNamedDataValueCalculationPart"
+                    },
+                    "mPart2": {
+                      "mSubparts": [
+                        {
+                          "mStat": 9,
+                          "mCoefficient": 1,
+                          "__type": "StatByCoefficientCalculationPart"
+                        },
+                        {
+                          "mNumber": -1,
+                          "__type": "NumberCalculationPart"
+                        }
+                      ],
+                      "__type": "SumOfSubPartsCalculationPart"
+                    },
+                    "__type": "ProductOfSubPartsCalculationPart"
+                  }
+                ],
+                "__type": "SumOfSubPartsCalculationPart"
+              },
+              "__type": "StatBySubPartCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "HeadShotMinionBonusDamage": {
+          "mFormulaParts": [
+            {
+              "mStat": 2,
+              "mSubpart": {
+                "mSubparts": [
+                  {
+                    "mNumber": 1,
+                    "__type": "NumberCalculationPart"
+                  },
+                  {
+                    "mPart1": {
+                      "mNumber": -1,
+                      "__type": "NumberCalculationPart"
+                    },
+                    "mPart2": {
+                      "mLevel1Value": 0.5,
+                      "mBreakpoints": [
+                        {
+                          "mLevel": 7,
+                          "mAdditionalBonusAtThisLevel": 0.10000000149011612,
+                          "__type": "Breakpoint"
+                        },
+                        {
+                          "mLevel": 13,
+                          "mAdditionalBonusAtThisLevel": 0.10000000149011612,
+                          "__type": "Breakpoint"
+                        }
+                      ],
+                      "__type": "ByCharLevelBreakpointsCalculationPart"
+                    },
+                    "__type": "ProductOfSubPartsCalculationPart"
+                  }
+                ],
+                "__type": "SumOfSubPartsCalculationPart"
+              },
+              "__type": "StatBySubPartCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "BrushAttackTotal": {
+          "mSimpleTooltipCalculationDisplay": 5,
+          "mExpandedTooltipCalculationDisplay": 5,
+          "mFormulaParts": [
+            {
+              "mSubparts": [
+                {
+                  "mNumber": 1,
+                  "__type": "NumberCalculationPart"
+                },
+                {
+                  "mDataValue": "BrushStackBonus",
+                  "__type": "NamedDataValueCalculationPart"
+                }
+              ],
+              "__type": "SumOfSubPartsCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "{36ebd3cf}": {
+          "mFormulaParts": [
+            {
+              "mStat": 9,
+              "mCoefficient": 1,
+              "__type": "StatByCoefficientCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "{42962485}": {
+          "DamageType": 0,
+          "mFormulaParts": [
+            {
+              "mSubparts": [
+                {
+                  "mSpellCalculationKey": "HeadShotMinionBonusDamage",
+                  "__type": "{f3cbe7b2}"
+                },
+                {
+                  "mSpellCalculationKey": "HeadShotBonusDamage",
+                  "__type": "{f3cbe7b2}"
+                }
+              ],
+              "__type": "SumOfSubPartsCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
+      }
+    },
+    "__type": "SpellObject"
+  },
+  "Characters/Caitlyn/Spells/CaitlynEAbility/CaitlynE": {
+    "mScriptName": "CaitlynE",
+    "mSpell": {
+      "DataValues": [
+        {
+          "name": "Damage",
+          "values": [
+            30,
+            80,
+            130,
+            180,
+            230,
+            280,
+            330
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "SlowDuration",
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "SlowAmount",
+          "values": [
+            50,
+            50,
+            50,
+            50,
+            50,
+            50,
+            50
+          ],
+          "__type": "SpellDataValue"
+        }
+      ],
+      "mSpellCalculations": {
+        "NetDamage": {
+          "mFormulaParts": [
+            {
+              "mDataValue": "Damage",
+              "__type": "NamedDataValueCalculationPart"
+            },
+            {
+              "mCoefficient": 0.800000011920929,
+              "__type": "StatByCoefficientCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
+      },
+      "cooldownTime": [
+        18,
+        16,
+        14,
+        12,
+        10,
+        8,
+        6
+      ],
+      "mana": [
+        75,
+        75,
+        75,
+        75,
+        75,
+        75
+      ]
+    },
+    "__type": "SpellObject"
+  },
+  "Characters/Caitlyn/Spells/CaitlynWAbility/CaitlynW": {
+    "mScriptName": "CaitlynW",
+    "mSpell": {
+      "DataValues": [
+        {
+          "name": "BaseDamage",
+          "values": [
+            35,
+            35,
+            80,
+            125,
+            170,
+            215,
+            260
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "ADRatio",
+          "values": [
+            0.30000001192092896,
+            0.30000001192092896,
+            0.30000001192092896,
+            0.30000001192092896,
+            0.30000001192092896,
+            0.30000001192092896,
+            0.30000001192092896
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "TrapDuration",
+          "values": [
+            25,
+            30,
+            35,
+            40,
+            45,
+            50,
+            55
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "MaximumTraps",
+          "values": [
+            3,
+            3,
+            3,
+            4,
+            4,
+            5,
+            5
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "RootDuration",
+          "values": [
+            1.5,
+            1.5,
+            1.5,
+            1.5,
+            1.5,
+            1.5,
+            1.5
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "MaximumCharges",
+          "values": [
+            3,
+            3,
+            3,
+            4,
+            4,
+            5,
+            5
+          ],
+          "__type": "SpellDataValue"
+        }
+      ],
+      "mSpellCalculations": {
+        "HeadShotBonusDamage": {
+          "mFormulaParts": [
+            {
+              "mDataValue": "BaseDamage",
+              "__type": "NamedDataValueCalculationPart"
+            },
+            {
+              "mStat": 2,
+              "mStatFormula": 2,
+              "mDataValue": "ADRatio",
+              "__type": "StatByNamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
+      },
+      "cooldownTime": [
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "mana": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ]
+    },
+    "__type": "SpellObject"
+  },
+  "Characters/Caitlyn/Spells/CaitlynRAbility/CaitlynR": {
+    "mScriptName": "CaitlynR",
+    "mSpell": {
+      "DataValues": [
+        {
+          "name": "RBaseDamage",
+          "values": [
+            125,
+            300,
+            475,
+            650,
+            825,
+            1000,
+            1175
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "RADRatio",
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "CriticalStrikeModifier",
+          "values": [
+            0.30000001192092896,
+            0.30000001192092896,
+            0.30000001192092896,
+            0.30000001192092896,
+            0.30000001192092896,
+            0.30000001192092896,
+            0.30000001192092896
+          ],
+          "__type": "SpellDataValue"
+        }
+      ],
+      "mSpellCalculations": {
+        "RTotalDamage": {
+          "mMultiplier": {
+            "mSubparts": [
+              {
+                "mNumber": 1,
+                "__type": "NumberCalculationPart"
+              },
+              {
+                "mPart1": {
+                  "mStat": 8,
+                  "mDataValue": "CriticalStrikeModifier",
+                  "__type": "StatByNamedDataValueCalculationPart"
+                },
+                "mPart2": {
+                  "mSubparts": [
+                    {
+                      "mStat": 9,
+                      "mCoefficient": 1,
+                      "__type": "StatByCoefficientCalculationPart"
+                    },
+                    {
+                      "mNumber": -1,
+                      "__type": "NumberCalculationPart"
+                    }
+                  ],
+                  "__type": "SumOfSubPartsCalculationPart"
+                },
+                "__type": "ProductOfSubPartsCalculationPart"
+              }
+            ],
+            "__type": "SumOfSubPartsCalculationPart"
+          },
+          "mFormulaParts": [
+            {
+              "mDataValue": "RBaseDamage",
+              "__type": "NamedDataValueCalculationPart"
+            },
+            {
+              "mStat": 2,
+              "mStatFormula": 2,
+              "mDataValue": "RADRatio",
+              "__type": "StatByNamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
+      },
+      "cooldownTime": [
+        90,
+        90,
+        90,
+        90,
+        90,
+        90,
+        90
+      ],
+      "mana": [
+        100,
+        100,
+        100,
+        0,
+        0,
+        0
+      ]
+    },
+    "__type": "SpellObject"
+  },
+  "Characters/Caitlyn/Spells/CaitlynQAbility/CaitlynQ": {
+    "mScriptName": "CaitlynQ",
+    "mSpell": {
+      "DataValues": [
+        {
+          "name": "BaseDamage",
+          "values": [
+            5,
+            50,
+            95,
+            140,
+            185,
+            230,
+            275
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "SecondaryMult",
+          "values": [
+            0.6000000238418579,
+            0.6000000238418579,
+            0.6000000238418579,
+            0.6000000238418579,
+            0.6000000238418579,
+            0.6000000238418579,
+            0.6000000238418579
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "tADRatio",
+          "values": [
+            1.0499999523162842,
+            1.25,
+            1.4500000476837158,
+            1.649999976158142,
+            1.850000023841858,
+            2.049999952316284,
+            2.25
+          ],
+          "__type": "SpellDataValue"
+        }
+      ],
+      "mSpellCalculations": {
+        "InitialDamage": {
+          "mFormulaParts": [
+            {
+              "mDataValue": "BaseDamage",
+              "__type": "NamedDataValueCalculationPart"
+            },
+            {
+              "mStat": 2,
+              "mSubpart": {
+                "mDataValue": "tADRatio",
+                "__type": "NamedDataValueCalculationPart"
+              },
+              "__type": "StatBySubPartCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "SecondaryDamage": {
+          "mMultiplier": {
+            "mDataValue": "SecondaryMult",
+            "__type": "NamedDataValueCalculationPart"
+          },
+          "mModifiedGameCalculation": "InitialDamage",
+          "__type": "GameCalculationModified"
+        }
+      },
+      "cooldownTime": [
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        6
+      ],
+      "mana": [
+        55,
+        60,
+        65,
+        70,
+        75,
+        80
+      ]
+    },
+    "__type": "SpellObject"
   }
 }

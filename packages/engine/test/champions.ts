@@ -4,6 +4,14 @@ import type { GameConstants } from "../src/core/stats";
 
 const flat = (base: number) => ({ base, perLevel: 0 });
 const slot = { windupPercent: 0.2, windupModifier: 1 };
+const ability = (maxRank: number) => ({
+  maxRank,
+  cooldown: Array<number>(maxRank).fill(10),
+  cost: Array<number>(maxRank).fill(50),
+  castTime: 0.25,
+  values: {},
+  calculations: {},
+});
 
 /** Round numbers so expected values are easy to work out by hand (PLAN §8). */
 export const testChampion: ChampionData = {
@@ -33,6 +41,8 @@ export const testChampion: ChampionData = {
     ...["Q", "W", "E", "Q", "Q", "R", "Q", "W", "Q", "W", "R"],
     ...["W", "W", "E", "E", "R", "E", "E"],
   ] as ChampionData["skillOrder"],
+  abilities: { Q: ability(5), W: ability(5), E: ability(5), R: ability(3) },
+  passive: { values: {}, calculations: {} },
 };
 
 /** Jinx's real 16.22 stats (game file), for checks against the wiki. */

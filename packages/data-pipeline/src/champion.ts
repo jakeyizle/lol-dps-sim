@@ -1,7 +1,7 @@
 import type { AttackSlot } from "@lol/data";
 
-/** Removes float32 noise from game values (DATA-014). */
-export const round6 = (x: number) => Math.round(x * 1e6) / 1e6;
+import { normalizeAbilities } from "./ability";
+import { round6 } from "./round";
 
 /** The engine's default windup when a slot gives only a cast offset (DATA-011). */
 const BASE_WINDUP = 0.3;
@@ -37,6 +37,8 @@ interface RawCharacterRecord {
   basicAttack?: RawSlot;
   extraAttacks?: RawSlot[];
   critAttacks?: RawSlot[];
+  spellNames?: string[];
+  mCharacterPassiveSpell?: string;
 }
 
 /** Data Dragon gives regen per 5 seconds. */
@@ -202,6 +204,11 @@ export function normalizeChampion(
     record.critAttacks?.find((c) => c.mAttackName)?.mAttackName ?? "basic";
 
   const data = {
+    ...normalizeAbilities(
+      bin,
+      record.spellNames,
+      record.mCharacterPassiveSpell,
+    ),
     id: dd.id,
     key: Number(dd.key),
     name: dd.name,

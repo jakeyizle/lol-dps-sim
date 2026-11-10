@@ -20,7 +20,10 @@ const withRecord = (id: FixtureChampion, patch: Record<string, unknown>) => {
   const f = fixture(id);
   const [key, record] = Object.entries(f.bin)[0] ?? [];
   if (!key || !record) throw new Error("fixture has no record");
-  return { ddragon: f.ddragon, bin: { [key]: { ...record, ...patch } } };
+  return {
+    ddragon: f.ddragon,
+    bin: { ...f.bin, [key]: { ...record, ...patch } },
+  };
 };
 
 describe("real 16.22 champions", () => {

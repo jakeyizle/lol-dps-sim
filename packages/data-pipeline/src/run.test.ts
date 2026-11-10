@@ -74,7 +74,10 @@ describe("invalid data", { tags: ["DATA-006"] }, () => {
     const vayne = fixture("Vayne");
     const [key, record] = Object.entries(vayne.bin)[0] ?? [];
     if (!key || !record) throw new Error("fixture has no record");
-    const broken = { [key]: { ...record, critDamageMultiplier: undefined } };
+    const broken = {
+      ...vayne.bin,
+      [key]: { ...record, critDamageMultiplier: undefined },
+    };
     const { run, written } = setup(
       fakeFetch(undefined, {
         "https://raw.communitydragon.org/16.22/game/data/characters/vayne/vayne.bin.json":

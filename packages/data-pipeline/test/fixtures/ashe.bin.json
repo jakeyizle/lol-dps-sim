@@ -83,6 +83,513 @@
         "__type": "AttackSlotData"
       }
     ],
+    "spellNames": [
+      "AsheQAbility/AsheQ",
+      "VolleyAbility/Volley",
+      "AsheSpiritOfTheHawkAbility/AsheSpiritOfTheHawk",
+      "EnchantedCrystalArrowAbility/EnchantedCrystalArrow"
+    ],
+    "mCharacterPassiveSpell": "Characters/Ashe/Spells/AshePassiveAbility/AshePassive",
     "__type": "CharacterRecord"
+  },
+  "Characters/Ashe/Spells/AsheQAbility/AsheQ": {
+    "mScriptName": "AsheQ",
+    "mSpell": {
+      "DataValues": [
+        {
+          "name": "DamagePerStrike",
+          "values": [
+            1.0499999523162842,
+            1.100000023841858,
+            1.149999976158142,
+            1.2000000476837158,
+            1.25,
+            1.2999999523162842,
+            1.350000023841858
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "ShotsPerStrike",
+          "values": [
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "StackDuration",
+          "values": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "MaxStacks",
+          "values": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "BuffDuration",
+          "values": [
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "BonusAS",
+          "values": [
+            20,
+            20,
+            30,
+            40,
+            50,
+            60,
+            60
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "TimerDuration",
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "StackFalloffDuration",
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "__type": "SpellDataValue"
+        }
+      ],
+      "mSpellCalculations": {
+        "EmpoweredDamage": {
+          "mSimpleTooltipCalculationDisplay": 6,
+          "mFormulaParts": [
+            {
+              "mStat": 2,
+              "mDataValue": "DamagePerStrike",
+              "__type": "StatByNamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
+      },
+      "cooldownTime": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mana": [
+        30,
+        30,
+        30,
+        30,
+        30,
+        30
+      ]
+    },
+    "__type": "SpellObject"
+  },
+  "Characters/Ashe/Spells/EnchantedCrystalArrowAbility/EnchantedCrystalArrow": {
+    "mScriptName": "EnchantedCrystalArrow",
+    "mSpell": {
+      "DataValues": [
+        {
+          "name": "RBaseDamage",
+          "values": [
+            0,
+            200,
+            400,
+            600,
+            800,
+            1000,
+            1200
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "MinStunDuration",
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "MaxStunDuration",
+          "values": [
+            3.5,
+            3.5,
+            3.5,
+            3.5,
+            3.5,
+            3.5,
+            3.5
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "SlowRadius",
+          "values": [
+            400,
+            400,
+            400,
+            400,
+            400,
+            400,
+            400
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "AoECoefficient",
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "APRatio",
+          "values": [
+            1.2000000476837158,
+            1.2000000476837158,
+            1.2000000476837158,
+            1.2000000476837158,
+            1.2000000476837158,
+            1.2000000476837158,
+            1.2000000476837158
+          ],
+          "__type": "SpellDataValue"
+        }
+      ],
+      "mSpellCalculations": {
+        "RMainDamage": {
+          "mFormulaParts": [
+            {
+              "mDataValue": "RBaseDamage",
+              "__type": "NamedDataValueCalculationPart"
+            },
+            {
+              "mDataValue": "APRatio",
+              "__type": "StatByNamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        },
+        "{6b932875}": {
+          "mMultiplier": {
+            "mDataValue": "AoeCoefficient",
+            "__type": "NamedDataValueCalculationPart"
+          },
+          "mModifiedGameCalculation": "RMainDamage",
+          "__type": "GameCalculationModified"
+        }
+      },
+      "cooldownTime": [
+        100,
+        100,
+        80,
+        60,
+        60,
+        60,
+        60
+      ],
+      "mana": [
+        100,
+        100,
+        100,
+        0,
+        0,
+        0
+      ]
+    },
+    "__type": "SpellObject"
+  },
+  "Characters/Ashe/Spells/VolleyAbility/Volley": {
+    "mScriptName": "Volley",
+    "mSpell": {
+      "DataValues": [
+        {
+          "name": "BaseDamage",
+          "values": [
+            25,
+            60,
+            95,
+            130,
+            165,
+            200,
+            235
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "NumberOfArrowsTooltip",
+          "values": [
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "ADRatio",
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "__type": "SpellDataValue"
+        }
+      ],
+      "mSpellCalculations": {
+        "TotalDamage": {
+          "mSimpleTooltipCalculationDisplay": 6,
+          "mFormulaParts": [
+            {
+              "mDataValue": "BaseDamage",
+              "__type": "NamedDataValueCalculationPart"
+            },
+            {
+              "mStat": 2,
+              "mStatFormula": 2,
+              "mDataValue": "ADRatio",
+              "__type": "StatByNamedDataValueCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
+      },
+      "cooldownTime": [
+        18,
+        18,
+        14.5,
+        11,
+        7.5,
+        4,
+        4
+      ],
+      "mana": [
+        75,
+        70,
+        65,
+        60,
+        55,
+        50
+      ]
+    },
+    "__type": "SpellObject"
+  },
+  "Characters/Ashe/Spells/AsheSpiritOfTheHawkAbility/AsheSpiritOfTheHawk": {
+    "mScriptName": "AsheSpiritOfTheHawk",
+    "mSpell": {
+      "DataValues": [
+        {
+          "name": "BaseCooldown",
+          "values": [
+            100,
+            90,
+            80,
+            70,
+            60,
+            50,
+            40
+          ],
+          "__type": "SpellDataValue"
+        },
+        {
+          "name": "VisionDuration",
+          "values": [
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5
+          ],
+          "__type": "SpellDataValue"
+        }
+      ],
+      "mSpellCalculations": {
+        "ChargeCooldown": {
+          "mSimpleTooltipCalculationDisplay": 5,
+          "mExpandedTooltipCalculationDisplay": 5,
+          "tooltipOnly": true,
+          "mFormulaParts": [
+            {
+              "mPart1": {
+                "__type": "CooldownMultiplierCalculationPart"
+              },
+              "mPart2": {
+                "mDataValue": "BaseCooldown",
+                "__type": "NamedDataValueCalculationPart"
+              },
+              "__type": "ProductOfSubPartsCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
+      },
+      "cooldownTime": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ]
+    },
+    "__type": "SpellObject"
+  },
+  "Characters/Ashe/Spells/AshePassiveAbility/AshePassive": {
+    "mScriptName": "AshePassive",
+    "mSpell": {
+      "DataValues": [
+        {
+          "name": "SlowDuration",
+          "values": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "__type": "SpellDataValue"
+        }
+      ],
+      "mSpellCalculations": {
+        "SlowAmount": {
+          "mSimpleTooltipCalculationDisplay": 6,
+          "mFormulaParts": [
+            {
+              "mStartValue": 0.20000000298023224,
+              "mEndValue": 0.30000001192092896,
+              "__type": "ByCharLevelInterpolationCalculationPart"
+            }
+          ],
+          "mDisplayAsPercent": true,
+          "__type": "GameCalculation"
+        },
+        "EmpoweredSlowAmount": {
+          "mSimpleTooltipCalculationDisplay": 6,
+          "mFormulaParts": [
+            {
+              "mStartValue": 0.4000000059604645,
+              "mEndValue": 0.6000000238418579,
+              "__type": "ByCharLevelInterpolationCalculationPart"
+            }
+          ],
+          "mDisplayAsPercent": true,
+          "__type": "GameCalculation"
+        },
+        "DamageBonus": {
+          "mSimpleTooltipCalculationDisplay": 6,
+          "mFormulaParts": [
+            {
+              "mNumber": 1,
+              "__type": "NumberCalculationPart"
+            },
+            {
+              "mStat": 8,
+              "mSubpart": {
+                "mSubparts": [
+                  {
+                    "mNumber": 1,
+                    "__type": "NumberCalculationPart"
+                  },
+                  {
+                    "mStat": 9,
+                    "mStatFormula": 2,
+                    "mCoefficient": 1,
+                    "__type": "StatByCoefficientCalculationPart"
+                  }
+                ],
+                "__type": "SumOfSubPartsCalculationPart"
+              },
+              "__type": "StatBySubPartCalculationPart"
+            }
+          ],
+          "mDisplayAsPercent": true,
+          "__type": "GameCalculation"
+        },
+        "{da9201cc}": {
+          "mMultiplier": {
+            "mStat": 2,
+            "mCoefficient": 1,
+            "__type": "StatByCoefficientCalculationPart"
+          },
+          "DamageType": 0,
+          "mModifiedGameCalculation": "DamageBonus",
+          "__type": "GameCalculationModified"
+        }
+      }
+    },
+    "__type": "SpellObject"
   }
 }
