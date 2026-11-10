@@ -25,6 +25,17 @@ export const valueOverrides: Record<string, Record<string, unknown>> = {
   "3047": { values: { BasicDamageReduction: 0.1 } },
   // Guardian Angel: League Wiki (V25.15) revives after 4 s with 50% of base health.
   "3026": { values: { ReviveDelay: 4, ReviveBaseHealthRatio: 0.5 } },
+  Ashe: {
+    abilities: {
+      Q: {
+        // League Wiki (V26.10): "the first flurry adds a sixth arrow".
+        values: { FirstFlurryShots: [6, 6, 6, 6, 6] },
+      },
+      // League Wiki cast times; the game file's spells list 0.
+      W: { castTime: 0.25 },
+      R: { castTime: 0.25 },
+    },
+  },
   Caitlyn: {
     abilities: {
       // League Wiki (V26.21) cast times; the game file's spells list 0.

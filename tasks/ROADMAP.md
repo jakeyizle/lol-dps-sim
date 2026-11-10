@@ -90,7 +90,7 @@ Each milestone ends deployed, with its scenarios passing.
 ## M7 — Remaining champions (CAIT, ASHE, KAISA, VAYNE, ROT)
 
 - [x] Caitlyn
-- [ ] Ashe → T-039
+- [x] Ashe
 - [ ] Kai'Sa
 - [ ] Vayne
 - [ ] Rotation editor UI
