@@ -1,17 +1,23 @@
-import { ChampionsFile } from "@lol/data";
+import { ChampionsFile, Constants } from "@lol/data";
 import { describe, expect, it } from "vitest";
 
 import { fakeFetch, fixture } from "../test/fixtures";
 import { manifest } from "./manifest";
-import { PipelineError, runPipeline } from "./run";
+import {
+  defaultOverrides,
+  PipelineError,
+  runPipeline,
+  type Overrides,
+} from "./run";
 
-function setup(fetchJson = fakeFetch(), patch?: string) {
+function setup(fetchJson = fakeFetch(), patch?: string, overrides?: Overrides) {
   const written = new Map<string, string>();
   const run = () =>
     runPipeline({
       fetchJson,
       manifest,
       patch,
+      overrides,
       writeFile: (path, contents) => {
         written.set(path, contents);
         return Promise.resolve();
@@ -31,7 +37,10 @@ describe("patch selection", () => {
         patch: "16.22",
         ddragonVersion: "16.22.1",
       });
-      expect([...written.keys()]).toEqual(["16.22/champions.json"]);
+      expect([...written.keys()]).toEqual([
+        "16.22/champions.json",
+        "16.22/constants.json",
+      ]);
     },
   );
 
@@ -80,6 +89,63 @@ describe("invalid data", { tags: ["DATA-006"] }, () => {
     ]);
     expect(written.size).toBe(0);
   });
+});
+
+describe("overrides", () => {
+  const overrides = (over: Partial<Overrides> = {}): Overrides => ({
+    ...defaultOverrides,
+    ...over,
+  });
+  const champion = async (o: Overrides, id = "Vayne") => {
+    const { run, written } = setup(fakeFetch(), undefined, o);
+    await run();
+    return ChampionsFile.parse(
+      JSON.parse(written.get("16.22/champions.json") ?? ""),
+    ).champions[id];
+  };
+
+  it("replace generated values", { tags: ["DATA-005"] }, async () => {
+    const c = await champion(
+      overrides({
+        values: { Vayne: { attack: { attackSpeedRatio: 0.7 } } },
+      }),
+    );
+    expect(c?.attack.attackSpeedRatio).toBe(0.7);
+    // untouched siblings survive the merge
+    expect(c?.attack.baseAttackSpeed).toBe(0.658);
+  });
+
+  it("write game constants for the patch", { tags: ["DATA-015"] }, async () => {
+    const { run, written } = setup();
+    await run();
+    expect(
+      Constants.parse(JSON.parse(written.get("16.22/constants.json") ?? "")),
+    ).toEqual({ patch: "16.22", ...defaultOverrides.constants });
+  });
+
+  it("add each champion's skill order", { tags: ["DATA-016"] }, async () => {
+    const c = await champion(defaultOverrides, "Jinx");
+    expect(c?.skillOrder.join(" ")).toBe("Q W E Q Q R Q W Q W R W W E E R E E");
+  });
+
+  it(
+    "fail the run when a champion has no skill order",
+    { tags: ["DATA-016"] },
+    async () => {
+      const rest = Object.fromEntries(
+        Object.entries(defaultOverrides.skillOrders).filter(
+          ([id]) => id !== "Vayne",
+        ),
+      );
+      const { run, written } = setup(
+        fakeFetch(),
+        undefined,
+        overrides({ skillOrders: rest }),
+      );
+      await expect(run()).rejects.toThrow(/Vayne: no skill order/);
+      expect(written.size).toBe(0);
+    },
+  );
 });
 
 it("writes a valid champions file for every manifest champion", async () => {

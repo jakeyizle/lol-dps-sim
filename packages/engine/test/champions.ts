@@ -29,6 +29,10 @@ export const testChampion: ChampionData = {
     slots: { basic: slot },
     critSlot: "basic",
   },
+  skillOrder: [
+    ...["Q", "W", "E", "Q", "Q", "R", "Q", "W", "Q", "W", "R"],
+    ...["W", "W", "E", "E", "R", "E", "E"],
+  ] as ChampionData["skillOrder"],
 };
 
 /** Jinx's real 16.22 stats (game file), for checks against the wiki. */

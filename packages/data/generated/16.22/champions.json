@@ -75,7 +75,27 @@
           }
         },
         "critSlot": "JinxCritAttack"
-      }
+      },
+      "skillOrder": [
+        "Q",
+        "W",
+        "E",
+        "Q",
+        "Q",
+        "R",
+        "Q",
+        "W",
+        "Q",
+        "W",
+        "R",
+        "W",
+        "W",
+        "E",
+        "E",
+        "R",
+        "E",
+        "E"
+      ]
     },
     "Caitlyn": {
       "id": "Caitlyn",
@@ -135,7 +155,27 @@
           }
         },
         "critSlot": "CaitlynCritAttack"
-      }
+      },
+      "skillOrder": [
+        "Q",
+        "W",
+        "E",
+        "Q",
+        "Q",
+        "R",
+        "Q",
+        "W",
+        "Q",
+        "W",
+        "R",
+        "W",
+        "W",
+        "E",
+        "E",
+        "R",
+        "E",
+        "E"
+      ]
     },
     "Ashe": {
       "id": "Ashe",
@@ -199,7 +239,27 @@
           }
         },
         "critSlot": "AsheCritAttack"
-      }
+      },
+      "skillOrder": [
+        "W",
+        "Q",
+        "E",
+        "W",
+        "W",
+        "R",
+        "W",
+        "Q",
+        "W",
+        "Q",
+        "R",
+        "Q",
+        "Q",
+        "E",
+        "E",
+        "R",
+        "E",
+        "E"
+      ]
     },
     "Kaisa": {
       "id": "Kaisa",
@@ -323,7 +383,27 @@
           }
         },
         "critSlot": "KaisaCritAttack"
-      }
+      },
+      "skillOrder": [
+        "Q",
+        "W",
+        "E",
+        "Q",
+        "Q",
+        "R",
+        "Q",
+        "E",
+        "Q",
+        "E",
+        "R",
+        "E",
+        "E",
+        "W",
+        "W",
+        "R",
+        "W",
+        "W"
+      ]
     },
     "Vayne": {
       "id": "Vayne",
@@ -395,7 +475,27 @@
           }
         },
         "critSlot": "VayneCritAttack"
-      }
+      },
+      "skillOrder": [
+        "Q",
+        "W",
+        "E",
+        "Q",
+        "Q",
+        "R",
+        "Q",
+        "W",
+        "Q",
+        "W",
+        "R",
+        "W",
+        "W",
+        "E",
+        "E",
+        "R",
+        "E",
+        "E"
+      ]
     }
   }
 }

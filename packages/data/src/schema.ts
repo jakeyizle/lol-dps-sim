@@ -15,6 +15,9 @@ export const AttackSlot = z.object({
 });
 export type AttackSlot = z.infer<typeof AttackSlot>;
 
+export const AbilityKey = z.enum(["Q", "W", "E", "R"]);
+export type AbilityKey = z.infer<typeof AbilityKey>;
+
 export const ChampionData = z
   .object({
     id: z.string().min(1),
@@ -42,6 +45,8 @@ export const ChampionData = z
       /** Name of the default crit attack slot. */
       critSlot: z.string(),
     }),
+    /** Ability levelled at each champion level 1–18 (DATA-016). */
+    skillOrder: z.array(AbilityKey).length(18),
   })
   .refine((c) => "basic" in c.attack.slots, {
     message: "missing basic attack slot",
@@ -61,3 +66,11 @@ export const ChampionsFile = z.object({
   champions: z.record(z.string(), ChampionData),
 });
 export type ChampionsFile = z.infer<typeof ChampionsFile>;
+
+/** Game-wide rules a patch can change (DATA-015). */
+export const Constants = z.object({
+  patch: Patch,
+  attackSpeedCap: z.number().positive(),
+  baseCritMultiplier: z.number().min(1),
+});
+export type Constants = z.infer<typeof Constants>;

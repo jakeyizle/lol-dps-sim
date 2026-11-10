@@ -4,10 +4,15 @@ import { describe, expect, it } from "vitest";
 import { fixture, MANIFEST_IDS, type FixtureChampion } from "../test/fixtures";
 import { normalizeChampion } from "./champion";
 
+/** The pipeline adds skill orders from overrides; any valid order will do here. */
+const skillOrder = Array.from({ length: 18 }, () => "Q");
+const parse = (data: unknown) =>
+  ChampionData.parse({ ...(data as object), skillOrder });
+
 const normalize = (id: FixtureChampion) => {
   const f = fixture(id);
   const result = normalizeChampion(f.ddragon, f.bin, id);
-  return { ...result, data: ChampionData.parse(result.data) };
+  return { ...result, data: parse(result.data) };
 };
 
 /** Fixture CharacterRecord with some fields replaced. */
@@ -57,9 +62,7 @@ describe("windup", () => {
         mAttackDelayCastOffsetPercentAttackSpeedRatio: 0.5,
       },
     });
-    const data = ChampionData.parse(
-      normalizeChampion(f.ddragon, f.bin, "Ashe").data,
-    );
+    const data = parse(normalizeChampion(f.ddragon, f.bin, "Ashe").data);
     expect(data.attack.slots.basic?.windupModifier).toBe(0.5);
   });
 

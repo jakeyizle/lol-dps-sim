@@ -1,8 +1,13 @@
-import { ChampionData, ChampionsFile } from "@lol/data";
+import { ChampionData, ChampionsFile, Constants } from "@lol/data";
 import type { z } from "zod";
 
+import { constants } from "../overrides/constants";
+import { skillOrders } from "../overrides/skill-orders";
+import { valueOverrides } from "../overrides/values";
 import { normalizeChampion } from "./champion";
 import type { Manifest } from "./manifest";
+import { deepMerge } from "./merge";
+import { expandSkillOrder, type SkillPlan } from "./skill-order";
 import { resolvePatch } from "./patch";
 import {
   cdragonCharacterUrl,
@@ -12,6 +17,19 @@ import {
 } from "./sources";
 
 export type WriteFile = (path: string, contents: string) => Promise<void>;
+
+/** Hand-authored data (PLAN §5); tests pass their own. */
+export interface Overrides {
+  constants: Omit<Constants, "patch">;
+  skillOrders: Record<string, SkillPlan>;
+  values: Record<string, Record<string, unknown>>;
+}
+
+export const defaultOverrides: Overrides = {
+  constants,
+  skillOrders,
+  values: valueOverrides,
+};
 
 export class PipelineError extends Error {
   constructor(readonly problems: string[]) {
@@ -49,7 +67,9 @@ export async function runPipeline(opts: {
   writeFile: WriteFile;
   manifest: Manifest;
   patch?: string;
+  overrides?: Overrides;
 }) {
+  const overrides = opts.overrides ?? defaultOverrides;
   const { ddragonVersion, patch } = await resolvePatch(
     opts.fetchJson,
     opts.patch,
@@ -63,10 +83,18 @@ export async function runPipeline(opts: {
       ddragonChampionUrl(ddragonVersion, id),
     );
     const bin = await fetchGameFile(opts.fetchJson, patch, gameName);
+    const plan = overrides.skillOrders[id];
+    if (!plan) {
+      problems.push(`${id}: no skill order in overrides/skill-orders.ts`);
+      continue;
+    }
     let raw: unknown;
     try {
       const normalized = normalizeChampion(ddragon, bin, id);
-      raw = normalized.data;
+      raw = deepMerge(
+        { ...(normalized.data as object), skillOrder: expandSkillOrder(plan) },
+        overrides.values[id] ?? {},
+      );
       warnings.push(...normalized.warnings);
     } catch (e) {
       problems.push(`${id}: ${(e as Error).message}`);
@@ -77,12 +105,18 @@ export async function runPipeline(opts: {
     else problems.push(...issues(id, parsed.error));
   }
 
-  if (problems.length) throw new PipelineError(problems);
-  const file = ChampionsFile.parse({ patch, champions });
+  const constantsFile = Constants.safeParse({ patch, ...overrides.constants });
+  if (!constantsFile.success)
+    problems.push(...issues("constants", constantsFile.error));
+
+  if (problems.length || !constantsFile.success)
+    throw new PipelineError(problems);
+  const json = (v: unknown) => `${JSON.stringify(v, null, 2)}\n`;
   await opts.writeFile(
     `${patch}/champions.json`,
-    `${JSON.stringify(file, null, 2)}\n`,
+    json(ChampionsFile.parse({ patch, champions })),
   );
+  await opts.writeFile(`${patch}/constants.json`, json(constantsFile.data));
   return {
     patch,
     ddragonVersion,
