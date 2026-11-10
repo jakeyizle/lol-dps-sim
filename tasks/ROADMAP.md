@@ -67,10 +67,10 @@ Each milestone ends deployed, with its scenarios passing.
 
 ## M4 — First usable UI (METRIC, BUILD)
 
-- [ ] Metrics from trace: TTK, DPS run + windows, curve, breakdown
-- [ ] Build editor: champion, level, skills, items, gold, attacker health, game time, stats panel
-- [ ] Single build vs. dummy results: table, curve, event log
-- [ ] Sim worker (Comlink), debounced recompute
+- [ ] Metrics from trace: TTK, DPS run + windows, curve, breakdown → T-024
+- [ ] Build editor: champion, level, skills, items, gold, attacker health, game time, stats panel → T-025, T-026
+- [ ] Single build vs. dummy results: table, curve, event log → T-027
+- [ ] Sim worker (Comlink), debounced recompute → T-028
 
 ## M5 — Runes & targets (RUNE, TGT)
 
