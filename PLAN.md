@@ -34,10 +34,10 @@ Behavior is specified as Given/When/Then scenarios in `scenarios/*.md`, one file
 
 Every test that verifies a scenario carries the scenario ID as a tag. A test may cover several scenarios; a scenario may be covered at several levels. Tags must be string literals (the check scans source); for table-driven tests, tag the enclosing `describe`.
 
-| Runner             | Syntax                                                 |
-| ------------------ | ------------------------------------------------------ |
-| Playwright (≥1.42) | `test('crit ev', { tag: '@DMG-006' }, async () => …)`  |
-| Vitest (≥4.1)      | `test('crit ev', { tags: ['DMG-006'] }, () => …)`      |
+| Runner             | Syntax                                                |
+| ------------------ | ----------------------------------------------------- |
+| Playwright (≥1.42) | `test('crit ev', { tag: '@DMG-006' }, async () => …)` |
+| Vitest (≥4.1)      | `test('crit ev', { tags: ['DMG-006'] }, () => …)`     |
 
 `vitest.config.ts` builds `test.tags` by parsing `scenarios/*.md` (shared parser in `scripts/scenarios.ts`, ported from mmr-groups), so a test referencing a nonexistent ID fails (`strictTags`). Filtering: `vitest --tags-filter=DMG-006`, `playwright test --grep @DMG-006`.
 
@@ -51,25 +51,25 @@ Every test that verifies a scenario carries the scenario ID as a tag. A test may
 
 ### Scenario files
 
-| File              | Prefix | Covers                                                        |
-| ----------------- | ------ | ------------------------------------------------------------- |
-| `data.md`         | DATA   | Patch data pipeline, validation, drift check                  |
-| `stats.md`        | STAT   | Champion stats from level, items, runes, shards, buffs        |
-| `damage.md`       | DMG    | Damage pipeline: crit, amps, resistances, pen, reductions     |
-| `sim.md`          | SIM    | Event loop, attack timing, end conditions, determinism, RNG   |
-| `rotation.md`     | ROT    | Rotation rules, defaults, editing                             |
-| `items.md`        | ITEM   | Attacker item effects                                         |
-| `runes.md`        | RUNE   | Rune and shard effects                                        |
-| `target.md`       | TGT    | Target setup, dummy, overrides, defensive effects             |
-| `metrics.md`      | METRIC | TTK, DPS windows, damage curve, breakdown, event log          |
-| `compare.md`      | CMP    | Side-by-side, item-count timeline, build × target matrix      |
-| `builder.md`      | BUILD  | Build editing, stacks, gold, settings, stats panel            |
-| `persistence.md`  | SAVE   | localStorage, share URLs, patch versions                      |
-| `jinx.md`         | JINX   | Jinx kit + default rotation                                   |
-| `caitlyn.md`      | CAIT   | Caitlyn kit + default rotation                                |
-| `ashe.md`         | ASHE   | Ashe kit + default rotation                                   |
-| `kaisa.md`        | KAISA  | Kai'Sa kit + default rotation                                 |
-| `vayne.md`        | VAYNE  | Vayne kit + default rotation                                  |
+| File             | Prefix | Covers                                                      |
+| ---------------- | ------ | ----------------------------------------------------------- |
+| `data.md`        | DATA   | Patch data pipeline, validation, drift check                |
+| `stats.md`       | STAT   | Champion stats from level, items, runes, shards, buffs      |
+| `damage.md`      | DMG    | Damage pipeline: crit, amps, resistances, pen, reductions   |
+| `sim.md`         | SIM    | Event loop, attack timing, end conditions, determinism, RNG |
+| `rotation.md`    | ROT    | Rotation rules, defaults, editing                           |
+| `items.md`       | ITEM   | Attacker item effects                                       |
+| `runes.md`       | RUNE   | Rune and shard effects                                      |
+| `target.md`      | TGT    | Target setup, dummy, overrides, defensive effects           |
+| `metrics.md`     | METRIC | TTK, DPS windows, damage curve, breakdown, event log        |
+| `compare.md`     | CMP    | Side-by-side, item-count timeline, build × target matrix    |
+| `builder.md`     | BUILD  | Build editing, stacks, gold, settings, stats panel          |
+| `persistence.md` | SAVE   | localStorage, share URLs, patch versions                    |
+| `jinx.md`        | JINX   | Jinx kit + default rotation                                 |
+| `caitlyn.md`     | CAIT   | Caitlyn kit + default rotation                              |
+| `ashe.md`        | ASHE   | Ashe kit + default rotation                                 |
+| `kaisa.md`       | KAISA  | Kai'Sa kit + default rotation                               |
+| `vayne.md`       | VAYNE  | Vayne kit + default rotation                                |
 
 ---
 
@@ -97,17 +97,17 @@ Every test that verifies a scenario carries the scenario ID as a tag. A test may
 
 ## 3. Stack
 
-| Concern        | Choice                                                           |
-| -------------- | ---------------------------------------------------------------- |
-| Language       | TypeScript (strict) everywhere                                   |
-| Monorepo       | pnpm workspaces                                                  |
-| Web            | React + Vite, Tailwind, Zustand (`persist`), Recharts            |
-| Heavy compute  | Web Workers via Comlink, pool sized to `hardwareConcurrency`     |
-| Validation     | zod (generated data, URL and localStorage payloads)              |
-| Tests          | Vitest 4.1 (projects: engine, data, scripts, web/jsdom), Playwright |
-| Mutation       | Stryker (`mutate:changed`), from M9                              |
-| Scripts        | Node (type stripping) / `tsx`                                    |
-| Hosting        | GitHub Pages (static)                                            |
+| Concern       | Choice                                                              |
+| ------------- | ------------------------------------------------------------------- |
+| Language      | TypeScript (strict) everywhere                                      |
+| Monorepo      | pnpm workspaces                                                     |
+| Web           | React + Vite, Tailwind, Zustand (`persist`), Recharts               |
+| Heavy compute | Web Workers via Comlink, pool sized to `hardwareConcurrency`        |
+| Validation    | zod (generated data, URL and localStorage payloads)                 |
+| Tests         | Vitest 4.1 (projects: engine, data, scripts, web/jsdom), Playwright |
+| Mutation      | Stryker (`mutate:changed`), from M9                                 |
+| Scripts       | Node (type stripping) / `tsx`                                       |
+| Hosting       | GitHub Pages (static)                                               |
 
 ## 4. Layout
 
@@ -128,12 +128,12 @@ The engine stays free of UI and fetching so it runs in workers, tests and a poss
 
 **Sources** (checked 2026-11-09; live patch 16.22.1):
 
-| Source              | Used for                                                                                                                                                                                               |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Data Dragon         | Patch list, champion base stats + growth, item gold + stats, icons. Tooltips have no numbers. The old `champion-data/` (16.2.1) is replaced.                                                            |
-| CommunityDragon     | Fetched from the **patch's own folder** (`raw.communitydragon.org/<major.minor>/`), never `latest` (DATA-010). `characters/<c>/<c>.bin.json`: windup per attack slot (normal, crit, alternate) as either `mAttackCastTime / mAttackTotalTime` (e.g. Jinx) or `0.3 + mAttackDelayCastOffsetPercent` (e.g. Caitlyn, Ashe, Vayne), windup modifier `mAttackDelayCastOffsetPercentAttackSpeedRatio` (default 1), `attackSpeedRatioModifiable`, `critDamageMultiplier` (Ashe is 1.0), spell `DataValues` per rank (index 0 = rank 0), spell calculations; item and rune bins for passive values. Raw floats are rounded. |
-| League Wiki         | Manual reference for scenarios, test fixtures and `overrides/`. Not scraped.                                                                                                                           |
-| Meraki Analytics    | Not used: stale since 15.9.                                                                                                                                                                            |
+| Source           | Used for                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Data Dragon      | Patch list, champion base stats + growth, item gold + stats, icons. Tooltips have no numbers. The old `champion-data/` (16.2.1) is replaced.                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| CommunityDragon  | Fetched from the **patch's own folder** (`raw.communitydragon.org/<major.minor>/`), never `latest` (DATA-010). `characters/<c>/<c>.bin.json`: windup per attack slot (normal, crit, alternate) as either `mAttackCastTime / mAttackTotalTime` (e.g. Jinx) or `0.3 + mAttackDelayCastOffsetPercent` (e.g. Caitlyn, Ashe, Vayne), windup modifier `mAttackDelayCastOffsetPercentAttackSpeedRatio` (default 1), `attackSpeedRatioModifiable`, `critDamageMultiplier` (Ashe is 1.0), spell `DataValues` per rank (index 0 = rank 0), spell calculations; item and rune bins for passive values. Raw floats are rounded. |
+| League Wiki      | Manual reference for scenarios, test fixtures and `overrides/`. Not scraped.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Meraki Analytics | Not used: stale since 15.9.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 
 `pnpm data:update [patch]`: fetch only what the manifest lists → normalize to `ChampionData` / `ItemData` / `RuneData` / `Constants` → merge `overrides/` (game constants like the attack speed cap and base crit multiplier, hand-authored skill orders, corrections) → zod-validate → write `generated/<major.minor>/` → print drift report vs. the previous patch. Effect code reads values **by name** (`item.values.damagePerStack`); missing keys fail the run (DATA scenarios). Balance patch = re-run script; mechanic rework = scenario change, then code.
 
@@ -163,12 +163,12 @@ The engine stays free of UI and fetching so it runs in workers, tests and a poss
 
 ## 8. Testing
 
-| Level     | Tool                               | Covers                                                                            |
-| --------- | ---------------------------------- | --------------------------------------------------------------------------------- |
-| Unit      | Vitest (`engine`, `data` projects) | stats, damage math, event loop, effects, rotations, pipeline normalization        |
-| Golden    | Vitest                             | per-champion full sims: metrics + event-log snapshot; changes reviewed on purpose |
-| Component | Vitest (`web`, jsdom + Testing Library) | editors, results views, store, URL codec                                     |
-| E2E       | Playwright                         | build → compare → share link round trip; timeline; matrix                         |
+| Level     | Tool                                    | Covers                                                                            |
+| --------- | --------------------------------------- | --------------------------------------------------------------------------------- |
+| Unit      | Vitest (`engine`, `data` projects)      | stats, damage math, event loop, effects, rotations, pipeline normalization        |
+| Golden    | Vitest                                  | per-champion full sims: metrics + event-log snapshot; changes reviewed on purpose |
+| Component | Vitest (`web`, jsdom + Testing Library) | editors, results views, store, URL codec                                          |
+| E2E       | Playwright                              | build → compare → share link round trip; timeline; matrix                         |
 
 - Pick the lowest level that genuinely verifies a scenario.
 - Engine tests use fixture data with round numbers, not live patch data, so balance patches never break them. A separate `data` test loads the real generated patch and runs one smoke sim per champion.

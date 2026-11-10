@@ -33,7 +33,7 @@ Each milestone ends deployed, with its scenarios passing.
 
 ## M0 — Foundation
 
-- [ ] pnpm monorepo, TS strict base, ESLint + Prettier, `packages/engine` skeleton with Vitest → T-001
+- [x] pnpm monorepo, TS strict base, ESLint + Prettier, `packages/engine` skeleton with Vitest
 - [ ] Scenario parser + `scenarios:check` + Vitest tag config (port from mmr-groups) → T-002
 - [ ] Vite + React app shell, GitHub Actions checks + GitHub Pages deploy → T-003
 - [ ] Playwright harness against `vite preview`
