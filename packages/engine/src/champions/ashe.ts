@@ -199,5 +199,15 @@ export function ashe(
   }
 
   rotation.push({ action: "attack" });
-  return { abilities, kit, rotation };
+  const buffs =
+    ranks.Q > 0
+      ? [
+          {
+            id: ASHE_FOCUS,
+            label: "Focus",
+            max: at(Q.values.MaxStacks, ranks.Q, "Q MaxStacks"),
+          },
+        ]
+      : [];
+  return { abilities, kit, rotation, buffs };
 }

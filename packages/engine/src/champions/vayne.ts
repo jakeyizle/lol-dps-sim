@@ -196,5 +196,15 @@ export function vayne(
   if (ranks.Q > 0)
     rotation.push({ action: "Q", when: [{ kind: "afterAttack" }] });
   rotation.push({ action: "attack" });
-  return { abilities, kit, rotation };
+  const buffs =
+    ranks.W > 0
+      ? [
+          {
+            id: VAYNE_SILVER_BOLTS,
+            label: "Silver Bolts",
+            max: BOLTS_TO_PROC - 1,
+          },
+        ]
+      : [];
+  return { abilities, kit, rotation, buffs };
 }

@@ -231,5 +231,6 @@ export function caitlyn(
   }
 
   rotation.push({ action: "attack" });
-  return { abilities, kit, rotation };
+  const buffs = [{ id: STACKS, label: "Headshot stacks", max: maxStacks }];
+  return { abilities, kit, rotation, buffs };
 }
