@@ -1,5 +1,6 @@
 import type { ChampionData, ItemData } from "@lol/data";
 
+import { flatValues, isRanged } from "../core/calc";
 import type { Effect } from "../core/effects";
 import type { GameConstants, StatBonuses } from "../core/stats";
 import {
@@ -94,6 +95,30 @@ const EFFECTS: Partial<Record<string, MakeEffect>> = {
   [FIENDHUNTER_BOLTS]: fiendhunterBolts,
   [ESSENCE_REAVER]: essenceReaver,
 };
+
+export interface LongTermStack {
+  /** The `stacks` key (item id). */
+  id: string;
+  label: string;
+  max: number;
+}
+
+/** BUILD-007: the item's long-term stack input, if it has one. */
+export function longTermStack(
+  item: ItemData,
+  owner: ChampionData,
+): LongTermStack | undefined {
+  if (item.id !== YUN_TAL_WILDARROWS) return undefined;
+  const value = flatValues(item.values);
+  const perStack =
+    value("CritPerStackMelee") *
+    (isRanged(owner) ? value("StackRangedMultiplier") : 1);
+  return {
+    id: item.id,
+    label: `${item.name} stacks`,
+    max: Math.ceil(value("CritMax") / perStack),
+  };
+}
 
 /** The item's stats as engine bonuses (STAT-002). */
 export function itemStats(item: ItemData): StatBonuses {
