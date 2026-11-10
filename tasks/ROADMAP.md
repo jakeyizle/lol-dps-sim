@@ -99,13 +99,13 @@ Each milestone ends deployed, with its scenarios passing.
 
 - [x] localStorage + schema migrations (incl. user target presets, TGT-005)
 - [x] Share URLs, patch notices, removed-item handling
-- [ ] README with disclaimer; E2E journeys; `scenarios:check --strict` in CI
+- [ ] README with disclaimer; E2E journeys; `scenarios:check --strict` in CI → T-045
 
 ## M9 — Mutation testing (PLAN §8)
 
-- [ ] Stryker on engine + `mutate:changed` PR job
-- [ ] Audit: engine
-- [ ] Web project in mutation scope; audit: web
+- [ ] Stryker on engine + `mutate:changed` PR job → T-046
+- [ ] Audit: engine → T-047
+- [ ] Web project in mutation scope; audit: web → T-048
 
 ## M10 — Scenario fidelity (optional, PLAN §8)
 
