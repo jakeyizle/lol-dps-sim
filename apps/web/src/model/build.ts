@@ -28,6 +28,8 @@ export interface Build {
   healthFraction: number;
   /** CMP-003: level per item-timeline step (index 0 = first item); missing = build level. */
   timelineLevels?: number[];
+  /** SAVE-005: the patch the build was made on. */
+  patch?: string;
 }
 
 export const MAX_LEVEL = 18;

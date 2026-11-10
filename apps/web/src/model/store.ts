@@ -33,10 +33,34 @@ export interface AppState {
   /** Saves the current target under `name`, replacing a preset of that name. */
   saveTargetPreset: (name: string) => void;
   setSettings: (settings: Partial<Settings>) => void;
+  /** SAVE-004–006: messages about loaded or shared data, shown until dismissed. */
+  notices: string[];
+  dismissNotices: () => void;
 }
+
+/** The parts of the state that are saved (SAVE-001). */
+export type SavedFields = Pick<
+  AppState,
+  | "builds"
+  | "compared"
+  | "target"
+  | "matrixTargets"
+  | "targetPresets"
+  | "settings"
+>;
+
+export const savedFields = (s: AppState): SavedFields => ({
+  builds: s.builds,
+  compared: s.compared,
+  target: s.target,
+  matrixTargets: s.matrixTargets,
+  targetPresets: s.targetPresets,
+  settings: s.settings,
+});
 
 export function createAppStore(
   makeId: () => string = () => crypto.randomUUID(),
+  init: { patch?: string; saved?: SavedFields; notices?: string[] } = {},
 ) {
   return createStore<AppState>()((set, get) => ({
     builds: [],
@@ -45,8 +69,13 @@ export function createAppStore(
     targetPresets: [],
     matrixTargets: [],
     settings: defaultSettings,
+    ...init.saved,
+    notices: init.notices ?? [],
+    dismissNotices: () => {
+      set({ notices: [] });
+    },
     addBuild: (champion) => {
-      const build = newBuild(makeId(), champion);
+      const build = { ...newBuild(makeId(), champion), patch: init.patch };
       set((s) => ({
         builds: [...s.builds, build],
         compared: [...s.compared, build.id],
