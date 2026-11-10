@@ -8,13 +8,14 @@
     "build": "pnpm --filter @lol/web build",
     "lint": "eslint . && prettier --check .",
     "typecheck": "tsc --noEmit && pnpm -r --if-present typecheck",
-    "test": "vitest run",
+    "test": "vitest run --project=!bench",
     "scenarios:check": "node scripts/check-scenarios.ts",
     "data:update": "tsx packages/data-pipeline/src/cli.ts",
     "format": "prettier --write .",
     "test:e2e": "pnpm --filter @lol/web test:e2e",
     "mutate": "stryker run",
-    "mutate:changed": "node scripts/mutate-changed.ts"
+    "mutate:changed": "node scripts/mutate-changed.ts",
+    "test:bench": "vitest run --project=bench"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

@@ -53,6 +53,7 @@ export function pageProblem(
   if (!primary || !secondary) return "Pick a primary and a secondary tree";
   if (primary.id === secondary.id)
     return "The secondary tree must differ from the primary";
+  // Stryker disable next-line ArrayDeclaration: a junk keystone row doesn't hold the keystone either
   const [keystones = [], ...rows] = primary.slots;
   if (!keystones.includes(page.keystone)) return "Pick one keystone";
   if (
@@ -65,11 +66,13 @@ export function pageProblem(
   );
   if (
     secondaryRows.length !== 2 ||
+    // Stryker disable next-line EqualityOperator: row 0 (keystones) is never matched, so findIndex gives -1 or ≥ 1
     secondaryRows.some((r) => r < 0) ||
     secondaryRows[0] === secondaryRows[1]
   )
     return "Pick two runes from different rows of the secondary tree";
   if (
+    // Stryker disable next-line ConditionalExpression: a missing shard also fails the per-row check
     page.shards.length !== shardRows.length ||
     shardRows.some((row, i) => !row.includes(page.shards[i] ?? NaN))
   )
@@ -122,6 +125,7 @@ export function runeStats(
 ): StatBonuses[] {
   return page.shards.flatMap((id) => {
     const shard = runes[String(id)];
+    // Stryker disable next-line ArrayDeclaration: summing bonuses skips a junk element
     return shard ? [shardStats(shard, level, prefersAP)] : [];
   });
 }

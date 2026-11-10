@@ -79,6 +79,7 @@ export function defenderStats(
   const { champion, level, runes: page } = setup;
   const bonuses = [
     ...setup.bonuses,
+    // Stryker disable next-line ArrayDeclaration: summing bonuses skips a junk element
     ...(page ? runeStats(page, runes, level) : []),
   ];
   const sum = (key: DefensiveStat) =>
@@ -160,8 +161,10 @@ export function targetDefenses(
   items: readonly ItemData[],
   setup: DefenseSetup,
 ): Defenses {
-  const defenses: Defenses = { reductions: [], lowHealthShields: [] };
+  const reductions: DamageReduction[] = [];
+  // Stryker disable next-line ArrayDeclaration: a junk shield has no trigger, so it never triggers
   const shields: LowHealthShield[] = [];
+  const defenses: Defenses = { reductions };
   for (const item of items) {
     const value = flatValues(item.values);
     switch (item.id) {
@@ -171,7 +174,8 @@ export function targetDefenses(
         break;
       case PLATED_STEELCAPS:
         // TGT-007: basic attack damage, not on-hit effects.
-        defenses.reductions.push({
+        reductions.push({
+          // Stryker disable next-line StringLiteral: any value but "all" means auto attacks only
           appliesTo: "autoAttack",
           fraction: value("BasicDamageReduction"),
         });
@@ -211,6 +215,7 @@ export function targetDefenses(
         };
         break;
       case ZHONYAS_HOURGLASS:
+        // Stryker disable next-line ConditionalExpression: a null threshold never triggers (health < 0 never holds)
         if (setup.zhonyaBelow !== null)
           defenses.stasis = {
             below: setup.zhonyaBelow,

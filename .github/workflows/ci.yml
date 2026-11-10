@@ -18,6 +18,7 @@ jobs:
       - run: pnpm lint
       - run: pnpm typecheck
       - run: pnpm test
+      - run: pnpm test:bench
       # Every required scenario needs a passing tagged test (PLAN §9).
       - run: pnpm scenarios:check --strict
       - run: pnpm build

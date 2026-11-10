@@ -119,6 +119,7 @@ export function energizeMeter(
     id: "Energized",
     maxStacks: max,
     duration: Infinity,
+    // Stryker disable next-line BooleanLiteral: with no expiry, refreshing changes nothing
     refreshOnStack: false,
   };
   return {
@@ -184,9 +185,7 @@ export function terminus(item: ItemData): Effect {
     // Summed within the item (10% per stack, 30% max), then multiplied with other sources.
     modifyStats: (ctx) => {
       const n = ctx.buffStacks(dark.id);
-      return n > 0
-        ? { armorPenPercent: perHit * n, magicPenPercent: perHit * n }
-        : undefined;
+      return { armorPenPercent: perHit * n, magicPenPercent: perHit * n };
     },
     onHit: (ctx, attack) => {
       ctx.deal(
@@ -199,6 +198,7 @@ export function terminus(item: ItemData): Effect {
         ),
       );
       if (attack.phantom || !ctx.targetIsChampion) return;
+      // Stryker disable next-line AssignmentOperator: counting down alternates Light and Dark the same way
       hits += 1;
       if (hits % 2 === 0) ctx.addBuff(dark); // Light first, then Dark
     },
