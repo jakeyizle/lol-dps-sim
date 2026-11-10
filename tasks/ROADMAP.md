@@ -41,17 +41,17 @@ Each milestone ends deployed, with its scenarios passing.
 ## M1 — Data (DATA)
 
 - [x] Pipeline: manifest, patch-matched fetch, champion stats + attack data for all 5 MVP champions (both windup formats, modifier, per-slot), schemas, write
-- [ ] Ability values; constants + skill-order overrides; overrides merge
+- [ ] Ability values; constants + skill-order overrides; overrides merge → T-008, T-009
 - [ ] Items (incl. exclusive groups) and runes; DATA-001 complete
-- [ ] Drift report + missing-key check
+- [ ] Drift report + missing-key check → T-010
 - [ ] `packages/data` loaders; remove old `champion-data/`
 - [ ] Scheduled `data:update` workflow opening a PR
 
 ## M2 — Engine core (STAT, DMG, SIM)
 
 - [x] Stats: level growth, flat bonuses, AS formula + cap, crit cap, crit damage
-- [ ] Damage pipeline: resistances, pen order, crit EV/RNG, on-hit exclusion, amps, typed shields, tags
-- [ ] Event loop: attack timer, windup formula per slot, end conditions, executes, damage trace
+- [ ] Damage pipeline: resistances, pen order, crit EV/RNG, on-hit exclusion, amps, typed shields, tags → T-006
+- [ ] Event loop: attack timer, windup formula per slot, end conditions, executes, damage trace → T-007
 - [ ] Buffs, DoTs, cooldowns + haste, cast times, AA resets, mana (start, regen, costs)
 - [ ] Seeded RNG, `simulateMany` aggregation; CMP-005 engine benchmark in CI
 
