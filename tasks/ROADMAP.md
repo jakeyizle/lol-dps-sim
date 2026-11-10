@@ -97,7 +97,7 @@ Each milestone ends deployed, with its scenarios passing.
 
 ## M8 — Persistence & launch (SAVE)
 
-- [ ] localStorage + schema migrations (incl. user target presets, TGT-005) → T-043
+- [x] localStorage + schema migrations (incl. user target presets, TGT-005)
 - [ ] Share URLs, patch notices, removed-item handling → T-044 (removed items: T-043)
 - [ ] README with disclaimer; E2E journeys; `scenarios:check --strict` in CI
 

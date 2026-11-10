@@ -2,7 +2,8 @@ import type { PatchData } from "@lol/data";
 import { useMemo, useState } from "react";
 
 import { loadLatest } from "./data";
-import { createAppStore, type AppStore } from "./model/store";
+import { browserStorage, createPersistentStore } from "./model/persist";
+import type { AppStore } from "./model/store";
 import { defaultRunner, type Runner } from "./worker/runner";
 import { BuildEditor } from "./ui/BuildEditor";
 import { BuildList } from "./ui/BuildList";
@@ -14,8 +15,6 @@ import { Results } from "./ui/Results";
 import { TargetEditor } from "./ui/TargetEditor";
 import { Timeline } from "./ui/Timeline";
 
-const defaultStore = createAppStore();
-
 /** Edits settle for this long before results recompute (CMP-006). */
 const DEBOUNCE_MS = 150;
 
@@ -26,16 +25,16 @@ export function App(props: {
   debounceMs?: number;
 }) {
   const [patch] = useState(() => props.patch ?? loadLatest());
+  // SAVE-001: without a store from the caller, work is kept in localStorage.
+  const [store] = useState(
+    () => props.store ?? createPersistentStore(browserStorage(), patch),
+  );
   const [runner] = useState(() => ({
     runner: props.runner ?? defaultRunner(patch),
     debounceMs: props.debounceMs ?? DEBOUNCE_MS,
   }));
   return (
-    <Providers
-      store={props.store ?? defaultStore}
-      patch={patch}
-      runner={runner}
-    >
+    <Providers store={store} patch={patch} runner={runner}>
       <Shell />
     </Providers>
   );
@@ -58,6 +57,8 @@ function Shell() {
   const runs = useApp((s) => s.settings.runs);
   const setSettings = useApp((s) => s.setSettings);
   const [selected, setSelected] = useState<string>();
+  const notices = useApp((s) => s.notices);
+  const dismissNotices = useApp((s) => s.dismissNotices);
   const build = builds.find((b) => b.id === selected) ?? builds[0];
 
   return (
@@ -117,6 +118,22 @@ function Shell() {
           <span>Patch {patch.patch}</span>
         </div>
       </header>
+      {notices.length > 0 && (
+        <div
+          role="status"
+          aria-label="Notices"
+          className="mb-6 flex items-start justify-between gap-4 rounded border border-amber-300 bg-amber-50 px-3 py-2 text-sm"
+        >
+          <ul className="space-y-1">
+            {notices.map((n, i) => (
+              <li key={i}>{n}</li>
+            ))}
+          </ul>
+          <button type="button" className="underline" onClick={dismissNotices}>
+            Dismiss
+          </button>
+        </div>
+      )}
       <div className="grid gap-8 md:grid-cols-[18rem_1fr]">
         <BuildList selected={build?.id} onSelect={setSelected} />
         {build ? (
