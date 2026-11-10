@@ -25,6 +25,29 @@ export const valueOverrides: Record<string, Record<string, unknown>> = {
   "3047": { values: { BasicDamageReduction: 0.1 } },
   // Guardian Angel: League Wiki (V25.15) revives after 4 s with 50% of base health.
   "3026": { values: { ReviveDelay: 4, ReviveBaseHealthRatio: 0.5 } },
+  Caitlyn: {
+    abilities: {
+      // League Wiki (V26.21) cast times; the game file's spells list 0.
+      Q: { castTime: 0.625 },
+      W: {
+        castTime: 0.25,
+        // Traps recharge 26/22/18/14/10 s (wiki, V14.17); the 0.5 s is the recast lockout.
+        // The sim places one trap per recharge.
+        cooldown: [26, 22, 18, 14, 10],
+        values: {
+          // Wiki: "arms after 1 second"; a trapped target can be headshot within 1.8 s.
+          ArmDelay: [1, 1, 1, 1, 1],
+          HeadshotWindow: [1.8, 1.8, 1.8, 1.8, 1.8],
+        },
+      },
+      E: {
+        castTime: 0.15,
+        values: { HeadshotWindow: [1.8, 1.8, 1.8, 1.8, 1.8] },
+      },
+      // 0.375 s cast + 1 s channel (wiki); damage lands when the channel ends.
+      R: { castTime: 1.375 },
+    },
+  },
   Jinx: {
     abilities: {
       Q: {

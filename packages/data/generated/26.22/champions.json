@@ -553,7 +553,7 @@
             70,
             75
           ],
-          "castTime": 0,
+          "castTime": 0.625,
           "values": {
             "BaseDamage": [
               50,
@@ -608,11 +608,11 @@
         "W": {
           "maxRank": 5,
           "cooldown": [
-            0.5,
-            0.5,
-            0.5,
-            0.5,
-            0.5
+            26,
+            22,
+            18,
+            14,
+            10
           ],
           "cost": [
             20,
@@ -621,7 +621,7 @@
             20,
             20
           ],
-          "castTime": 0,
+          "castTime": 0.25,
           "values": {
             "BaseDamage": [
               35,
@@ -664,6 +664,20 @@
               4,
               4,
               5
+            ],
+            "ArmDelay": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "HeadshotWindow": [
+              1.8,
+              1.8,
+              1.8,
+              1.8,
+              1.8
             ]
           },
           "calculations": {
@@ -700,7 +714,7 @@
             75,
             75
           ],
-          "castTime": 0,
+          "castTime": 0.15,
           "values": {
             "Damage": [
               80,
@@ -722,6 +736,13 @@
               50,
               50,
               50
+            ],
+            "HeadshotWindow": [
+              1.8,
+              1.8,
+              1.8,
+              1.8,
+              1.8
             ]
           },
           "calculations": {
@@ -752,7 +773,7 @@
             100,
             100
           ],
-          "castTime": 0,
+          "castTime": 1.375,
           "values": {
             "RBaseDamage": [
               300,

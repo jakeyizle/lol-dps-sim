@@ -1,6 +1,8 @@
 import {
   abilityRanks,
+  analyze,
   DEFAULT_RUNES,
+  KITS,
   jinx,
   pageProblem,
   simulate,
@@ -236,4 +238,17 @@ it("a dummy target uses its entered stats", { tags: ["TGT-002"] }, () => {
     maxHealth: 2000,
     defender: { armor: 80, magicResist: 40 },
   });
+});
+
+it("every attacker kit runs end to end in the app's simulation", () => {
+  for (const champion of Object.keys(KITS)) {
+    const sim = toSimulation(
+      newBuild("b", champion),
+      dummy,
+      patch,
+      defaultSettings,
+    );
+    const result = analyze(sim.attacker, sim.target, sim.options);
+    expect(result.killed, champion).toBe(true);
+  }
 });
