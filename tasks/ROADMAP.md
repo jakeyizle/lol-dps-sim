@@ -93,7 +93,7 @@ Each milestone ends deployed, with its scenarios passing.
 - [x] Ashe
 - [x] Kai'Sa
 - [x] Vayne
-- [ ] Rotation editor UI → T-042
+- [x] Rotation editor UI
 
 ## M8 — Persistence & launch (SAVE)
 

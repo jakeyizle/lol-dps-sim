@@ -1,4 +1,5 @@
 import {
+  KITS,
   longTermStack,
   runeLongTermStack,
   simulate,
@@ -17,6 +18,7 @@ import {
   type Build,
 } from "../model/build";
 import { toSimulation } from "../model/simulation";
+import { RotationEditor } from "./RotationEditor";
 import { RuneEditor } from "./RuneEditor";
 import { StatsPanel } from "./StatsPanel";
 import { useApp, usePatch } from "./context";
@@ -44,6 +46,8 @@ export function BuildEditor(props: { build: Build }) {
 
   if (!champion) return <p>Unknown champion {build.champion}</p>;
   const ranks = ranksOf(build, champion);
+  // ROT-009: the kit at the build's ranks gives the actions and stack buffs.
+  const kit = KITS[build.champion]?.(champion, build.level, ranks);
   const problem = rankProblem(
     ranks,
     build.level,
@@ -206,6 +210,21 @@ export function BuildEditor(props: { build: Build }) {
             page={build.runes}
             onChange={(runes) => {
               change((b) => ({ ...b, runes }));
+            }}
+          />
+        )}
+
+        {kit && (
+          <RotationEditor
+            rotation={build.rotation ?? kit.rotation}
+            isDefault={build.rotation === undefined}
+            actions={["attack", ...kit.abilities.map((a) => a.id)]}
+            buffs={kit.buffs}
+            onChange={(rotation) => {
+              change((b) => ({ ...b, rotation }));
+            }}
+            onReset={() => {
+              change((b) => ({ ...b, rotation: undefined }));
             }}
           />
         )}

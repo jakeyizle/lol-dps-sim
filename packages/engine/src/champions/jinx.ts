@@ -17,6 +17,8 @@ export interface ChampionKit {
   kit: Effect[];
   /** ROT-007. */
   rotation: Rotation;
+  /** ROT-009: stack buffs a rotation's "min stacks" condition may name. */
+  buffs: { id: string; label: string; max: number }[];
 }
 
 const REVD_UP = "JinxRevdUp";
@@ -199,5 +201,9 @@ export function jinx(
   }
 
   rotation.push({ action: "attack" }); // JINX-006
-  return { abilities, kit, rotation };
+  const buffs =
+    ranks.Q > 0
+      ? [{ id: REVD_UP, label: "Rev'd up", max: q("MinigunAttackSpeedStacks") }]
+      : [];
+  return { abilities, kit, rotation, buffs };
 }

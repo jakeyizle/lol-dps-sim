@@ -263,5 +263,6 @@ export function kaisa(
   }
 
   rotation.push({ action: "attack" });
-  return { abilities, kit, rotation };
+  const buffs = [{ id: KAISA_PLASMA, label: "Plasma", max: maxStacks }];
+  return { abilities, kit, rotation, buffs };
 }
