@@ -97,6 +97,10 @@ export interface SimTarget {
   shields?: readonly Shield[];
   /** Target defenses; only `modifyIncoming` is used. */
   effects?: readonly Effect[];
+  /** Health above the champion's base, for effects like Giant Slayer (ITEM-013). Default 0. */
+  bonusHealth?: number;
+  /** Champion-only effects apply (ITEM-013, ITEM-014). Default true. */
+  champion?: boolean;
   /** Dies when left below this fraction of max health by the attacker's damage (SIM-023). */
   executeBelow?: number;
 }
@@ -271,6 +275,8 @@ export function simulate(
         return health;
       },
       targetMaxHealth: target.maxHealth,
+      targetBonusHealth: target.bonusHealth ?? 0,
+      targetIsChampion: target.champion ?? true,
       get mana() {
         return manaAt(time);
       },

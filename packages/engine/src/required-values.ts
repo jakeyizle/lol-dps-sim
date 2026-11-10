@@ -1,4 +1,5 @@
 import { jinxRequiredValues } from "./champions/jinx";
+import { batch1RequiredValues } from "./items/batch1";
 
 /**
  * Data paths each effect reads, by entity id (e.g. `Jinx: ["abilities.W.values.Damage"]`).
@@ -6,4 +7,5 @@ import { jinxRequiredValues } from "./champions/jinx";
  */
 export const requiredValues: Record<string, readonly string[]> = {
   Jinx: jinxRequiredValues,
+  ...batch1RequiredValues,
 };

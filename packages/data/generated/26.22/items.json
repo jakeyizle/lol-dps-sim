@@ -57,6 +57,52 @@
         "{18fc0a13}"
       ]
     },
+    "2512": {
+      "id": "2512",
+      "name": "Fiendhunter Bolts",
+      "cost": 2650,
+      "stats": {
+        "critChance": 0.25,
+        "attackSpeed": 0.45
+      },
+      "otherStats": {
+        "mPercentMovementSpeedMod": 0.04
+      },
+      "values": {
+        "UltimateHaste": 30,
+        "Cooldown": 45,
+        "Duration": 8,
+        "BonusTrueDamage": 0.15,
+        "BonusAS": 0.5,
+        "NumberOfAttacks": 3,
+        "CritModifier": 0.8
+      },
+      "calculations": {},
+      "groups": [
+        "{9bff16e3}"
+      ]
+    },
+    "2523": {
+      "id": "2523",
+      "name": "Hexoptics C44",
+      "cost": 2800,
+      "stats": {
+        "critChance": 0.25,
+        "attackDamage": 55
+      },
+      "otherStats": {},
+      "values": {
+        "ExtraRange": 100,
+        "TakedownWindow": 3,
+        "Duration": 8,
+        "MaxRange": 500,
+        "MaxDamageAmp": 0.1
+      },
+      "calculations": {},
+      "groups": [
+        "{a301607f}"
+      ]
+    },
     "3006": {
       "id": "3006",
       "name": "Berserker's Greaves",
@@ -107,6 +153,45 @@
       "groups": [
         "{37d64eea}",
         "{5ddfe837}"
+      ]
+    },
+    "3032": {
+      "id": "3032",
+      "name": "Yun Tal Wildarrows",
+      "cost": 3000,
+      "stats": {
+        "attackDamage": 50,
+        "attackSpeed": 0.45
+      },
+      "otherStats": {},
+      "values": {
+        "ASDuration": 6,
+        "CritMax": 25,
+        "Cooldown": 30,
+        "AACDR": 1,
+        "CritCDR": 2,
+        "ASMod": 0.3,
+        "CritPerStackMelee": 0.4,
+        "StackRangedMultiplier": 0.5
+      },
+      "calculations": {
+        "CritPerStackCalc": {
+          "mFormulaParts": [
+            {
+              "mDataValue": "{52d90ad0}",
+              "__type": "NamedDataValueCalculationPart"
+            }
+          ],
+          "mPrecision": 1,
+          "mRangedMultiplier": {
+            "mDataValue": "{1eea3407}",
+            "__type": "NamedDataValueCalculationPart"
+          },
+          "__type": "{e9a3c91d}"
+        }
+      },
+      "groups": [
+        "{36d64d57}"
       ]
     },
     "3033": {
@@ -583,6 +668,35 @@
       "calculations": {},
       "groups": [
         "3094"
+      ]
+    },
+    "3095": {
+      "id": "3095",
+      "name": "Stormrazor",
+      "cost": 3200,
+      "stats": {
+        "critChance": 0.25,
+        "attackDamage": 50,
+        "attackSpeed": 0.25
+      },
+      "otherStats": {},
+      "values": {
+        "BuffStrength": 0.45,
+        "BuffDuration": 1.5
+      },
+      "calculations": {
+        "TotalProcDamage": {
+          "mFormulaParts": [
+            {
+              "mNumber": 100,
+              "__type": "NumberCalculationPart"
+            }
+          ],
+          "__type": "GameCalculation"
+        }
+      },
+      "groups": [
+        "3095"
       ]
     },
     "3110": {

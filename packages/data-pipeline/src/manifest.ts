@@ -21,12 +21,12 @@ export const manifest: Manifest = {
     { id: "Kaisa", gameName: "kaisa" },
     { id: "Vayne", gameName: "vayne" },
   ],
-  // ADC items (scenarios/items.md, PLAN §2), then target defensive items (scenarios/target.md).
-  // The full MVP list is decided in the first item-effect ticket.
+  // MVP ADC items (scenarios/items.md, PLAN §2), then target defensive items (scenarios/target.md).
   items: [
     ...["3031", "3036", "3033", "6672", "3153", "3085", "3046", "3094"],
     ...["3087", "6675", "3072", "3508", "6676", "3302", "3124", "3115"],
     ...["3091", "6673", "3156", "3053", "1055", "3006"],
+    ...["3032", "2512", "3095", "2523"],
     ...["3143", "3047", "3026", "3157", "3110", "3075", "3065", "2501"],
   ],
   // Keystones, minor runes (scenarios/runes.md), then stat shards.

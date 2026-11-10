@@ -21,7 +21,7 @@ const sword: ItemData = {
 describe("items without effects", { tags: ["ITEM-001"] }, () => {
   it("only add their stats", () => {
     expect(itemStats(sword)).toEqual({ attackDamage: 20, attackSpeed: 0.2 });
-    expect(itemEffects(sword)).toEqual([]);
+    expect(itemEffects(sword, testChampion)).toEqual([]);
 
     const level = {
       champion: testChampion,
@@ -36,7 +36,7 @@ describe("items without effects", { tags: ["ITEM-001"] }, () => {
     );
 
     const target = { maxHealth: 1e9, defender: { armor: 0, magicResist: 0 } };
-    const { bonuses, effects } = equip([sword]);
+    const { bonuses, effects } = equip([sword], testChampion);
     const withItem = simulate({ ...level, bonuses, items: effects }, target);
     const withStats = simulate(
       { ...level, bonuses: [{ attackDamage: 20, attackSpeed: 0.2 }] },

@@ -1,6 +1,6 @@
 # Items
 
-Item stats come from data (STAT-002). These scenarios cover item effects. Each item's scenario is checked against the current patch when its ticket starts (PLAN §1). The MVP item list is decided in the first item ticket by filtering the patch's items by tag and reviewing by hand. It must include items whose effects change TTK or timing: The Collector, Guinsoo's Rageblade, Navori Flickerblade, Statikk Shiv, Rapid Firecannon, Terminus, Nashor's Tooth and Wit's End (Kai'Sa). Their scenarios are added in that ticket.
+Item stats come from data (STAT-002). These scenarios cover item effects. Each item's scenario is checked against the current patch when its ticket starts (PLAN §1). The MVP item list (decided in T-020) is the data manifest's items: 26.22 legendary attack damage, crit, attack speed and on-hit items for the MVP champions, plus target defensive items. Items whose passives don't change damage or timing against one target (e.g. Phantom Dancer, Bloodthirster, Immortal Shieldbow) are stat-only (ITEM-001). Effects for Yun Tal Wildarrows, Stormrazor, Hexoptics C44, Fiendhunter Bolts, Essence Reaver and Youmuu's Ghostblade get scenarios in their ticket.
 
 ### ITEM-001: Items without effects only add stats
 
@@ -26,24 +26,23 @@ Item stats come from data (STAT-002). These scenarios cover item effects. Each i
 - **When** the user adds another
 - **Then** it is rejected
 
-### ITEM-004: Kraken Slayer stacks and spends
+### ITEM-004: Kraken Slayer empowers every Nth attack
 
 - **Given** a build with Kraken Slayer
-- **When** an attack is made with the item's max stacks
-- **Then** it consumes them and deals bonus physical on-hit damage, increased by the target's missing health, as set by the item's values
-- **And** otherwise it adds one stack
+- **When** an attack is the item's attack count in a row
+- **Then** it deals bonus physical on-hit damage set by the champion's level, increased by up to the item's max amp in proportion to the target's missing health, and the count restarts
 
-### ITEM-011: Kraken Slayer stacks expire
+### ITEM-011: Kraken Slayer's count expires
 
-- **Given** Kraken Slayer stacks
-- **When** no attack is made within the item's stack duration
-- **Then** the stacks are lost
+- **Given** Kraken Slayer partway through its count
+- **When** no attack is made within the item's buff duration
+- **Then** the count restarts
 
 ### ITEM-012: Kraken Slayer timing for ranged champions
 
 - **Given** a ranged champion with Kraken Slayer
 - **When** an attack is launched
-- **Then** stacks are gained and consumed at launch, and the bonus damage uses the item's ranged multiplier
+- **Then** it counts at launch, the empowered damage lands on hit, and the damage uses the item's ranged multiplier
 
 ### ITEM-005: Blade of the Ruined King deals current-health damage
 
@@ -62,6 +61,72 @@ Item stats come from data (STAT-002). These scenarios cover item effects. Each i
 - **Given** a build with Lord Dominik's Regards
 - **When** physical damage is dealt
 - **Then** the item's % armor penetration is applied
+
+### ITEM-013: Lord Dominik's Regards amplifies damage against tanky champions
+
+- **Given** a build with Lord Dominik's Regards and a champion target with bonus health
+- **When** damage is dealt
+- **Then** it is increased by up to the item's max bonus damage, in proportion to the target's bonus health up to the item's max bonus health
+
+### ITEM-014: The Collector executes
+
+- **Given** a build with The Collector and a champion target
+- **When** post-mitigation damage leaves the target below the item's execute threshold of max health
+- **Then** the target dies (SIM-023)
+
+### ITEM-015: Guinsoo's Rageblade on-hit and attack speed
+
+- **Given** a build with Guinsoo's Rageblade
+- **When** attacks land
+- **Then** each deals the item's on-hit magic damage and adds a stack of the item's attack speed per stack, up to its max stacks, for its buff duration
+
+### ITEM-016: Guinsoo's Rageblade Phantom Hit
+
+- **Given** Guinsoo's Rageblade at max attack speed stacks
+- **When** attacks land
+- **Then** they build Phantom stacks; the attack that spends them applies on-hit effects a second time after the Phantom Hit delay, per the item's values
+
+### ITEM-017: Navori Flickerblade reduces cooldowns
+
+- **Given** a build with Navori Flickerblade
+- **When** an attack is made
+- **Then** the remaining cooldowns of Q, W and E drop by the item's percent of what remains
+
+### ITEM-018: Energize builds from attacks
+
+- **Given** a build with an Energized item and a stationary attacker (no movement stacks)
+- **When** attacks are made
+- **Then** each adds the patch's energize stacks per attack (plus any bonus from the build's items), up to the patch's max; at max, the next attack is energized and spends them
+
+### ITEM-019: Statikk Shiv energized attacks
+
+- **Given** a build with Statikk Shiv
+- **When** an energized attack lands
+- **Then** it deals the item's chain damage as magic damage to the target, and Statikk Shiv adds its bonus energize stacks to every attack
+
+### ITEM-020: Rapid Firecannon energized attacks
+
+- **Given** a build with Rapid Firecannon
+- **When** an energized attack lands
+- **Then** it deals the item's bonus magic damage on hit
+
+### ITEM-021: Terminus
+
+- **Given** a build with Terminus and a champion target
+- **When** attacks land
+- **Then** each deals the item's on-hit magic damage; attacks alternate Light and Dark, and each Dark hit adds the item's armor and magic penetration per hit, up to its max, for its debuff duration
+
+### ITEM-022: Nashor's Tooth on-hit
+
+- **Given** a build with Nashor's Tooth
+- **When** an attack lands
+- **Then** it deals the item's base value plus its AP ratio of ability power as magic on-hit damage
+
+### ITEM-023: Wit's End on-hit
+
+- **Given** a build with Wit's End
+- **When** an attack lands
+- **Then** it deals the item's on-hit magic damage
 
 ### ITEM-008: On-hit effects apply once per landed attack
 

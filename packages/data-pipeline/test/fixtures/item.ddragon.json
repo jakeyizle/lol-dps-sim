@@ -18,6 +18,24 @@
         "sell": 2310
       }
     },
+    "2512": {
+      "name": "Fiendhunter Bolts",
+      "gold": {
+        "base": 850,
+        "purchasable": true,
+        "total": 2650,
+        "sell": 1855
+      }
+    },
+    "2523": {
+      "name": "Hexoptics C44",
+      "gold": {
+        "base": 275,
+        "purchasable": true,
+        "total": 2800,
+        "sell": 1960
+      }
+    },
     "3006": {
       "name": "Berserker's Greaves",
       "gold": {
@@ -43,6 +61,15 @@
         "purchasable": true,
         "total": 3500,
         "sell": 2450
+      }
+    },
+    "3032": {
+      "name": "Yun Tal Wildarrows",
+      "gold": {
+        "base": 750,
+        "purchasable": true,
+        "total": 3000,
+        "sell": 2100
       }
     },
     "3033": {
@@ -151,6 +178,15 @@
         "purchasable": true,
         "total": 2650,
         "sell": 1855
+      }
+    },
+    "3095": {
+      "name": "Stormrazor",
+      "gold": {
+        "base": 700,
+        "purchasable": true,
+        "total": 3200,
+        "sell": 2240
       }
     },
     "3110": {

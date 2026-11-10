@@ -4360,5 +4360,562 @@
     "mItemGroupID": "{18fc0a13}",
     "mMaxGroupOwnable": 1,
     "__type": "ItemGroup"
+  },
+  "Items/3032": {
+    "mDisplayName": "Item_3032_Name",
+    "itemID": 3032,
+    "maxStack": 1,
+    "mItemGroups": [
+      "Items/ItemGroups/Default",
+      "{aba3fe3b}",
+      "{3bbe1bdd}"
+    ],
+    "price": 750,
+    "mItemCalloutSpectator": true,
+    "mCanBeSold": true,
+    "epicness": 5,
+    "recipeItemLinks": [
+      "Items/1038",
+      "Items/3144",
+      "Items/1036"
+    ],
+    "mDataValues": [
+      {
+        "mName": "ASDuration",
+        "mValue": 6,
+        "__type": "ItemDataValue"
+      },
+      {
+        "mName": "CritMax",
+        "mValue": 25,
+        "__type": "ItemDataValue"
+      },
+      {
+        "mName": "Cooldown",
+        "mValue": 30,
+        "__type": "ItemDataValue"
+      },
+      {
+        "mName": "AACDR",
+        "mValue": 1,
+        "__type": "ItemDataValue"
+      },
+      {
+        "mName": "CritCDR",
+        "mValue": 2,
+        "__type": "ItemDataValue"
+      },
+      {
+        "mName": "ASMod",
+        "mValue": 0.30000001192092896,
+        "__type": "ItemDataValue"
+      },
+      {
+        "mName": "CritPerStackMelee",
+        "mValue": 0.4000000059604645,
+        "__type": "ItemDataValue"
+      },
+      {
+        "mName": "StackRangedMultiplier",
+        "mValue": 0.5,
+        "__type": "ItemDataValue"
+      }
+    ],
+    "DataValuesModeOverride": {
+      "ARAM": {
+        "DataValues": [
+          {
+            "mName": "CritPerStackMelee",
+            "mValue": 1,
+            "__type": "ItemDataValue"
+          },
+          {
+            "mName": "StackRangedMultiplier",
+            "mValue": 0.5,
+            "__type": "ItemDataValue"
+          }
+        ],
+        "__type": "ItemDataValues"
+      },
+      "SWIFTPLAY": {
+        "DataValues": [
+          {
+            "mName": "CritPerStackMelee",
+            "mValue": 1,
+            "__type": "ItemDataValue"
+          },
+          {
+            "mName": "StackRangedMultiplier",
+            "mValue": 0.5,
+            "__type": "ItemDataValue"
+          }
+        ],
+        "__type": "ItemDataValues"
+      },
+      "{a110bc47}": {
+        "DataValues": [
+          {
+            "mName": "CritPerStackMelee",
+            "mValue": 1,
+            "__type": "ItemDataValue"
+          },
+          {
+            "mName": "StackRangedMultiplier",
+            "mValue": 0.5,
+            "__type": "ItemDataValue"
+          }
+        ],
+        "__type": "ItemDataValues"
+      },
+      "Kiwi": {
+        "DataValues": [
+          {
+            "mName": "CritPerStackMelee",
+            "mValue": 1,
+            "__type": "ItemDataValue"
+          },
+          {
+            "mName": "StackRangedMultiplier",
+            "mValue": 0.5,
+            "__type": "ItemDataValue"
+          }
+        ],
+        "__type": "ItemDataValues"
+      }
+    },
+    "mItemCalculations": {
+      "CritPerStackCalc": {
+        "mFormulaParts": [
+          {
+            "mDataValue": "{52d90ad0}",
+            "__type": "NamedDataValueCalculationPart"
+          }
+        ],
+        "mPrecision": 1,
+        "mRangedMultiplier": {
+          "mDataValue": "{1eea3407}",
+          "__type": "NamedDataValueCalculationPart"
+        },
+        "__type": "{e9a3c91d}"
+      }
+    },
+    "mFlatPhysicalDamageMod": 50,
+    "mPercentAttackSpeedMod": 0.44999998807907104,
+    "mCategories": [
+      "Damage",
+      "CriticalStrike",
+      "AttackSpeed"
+    ],
+    "mItemDataAvailability": {
+      "mInStore": true,
+      "__type": "ItemDataAvailability"
+    },
+    "mItemAttributes": [
+      2
+    ],
+    "mItemDataClient": {
+      "mTooltipData": {
+        "mObjectName": "3032",
+        "mFormat": "{32559c50}",
+        "mLocKeys": {
+          "keyName": "Item_3032_Name",
+          "keyBrief": "Item_3032_Brief",
+          "keyTooltip": "Item_3032_Tooltip",
+          "keyColloquialism": "Item_3032_Colloquialism",
+          "keyFlavorText": "Item_3032_FlavorText",
+          "keyTooltipExternal": "Item_3032_TooltipExternal"
+        },
+        "mLists": {
+          "Stats": {
+            "Elements": [
+              {
+                "type": "AttackDamage",
+                "__type": "TooltipInstanceListElement"
+              },
+              {
+                "type": "AttackSpeed",
+                "__type": "TooltipInstanceListElement"
+              },
+              {
+                "type": "CritChance",
+                "__type": "TooltipInstanceListElement"
+              }
+            ],
+            "__type": "TooltipInstanceList"
+          }
+        },
+        "__type": "TooltipInstanceItem"
+      },
+      "mDescription": "GeneratedTip_Item_3032_Description",
+      "mDynamicTooltip": "GeneratedTip_Item_3032_TooltipInventory",
+      "mShopTooltip": "GeneratedTip_Item_3032_TooltipShop",
+      "inventoryIcon": "assets/items/icons2d/3032_yuntalwildarrows.dds",
+      "InventoryIconSmall": "ASSETS/Items/Icons2D/AutoAtlas/SmallIcons/6095_YunTalWildarrows44.png",
+      "InventoryIconLarge": "ASSETS/Items/Icons2D/AutoAtlas/LargeIcons/6095_YunTalWildarrows88.png",
+      "epicness": 1,
+      "__type": "ItemDataClient"
+    },
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "3032_Bleed": "Items/3032/Particles/3032_Bleed",
+        "3032_Buff_Hands": "Items/3032/Particles/3032_Buff_Hands",
+        "3032_Buff_Root": "Items/3032/Particles/3032_Buff_Root"
+      },
+      "__type": "ResourceResolver"
+    },
+    "__type": "ItemData"
+  },
+  "{aba3fe3b}": {
+    "mItemGroupID": "{36d64d57}",
+    "mMaxGroupOwnable": 1,
+    "__type": "ItemGroup"
+  },
+  "Items/2512": {
+    "mDisplayName": "Item_2512_Name",
+    "itemID": 2512,
+    "maxStack": 1,
+    "mItemGroups": [
+      "Items/ItemGroups/Default",
+      "{6a3d47df}"
+    ],
+    "price": 850,
+    "{0b2aa694}": false,
+    "mCanBeSold": true,
+    "epicness": 5,
+    "recipeItemLinks": [
+      "Items/3086",
+      "Items/3144"
+    ],
+    "mDataValues": [
+      {
+        "mName": "UltimateHaste",
+        "mValue": 30,
+        "__type": "ItemDataValue"
+      },
+      {
+        "mName": "Cooldown",
+        "mValue": 45,
+        "__type": "ItemDataValue"
+      },
+      {
+        "mName": "Duration",
+        "mValue": 8,
+        "__type": "ItemDataValue"
+      },
+      {
+        "mName": "BonusTrueDamage",
+        "mValue": 0.15000000596046448,
+        "__type": "ItemDataValue"
+      },
+      {
+        "mName": "BonusAS",
+        "mValue": 0.5,
+        "__type": "ItemDataValue"
+      },
+      {
+        "mName": "NumberOfAttacks",
+        "mValue": 3,
+        "__type": "ItemDataValue"
+      },
+      {
+        "mName": "CritModifier",
+        "mValue": 0.800000011920929,
+        "__type": "ItemDataValue"
+      }
+    ],
+    "mPercentMovementSpeedMod": 0.03999999910593033,
+    "mFlatCritChanceMod": 0.25,
+    "mPercentAttackSpeedMod": 0.44999998807907104,
+    "mCategories": [
+      "CriticalStrike",
+      "AttackSpeed",
+      "NonbootsMovement",
+      "AbilityHaste"
+    ],
+    "mItemDataAvailability": {
+      "mInStore": true,
+      "__type": "ItemDataAvailability"
+    },
+    "mItemAttributes": [
+      2
+    ],
+    "LastMajorChangeMajorPatchVersion": 6,
+    "LastMajorChangeMinorPatchVersion": 14,
+    "mItemDataClient": {
+      "mTooltipData": {
+        "mObjectName": "2512",
+        "mFormat": "{32559c50}",
+        "mLocKeys": {
+          "keyName": "Item_2512_Name",
+          "keyTooltip": "Item_2512_Tooltip",
+          "keyTooltipExternal": "Item_2512_TooltipExternal",
+          "keyBrief": "Item_2512_Brief"
+        },
+        "mLists": {
+          "Stats": {
+            "Elements": [
+              {
+                "type": "AttackSpeed",
+                "__type": "TooltipInstanceListElement"
+              },
+              {
+                "type": "CritChance",
+                "__type": "TooltipInstanceListElement"
+              },
+              {
+                "type": "MoveSpeedPercent",
+                "__type": "TooltipInstanceListElement"
+              }
+            ],
+            "__type": "TooltipInstanceList"
+          }
+        },
+        "__type": "TooltipInstanceItem"
+      },
+      "mDescription": "GeneratedTip_Item_2512_Description",
+      "mDynamicTooltip": "GeneratedTip_Item_2512_TooltipInventory",
+      "mShopTooltip": "GeneratedTip_Item_2512_TooltipShop",
+      "inventoryIcon": "assets/items/icons2d/2512_adcallin.dds",
+      "InventoryIconSmall": "ASSETS/Items/Icons2D/AutoAtlas/SmallIcons/2512_ADCAllIn44.png",
+      "InventoryIconLarge": "ASSETS/Items/Icons2D/AutoAtlas/LargeIcons/2512_ADCAllIn88.png",
+      "epicness": 0,
+      "__type": "ItemDataClient"
+    },
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "2512_Self_Buff": "Items/2512/Particles/2512_Self_Buff",
+        "2512_HandBuff": "Items/2512/Particles/2512_HandBuff"
+      },
+      "__type": "ResourceResolver"
+    },
+    "__type": "ItemData"
+  },
+  "{6a3d47df}": {
+    "mItemGroupID": "{9bff16e3}",
+    "mMaxGroupOwnable": 1,
+    "__type": "ItemGroup"
+  },
+  "Items/3095": {
+    "mDisplayName": "Item_3095_Name",
+    "itemID": 3095,
+    "maxStack": 1,
+    "mItemGroups": [
+      "Items/ItemGroups/Default",
+      "{ac94f544}",
+      "{3bbe1bdd}"
+    ],
+    "mItemAdviceAttributes": [
+      "{30f046e4}"
+    ],
+    "price": 700,
+    "mItemCalloutSpectator": true,
+    "mCanBeSold": true,
+    "epicness": 5,
+    "recipeItemLinks": [
+      "Items/1038",
+      "Items/1018",
+      "Items/3144"
+    ],
+    "mDataValues": [
+      {
+        "mName": "BuffStrength",
+        "mValue": 0.44999998807907104,
+        "__type": "ItemDataValue"
+      },
+      {
+        "mName": "BuffDuration",
+        "mValue": 1.5,
+        "__type": "ItemDataValue"
+      }
+    ],
+    "mItemCalculations": {
+      "TotalProcDamage": {
+        "mFormulaParts": [
+          {
+            "mNumber": 100,
+            "__type": "NumberCalculationPart"
+          }
+        ],
+        "__type": "GameCalculation"
+      }
+    },
+    "mFlatCritChanceMod": 0.25,
+    "mFlatPhysicalDamageMod": 50,
+    "mPercentAttackSpeedMod": 0.25,
+    "mCategories": [
+      "Damage",
+      "CriticalStrike",
+      "AttackSpeed",
+      "NonbootsMovement"
+    ],
+    "mItemDataAvailability": {
+      "mInStore": true,
+      "__type": "ItemDataAvailability"
+    },
+    "mItemAttributes": [
+      2
+    ],
+    "mItemDataClient": {
+      "mTooltipData": {
+        "mObjectName": "3095",
+        "mFormat": "{32559c50}",
+        "mLocKeys": {
+          "keyName": "Item_3095_Name",
+          "keyBrief": "Item_3095_Brief",
+          "keyTooltip": "Item_3095_Tooltip_Kiwi",
+          "keyKeywordDefinitions": "Item_3095_KeywordDefinitions",
+          "keyColloquialism": "Item_3095_Colloquialism"
+        },
+        "mLists": {
+          "Stats": {
+            "Elements": [
+              {
+                "type": "AttackDamage",
+                "__type": "TooltipInstanceListElement"
+              },
+              {
+                "type": "AttackSpeed",
+                "__type": "TooltipInstanceListElement"
+              },
+              {
+                "type": "CritChance",
+                "__type": "TooltipInstanceListElement"
+              }
+            ],
+            "__type": "TooltipInstanceList"
+          }
+        },
+        "__type": "TooltipInstanceItem"
+      },
+      "mDescription": "GeneratedTip_Item_3095_Description",
+      "mDynamicTooltip": "GeneratedTip_Item_3095_TooltipInventory",
+      "mShopTooltip": "GeneratedTip_Item_3095_TooltipShop",
+      "inventoryIcon": "assets/items/icons2d/3095_windblade.dds",
+      "InventoryIconSmall": "ASSETS/Items/Icons2D/AutoAtlas/SmallIcons/3095_Stormrazor.png",
+      "InventoryIconLarge": "ASSETS/Items/Icons2D/AutoAtlas/LargeIcons/3095_Stormrazor.png",
+      "epicness": 1,
+      "__type": "ItemDataClient"
+    },
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "Item_Windblade_OnHit": "Items/3095/Particles/Item_Windblade_OnHit"
+      },
+      "__type": "ResourceResolver"
+    },
+    "__type": "ItemData"
+  },
+  "{ac94f544}": {
+    "mItemGroupID": "3095",
+    "mMaxGroupOwnable": 1,
+    "__type": "ItemGroup"
+  },
+  "Items/2523": {
+    "mDisplayName": "Item_2523_Name",
+    "itemID": 2523,
+    "maxStack": 1,
+    "mItemGroups": [
+      "Items/ItemGroups/Default",
+      "{f1405afb}"
+    ],
+    "price": 275,
+    "mItemCalloutSpectator": true,
+    "mCanBeSold": true,
+    "epicness": 5,
+    "recipeItemLinks": [
+      "Items/1037",
+      "Items/6670",
+      "Items/1036"
+    ],
+    "mDataValues": [
+      {
+        "mName": "ExtraRange",
+        "mValue": 100,
+        "__type": "ItemDataValue"
+      },
+      {
+        "mName": "TakedownWindow",
+        "mValue": 3,
+        "__type": "ItemDataValue"
+      },
+      {
+        "mName": "Duration",
+        "mValue": 8,
+        "__type": "ItemDataValue"
+      },
+      {
+        "mName": "MaxRange",
+        "mValue": 500,
+        "__type": "ItemDataValue"
+      },
+      {
+        "mName": "MaxDamageAmp",
+        "mValue": 0.10000000149011612,
+        "__type": "ItemDataValue"
+      }
+    ],
+    "mFlatCritChanceMod": 0.25,
+    "mFlatPhysicalDamageMod": 55,
+    "mCategories": [
+      "Damage",
+      "CriticalStrike"
+    ],
+    "mItemDataAvailability": {
+      "mInStore": true,
+      "__type": "ItemDataAvailability"
+    },
+    "mItemAttributes": [
+      2
+    ],
+    "mItemDataClient": {
+      "mTooltipData": {
+        "mObjectName": "2523",
+        "mFormat": "{32559c50}",
+        "mLocKeys": {
+          "keyName": "Item_2523_Name",
+          "keyTooltip": "Item_2523_Tooltip",
+          "keyBrief": "Item_2523_Brief",
+          "keyColloquialism": "Item_2523_Colloquialism"
+        },
+        "mLists": {
+          "Stats": {
+            "Elements": [
+              {
+                "type": "AttackDamage",
+                "__type": "TooltipInstanceListElement"
+              },
+              {
+                "type": "CritChance",
+                "__type": "TooltipInstanceListElement"
+              }
+            ],
+            "__type": "TooltipInstanceList"
+          }
+        },
+        "__type": "TooltipInstanceItem"
+      },
+      "mDescription": "GeneratedTip_Item_2523_Description",
+      "mDynamicTooltip": "GeneratedTip_Item_2523_TooltipInventory",
+      "mShopTooltip": "GeneratedTip_Item_2523_TooltipShop",
+      "inventoryIcon": "assets/items/icons2d/2523_adcscope.dds",
+      "InventoryIconSmall": "ASSETS/Items/Icons2D/AutoAtlas/SmallIcons/2523_ADCScope44.png",
+      "InventoryIconLarge": "ASSETS/Items/Icons2D/AutoAtlas/LargeIcons/2523_ADCScope88.png",
+      "epicness": 5,
+      "__type": "ItemDataClient"
+    },
+    "mVFXResourceResolver": {
+      "resourceMap": {
+        "2523_AttackSwapBolt_mis": "Items/2523/Particles/2523_AttackSwapBolt_mis",
+        "2523_AttackSwapBolt_tar": "Items/2523/Particles/2523_AttackSwapBolt_tar",
+        "2523_TargetMark": "Items/2523/Particles/2523_TargetMark",
+        "2523_SelfBuff": "Items/2523/Particles/2523_SelfBuff"
+      },
+      "__type": "ResourceResolver"
+    },
+    "__type": "ItemData"
+  },
+  "{f1405afb}": {
+    "mItemGroupID": "{a301607f}",
+    "mMaxGroupOwnable": 1,
+    "__type": "ItemGroup"
   }
 }
