@@ -36,7 +36,7 @@ Each milestone ends deployed, with its scenarios passing.
 - [x] pnpm monorepo, TS strict base, ESLint + Prettier, `packages/engine` skeleton with Vitest
 - [x] Scenario parser + `scenarios:check` + Vitest tag config (port from mmr-groups)
 - [x] Vite + React app shell, GitHub Actions checks + GitHub Pages deploy
-- [ ] Playwright harness against `vite preview` → T-023
+- [x] Playwright harness against `vite preview`
 
 ## M1 — Data (DATA)
 
