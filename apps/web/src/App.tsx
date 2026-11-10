@@ -1,9 +1,10 @@
 import type { PatchData } from "@lol/data";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { loadLatest } from "./data";
 import { browserStorage, createPersistentStore } from "./model/persist";
-import type { AppStore } from "./model/store";
+import { decodeShare, shareFromHash } from "./model/share";
+import { createAppStore, type AppStore } from "./model/store";
 import { defaultRunner, type Runner } from "./worker/runner";
 import { BuildEditor } from "./ui/BuildEditor";
 import { BuildList } from "./ui/BuildList";
@@ -12,6 +13,7 @@ import { Providers } from "./ui/Providers";
 import { Compare } from "./ui/Compare";
 import { Matrix } from "./ui/Matrix";
 import { Results } from "./ui/Results";
+import { ShareButton, SharedBanner } from "./ui/Share";
 import { TargetEditor } from "./ui/TargetEditor";
 import { Timeline } from "./ui/Timeline";
 
@@ -23,18 +25,65 @@ export function App(props: {
   patch?: PatchData;
   runner?: Runner;
   debounceMs?: number;
+  /** The location hash to read a share link from (default: the page's). */
+  hash?: string;
 }) {
   const [patch] = useState(() => props.patch ?? loadLatest());
   // SAVE-001: without a store from the caller, work is kept in localStorage.
-  const [store] = useState(
+  const [saved] = useState(
     () => props.store ?? createPersistentStore(browserStorage(), patch),
   );
+  // SAVE-007: a share link opens in its own store; saved work stays as it is.
+  const [shared, setShared] = useState<AppStore>();
   const [runner] = useState(() => ({
     runner: props.runner ?? defaultRunner(patch),
     debounceMs: props.debounceMs ?? DEBOUNCE_MS,
   }));
+  const hash = props.hash ?? window.location.hash;
+
+  useEffect(() => {
+    const value = shareFromHash(hash);
+    if (!value) return;
+    let cancelled = false;
+    void decodeShare(value, patch).then((r) => {
+      if (cancelled) return;
+      if (r.ok)
+        setShared(
+          createAppStore(undefined, {
+            patch: patch.patch,
+            saved: {
+              ...r.state,
+              targetPresets: saved.getState().targetPresets,
+            },
+            notices: r.notices,
+          }),
+        );
+      // SAVE-004: say so, and keep showing saved work.
+      else saved.setState((s) => ({ notices: [...s.notices, r.error] }));
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [hash, patch, saved]);
+
+  const leaveShared = () => {
+    setShared(undefined);
+    try {
+      window.history.replaceState(
+        null,
+        "",
+        window.location.pathname + window.location.search,
+      );
+    } catch {
+      // no history API: the hash stays
+    }
+  };
+
   return (
-    <Providers store={store} patch={patch} runner={runner}>
+    <Providers store={shared ?? saved} patch={patch} runner={runner}>
+      {shared && (
+        <SharedBanner shared={shared} saved={saved} onLeave={leaveShared} />
+      )}
       <Shell />
     </Providers>
   );
@@ -116,6 +165,7 @@ function Shell() {
             </label>
           )}
           <span>Patch {patch.patch}</span>
+          <ShareButton />
         </div>
       </header>
       {notices.length > 0 && (
