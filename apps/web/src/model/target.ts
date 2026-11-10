@@ -2,6 +2,7 @@ import type { ItemData, PatchData, RuneTree } from "@lol/data";
 import {
   defenderStats,
   itemStats,
+  targetDefenses,
   type DefenderStats,
   type DefensiveStat,
   type RunePage,
@@ -27,7 +28,11 @@ export interface ChampionTarget {
   runes?: RunePage;
   /** TGT-003: replaces the stat's total. */
   overrides: Partial<Record<DefensiveStat, number>>;
+  /** TGT-010, TGT-011: Zhonya's activates below this fraction of health; null for never. */
+  zhonyaBelow: number | null;
 }
+
+export const DEFAULT_ZHONYA_BELOW = 0.3;
 
 export type Target = DummyTarget | ChampionTarget;
 
@@ -54,7 +59,11 @@ const champion = (
   level,
   items,
   overrides: {},
+  zhonyaBelow: DEFAULT_ZHONYA_BELOW,
 });
+
+/** A new champion target with no items. */
+export const championTarget = (id: string) => champion(id, 13, []);
 
 /**
  * TGT-004: shipped presets, mid-game (level 13) champions with defensive items
@@ -99,10 +108,7 @@ export function championTargetStats(
     {
       champion: data,
       level: target.level,
-      bonuses: target.items
-        .map((id) => patch.items[id])
-        .filter((i): i is ItemData => i !== undefined)
-        .map(itemStats),
+      bonuses: targetItems(target, patch).map(itemStats),
       runes: target.runes,
       gameTime,
       overrides: target.overrides,
@@ -110,6 +116,11 @@ export function championTargetStats(
     patch.runes,
   );
 }
+
+const targetItems = (target: ChampionTarget, patch: PatchData) =>
+  target.items
+    .map((id) => patch.items[id])
+    .filter((i): i is ItemData => i !== undefined);
 
 /** The engine's target for either kind. */
 export function toSimTarget(
@@ -132,13 +143,29 @@ export function toSimTarget(
       champion: true,
     };
   const stats = championTargetStats(target, patch, gameTime);
+  const items = targetItems(target, patch);
+  const { critDamageReduction, reductions, ...defenses } = targetDefenses(
+    items,
+    {
+      stats,
+      bonusAttackDamage: items.reduce(
+        (sum, i) => sum + (itemStats(i).attackDamage ?? 0),
+        0,
+      ),
+      ranged: patch.targets[target.champion]?.ranged ?? false,
+      zhonyaBelow: target.zhonyaBelow,
+    },
+  );
   return {
     maxHealth: stats.health.total,
     bonusHealth: Math.max(0, stats.health.bonus),
     defender: {
       armor: stats.armor.total,
       magicResist: stats.magicResist.total,
+      critDamageReduction,
+      reductions,
     },
+    ...defenses,
     champion: true,
   };
 }

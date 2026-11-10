@@ -21,6 +21,10 @@ export const valueOverrides: Record<string, Record<string, unknown>> = {
   },
   // Absolute Focus: adaptive force gives 0.6 AD per AP (wiki: 1.8–18 AD or 3–30 AP).
   "8233": { values: { AdaptiveADPerAP: 0.6 } },
+  // Plated Steelcaps: League Wiki (V25.04) "reduces all incoming basic damage by 10%".
+  "3047": { values: { BasicDamageReduction: 0.1 } },
+  // Guardian Angel: League Wiki (V25.15) revives after 4 s with 50% of base health.
+  "3026": { values: { ReviveDelay: 4, ReviveBaseHealthRatio: 0.5 } },
   Jinx: {
     abilities: {
       Q: {

@@ -131,7 +131,9 @@
       },
       "otherStats": {},
       "values": {
-        "Cooldown": 300
+        "Cooldown": 300,
+        "ReviveDelay": 4,
+        "ReviveBaseHealthRatio": 0.5
       },
       "calculations": {},
       "groups": [
@@ -260,7 +262,8 @@
       },
       "otherStats": {},
       "values": {
-        "FeatsArmor": 5
+        "FeatsArmor": 5,
+        "BasicDamageReduction": 0.1
       },
       "calculations": {},
       "groups": [

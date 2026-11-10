@@ -168,8 +168,8 @@ export function resolveDamage(opts: {
 }
 
 /** DMG-012, DMG-015: shields absorb in order; typed shields only their type. */
-export function absorb(
-  shields: readonly Shield[],
+export function absorb<S extends Shield>(
+  shields: readonly S[],
   amount: number,
   type: DamageType,
 ) {

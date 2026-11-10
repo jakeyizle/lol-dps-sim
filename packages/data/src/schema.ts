@@ -96,6 +96,8 @@ export const ChampionsFile = z.object({
 export const TargetChampion = z.object({
   id: z.string().min(1),
   name: z.string().min(1),
+  /** Attack range above 250 (ranged item values, e.g. Maw of Malmortius). */
+  ranged: z.boolean(),
   stats: z.object({
     health: StatGrowth,
     armor: StatGrowth,

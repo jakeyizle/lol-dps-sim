@@ -4,6 +4,7 @@
     "Aatrox": {
       "id": "Aatrox",
       "name": "Aatrox",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 650,
@@ -22,6 +23,7 @@
     "Ahri": {
       "id": "Ahri",
       "name": "Ahri",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 590,
@@ -40,6 +42,7 @@
     "Akali": {
       "id": "Akali",
       "name": "Akali",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 600,
@@ -58,6 +61,7 @@
     "Akshan": {
       "id": "Akshan",
       "name": "Akshan",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 610,
@@ -76,6 +80,7 @@
     "Alistar": {
       "id": "Alistar",
       "name": "Alistar",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 685,
@@ -94,6 +99,7 @@
     "Ambessa": {
       "id": "Ambessa",
       "name": "Ambessa",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 630,
@@ -112,6 +118,7 @@
     "Amumu": {
       "id": "Amumu",
       "name": "Amumu",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 685,
@@ -130,6 +137,7 @@
     "Anivia": {
       "id": "Anivia",
       "name": "Anivia",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 550,
@@ -148,6 +156,7 @@
     "Annie": {
       "id": "Annie",
       "name": "Annie",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 560,
@@ -166,6 +175,7 @@
     "Aphelios": {
       "id": "Aphelios",
       "name": "Aphelios",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 600,
@@ -184,6 +194,7 @@
     "Ashe": {
       "id": "Ashe",
       "name": "Ashe",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 610,
@@ -202,6 +213,7 @@
     "AurelionSol": {
       "id": "AurelionSol",
       "name": "Aurelion Sol",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 600,
@@ -220,6 +232,7 @@
     "Aurora": {
       "id": "Aurora",
       "name": "Aurora",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 607,
@@ -238,6 +251,7 @@
     "Azir": {
       "id": "Azir",
       "name": "Azir",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 575,
@@ -256,6 +270,7 @@
     "Bard": {
       "id": "Bard",
       "name": "Bard",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 630,
@@ -274,6 +289,7 @@
     "Belveth": {
       "id": "Belveth",
       "name": "Bel'Veth",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 580,
@@ -292,6 +308,7 @@
     "Blitzcrank": {
       "id": "Blitzcrank",
       "name": "Blitzcrank",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 600,
@@ -310,6 +327,7 @@
     "Brand": {
       "id": "Brand",
       "name": "Brand",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 570,
@@ -328,6 +346,7 @@
     "Braum": {
       "id": "Braum",
       "name": "Braum",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 610,
@@ -346,6 +365,7 @@
     "Briar": {
       "id": "Briar",
       "name": "Briar",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 625,
@@ -364,6 +384,7 @@
     "Caitlyn": {
       "id": "Caitlyn",
       "name": "Caitlyn",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 580,
@@ -382,6 +403,7 @@
     "Camille": {
       "id": "Camille",
       "name": "Camille",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 650,
@@ -400,6 +422,7 @@
     "Cassiopeia": {
       "id": "Cassiopeia",
       "name": "Cassiopeia",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 610,
@@ -418,6 +441,7 @@
     "Chogath": {
       "id": "Chogath",
       "name": "Cho'Gath",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 644,
@@ -436,6 +460,7 @@
     "Corki": {
       "id": "Corki",
       "name": "Corki",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 610,
@@ -454,6 +479,7 @@
     "Darius": {
       "id": "Darius",
       "name": "Darius",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 652,
@@ -472,6 +498,7 @@
     "Diana": {
       "id": "Diana",
       "name": "Diana",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 640,
@@ -490,6 +517,7 @@
     "Draven": {
       "id": "Draven",
       "name": "Draven",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 675,
@@ -508,6 +536,7 @@
     "DrMundo": {
       "id": "DrMundo",
       "name": "Dr. Mundo",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 640,
@@ -526,6 +555,7 @@
     "Ekko": {
       "id": "Ekko",
       "name": "Ekko",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 655,
@@ -544,6 +574,7 @@
     "Elise": {
       "id": "Elise",
       "name": "Elise",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 620,
@@ -562,6 +593,7 @@
     "Evelynn": {
       "id": "Evelynn",
       "name": "Evelynn",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 642,
@@ -580,6 +612,7 @@
     "Ezreal": {
       "id": "Ezreal",
       "name": "Ezreal",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 600,
@@ -598,6 +631,7 @@
     "Fiddlesticks": {
       "id": "Fiddlesticks",
       "name": "Fiddlesticks",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 650,
@@ -616,6 +650,7 @@
     "Fiora": {
       "id": "Fiora",
       "name": "Fiora",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 620,
@@ -634,6 +669,7 @@
     "Fizz": {
       "id": "Fizz",
       "name": "Fizz",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 640,
@@ -652,6 +688,7 @@
     "Galio": {
       "id": "Galio",
       "name": "Galio",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 600,
@@ -670,6 +707,7 @@
     "Gangplank": {
       "id": "Gangplank",
       "name": "Gangplank",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 630,
@@ -688,6 +726,7 @@
     "Garen": {
       "id": "Garen",
       "name": "Garen",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 690,
@@ -706,6 +745,7 @@
     "Gnar": {
       "id": "Gnar",
       "name": "Gnar",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 540,
@@ -724,6 +764,7 @@
     "Gragas": {
       "id": "Gragas",
       "name": "Gragas",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 640,
@@ -742,6 +783,7 @@
     "Graves": {
       "id": "Graves",
       "name": "Graves",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 625,
@@ -760,6 +802,7 @@
     "Gwen": {
       "id": "Gwen",
       "name": "Gwen",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 620,
@@ -778,6 +821,7 @@
     "Hecarim": {
       "id": "Hecarim",
       "name": "Hecarim",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 625,
@@ -796,6 +840,7 @@
     "Heimerdinger": {
       "id": "Heimerdinger",
       "name": "Heimerdinger",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 558,
@@ -814,6 +859,7 @@
     "Hwei": {
       "id": "Hwei",
       "name": "Hwei",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 580,
@@ -832,6 +878,7 @@
     "Illaoi": {
       "id": "Illaoi",
       "name": "Illaoi",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 656,
@@ -850,6 +897,7 @@
     "Irelia": {
       "id": "Irelia",
       "name": "Irelia",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 630,
@@ -868,6 +916,7 @@
     "Ivern": {
       "id": "Ivern",
       "name": "Ivern",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 630,
@@ -886,6 +935,7 @@
     "Janna": {
       "id": "Janna",
       "name": "Janna",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 570,
@@ -904,6 +954,7 @@
     "JarvanIV": {
       "id": "JarvanIV",
       "name": "Jarvan IV",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 640,
@@ -922,6 +973,7 @@
     "Jax": {
       "id": "Jax",
       "name": "Jax",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 650,
@@ -940,6 +992,7 @@
     "Jayce": {
       "id": "Jayce",
       "name": "Jayce",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 590,
@@ -958,6 +1011,7 @@
     "Jhin": {
       "id": "Jhin",
       "name": "Jhin",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 655,
@@ -976,6 +1030,7 @@
     "Jinx": {
       "id": "Jinx",
       "name": "Jinx",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 610,
@@ -994,6 +1049,7 @@
     "Kaisa": {
       "id": "Kaisa",
       "name": "Kai'Sa",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 640,
@@ -1012,6 +1068,7 @@
     "Kalista": {
       "id": "Kalista",
       "name": "Kalista",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 560,
@@ -1030,6 +1087,7 @@
     "Karma": {
       "id": "Karma",
       "name": "Karma",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 630,
@@ -1048,6 +1106,7 @@
     "Karthus": {
       "id": "Karthus",
       "name": "Karthus",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 620,
@@ -1066,6 +1125,7 @@
     "Kassadin": {
       "id": "Kassadin",
       "name": "Kassadin",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 646,
@@ -1084,6 +1144,7 @@
     "Katarina": {
       "id": "Katarina",
       "name": "Katarina",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 672,
@@ -1102,6 +1163,7 @@
     "Kayle": {
       "id": "Kayle",
       "name": "Kayle",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 670,
@@ -1120,6 +1182,7 @@
     "Kayn": {
       "id": "Kayn",
       "name": "Kayn",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 655,
@@ -1138,6 +1201,7 @@
     "Kennen": {
       "id": "Kennen",
       "name": "Kennen",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 580,
@@ -1156,6 +1220,7 @@
     "Khazix": {
       "id": "Khazix",
       "name": "Kha'Zix",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 643,
@@ -1174,6 +1239,7 @@
     "Kindred": {
       "id": "Kindred",
       "name": "Kindred",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 595,
@@ -1192,6 +1258,7 @@
     "Kled": {
       "id": "Kled",
       "name": "Kled",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 410,
@@ -1210,6 +1277,7 @@
     "KogMaw": {
       "id": "KogMaw",
       "name": "Kog'Maw",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 635,
@@ -1228,6 +1296,7 @@
     "KSante": {
       "id": "KSante",
       "name": "K'Sante",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 625,
@@ -1246,6 +1315,7 @@
     "Leblanc": {
       "id": "Leblanc",
       "name": "LeBlanc",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 598,
@@ -1264,6 +1334,7 @@
     "LeeSin": {
       "id": "LeeSin",
       "name": "Lee Sin",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 645,
@@ -1282,6 +1353,7 @@
     "Leona": {
       "id": "Leona",
       "name": "Leona",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 646,
@@ -1300,6 +1372,7 @@
     "Lillia": {
       "id": "Lillia",
       "name": "Lillia",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 605,
@@ -1318,6 +1391,7 @@
     "Lissandra": {
       "id": "Lissandra",
       "name": "Lissandra",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 620,
@@ -1336,6 +1410,7 @@
     "Locke": {
       "id": "Locke",
       "name": "Locke",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 620,
@@ -1354,6 +1429,7 @@
     "Lucian": {
       "id": "Lucian",
       "name": "Lucian",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 641,
@@ -1372,6 +1448,7 @@
     "Lulu": {
       "id": "Lulu",
       "name": "Lulu",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 565,
@@ -1390,6 +1467,7 @@
     "Lux": {
       "id": "Lux",
       "name": "Lux",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 580,
@@ -1408,6 +1486,7 @@
     "Malphite": {
       "id": "Malphite",
       "name": "Malphite",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 665,
@@ -1426,6 +1505,7 @@
     "Malzahar": {
       "id": "Malzahar",
       "name": "Malzahar",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 580,
@@ -1444,6 +1524,7 @@
     "Maokai": {
       "id": "Maokai",
       "name": "Maokai",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 665,
@@ -1462,6 +1543,7 @@
     "MasterYi": {
       "id": "MasterYi",
       "name": "Master Yi",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 640,
@@ -1480,6 +1562,7 @@
     "Mel": {
       "id": "Mel",
       "name": "Mel",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 590,
@@ -1498,6 +1581,7 @@
     "Milio": {
       "id": "Milio",
       "name": "Milio",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 560,
@@ -1516,6 +1600,7 @@
     "MissFortune": {
       "id": "MissFortune",
       "name": "Miss Fortune",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 625,
@@ -1534,6 +1619,7 @@
     "MonkeyKing": {
       "id": "MonkeyKing",
       "name": "Wukong",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 610,
@@ -1552,6 +1638,7 @@
     "Mordekaiser": {
       "id": "Mordekaiser",
       "name": "Mordekaiser",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 645,
@@ -1570,6 +1657,7 @@
     "Morgana": {
       "id": "Morgana",
       "name": "Morgana",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 630,
@@ -1588,6 +1676,7 @@
     "Naafiri": {
       "id": "Naafiri",
       "name": "Naafiri",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 610,
@@ -1606,6 +1695,7 @@
     "Nami": {
       "id": "Nami",
       "name": "Nami",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 560,
@@ -1624,6 +1714,7 @@
     "Nasus": {
       "id": "Nasus",
       "name": "Nasus",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 650,
@@ -1642,6 +1733,7 @@
     "Nautilus": {
       "id": "Nautilus",
       "name": "Nautilus",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 646,
@@ -1660,6 +1752,7 @@
     "Neeko": {
       "id": "Neeko",
       "name": "Neeko",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 610,
@@ -1678,6 +1771,7 @@
     "Nidalee": {
       "id": "Nidalee",
       "name": "Nidalee",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 610,
@@ -1696,6 +1790,7 @@
     "Nilah": {
       "id": "Nilah",
       "name": "Nilah",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 570,
@@ -1714,6 +1809,7 @@
     "Nocturne": {
       "id": "Nocturne",
       "name": "Nocturne",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 640,
@@ -1732,6 +1828,7 @@
     "Nunu": {
       "id": "Nunu",
       "name": "Nunu & Willump",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 610,
@@ -1750,6 +1847,7 @@
     "Olaf": {
       "id": "Olaf",
       "name": "Olaf",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 645,
@@ -1768,6 +1866,7 @@
     "Orianna": {
       "id": "Orianna",
       "name": "Orianna",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 565,
@@ -1786,6 +1885,7 @@
     "Ornn": {
       "id": "Ornn",
       "name": "Ornn",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 660,
@@ -1804,6 +1904,7 @@
     "Pantheon": {
       "id": "Pantheon",
       "name": "Pantheon",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 650,
@@ -1822,6 +1923,7 @@
     "Poppy": {
       "id": "Poppy",
       "name": "Poppy",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 610,
@@ -1840,6 +1942,7 @@
     "Pyke": {
       "id": "Pyke",
       "name": "Pyke",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 670,
@@ -1858,6 +1961,7 @@
     "Qiyana": {
       "id": "Qiyana",
       "name": "Qiyana",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 590,
@@ -1876,6 +1980,7 @@
     "Quinn": {
       "id": "Quinn",
       "name": "Quinn",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 565,
@@ -1894,6 +1999,7 @@
     "Rakan": {
       "id": "Rakan",
       "name": "Rakan",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 610,
@@ -1912,6 +2018,7 @@
     "Rammus": {
       "id": "Rammus",
       "name": "Rammus",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 645,
@@ -1930,6 +2037,7 @@
     "RekSai": {
       "id": "RekSai",
       "name": "Rek'Sai",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 600,
@@ -1948,6 +2056,7 @@
     "Rell": {
       "id": "Rell",
       "name": "Rell",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 620,
@@ -1966,6 +2075,7 @@
     "Renata": {
       "id": "Renata",
       "name": "Renata Glasc",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 545,
@@ -1984,6 +2094,7 @@
     "Renekton": {
       "id": "Renekton",
       "name": "Renekton",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 660,
@@ -2002,6 +2113,7 @@
     "Rengar": {
       "id": "Rengar",
       "name": "Rengar",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 590,
@@ -2020,6 +2132,7 @@
     "Riven": {
       "id": "Riven",
       "name": "Riven",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 630,
@@ -2038,6 +2151,7 @@
     "Rumble": {
       "id": "Rumble",
       "name": "Rumble",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 640,
@@ -2056,6 +2170,7 @@
     "Ryze": {
       "id": "Ryze",
       "name": "Ryze",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 620,
@@ -2074,6 +2189,7 @@
     "Samira": {
       "id": "Samira",
       "name": "Samira",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 630,
@@ -2092,6 +2208,7 @@
     "Sejuani": {
       "id": "Sejuani",
       "name": "Sejuani",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 630,
@@ -2110,6 +2227,7 @@
     "Senna": {
       "id": "Senna",
       "name": "Senna",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 530,
@@ -2128,6 +2246,7 @@
     "Seraphine": {
       "id": "Seraphine",
       "name": "Seraphine",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 570,
@@ -2146,6 +2265,7 @@
     "Sett": {
       "id": "Sett",
       "name": "Sett",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 670,
@@ -2164,6 +2284,7 @@
     "Shaco": {
       "id": "Shaco",
       "name": "Shaco",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 630,
@@ -2182,6 +2303,7 @@
     "Shen": {
       "id": "Shen",
       "name": "Shen",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 610,
@@ -2200,6 +2322,7 @@
     "Shyvana": {
       "id": "Shyvana",
       "name": "Shyvana",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 625,
@@ -2218,6 +2341,7 @@
     "Singed": {
       "id": "Singed",
       "name": "Singed",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 650,
@@ -2236,6 +2360,7 @@
     "Sion": {
       "id": "Sion",
       "name": "Sion",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 655,
@@ -2254,6 +2379,7 @@
     "Sivir": {
       "id": "Sivir",
       "name": "Sivir",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 600,
@@ -2272,6 +2398,7 @@
     "Skarner": {
       "id": "Skarner",
       "name": "Skarner",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 630,
@@ -2290,6 +2417,7 @@
     "Smolder": {
       "id": "Smolder",
       "name": "Smolder",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 575,
@@ -2308,6 +2436,7 @@
     "Sona": {
       "id": "Sona",
       "name": "Sona",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 550,
@@ -2326,6 +2455,7 @@
     "Soraka": {
       "id": "Soraka",
       "name": "Soraka",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 605,
@@ -2344,6 +2474,7 @@
     "Swain": {
       "id": "Swain",
       "name": "Swain",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 595,
@@ -2362,6 +2493,7 @@
     "Sylas": {
       "id": "Sylas",
       "name": "Sylas",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 600,
@@ -2380,6 +2512,7 @@
     "Syndra": {
       "id": "Syndra",
       "name": "Syndra",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 583,
@@ -2398,6 +2531,7 @@
     "TahmKench": {
       "id": "TahmKench",
       "name": "Tahm Kench",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 640,
@@ -2416,6 +2550,7 @@
     "Taliyah": {
       "id": "Taliyah",
       "name": "Taliyah",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 550,
@@ -2434,6 +2569,7 @@
     "Talon": {
       "id": "Talon",
       "name": "Talon",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 658,
@@ -2452,6 +2588,7 @@
     "Taric": {
       "id": "Taric",
       "name": "Taric",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 645,
@@ -2470,6 +2607,7 @@
     "Teemo": {
       "id": "Teemo",
       "name": "Teemo",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 615,
@@ -2488,6 +2626,7 @@
     "Thresh": {
       "id": "Thresh",
       "name": "Thresh",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 620,
@@ -2506,6 +2645,7 @@
     "Tristana": {
       "id": "Tristana",
       "name": "Tristana",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 640,
@@ -2524,6 +2664,7 @@
     "Trundle": {
       "id": "Trundle",
       "name": "Trundle",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 650,
@@ -2542,6 +2683,7 @@
     "Tryndamere": {
       "id": "Tryndamere",
       "name": "Tryndamere",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 696,
@@ -2560,6 +2702,7 @@
     "TwistedFate": {
       "id": "TwistedFate",
       "name": "Twisted Fate",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 604,
@@ -2578,6 +2721,7 @@
     "Twitch": {
       "id": "Twitch",
       "name": "Twitch",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 630,
@@ -2596,6 +2740,7 @@
     "Udyr": {
       "id": "Udyr",
       "name": "Udyr",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 664,
@@ -2614,6 +2759,7 @@
     "Urgot": {
       "id": "Urgot",
       "name": "Urgot",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 655,
@@ -2632,6 +2778,7 @@
     "Varus": {
       "id": "Varus",
       "name": "Varus",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 600,
@@ -2650,6 +2797,7 @@
     "Vayne": {
       "id": "Vayne",
       "name": "Vayne",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 580,
@@ -2668,6 +2816,7 @@
     "Veigar": {
       "id": "Veigar",
       "name": "Veigar",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 580,
@@ -2686,6 +2835,7 @@
     "Velkoz": {
       "id": "Velkoz",
       "name": "Vel'Koz",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 590,
@@ -2704,6 +2854,7 @@
     "Vex": {
       "id": "Vex",
       "name": "Vex",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 590,
@@ -2722,6 +2873,7 @@
     "Vi": {
       "id": "Vi",
       "name": "Vi",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 655,
@@ -2740,6 +2892,7 @@
     "Viego": {
       "id": "Viego",
       "name": "Viego",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 630,
@@ -2758,6 +2911,7 @@
     "Viktor": {
       "id": "Viktor",
       "name": "Viktor",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 600,
@@ -2776,6 +2930,7 @@
     "Vladimir": {
       "id": "Vladimir",
       "name": "Vladimir",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 600,
@@ -2794,6 +2949,7 @@
     "Volibear": {
       "id": "Volibear",
       "name": "Volibear",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 650,
@@ -2812,6 +2968,7 @@
     "Warwick": {
       "id": "Warwick",
       "name": "Warwick",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 620,
@@ -2830,6 +2987,7 @@
     "Xayah": {
       "id": "Xayah",
       "name": "Xayah",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 630,
@@ -2848,6 +3006,7 @@
     "Xerath": {
       "id": "Xerath",
       "name": "Xerath",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 575,
@@ -2866,6 +3025,7 @@
     "XinZhao": {
       "id": "XinZhao",
       "name": "Xin Zhao",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 620,
@@ -2884,6 +3044,7 @@
     "Yasuo": {
       "id": "Yasuo",
       "name": "Yasuo",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 590,
@@ -2902,6 +3063,7 @@
     "Yone": {
       "id": "Yone",
       "name": "Yone",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 620,
@@ -2920,6 +3082,7 @@
     "Yorick": {
       "id": "Yorick",
       "name": "Yorick",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 650,
@@ -2938,6 +3101,7 @@
     "Yunara": {
       "id": "Yunara",
       "name": "Yunara",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 590,
@@ -2956,6 +3120,7 @@
     "Yuumi": {
       "id": "Yuumi",
       "name": "Yuumi",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 500,
@@ -2974,6 +3139,7 @@
     "Zaahen": {
       "id": "Zaahen",
       "name": "Zaahen",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 640,
@@ -2992,6 +3158,7 @@
     "Zac": {
       "id": "Zac",
       "name": "Zac",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 685,
@@ -3010,6 +3177,7 @@
     "Zed": {
       "id": "Zed",
       "name": "Zed",
+      "ranged": false,
       "stats": {
         "health": {
           "base": 654,
@@ -3028,6 +3196,7 @@
     "Zeri": {
       "id": "Zeri",
       "name": "Zeri",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 600,
@@ -3046,6 +3215,7 @@
     "Ziggs": {
       "id": "Ziggs",
       "name": "Ziggs",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 606,
@@ -3064,6 +3234,7 @@
     "Zilean": {
       "id": "Zilean",
       "name": "Zilean",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 574,
@@ -3082,6 +3253,7 @@
     "Zoe": {
       "id": "Zoe",
       "name": "Zoe",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 630,
@@ -3100,6 +3272,7 @@
     "Zyra": {
       "id": "Zyra",
       "name": "Zyra",
+      "ranged": true,
       "stats": {
         "health": {
           "base": 574,
