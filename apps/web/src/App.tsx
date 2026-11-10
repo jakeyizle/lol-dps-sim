@@ -7,6 +7,8 @@ import { BuildEditor } from "./ui/BuildEditor";
 import { BuildList } from "./ui/BuildList";
 import { useApp, usePatch } from "./ui/context";
 import { Providers } from "./ui/Providers";
+import { Results } from "./ui/Results";
+import { TargetEditor } from "./ui/TargetEditor";
 
 const defaultStore = createAppStore();
 
@@ -50,7 +52,11 @@ function Shell() {
       <div className="grid gap-8 md:grid-cols-[18rem_1fr]">
         <BuildList selected={build?.id} onSelect={setSelected} />
         {build ? (
-          <BuildEditor build={build} />
+          <div className="space-y-8">
+            <BuildEditor build={build} />
+            <TargetEditor />
+            <Results build={build} />
+          </div>
         ) : (
           <p className="text-neutral-600">Add a build to start.</p>
         )}
