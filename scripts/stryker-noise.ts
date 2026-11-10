@@ -31,6 +31,16 @@ const isLiteral = (type: string) =>
  */
 function reason(path: Path) {
   const parent = path.parentPath?.node;
+  // `list ?? []`: the default for an absent optional list. Tests cover absent and present
+  // lists; Stryker's ["Stryker was here"] only adds a junk element that every reader
+  // skips (optional hooks and fields), so these mutants are equivalent.
+  if (
+    path.node.type === "ArrayExpression" &&
+    (path.node as { elements?: unknown[] }).elements?.length === 0 &&
+    parent?.type === "LogicalExpression" &&
+    (parent as { operator?: string }).operator === "??"
+  )
+    return "empty default";
   if (isLiteral(path.node.type) && parent) {
     if (
       parent.type === "ObjectProperty" &&

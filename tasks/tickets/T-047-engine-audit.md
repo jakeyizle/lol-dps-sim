@@ -14,7 +14,7 @@ Depends on: T-046
 
 - Baseline (first full run, before any audit): 76.41% (2322 killed, 13 timeout, 580 survived, 141 no coverage of 3116).
 - Noise ignorer: effect/buff `id` and damage `source` labels (never read by logic), `at(…)` error labels, `RangeError` messages; the benchmark skips itself under instrumentation.
-- Done: core/calc, damage, effects, many, queue, rng, rotation, stats (98%+, remaining disabled with reasons).
+- Done: core/calc, damage, effects, many, queue, rng, rotation, stats (98%+, remaining disabled with reasons); core/sim 82% → 100% (redundant checks removed, edge-case tests in sim.edges.test.ts, boundaries and junk-element mutants disabled with reasons). Noise also ignores `?? []` defaults.
 - Left: core/sim.ts, champions/_, items/_, runes/*, target.ts, metrics.ts, build.ts, champions/index.ts (no coverage: KITS/DEFAULT_RUNES only used by web tests).
 
 ## Done when
