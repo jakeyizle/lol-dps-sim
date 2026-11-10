@@ -28,3 +28,23 @@ jobs:
           key: playwright-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
       - run: pnpm --filter @lol/web exec playwright install --with-deps chromium
       - run: pnpm test:e2e
+
+  # PLAN §8: every mutant on a changed engine line is killed or disabled with a reason.
+  mutation:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/setup
+      - run: pnpm mutate:changed --concurrency 3
+        env:
+          MUTATE_BASE: origin/${{ github.base_ref }}
+      - if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mutation-report
+          path: reports/mutation
+          retention-days: 7
