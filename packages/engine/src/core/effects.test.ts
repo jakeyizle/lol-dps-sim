@@ -164,7 +164,7 @@ describe("hooks", () => {
     const r = run(
       {
         abilities: [{ id: "Q", castTime: 0.5, cooldown: 100, cost: 0 }],
-        policy: (s) => (s.isReady("Q") ? "Q" : "attack"),
+        rotation: [{ action: "Q" }, { action: "attack" }],
         kit: [
           {
             id: "Kit",

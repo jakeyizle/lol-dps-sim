@@ -6,11 +6,11 @@ import {
   hastedCooldown,
   simulate,
   type BuffSpec,
-  type Policy,
-  type PolicyState,
   type SimAbility,
   type SimAttacker,
 } from "./sim";
+import type { EffectContext } from "./effects";
+import type { Rotation } from "./rotation";
 import { computeStats } from "./stats";
 
 /** Base AS 0.6, ratio 0.5, windup 20%; 300 mana, 50 mana per 5 s (10/s). */
@@ -36,8 +36,29 @@ const q = (over: Partial<SimAbility> = {}): SimAbility => ({
   ...over,
 });
 
-/** Q right after an attack when ready, otherwise attack. */
-const weave: Policy = (s) => (s.afterAttack && s.isReady("Q") ? "Q" : "attack");
+/** Q after an attack when usable, otherwise attack. */
+const weave: Rotation = [
+  { action: "Q", when: [{ kind: "afterAttack" }] },
+  { action: "attack" },
+];
+const qFirst: Rotation = [{ action: "Q" }, { action: "attack" }];
+
+/** Records mana and buff stacks at fight start, attack launches and cast ends. */
+function observer() {
+  const seen: { mana: number; haste: number }[] = [];
+  const record = (ctx: EffectContext) => {
+    seen.push({ mana: ctx.mana, haste: ctx.buffStacks("haste") });
+  };
+  return {
+    seen,
+    effect: {
+      id: "Observer",
+      init: record,
+      onAttackLaunch: record,
+      onAbilityCast: record,
+    },
+  };
+}
 
 const run = (over: Partial<SimAttacker>, maxDuration = 5) =>
   simulate({ ...base, ...over }, dummy, { maxDuration });
@@ -65,7 +86,7 @@ describe("abilities between attacks", () => {
     "are cast when a windup ends, without waiting for the attack timer",
     { tags: ["SIM-003"] },
     () => {
-      const r = run({ abilities: [q({ cooldown: 100 })], policy: weave });
+      const r = run({ abilities: [q({ cooldown: 100 })], rotation: weave });
       close(times(r, "Q"), [0.25]);
       close(times(r, "attack").slice(0, 2), [0, 1.25]);
     },
@@ -78,7 +99,7 @@ describe("abilities between attacks", () => {
       // Q at 0.25 with a 1.5 s cast: the attack timer is ready at 1.25 but must wait to 1.75
       const r = run({
         abilities: [q({ cooldown: 100, castTime: 1.5 })],
-        policy: weave,
+        rotation: weave,
       });
       close(times(r, "attack").slice(0, 2), [0, 1.75]);
     },
@@ -90,7 +111,7 @@ describe("abilities between attacks", () => {
     () => {
       const r = run({
         abilities: [q({ cooldown: 100, castTime: 0.1, resetsAttack: true })],
-        policy: weave,
+        rotation: weave,
       });
       close(times(r, "attack").slice(0, 2), [0, 0.35]);
     },
@@ -98,36 +119,30 @@ describe("abilities between attacks", () => {
 
   it("come back after their hasted cooldown", { tags: ["SIM-006"] }, () => {
     expect(hastedCooldown(10, 25)).toBe(8);
-    // Q at 0.25 is ready again at 8.25; the next windup end after that is 8.75
+    // Q at 0.25 is ready again at 8.25; nothing was done since the 7.75 windup end, so it is "after an attack"
     const r = run(
       {
         bonuses: [{ attackSpeed: 0.4, abilityHaste: 25 }],
         abilities: [q({ cooldown: 10 })],
-        policy: weave,
+        rotation: weave,
       },
       10,
     );
-    close(times(r, "Q"), [0.25, 8.75]);
+    close(times(r, "Q"), [0.25, 8.25]);
   });
 });
 
 describe("fight start", () => {
   it("has no short-term stacks", { tags: ["SIM-009"] }, () => {
-    const seen: PolicyState[] = [];
-    run({
-      abilities: [q({ buff: haste })],
-      policy: (s) => {
-        seen.push({ ...s });
-        return "attack";
-      },
-    });
-    expect(seen[0]?.buffStacks("haste")).toBe(0);
+    const { seen, effect } = observer();
+    run({ abilities: [q({ buff: haste })], kit: [effect] });
+    expect(seen[0]?.haste).toBe(0);
   });
 
   it("has every ability ready", { tags: ["SIM-018"] }, () => {
     const r = run({
       abilities: [q({ cooldown: 100 })],
-      policy: (s) => (s.isReady("Q") ? "Q" : "attack"),
+      rotation: qFirst,
     });
     close(times(r, "Q"), [0]);
   });
@@ -150,7 +165,7 @@ describe("buffs", () => {
     // Q at 0 grants +100% AS: 0.6 + 0.5 × 1.4 = 1.3
     const r = run({
       abilities: [q({ cooldown: 100, buff: { ...haste, duration: 100 } })],
-      policy: (s) => (s.isReady("Q") ? "Q" : "attack"),
+      rotation: qFirst,
     });
     close(times(r, "attack").slice(0, 2), [0, 1 / 1.3]);
   });
@@ -159,7 +174,7 @@ describe("buffs", () => {
     // 1.3 AS until 2 s, then back to 0.8: the attack started at 2/1.3 + … uses whichever AS is current
     const r = run({
       abilities: [q({ cooldown: 100, buff: haste })],
-      policy: (s) => (s.isReady("Q") ? "Q" : "attack"),
+      rotation: qFirst,
     });
     const attacks = times(r, "attack");
     const gaps = attacks.slice(1).map((t, i) => t - (attacks[i] ?? 0));
@@ -219,7 +234,7 @@ describe("damage over time", () => {
           },
         }),
       ],
-      policy: (s) => (s.isReady("Q") ? "Q" : "attack"),
+      rotation: qFirst,
     });
     close(
       r.trace
@@ -231,30 +246,23 @@ describe("damage over time", () => {
 });
 
 describe("mana", () => {
-  const manaSeen = (r: PolicyState[]) => r.map((s) => s.mana);
+  const manaSeen = (r: { mana: number }[]) => r.map((s) => s.mana);
 
   it("starts full", { tags: ["SIM-019"] }, () => {
-    const seen: PolicyState[] = [];
-    run({
-      policy: (s) => {
-        seen.push({ ...s });
-        return "attack";
-      },
-    });
+    const { seen, effect } = observer();
+    run({ kit: [effect] });
     expect(manaSeen(seen)[0]).toBe(300);
   });
 
   it("drops by an ability's cost", { tags: ["SIM-021"] }, () => {
-    const seen: PolicyState[] = [];
+    const { seen, effect } = observer();
     run({
       abilities: [q({ cooldown: 100, cost: 120 })],
-      policy: (s) => {
-        seen.push({ ...s });
-        return s.isReady("Q") ? "Q" : "attack";
-      },
+      rotation: qFirst,
+      kit: [effect],
     });
-    // second decision is at time 0 too (cast time 0): 300 − 120
-    expect(manaSeen(seen)[1]).toBe(180);
+    // init, then Q's cast ends at time 0 (cast time 0): 300 − 120
+    expect(manaSeen(seen).slice(0, 2)).toEqual([300, 180]);
   });
 
   it(
@@ -265,7 +273,7 @@ describe("mana", () => {
       const r = run(
         {
           abilities: [q({ cost: 200 })],
-          policy: () => "Q",
+          rotation: [{ action: "Q" }],
         },
         15,
       );
@@ -274,17 +282,15 @@ describe("mana", () => {
   );
 
   it("never exceeds max mana", { tags: ["SIM-020"] }, () => {
-    const seen: PolicyState[] = [];
-    run({
-      policy: (s) => {
-        seen.push({ ...s });
-        return "attack";
-      },
-    });
+    const { seen, effect } = observer();
+    run({ kit: [effect] });
+    expect(seen.length).toBeGreaterThan(2);
     expect(Math.max(...manaSeen(seen))).toBe(300);
   });
 });
 
 it("rejects unknown actions", () => {
-  expect(() => run({ policy: () => "nope" })).toThrow(/unknown action nope/);
+  expect(() => run({ rotation: [{ action: "nope" }] })).toThrow(
+    /unknown action nope/,
+  );
 });

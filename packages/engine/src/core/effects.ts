@@ -31,6 +31,8 @@ export interface EffectContext {
   stats: StatBlock;
   targetHealth: number;
   targetMaxHealth: number;
+  /** Current mana, after regeneration. */
+  mana: number;
   /** Deals damage now, through the full pipeline (and `onDamageDealt`). */
   deal: (instance: DamageInstance) => void;
   addBuff: (spec: BuffSpec, stacks?: number) => void;

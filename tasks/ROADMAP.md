@@ -58,7 +58,7 @@ Each milestone ends deployed, with its scenarios passing.
 ## M3 — Effects, rotation, Jinx (ITEM, ROT, JINX)
 
 - [x] Effect interface + hook order; shared helpers (every-Nth, stacking buff, empowered attack)
-- [ ] Rotation rules + conditions (incl. would-kill) → T-017
+- [x] Rotation rules + conditions (incl. would-kill)
 - [ ] Jinx kit + default rotation + accuracy fixtures → T-019
 - [ ] Build validation: 6 items, exclusive groups, one boots → T-018
 - [ ] Item effects, batch 1: Kraken, BotRK, IE, LDR, on-hit rules; decide MVP item list → T-020

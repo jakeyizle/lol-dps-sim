@@ -3,6 +3,7 @@ export * from "./core/effects";
 export * from "./core/many";
 export * from "./core/queue";
 export * from "./core/rng";
+export * from "./core/rotation";
 export * from "./core/sim";
 export * from "./core/stats";
 export * from "./required-values";
