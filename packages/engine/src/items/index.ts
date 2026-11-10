@@ -12,7 +12,6 @@ import {
 } from "./batch1";
 import {
   bonusEnergizeStacks,
-  ENERGIZED_ITEMS,
   energizeMeter,
   GUINSOOS_RAGEBLADE,
   guinsoosRageblade,
@@ -27,6 +26,29 @@ import {
   THE_COLLECTOR,
   theCollector,
 } from "./batch2";
+import {
+  ESSENCE_REAVER,
+  essenceReaver,
+  FIENDHUNTER_BOLTS,
+  fiendhunterBolts,
+  HEXOPTICS_C44,
+  hexopticsC44,
+  NASHORS_TOOTH,
+  nashorsTooth,
+  STORMRAZOR,
+  stormrazor,
+  WITS_END,
+  witsEnd,
+  YUN_TAL_WILDARROWS,
+  yunTalWildarrows,
+} from "./batch3";
+
+/** Items that use the Energized meter (ITEM-018). */
+const ENERGIZED_ITEMS: ReadonlySet<string> = new Set([
+  STATIKK_SHIV,
+  RAPID_FIRECANNON,
+  STORMRAZOR,
+]);
 
 const STAT_KEYS = [
   "attackDamage",
@@ -46,7 +68,12 @@ const STAT_KEYS = [
   "moveSpeed",
 ] as const satisfies readonly (keyof StatBonuses)[];
 
-type MakeEffect = (item: ItemData, owner: ChampionData) => Effect;
+/** `stacks`: the item's long-term stacks from the build (SIM-010), e.g. Yun Tal's crit. */
+type MakeEffect = (
+  item: ItemData,
+  owner: ChampionData,
+  stacks: number,
+) => Effect;
 
 /** Item ids with passives or actives the engine models. */
 const EFFECTS: Partial<Record<string, MakeEffect>> = {
@@ -59,6 +86,13 @@ const EFFECTS: Partial<Record<string, MakeEffect>> = {
   [STATIKK_SHIV]: statikkShiv,
   [RAPID_FIRECANNON]: rapidFirecannon,
   [TERMINUS]: terminus,
+  [NASHORS_TOOTH]: nashorsTooth,
+  [WITS_END]: witsEnd,
+  [YUN_TAL_WILDARROWS]: yunTalWildarrows,
+  [STORMRAZOR]: stormrazor,
+  [HEXOPTICS_C44]: hexopticsC44,
+  [FIENDHUNTER_BOLTS]: fiendhunterBolts,
+  [ESSENCE_REAVER]: essenceReaver,
 };
 
 /** The item's stats as engine bonuses (STAT-002). */
@@ -72,12 +106,15 @@ export function itemStats(item: ItemData): StatBonuses {
 }
 
 /** The item's modelled effects; none for stat-only items (ITEM-001). */
-export function itemEffects(item: ItemData, owner: ChampionData): Effect[] {
+export function itemEffects(
+  item: ItemData,
+  owner: ChampionData,
+  stacks = 0,
+): Effect[] {
   const make = EFFECTS[item.id];
-  return make ? [make(item, owner)] : [];
+  return make ? [make(item, owner, stacks)] : [];
 }
 
-/** Stats and effects of a build's items, in build order (SIM-024). */
 /**
  * Stats and effects of a build's items, in build order (SIM-024). Builds with Energized
  * items get one shared meter (ITEM-018), which needs the patch constants.
@@ -86,8 +123,12 @@ export function equip(
   items: readonly ItemData[],
   owner: ChampionData,
   constants?: GameConstants,
+  /** Long-term stacks by item id (SIM-010). */
+  stacks: Readonly<Record<string, number>> = {},
 ) {
-  const effects = items.flatMap((item) => itemEffects(item, owner));
+  const effects = items.flatMap((item) =>
+    itemEffects(item, owner, stacks[item.id] ?? 0),
+  );
   if (items.some((i) => ENERGIZED_ITEMS.has(i.id))) {
     if (!constants) throw new Error("Energized items need the patch constants");
     const bonus = items.reduce((sum, i) => sum + bonusEnergizeStacks(i), 0);

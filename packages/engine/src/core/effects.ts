@@ -36,6 +36,8 @@ export interface Attack {
   index: number;
   /** Multiplies the attack's damage (e.g. Jinx's rockets, JINX-002). */
   amountScale: number;
+  /** False when an effect has already folded crits into `amountScale` (ITEM-029). */
+  critable: boolean;
   /** A repeat of the attack's on-hit effects (Guinsoo's Phantom Hit, ITEM-016). */
   phantom?: boolean;
   /** Extra instances dealt when it lands, after the attack itself and before `onHit`. */

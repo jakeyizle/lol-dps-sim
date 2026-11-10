@@ -90,6 +90,8 @@ function statValue(stats: StatBlock, stat = 0, formula?: number) {
       return stats.abilityPower;
     case 2:
       return pick(stats.attackDamage);
+    case 8:
+      return stats.critChance;
     default:
       throw new Error(`unsupported calculation stat ${String(stat)}`);
   }
