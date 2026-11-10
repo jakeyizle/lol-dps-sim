@@ -1,5 +1,7 @@
 export * from "./core/damage";
+export * from "./core/many";
 export * from "./core/queue";
+export * from "./core/rng";
 export * from "./core/sim";
 export * from "./core/stats";
 export * from "./required-values";

@@ -10,6 +10,7 @@ import {
   type Shield,
 } from "./damage";
 import { EventQueue } from "./queue";
+import { seededRandom } from "./rng";
 import {
   computeStats,
   type GameConstants,
@@ -105,6 +106,9 @@ export interface SimTarget {
 export interface SimOptions {
   /** Seconds; default 20 (SIM-008). */
   maxDuration?: number;
+  /** `expected` averages crits (default, SIM-011); `rng` rolls them from `seed` (SIM-012). */
+  critMode?: "expected" | "rng";
+  seed?: number;
 }
 
 export interface TraceEntry {
@@ -133,7 +137,7 @@ export interface SimResult {
 
 type SimEvent =
   | { kind: "decide" }
-  | { kind: "attackLand"; slot: string }
+  | { kind: "attackLand"; slot: string; crit?: boolean }
   | { kind: "castEnd"; ability: SimAbility }
   | { kind: "buffExpire"; id: string; at: number }
   | { kind: "dotTick"; instance: DamageInstance };
@@ -143,8 +147,6 @@ interface ActiveBuff {
   stacks: number;
   expiresAt: number;
 }
-
-const EXPECTED: CritMode = { kind: "expected" };
 
 /**
  * Discrete-event fight: one attacker vs. one target that never fights back.
@@ -157,6 +159,8 @@ export function simulate(
   options: SimOptions = {},
 ): SimResult {
   const maxDuration = options.maxDuration ?? DEFAULT_MAX_DURATION;
+  const random =
+    options.critMode === "rng" ? seededRandom(options.seed ?? 1) : undefined;
   const { champion } = attacker;
   const policy = attacker.policy ?? autoAttackOnly;
   const slotName = attacker.attackSlot ?? "basic";
@@ -227,12 +231,14 @@ export function simulate(
   }
 
   /** Returns true when the target died. */
-  function deal(time: number, instance: DamageInstance) {
+  function deal(time: number, instance: DamageInstance, crit?: boolean) {
+    const critMode: CritMode =
+      crit === undefined ? { kind: "expected" } : { kind: "roll", crit };
     const damage = resolveDamage({
       instance,
       attacker: stats,
       defender: target.defender,
-      critMode: EXPECTED,
+      critMode,
     });
     const shielded = absorb(shields, damage.postMitigation, instance.type);
     shields = shielded.shields;
@@ -282,13 +288,19 @@ export function simulate(
     afterAttack = false;
 
     if (action === "attack") {
+      // Rolled at the start: a crit uses the crit attack's windup (SIM-022).
+      const crit = random ? random() < stats.critChance : undefined;
+      const name =
+        crit === true && slotName === "basic"
+          ? champion.attack.critSlot
+          : slotName;
       const windup = windupTime(
-        attackSlot,
+        champion.attack.slots[name] ?? attackSlot,
         champion.attack.baseAttackSpeed,
         stats.attackSpeed,
       );
       nextAttackAt = time + 1 / stats.attackSpeed;
-      queue.push(time + windup, { kind: "attackLand", slot: slotName });
+      queue.push(time + windup, { kind: "attackLand", slot: name, crit });
       return;
     }
 
@@ -325,14 +337,18 @@ export function simulate(
         decide(time);
         break;
       case "attackLand":
-        outcome = deal(time, {
-          type: "physical",
-          amount: stats.attackDamage.total,
-          source: "attack",
-          sourceId: event.slot,
-          autoAttack: true,
-          critable: true,
-        });
+        outcome = deal(
+          time,
+          {
+            type: "physical",
+            amount: stats.attackDamage.total,
+            source: "attack",
+            sourceId: event.slot,
+            autoAttack: true,
+            critable: true,
+          },
+          event.crit,
+        );
         afterAttack = true;
         queue.push(time, { kind: "decide" }); // SIM-003
         break;
