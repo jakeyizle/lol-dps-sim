@@ -4,12 +4,14 @@
   "type": "module",
   "packageManager": "pnpm@12.15.0",
   "scripts": {
+    "dev": "pnpm --filter @lol/web dev",
+    "build": "pnpm --filter @lol/web build",
     "lint": "eslint . && prettier --check .",
     "typecheck": "tsc --noEmit && pnpm -r --if-present typecheck",
     "test": "vitest run",
-    "format": "prettier --write .",
     "scenarios:check": "node scripts/check-scenarios.ts",
-    "data:update": "tsx packages/data-pipeline/src/cli.ts"
+    "data:update": "tsx packages/data-pipeline/src/cli.ts",
+    "format": "prettier --write ."
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -20,6 +22,8 @@
     "typescript": "~6.0.3",
     "typescript-eslint": "^8.72.0",
     "vitest": "~4.1.12",
-    "tsx": "^4.21.0"
+    "tsx": "^4.21.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.7"
   }
 }

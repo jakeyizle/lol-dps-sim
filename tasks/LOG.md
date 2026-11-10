@@ -11,3 +11,4 @@
 - T-008 | 2026-11-09 | constants (AS cap 3.003 per wiki, verify in Practice Tool), skill-order plans expanded to 18 levels, deep-merge value overrides
 - T-009 | 2026-11-09 | ability values per rank (values/cooldowns from rank 0, mana from rank 1, missing lists = 0), raw spell calculations, passive values
 - T-010 | 2026-11-09 | drift report vs newest older patch (checked 16.18 → 16.22), required-values check from `@lol/engine/required-values`; note: 16.12 game files lack `mrPerLevel`
+- T-003 | 2026-11-09 | React 19 + Vite 8 + Tailwind 4 shell, CI workflow (lint, typecheck, test, scenarios:check, build), GitHub Pages deploy on main
