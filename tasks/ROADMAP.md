@@ -57,7 +57,7 @@ Each milestone ends deployed, with its scenarios passing.
 
 ## M3 — Effects, rotation, Jinx (ITEM, ROT, JINX)
 
-- [ ] Effect interface + hook order; shared helpers (every-Nth, stacking buff, empowered attack) → T-016
+- [x] Effect interface + hook order; shared helpers (every-Nth, stacking buff, empowered attack)
 - [ ] Rotation rules + conditions (incl. would-kill) → T-017
 - [ ] Jinx kit + default rotation + accuracy fixtures → T-019
 - [ ] Build validation: 6 items, exclusive groups, one boots → T-018
