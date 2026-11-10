@@ -1,17 +1,60 @@
+import type { PatchData } from "@lol/data";
+import { useState } from "react";
+
 import { loadLatest } from "./data";
+import { createAppStore, type AppStore } from "./model/store";
+import { BuildEditor } from "./ui/BuildEditor";
+import { BuildList } from "./ui/BuildList";
+import { useApp, usePatch } from "./ui/context";
+import { Providers } from "./ui/Providers";
 
-const data = loadLatest();
+const defaultStore = createAppStore();
 
-export function App() {
+export function App(props: { store?: AppStore; patch?: PatchData }) {
+  const [patch] = useState(() => props.patch ?? loadLatest());
   return (
-    <main className="mx-auto max-w-3xl px-4 py-16">
-      <header className="flex items-baseline justify-between gap-4">
+    <Providers store={props.store ?? defaultStore} patch={patch}>
+      <Shell />
+    </Providers>
+  );
+}
+
+function Shell() {
+  const patch = usePatch();
+  const builds = useApp((s) => s.builds);
+  const gameTime = useApp((s) => s.settings.gameTime);
+  const setSettings = useApp((s) => s.setSettings);
+  const [selected, setSelected] = useState<string>();
+  const build = builds.find((b) => b.id === selected) ?? builds[0];
+
+  return (
+    <main className="mx-auto max-w-6xl px-4 py-8">
+      <header className="mb-6 flex flex-wrap items-baseline justify-between gap-4">
         <h1 className="text-3xl font-semibold">LoL DPS Sim</h1>
-        <span className="text-sm text-neutral-500">Patch {data.patch}</span>
+        <div className="flex items-center gap-4 text-sm text-neutral-600">
+          <label className="flex items-center gap-2">
+            Game time (min)
+            <input
+              type="number"
+              className="w-16 rounded border px-1"
+              min={0}
+              value={gameTime}
+              onChange={(e) => {
+                setSettings({ gameTime: Math.max(0, Number(e.target.value)) });
+              }}
+            />
+          </label>
+          <span>Patch {patch.patch}</span>
+        </div>
       </header>
-      <p className="mt-2 text-neutral-600">
-        Compare ADC item builds by simulating fights. Coming soon.
-      </p>
+      <div className="grid gap-8 md:grid-cols-[18rem_1fr]">
+        <BuildList selected={build?.id} onSelect={setSelected} />
+        {build ? (
+          <BuildEditor build={build} />
+        ) : (
+          <p className="text-neutral-600">Add a build to start.</p>
+        )}
+      </div>
     </main>
   );
 }
