@@ -26,6 +26,8 @@ export interface Build {
   rotation?: Rotation;
   /** Attacker health, fraction of max (BUILD-012). */
   healthFraction: number;
+  /** CMP-003: level per item-timeline step (index 0 = first item); missing = build level. */
+  timelineLevels?: number[];
 }
 
 export const MAX_LEVEL = 18;
@@ -111,3 +113,33 @@ export const totalGold = (
   build: Build,
   catalog: Readonly<Record<string, ItemData>>,
 ) => build.items.reduce((sum, id) => sum + (catalog[id]?.cost ?? 0), 0);
+
+/**
+ * CMP-002, CMP-003, CMP-010: the build with its first 1, 2, … k items, each step at its
+ * own level. A step at another level than the build uses the skill order's ranks.
+ */
+export function timelineSteps(build: Build): Build[] {
+  return build.items.map((_, i) => {
+    const level = build.timelineLevels?.[i] ?? build.level;
+    return {
+      ...build,
+      id: `${build.id}#${String(i + 1)}`,
+      items: build.items.slice(0, i + 1),
+      level,
+      ranks: level === build.level ? build.ranks : undefined,
+    };
+  });
+}
+
+/** CMP-003: sets one step's level (clamped 1–18). */
+export function withTimelineLevel(
+  build: Build,
+  step: number,
+  level: number,
+): Build {
+  const levels = build.items.map(
+    (_, i) => build.timelineLevels?.[i] ?? build.level,
+  );
+  levels[step] = Math.max(1, Math.min(MAX_LEVEL, Math.round(level)));
+  return { ...build, timelineLevels: levels };
+}

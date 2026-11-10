@@ -1,6 +1,8 @@
 import type { CurvePoint } from "@lol/engine";
 import { useState } from "react";
 
+import { ticks } from "./chart";
+
 const W = 640;
 const H = 240;
 const PAD = { left: 52, right: 96, top: 12, bottom: 28 };
@@ -11,15 +13,6 @@ export interface Series {
   id: string;
   label: string;
   curve: CurvePoint[];
-}
-
-function ticks(max: number, count = 4) {
-  if (max <= 0) return [0];
-  const raw = max / count;
-  const mag = 10 ** Math.floor(Math.log10(raw));
-  const step =
-    [1, 2, 2.5, 5, 10].map((m) => m * mag).find((s) => s >= raw) ?? raw;
-  return Array.from({ length: Math.floor(max / step) + 1 }, (_, i) => i * step);
 }
 
 const color = (i: number) =>
