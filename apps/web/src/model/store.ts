@@ -4,11 +4,19 @@ import { duplicateBuild, newBuild, type Build } from "./build";
 import { defaultSettings, type Settings } from "./simulation";
 import { defaultDummy, type Target, type TargetPreset } from "./target";
 
+export interface MatrixTarget {
+  id: string;
+  name: string;
+  target: Target;
+}
+
 export interface AppState {
   builds: Build[];
   /** Build ids shown in comparisons, in order. */
   compared: string[];
   target: Target;
+  /** CMP-004: the matrix's targets (snapshots), in column order. */
+  matrixTargets: MatrixTarget[];
   /** TGT-005: saved by the user (kept across reloads from M8, SAVE-001). */
   targetPresets: TargetPreset[];
   settings: Settings;
@@ -20,6 +28,8 @@ export interface AppState {
   /** CMP-001: include or leave out a build from the comparison. */
   toggleCompared: (id: string) => void;
   setTarget: (target: Target) => void;
+  addMatrixTarget: (name: string, target: Target) => void;
+  removeMatrixTarget: (id: string) => void;
   /** Saves the current target under `name`, replacing a preset of that name. */
   saveTargetPreset: (name: string) => void;
   setSettings: (settings: Partial<Settings>) => void;
@@ -33,6 +43,7 @@ export function createAppStore(
     compared: [],
     target: defaultDummy,
     targetPresets: [],
+    matrixTargets: [],
     settings: defaultSettings,
     addBuild: (champion) => {
       const build = newBuild(makeId(), champion);
@@ -78,6 +89,16 @@ export function createAppStore(
     },
     setTarget: (target) => {
       set({ target });
+    },
+    addMatrixTarget: (name, target) => {
+      set((s) => ({
+        matrixTargets: [...s.matrixTargets, { id: makeId(), name, target }],
+      }));
+    },
+    removeMatrixTarget: (id) => {
+      set((s) => ({
+        matrixTargets: s.matrixTargets.filter((t) => t.id !== id),
+      }));
     },
     saveTargetPreset: (name) => {
       set((s) => ({

@@ -9,7 +9,7 @@ import {
 } from "react";
 
 import type { Build } from "../model/build";
-import { toSimTarget } from "../model/target";
+import { toSimTarget, type Target } from "../model/target";
 import type { Job, Runner } from "../worker/runner";
 import { useApp, usePatch } from "./context";
 
@@ -25,25 +25,38 @@ export interface BuildAnalysis {
   stale: boolean;
 }
 
+/** One build against one target, keyed for the results map. */
+export interface JobEntry {
+  key: string;
+  build: Build;
+  target: Target;
+}
+
+export interface JobAnalysis extends BuildAnalysis {
+  key: string;
+}
+
 /**
  * CMP-006: recompute after edits settle (debounced); a result only counts as current
  * when it came from the exact inputs now shown, so older ones are marked stale.
- * Builds that didn't change keep their job and aren't recomputed.
+ * Entries whose build and target didn't change keep their job and aren't recomputed.
  */
-export function useAnalyses(builds: readonly Build[]): BuildAnalysis[] {
+export function useJobs(entries: readonly JobEntry[]): JobAnalysis[] {
   const ctx = useContext(RunnerContext);
-  if (!ctx) throw new Error("useAnalyses outside Providers");
+  if (!ctx) throw new Error("useJobs outside Providers");
   const { runner, debounceMs } = ctx;
-  const target = useApp((s) => s.target);
   const settings = useApp((s) => s.settings);
-  // Keep each unchanged build's job object (React's "previous render" pattern).
-  const [prev, setPrev] = useState<readonly Job[]>([]);
-  const next = builds.map(
-    (build) =>
+  // Keep each unchanged entry's job object (React's "previous render" pattern).
+  const [prev, setPrev] = useState<readonly (Job & { key: string })[]>([]);
+  const next = entries.map(
+    ({ key, build, target }) =>
       prev.find(
         (j) =>
-          j.build === build && j.target === target && j.settings === settings,
-      ) ?? { build, target, settings },
+          j.key === key &&
+          j.build === build &&
+          j.target === target &&
+          j.settings === settings,
+      ) ?? { key, build, target, settings },
   );
   const changed =
     next.length !== prev.length || next.some((j, i) => j !== prev[i]);
@@ -52,7 +65,7 @@ export function useAnalyses(builds: readonly Build[]): BuildAnalysis[] {
   const [done, setDone] = useState<
     ReadonlyMap<string, { job: Job; result: Analysis }>
   >(new Map());
-  // Jobs already sent; only a build's current job may set its result.
+  // Jobs already sent; only an entry's current job may set its result.
   const sent = useRef(new WeakSet<Job>());
   const current = useRef(new Set<Job>());
 
@@ -62,9 +75,10 @@ export function useAnalyses(builds: readonly Build[]): BuildAnalysis[] {
       for (const job of jobs) {
         if (sent.current.has(job)) continue;
         sent.current.add(job);
-        void runner(job).then((result) => {
+        const { key, ...plain } = job;
+        void runner(plain).then((result) => {
           if (!current.current.has(job)) return;
-          setDone((prev) => new Map(prev).set(job.build.id, { job, result }));
+          setDone((prev) => new Map(prev).set(key, { job, result }));
         });
       }
     }, debounceMs);
@@ -74,13 +88,20 @@ export function useAnalyses(builds: readonly Build[]): BuildAnalysis[] {
   }, [jobs, runner, debounceMs]);
 
   return jobs.map((job) => {
-    const entry = done.get(job.build.id);
+    const entry = done.get(job.key);
     return {
+      key: job.key,
       build: job.build,
       result: entry?.result,
       stale: entry?.job !== job,
     };
   });
+}
+
+/** Every build against the current target (see `useJobs`). */
+export function useAnalyses(builds: readonly Build[]): BuildAnalysis[] {
+  const target = useApp((s) => s.target);
+  return useJobs(builds.map((build) => ({ key: build.id, build, target })));
 }
 
 /** One build's analysis (see `useAnalyses`). */

@@ -9,6 +9,7 @@ import { BuildList } from "./ui/BuildList";
 import { useApp, usePatch } from "./ui/context";
 import { Providers } from "./ui/Providers";
 import { Compare } from "./ui/Compare";
+import { Matrix } from "./ui/Matrix";
 import { Results } from "./ui/Results";
 import { TargetEditor } from "./ui/TargetEditor";
 import { Timeline } from "./ui/Timeline";
@@ -85,6 +86,7 @@ function Shell() {
             <TargetEditor />
             {comparedBuilds.length > 1 && <Compare builds={comparedBuilds} />}
             <Timeline builds={comparedBuilds} />
+            {comparedBuilds.length > 0 && <Matrix builds={comparedBuilds} />}
             <Results build={build} />
           </div>
         ) : (
