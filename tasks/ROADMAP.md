@@ -44,7 +44,7 @@ Each milestone ends deployed, with its scenarios passing.
 - [x] Ability values; constants + skill-order overrides; overrides merge
 - [x] Items (incl. exclusive groups) and runes; DATA-001 complete
 - [x] Drift report + missing-key check
-- [ ] `packages/data` loaders (old `champion-data/` removed) → T-012
+- [x] `packages/data` loaders; remove old `champion-data/`
 - [ ] Scheduled `data:update` workflow opening a PR → T-013
 
 ## M2 — Engine core (STAT, DMG, SIM)
