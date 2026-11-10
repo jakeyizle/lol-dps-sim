@@ -63,7 +63,7 @@ describe("game files", { tags: ["DATA-010"] }, () => {
   it("fail the run when the patch folder doesn't exist", async () => {
     const { run, written } = setup(fakeFetch(["16.23.1"]));
     await expect(run()).rejects.toThrow(
-      /CommunityDragon has no folder for patch 16\.23/,
+      /CommunityDragon has no folder for game version 16\.23/,
     );
     expect(written.size).toBe(0);
   });
