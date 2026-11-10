@@ -1,6 +1,6 @@
 import type { AbilityKey, ChampionData } from "@lol/data";
 
-import { abilityRanks, evaluate } from "../core/calc";
+import { abilityRanks, evaluate, rankValues } from "../core/calc";
 import type { DamageInstance } from "../core/damage";
 import type {
   AttackMode,
@@ -136,12 +136,10 @@ export function jinx(
   if (ranks.W > 0) {
     const zap = (ctx: EffectContext): DamageInstance => ({
       type: "physical",
-      amount: evaluate(
-        W.calculations.TotalDamage,
-        W.values,
-        ranks.W,
-        ctx.stats,
-      ),
+      amount: evaluate(W.calculations.TotalDamage, {
+        stats: ctx.stats,
+        value: rankValues(W.values, ranks.W),
+      }),
       source: "ability",
       sourceId: "JinxW",
       ability: true,
@@ -175,7 +173,10 @@ export function jinx(
     const rocket = (ctx: EffectContext): DamageInstance => ({
       type: "physical",
       amount:
-        evaluate(R.calculations.DamageMax, R.values, ranks.R, ctx.stats) +
+        evaluate(R.calculations.DamageMax, {
+          stats: ctx.stats,
+          value: rankValues(R.values, ranks.R),
+        }) +
         percent * (ctx.targetMaxHealth - ctx.targetHealth),
       source: "ability",
       sourceId: "JinxR",

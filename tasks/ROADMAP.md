@@ -61,7 +61,7 @@ Each milestone ends deployed, with its scenarios passing.
 - [x] Rotation rules + conditions (incl. would-kill)
 - [x] Jinx kit + default rotation + accuracy fixtures
 - [x] Build validation: 6 items, exclusive groups, one boots
-- [ ] Item effects, batch 1: Kraken, BotRK, IE, LDR, on-hit rules; decide MVP item list → T-020
+- [x] Item effects, batch 1: Kraken, BotRK, IE, LDR, on-hit rules; decide MVP item list
 - [ ] Item effects, batch 2: The Collector, Guinsoo's, Navori, Statikk, RFC, Terminus → T-021
 - [ ] Item effects, batch 3: remaining MVP items (incl. Nashor's, Wit's End) → T-022
 

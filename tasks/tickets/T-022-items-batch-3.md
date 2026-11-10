@@ -2,7 +2,7 @@
 
 Status: ready
 Milestone: M3
-Scenarios: written in T-020 (remaining MVP items, incl. Nashor's Tooth, Wit's End)
+Scenarios: ITEM-022, ITEM-023, plus new scenarios for Yun Tal Wildarrows, Stormrazor, Hexoptics C44, Fiendhunter Bolts, Essence Reaver, Youmuu's Ghostblade
 Depends on: T-020
 
 ## Notes
