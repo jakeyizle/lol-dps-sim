@@ -10,7 +10,6 @@ export default defineConfig(
     "**/playwright-report/",
     ".stryker-tmp*/",
     "reports/",
-    "champion-data/",
     "packages/data/generated/",
   ]),
   eslint.configs.recommended,

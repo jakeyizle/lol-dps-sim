@@ -26,7 +26,7 @@ const withRecord = (id: FixtureChampion, patch: Record<string, unknown>) => {
   };
 };
 
-describe("real 16.22 champions", () => {
+describe("real patch 26.22 champions", () => {
   it.each(Object.keys(MANIFEST_IDS))("%s normalizes to valid data", (id) => {
     expect(() => normalize(id as FixtureChampion)).not.toThrow();
   });

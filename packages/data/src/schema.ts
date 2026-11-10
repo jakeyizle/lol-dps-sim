@@ -84,7 +84,7 @@ export const ChampionData = z
   });
 export type ChampionData = z.infer<typeof ChampionData>;
 
-/** `<major>.<minor>`, e.g. `16.22`. */
+/** Public patch `<major>.<minor>`, e.g. `26.22` (DATA-021). */
 export const Patch = z.string().regex(/^\d+\.\d+$/);
 
 export const ChampionsFile = z.object({

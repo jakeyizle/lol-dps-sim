@@ -33,10 +33,10 @@ describe("drift report", { tags: ["DATA-008"] }, () => {
 
   it("compares against the newest older patch", () => {
     expect(
-      previousPatch(["16.9", "16.21", "16.10", "16.22", "x"], "16.22"),
-    ).toBe("16.21");
-    expect(previousPatch(["16.22", "16.23"], "16.22")).toBeUndefined();
-    expect(previousPatch([], "16.22")).toBeUndefined();
+      previousPatch(["26.9", "26.21", "26.10", "26.22", "x"], "26.22"),
+    ).toBe("26.21");
+    expect(previousPatch(["26.22", "26.23"], "26.22")).toBeUndefined();
+    expect(previousPatch([], "26.22")).toBeUndefined();
   });
 
   it("is reported by a pipeline run, ignoring the patch field", async () => {
@@ -55,7 +55,7 @@ describe("drift report", { tags: ["DATA-008"] }, () => {
       });
     await run();
     const parse = (name: string) =>
-      JSON.parse(first.get(`16.22/${name}`) ?? "") as Record<string, unknown>;
+      JSON.parse(first.get(`26.22/${name}`) ?? "") as Record<string, unknown>;
     const champions = parse("champions.json") as {
       champions: { Jinx: { stats: { armor: { base: number } } } };
     };
@@ -63,14 +63,14 @@ describe("drift report", { tags: ["DATA-008"] }, () => {
 
     const result = await run(() =>
       Promise.resolve({
-        patch: "16.21",
+        patch: "26.21",
         files: {
-          "champions.json": { ...champions, patch: "16.21" },
-          "constants.json": { ...parse("constants.json"), patch: "16.21" },
+          "champions.json": { ...champions, patch: "26.21" },
+          "constants.json": { ...parse("constants.json"), patch: "26.21" },
         },
       }),
     );
-    expect(result.previousPatch).toBe("16.21");
+    expect(result.previousPatch).toBe("26.21");
     expect(result.drift).toEqual([
       "champions.json: changed champions.Jinx.stats.armor.base: 20 → 26",
     ]);

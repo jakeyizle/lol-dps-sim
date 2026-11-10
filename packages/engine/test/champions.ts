@@ -45,7 +45,7 @@ export const testChampion: ChampionData = {
   passive: { values: {}, calculations: {} },
 };
 
-/** Jinx's real 16.22 stats (game file), for checks against the wiki. */
+/** Jinx's real patch 26.22 stats (game file), for checks against the wiki. */
 export const jinx1622: ChampionData = {
   ...testChampion,
   id: "Jinx",

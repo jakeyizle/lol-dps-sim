@@ -15,7 +15,7 @@ export type FixtureChampion = keyof typeof MANIFEST_IDS;
 const read = (name: string): unknown =>
   JSON.parse(readFileSync(join(import.meta.dirname, "fixtures", name), "utf8"));
 
-/** Trimmed real 16.22 files: Data Dragon champion JSON and the game file's CharacterRecord. */
+/** Trimmed real game version 16.22 (patch 26.22) files: Data Dragon champion JSON and the game file's CharacterRecord. */
 export const fixture = (id: FixtureChampion) => ({
   ddragon: read(`${MANIFEST_IDS[id]}.ddragon.json`) as {
     data: Record<string, { stats: Record<string, number> }>;

@@ -1,4 +1,3 @@
 pnpm-lock.yaml
-champion-data/
 packages/data/generated/
 packages/data-pipeline/test/fixtures/

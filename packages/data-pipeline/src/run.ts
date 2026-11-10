@@ -62,7 +62,7 @@ async function fetchGameFile(
   } catch (e) {
     if (e instanceof HttpError && e.status === 404)
       throw new PipelineError([
-        `CommunityDragon has no folder for patch ${patch} (${e.url})`,
+        `CommunityDragon has no folder for game version ${patch} (${e.url})`,
       ]);
     throw e;
   }
@@ -86,7 +86,7 @@ export async function runPipeline(opts: {
   ) => Promise<{ patch: string; files: Record<string, unknown> } | undefined>;
 }) {
   const overrides = opts.overrides ?? defaultOverrides;
-  const { ddragonVersion, patch } = await resolvePatch(
+  const { ddragonVersion, gamePatch, patch } = await resolvePatch(
     opts.fetchJson,
     opts.patch,
   );
@@ -98,7 +98,7 @@ export async function runPipeline(opts: {
     const ddragon = await opts.fetchJson(
       ddragonChampionUrl(ddragonVersion, id),
     );
-    const bin = await fetchGameFile(opts.fetchJson, patch, gameName);
+    const bin = await fetchGameFile(opts.fetchJson, gamePatch, gameName);
     const plan = overrides.skillOrders[id];
     if (!plan) {
       problems.push(`${id}: no skill order in overrides/skill-orders.ts`);

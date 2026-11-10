@@ -34,18 +34,18 @@ describe("patch selection", () => {
       const { run, written } = setup();
       const result = await run();
       expect(result).toMatchObject({
-        patch: "16.22",
+        patch: "26.22",
         ddragonVersion: "16.22.1",
       });
       expect([...written.keys()]).toEqual([
-        "16.22/champions.json",
-        "16.22/constants.json",
+        "26.22/champions.json",
+        "26.22/constants.json",
       ]);
     },
   );
 
   it("can target a requested patch", { tags: ["DATA-002"] }, async () => {
-    const { run } = setup(fakeFetch(["16.23.1", "16.22.1"]), "16.22");
+    const { run } = setup(fakeFetch(["16.23.1", "16.22.1"]), "26.22");
     expect((await run()).ddragonVersion).toBe("16.22.1");
   });
 });
@@ -103,7 +103,7 @@ describe("overrides", () => {
     const { run, written } = setup(fakeFetch(), undefined, o);
     await run();
     return ChampionsFile.parse(
-      JSON.parse(written.get("16.22/champions.json") ?? ""),
+      JSON.parse(written.get("26.22/champions.json") ?? ""),
     ).champions[id];
   };
 
@@ -122,8 +122,8 @@ describe("overrides", () => {
     const { run, written } = setup();
     await run();
     expect(
-      Constants.parse(JSON.parse(written.get("16.22/constants.json") ?? "")),
-    ).toEqual({ patch: "16.22", ...defaultOverrides.constants });
+      Constants.parse(JSON.parse(written.get("26.22/constants.json") ?? "")),
+    ).toEqual({ patch: "26.22", ...defaultOverrides.constants });
   });
 
   it("add each champion's skill order", { tags: ["DATA-016"] }, async () => {
@@ -155,7 +155,7 @@ it("writes a valid champions file for every manifest champion", async () => {
   const { run, written } = setup();
   await run();
   const file = ChampionsFile.parse(
-    JSON.parse(written.get("16.22/champions.json") ?? ""),
+    JSON.parse(written.get("26.22/champions.json") ?? ""),
   );
   expect(Object.keys(file.champions)).toEqual(
     manifest.champions.map((c) => c.id),
