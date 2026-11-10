@@ -76,6 +76,10 @@ export interface EffectContext {
 
 export interface StatContext {
   level: number;
+  /** BUILD-012. */
+  attackerHealthFraction: number;
+  /** Minutes (BUILD-013). */
+  gameTime: number;
   buffStacks: (id: string) => number;
 }
 

@@ -1,4 +1,9 @@
-import { longTermStack, simulate, type LongTermStack } from "@lol/engine";
+import {
+  longTermStack,
+  runeLongTermStack,
+  simulate,
+  type LongTermStack,
+} from "@lol/engine";
 import { useMemo, useState } from "react";
 
 import {
@@ -49,9 +54,18 @@ export function BuildEditor(props: { build: Build }) {
     a.name.localeCompare(b.name),
   );
   // BUILD-007: inputs only for this build's long-term stacks.
-  const stackInputs = build.items
-    .map((id) => patch.items[id])
-    .flatMap((item) => (item ? [longTermStack(item, champion)] : []))
+  const page = build.runes;
+  const pageRunes = page
+    ? [page.keystone, ...page.primaryRunes, ...page.secondaryRunes]
+    : [];
+  const stackInputs = [
+    ...build.items
+      .map((id) => patch.items[id])
+      .flatMap((item) => (item ? [longTermStack(item, champion)] : [])),
+    ...pageRunes
+      .map((id) => patch.runes[String(id)])
+      .flatMap((rune) => (rune ? [runeLongTermStack(rune)] : [])),
+  ]
     .filter((s): s is LongTermStack => s !== undefined)
     .filter((s, i, all) => all.findIndex((x) => x.id === s.id) === i);
 

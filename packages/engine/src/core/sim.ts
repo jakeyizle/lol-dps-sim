@@ -236,6 +236,8 @@ export function simulate(
     );
     const statContext = {
       level: attacker.level,
+      attackerHealthFraction: attacker.healthFraction ?? 1,
+      gameTime: options.gameTime ?? 30,
       buffStacks: (id: string) => buffs.get(id)?.stacks ?? 0,
     };
     return computeStats({

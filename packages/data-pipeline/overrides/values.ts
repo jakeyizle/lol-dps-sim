@@ -19,6 +19,8 @@ export const valueOverrides: Record<string, Record<string, unknown>> = {
       AdaptiveADPerAP: 0.6,
     },
   },
+  // Absolute Focus: adaptive force gives 0.6 AD per AP (wiki: 1.8–18 AD or 3–30 AP).
+  "8233": { values: { AdaptiveADPerAP: 0.6 } },
   Jinx: {
     abilities: {
       Q: {

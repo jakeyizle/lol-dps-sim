@@ -75,3 +75,16 @@ it("shards change the stats panel", { tags: ["RUNE-002"] }, () => {
   });
   expect(as()).not.toBe(before);
 });
+
+it("Legend stacks are set in the editor", { tags: ["RUNE-009"] }, () => {
+  const store = setup();
+  const as = () =>
+    document.querySelector('[data-stat="Attack speed"]')?.textContent;
+  const before = as();
+  // the default Jinx page has Legend: Alacrity
+  fireEvent.change(screen.getByLabelText(/Legend: Alacrity stacks/), {
+    target: { value: "10" },
+  });
+  expect(store.getState().builds[0]?.stacks["9104"]).toBe(10);
+  expect(as()).not.toBe(before);
+});

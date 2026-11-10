@@ -56,11 +56,11 @@ Rune values come from patch data. Each rune's scenario is checked against the cu
 - **When** attacks and abilities hit
 - **Then** the rune gains stacks of adaptive force up to its max, as set by its values
 
-### RUNE-007: Cut Down amplifies damage against higher-health targets
+### RUNE-007: Cut Down amplifies damage against healthy targets
 
 - **Given** a build with Cut Down
-- **When** the target's max health exceeds the attacker's
-- **Then** damage is increased by the rune's amount for that health difference
+- **When** the target champion is above the rune's health threshold
+- **Then** damage is increased by the rune's amount
 
 ### RUNE-008: Coup de Grace amplifies damage against low-health targets
 
