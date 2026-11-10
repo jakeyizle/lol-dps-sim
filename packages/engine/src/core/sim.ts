@@ -11,6 +11,7 @@ import {
 } from "./damage";
 import type { Attack, BuffSpec, Effect, EffectContext } from "./effects";
 import { EventQueue } from "./queue";
+import { attackOnly, ruleConditionsTime, type Rotation } from "./rotation";
 import { seededRandom } from "./rng";
 import {
   computeStats,
@@ -58,21 +59,9 @@ export interface SimAbility {
   damage?: DamageInstance;
   buff?: BuffSpec;
   dot?: DotSpec;
+  /** Damage the cast would deal now, for `wouldKill` (ROT-013); defaults to `damage`. */
+  estimate?: (ctx: EffectContext) => DamageInstance[];
 }
-
-export interface PolicyState {
-  time: number;
-  /** The last action was an attack whose windup just ended (ROT-005, SIM-003). */
-  afterAttack: boolean;
-  mana: number;
-  isReady: (abilityId: string) => boolean;
-  buffStacks: (buffId: string) => number;
-}
-
-/** `attack`, or an ability id. Replaced by rotations in M3. */
-export type Policy = (state: PolicyState) => string;
-
-export const autoAttackOnly: Policy = () => "attack";
 
 export interface SimAttacker {
   champion: ChampionData;
@@ -85,7 +74,8 @@ export interface SimAttacker {
   abilities?: readonly SimAbility[];
   /** Long-term stacks from the build (SIM-010). */
   initialBuffs?: readonly { spec: BuffSpec; stacks: number }[];
-  policy?: Policy;
+  /** Default: attack only. */
+  rotation?: Rotation;
   /** Effects run kit → items → runes (SIM-024). */
   kit?: readonly Effect[];
   /** In build order. */
@@ -164,12 +154,15 @@ export function simulate(
   const random =
     options.critMode === "rng" ? seededRandom(options.seed ?? 1) : undefined;
   const { champion } = attacker;
-  const policy = attacker.policy ?? autoAttackOnly;
+  const rotation = attacker.rotation ?? attackOnly;
   const slotName = attacker.attackSlot ?? "basic";
   const slot = champion.attack.slots[slotName];
   if (!slot) throw new Error(`${champion.id} has no attack slot ${slotName}`);
   const attackSlot: AttackSlot = slot;
   const abilities = new Map((attacker.abilities ?? []).map((a) => [a.id, a]));
+  for (const { action } of rotation)
+    if (action !== "attack" && !abilities.has(action))
+      throw new Error(`unknown action ${action}`);
   const effects = [
     ...(attacker.kit ?? []),
     ...(attacker.items ?? []),
@@ -186,6 +179,9 @@ export function simulate(
   let shields = target.shields ?? [];
   let nextAttackAt = 0;
   let afterAttack = false;
+  /** In a windup or cast; decisions wait for it to end. */
+  let busy = false;
+  let pendingWake = -1;
   let attackCount = 0;
   let outcome: "killed" | "executed" | undefined;
   const trace: TraceEntry[] = [];
@@ -260,6 +256,9 @@ export function simulate(
         return health;
       },
       targetMaxHealth: target.maxHealth,
+      get mana() {
+        return manaAt(time);
+      },
       deal: (instance) => {
         deal(time, instance);
       },
@@ -276,12 +275,12 @@ export function simulate(
     };
   }
 
-  /** Sets `outcome` when the target dies; damage after that is ignored. */
-  function deal(time: number, instance: DamageInstance, crit?: boolean) {
-    if (outcome) return;
-    const critMode: CritMode =
-      crit === undefined ? { kind: "expected" } : { kind: "roll", crit };
-    const ctx = context(time);
+  /** Crit, amplifiers, resistances and target reductions; no shields. */
+  function mitigate(
+    ctx: EffectContext,
+    instance: DamageInstance,
+    critMode: CritMode,
+  ): ResolvedDamage {
     const amplifiers = effects.flatMap((e) => {
       const amp = e.modifyOutgoing?.(ctx, instance);
       return amp ? [amp] : [];
@@ -296,7 +295,43 @@ export function simulate(
     let postMitigation = resolved.postMitigation;
     for (const e of target.effects ?? [])
       postMitigation *= 1 - (e.modifyIncoming?.(ctx, instance) ?? 0);
-    const damage = { ...resolved, postMitigation };
+    return { ...resolved, postMitigation };
+  }
+
+  const attackInstance = (sourceId: string): DamageInstance => ({
+    type: "physical",
+    amount: stats.attackDamage.total,
+    source: "attack",
+    sourceId,
+    autoAttack: true,
+    critable: true,
+  });
+
+  /** ROT-013: expected-value damage of the action vs. health + shields. */
+  function wouldKill(action: string, time: number) {
+    const ctx = context(time);
+    const ability = abilities.get(action);
+    const instances =
+      action === "attack"
+        ? [attackInstance(slotName)]
+        : (ability?.estimate?.(ctx) ??
+          (ability?.damage ? [ability.damage] : []));
+    const damage = instances.reduce(
+      (sum, i) => sum + mitigate(ctx, i, { kind: "expected" }).postMitigation,
+      0,
+    );
+    const shielding = shields.reduce((sum, s) => sum + s.amount, 0);
+    return instances.length > 0 && damage >= health + shielding;
+  }
+
+  /** Sets `outcome` when the target dies; damage after that is ignored. */
+  function deal(time: number, instance: DamageInstance, crit?: boolean) {
+    if (outcome) return;
+    const critMode: CritMode =
+      crit === undefined ? { kind: "expected" } : { kind: "roll", crit };
+    const ctx = context(time);
+    const damage = mitigate(ctx, instance, critMode);
+    const { postMitigation } = damage;
 
     const shielded = absorb(shields, postMitigation, instance.type);
     shields = shielded.shields;
@@ -331,25 +366,55 @@ export function simulate(
     const cooldownAt = Math.max(time, readyAt.get(action) ?? 0);
     const missing = ability.cost - manaAt(time);
     if (missing <= 0) return cooldownAt;
-    if (stats.manaRegen <= 0) return Infinity;
+    if (stats.manaRegen <= 0 || ability.cost > stats.mana.total)
+      return Infinity;
     return Math.max(cooldownAt, time + missing / (stats.manaRegen / 5));
   }
 
+  /**
+   * ROT-001: take the first rule whose action is ready and whose conditions hold.
+   * ROT-002: otherwise wait until the earliest time one could be; state changes from
+   * other events also wake the attacker (`wake`).
+   */
   function decide(time: number) {
-    const action = policy({
+    if (busy) return;
+    const state = {
       time,
       afterAttack,
       mana: manaAt(time),
-      isReady: (id) => availableAt(id, time) <= time,
-      buffStacks: (id) => buffs.get(id)?.stacks ?? 0,
-    });
-    const at = availableAt(action, time);
-    if (at > time) {
-      if (Number.isFinite(at)) queue.push(at, { kind: "decide" });
-      return;
+      maxMana: stats.mana.total,
+      manaRegen: stats.manaRegen / 5,
+      targetHealth: health,
+      targetMaxHealth: target.maxHealth,
+      buffStacks: (id: string) => buffs.get(id)?.stacks ?? 0,
+      wouldKill: (action: string) => wouldKill(action, time),
+    };
+    let next = Infinity;
+    for (const rule of rotation) {
+      const conditionsAt = ruleConditionsTime(rule, state);
+      if (!Number.isFinite(conditionsAt)) continue;
+      const at = Math.max(conditionsAt, availableAt(rule.action, time));
+      if (at <= time) {
+        act(rule.action, time);
+        return;
+      }
+      next = Math.min(next, at);
     }
+    if (Number.isFinite(next) && next !== pendingWake) {
+      pendingWake = next;
+      queue.push(next, { kind: "decide" });
+    }
+  }
+
+  /** Re-decide after a state change if the attacker is waiting. */
+  function wake(time: number) {
+    if (!busy) queue.push(time, { kind: "decide" });
+  }
+
+  function act(action: string, time: number) {
     actions.push({ time, action });
     afterAttack = false;
+    busy = true;
 
     if (action === "attack") {
       // Rolled at the start: a crit uses the crit attack's windup (SIM-022).
@@ -411,23 +476,13 @@ export function simulate(
         break;
       case "attackLand": {
         const { attack } = event;
-        deal(
-          time,
-          {
-            type: "physical",
-            amount: stats.attackDamage.total,
-            source: "attack",
-            sourceId: attack.slot,
-            autoAttack: true,
-            critable: true,
-          },
-          attack.crit,
-        );
+        deal(time, attackInstance(attack.slot), attack.crit);
         for (const instance of attack.extra) deal(time, instance, attack.crit);
         // ITEM-008: on-hit effects run once per landed attack.
         const ctx = context(time);
         for (const e of effects) if (!outcome) e.onHit?.(ctx, attack);
         afterAttack = true;
+        busy = false;
         queue.push(time, { kind: "decide" }); // SIM-003
         break;
       }
@@ -447,19 +502,25 @@ export function simulate(
         const ctx = context(time);
         for (const e of effects)
           if (!outcome) e.onAbilityCast?.(ctx, ability.id);
+        busy = false;
         queue.push(time, { kind: "decide" }); // SIM-004: nothing before the cast ends
         break;
       }
       case "buffExpire": {
         const buff = buffs.get(event.id);
-        if (buff?.expiresAt === event.at) removeBuff(event.id, time);
+        if (buff?.expiresAt === event.at) {
+          removeBuff(event.id, time);
+          wake(time);
+        }
         break;
       }
       case "dotTick":
         deal(time, event.instance);
+        wake(time);
         break;
       case "callback":
         event.fn(context(time));
+        wake(time);
         break;
     }
 
