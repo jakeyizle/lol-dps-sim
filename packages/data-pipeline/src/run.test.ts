@@ -92,9 +92,12 @@ describe("invalid data", { tags: ["DATA-006"] }, () => {
 
     const error = await run().catch((e: unknown) => e);
     expect(error).toBeInstanceOf(PipelineError);
-    expect((error as PipelineError).problems).toEqual([
+    const { problems } = error as PipelineError;
+    expect(problems).toContainEqual(
       expect.stringMatching(/^Vayne: attack\.critMultiplier: /),
-    ]);
+    );
+    // (her kit's required values are then reported missing too)
+    expect(problems.every((p) => p.startsWith("Vayne: "))).toBe(true);
     expect(written.size).toBe(0);
   });
 });
@@ -117,7 +120,10 @@ describe("overrides", () => {
       overrides({
         values: {
           ...defaultOverrides.values,
-          Vayne: { attack: { attackSpeedRatio: 0.7 } },
+          Vayne: {
+            ...defaultOverrides.values.Vayne,
+            attack: { attackSpeedRatio: 0.7 },
+          },
         },
       }),
     );
