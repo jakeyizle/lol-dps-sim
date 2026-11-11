@@ -130,6 +130,7 @@ const MIGRATIONS: Record<number, (state: Record<string, unknown>) => unknown> =
   };
 
 function withTargetDefaults(target: unknown): unknown {
+  // Stryker disable next-line ConditionalExpression: a non-object target fails the schema either way
   if (!isRecord(target)) return target;
   return target.kind === "champion"
     ? { zhonyaBelow: DEFAULT_ZHONYA_BELOW, overrides: {}, ...target }
@@ -141,6 +142,7 @@ export function serialize(state: SavedState, patch: PatchData): string {
   const ids = new Set([
     ...state.builds.flatMap((b) => b.items),
     ...[state.target, ...state.matrixTargets.map((t) => t.target)].flatMap(
+      // Stryker disable next-line ConditionalExpression,ArrayDeclaration: ids without an item name are skipped
       (t) => (t.kind === "champion" ? t.items : []),
     ),
   ]);
@@ -229,6 +231,7 @@ export function loadSaved(
 ): Restored | undefined {
   let json: string | null;
   try {
+    // Stryker disable next-line OptionalChaining: without storage the TypeError is caught the same way
     json = storage?.getItem(STORAGE_KEY) ?? null;
   } catch {
     return undefined;
@@ -243,6 +246,7 @@ export function save(
   patch: PatchData,
 ) {
   try {
+    // Stryker disable next-line OptionalChaining: without storage the TypeError is caught the same way
     storage?.setItem(STORAGE_KEY, serialize(state, patch));
   } catch {
     // the app keeps working without storage
@@ -254,8 +258,9 @@ export function browserStorage(): Storage | undefined {
   try {
     return window.localStorage;
   } catch {
-    return undefined;
+    // blocked: run without storage
   }
+  return undefined;
 }
 
 /** SAVE-001: a store restored from `storage` that saves itself after changes settle. */

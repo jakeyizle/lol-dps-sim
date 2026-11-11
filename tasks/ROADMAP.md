@@ -105,7 +105,8 @@ Each milestone ends deployed, with its scenarios passing.
 
 - [x] Stryker on engine + `mutate:changed` PR job
 - [x] Audit: engine
-- [ ] Web project in mutation scope; audit: web → T-048
+- [x] Web project in mutation scope; audit: web
+- [ ] Investigate why mutants in `ui/useAnalysis.ts` (a React hook reached through rendered components) report Survived under Stryker though they fail the tests when applied by hand; then add it to the mutation scope
 
 ## M10 — Scenario fidelity (optional, PLAN §8)
 

@@ -85,6 +85,7 @@ export function firstPage(
 ): RunePage | undefined {
   const [primary, secondary] = trees;
   if (!primary || !secondary) return undefined;
+  // Stryker disable next-line OptionalChaining: firstPage only reads rows that exist
   const first = (row: readonly number[] | undefined) => row?.[0] ?? 0;
   return {
     primary: primary.id,
@@ -152,6 +153,7 @@ export function toSimTarget(
         (sum, i) => sum + (itemStats(i).attackDamage ?? 0),
         0,
       ),
+      // Stryker disable next-line LogicalOperator,OptionalChaining,BooleanLiteral: championTargetStats has already thrown for unknown champions
       ranged: patch.targets[target.champion]?.ranged ?? false,
       zhonyaBelow: target.zhonyaBelow,
     },
