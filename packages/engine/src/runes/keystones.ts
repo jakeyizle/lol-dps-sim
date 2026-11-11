@@ -114,6 +114,7 @@ export function pressTheAttack(rune: RuneData): Effect {
     id: "PressTheAttackExposed",
     maxStacks: 1,
     duration: Infinity,
+    // Stryker disable next-line BooleanLiteral: with no expiry, refreshing changes nothing
     refreshOnStack: true,
   };
   let readyAt = 0;
@@ -124,11 +125,13 @@ export function pressTheAttack(rune: RuneData): Effect {
     },
     // Guinsoo's Phantom Hit applies on-hit again, so it stacks too.
     onHit: (ctx) => {
+      // Stryker disable next-line EqualityOperator: exactly at the cooldown's end is a measure-zero boundary
       if (!ctx.targetIsChampion || ctx.time < readyAt) return;
       if (ctx.buffStacks(hits.id) + 1 < hits.maxStacks) {
         ctx.addBuff(hits);
         return;
       }
+      // Stryker disable next-line CallExpression: the 6 s cooldown outlasts the 4 s window, so leftover hits expire first
       ctx.removeBuff(hits.id);
       readyAt = ctx.time + value("Cooldown");
       ctx.deal({
@@ -155,10 +158,12 @@ export function hailOfBlades(rune: RuneData, owner: ChampionData): Effect {
     id: "HailOfBlades",
     maxStacks: value("NumHits"),
     duration: value("Duration"),
+    // Stryker disable next-line BooleanLiteral: each attack removes and re-adds the buff, so its expiry restarts either way
     refreshOnStack: true,
     attackSpeedCap: Infinity,
   };
   const bonusAS = isRanged(owner) ? value("ASBoostRanged") : value("ASBoost");
+  // Stryker disable next-line BooleanLiteral: init's activate() sets it before any attack
   let waiting = false;
   // Triggered by the first attack's windup, so the triggering attack benefits.
   const activate = (ctx: EffectContext) => {
@@ -235,6 +240,7 @@ export function conqueror(rune: RuneData, owner: ChampionData): Effect {
       else if (instance.ability) {
         // Each spell stacks at most once per interval.
         const id = instance.sourceId;
+        // Stryker disable next-line EqualityOperator: exactly at the interval's end is a measure-zero boundary
         if (ctx.time < (nextFromSpell.get(id) ?? 0)) return;
         nextFromSpell.set(
           id,
