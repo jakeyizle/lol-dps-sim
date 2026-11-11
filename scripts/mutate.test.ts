@@ -43,6 +43,13 @@ describe("isMutable", () => {
     expect(isMutable("packages/engine/test/champions.ts")).toBe(false);
     expect(isMutable("scripts/mutate.ts")).toBe(false);
   });
+
+  it("covers web logic, not components or its tests", () => {
+    expect(isMutable("apps/web/src/model/persist.ts")).toBe(true);
+    expect(isMutable("apps/web/src/ui/useAnalysis.ts")).toBe(false);
+    expect(isMutable("apps/web/src/ui/Matrix.tsx")).toBe(false);
+    expect(isMutable("apps/web/src/model/persist.test.ts")).toBe(false);
+  });
 });
 
 describe("changedRanges", () => {
