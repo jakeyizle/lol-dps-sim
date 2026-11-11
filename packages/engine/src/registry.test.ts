@@ -10,6 +10,7 @@ import { testChampion } from "../test/champions";
 import { simulate, type TraceEntry } from "./core/sim";
 import { equip, itemStats, longTermStack } from "./items";
 import { dpsWindows, effectiveHealth } from "./metrics";
+import { requiredValues } from "./required-values";
 import {
   pageProblem,
   runeEffects,
@@ -262,3 +263,32 @@ describe("runes", () => {
     },
   );
 });
+
+it(
+  "required values cover every kit, modelled item and rune",
+  { tags: ["DATA-007"] },
+  () => {
+    const ids = Object.keys(requiredValues);
+    for (const id of ["Jinx", "Caitlyn", "Ashe", "Kaisa", "Vayne"])
+      expect(ids).toContain(id);
+    // Kraken Slayer, Lethal Tempo, Cut Down, Randuin's Omen, Conditioning
+    for (const id of ["6672", "8008", "8017", "3143", "8429"])
+      expect(ids).toContain(id);
+    // and each names paths that exist in the 26.22 data
+    const entities: Record<string, unknown> = {
+      ...data.champions,
+      ...data.items,
+      ...data.runes,
+    };
+    for (const [id, paths] of Object.entries(requiredValues))
+      for (const path of paths) {
+        let node: unknown = entities[id];
+        for (const key of path.split("."))
+          node =
+            typeof node === "object" && node !== null
+              ? (node as Record<string, unknown>)[key]
+              : undefined;
+        expect(node, `${id} ${path}`).toBeDefined();
+      }
+  },
+);

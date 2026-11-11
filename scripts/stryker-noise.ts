@@ -22,7 +22,7 @@ interface Node {
  */
 const LABEL_KEYS = new Set(["id", "source", "onHit"]);
 /** Helpers whose last argument only names the value in an error message. */
-const ERROR_LABEL_CALLS = new Set(["at"]);
+const ERROR_LABEL_CALLS = new Set(["at", "rankAt"]);
 
 const isLiteral = (type: string) =>
   type === "StringLiteral" ||

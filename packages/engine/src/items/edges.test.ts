@@ -8,6 +8,7 @@ import runes from "../../../data/generated/26.22/runes.json";
 import targets from "../../../data/generated/26.22/targets.json";
 import { testChampion } from "../../test/champions";
 import { addItem } from "../build";
+import type { Effect } from "../core/effects";
 import { simulate } from "../core/sim";
 import { equip } from ".";
 
@@ -60,5 +61,72 @@ it(
       reason: "A build holds at most 6 items",
     });
     expect(addItem(["99999"], "3031", data.items).ok).toBe(true);
+  },
+);
+
+it(
+  "ranged Kraken Slayer counts attacks, not phantom hits",
+  { tags: ["ITEM-004"] },
+  () => {
+    const phantom: Effect = {
+      id: "Phantom",
+      onHit: (ctx, attack) => {
+        if (!attack.phantom) ctx.applyOnHit(attack, 0.05);
+      },
+    };
+    const { bonuses, effects } = equip(
+      [item("6672")],
+      testChampion,
+      data.constants,
+    );
+    const r = simulate(
+      {
+        champion: testChampion,
+        level: 1,
+        constants: data.constants,
+        bonuses,
+        items: [...effects, phantom],
+      },
+      { maxHealth: 1e6, defender: { armor: 0, magicResist: 0 } },
+      { maxDuration: 4 },
+    );
+    const basic = r.trace.filter((t) => t.damage.instance.sourceId === "basic");
+    const kraken = r.trace.filter(
+      (t) => t.damage.instance.sourceId === "KrakenSlayer",
+    );
+    expect(kraken[0]?.time).toBe(basic[2]?.time);
+  },
+);
+
+it(
+  "Guinsoo's phantom stacks refresh with each hit",
+  { tags: ["ITEM-016"] },
+  () => {
+    // slow attacks (2.2 s apart at full stacks, 3.3 s before): the two phantom stacks only last
+    // until the third hit if each hit refreshes them
+    const { bonuses, effects } = equip(
+      [item("3124")],
+      testChampion,
+      data.constants,
+    );
+    const r = simulate(
+      {
+        champion: testChampion,
+        level: 1,
+        constants: data.constants,
+        bonuses: [{ attackSpeed: -0.85 }, ...bonuses],
+        items: effects,
+      },
+      { maxHealth: 1e6, defender: { armor: 0, magicResist: 0 } },
+      { maxDuration: 30 },
+    );
+    const basics = r.trace.filter(
+      (t) => t.damage.instance.sourceId === "basic",
+    ).length;
+    const procs = r.trace.filter(
+      (t) => t.damage.instance.sourceId === "GuinsoosRageblade",
+    ).length;
+    // one proc per hit plus at least one phantom hit
+    expect(procs).toBeGreaterThan(basics);
   },
 );

@@ -36,6 +36,7 @@ export function krakenSlayer(item: ItemData, owner: ChampionData): Effect {
   const counter = everyNthAttack({
     id: "KrakenSlayer",
     n: value("AttackCount"),
+    // Stryker disable next-line StringLiteral: anything but "launch" counts hits
     at: ranged ? "launch" : "hit",
     duration: value("BuffDuration"),
     apply: (_ctx, attack) => {
