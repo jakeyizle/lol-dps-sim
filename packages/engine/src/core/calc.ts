@@ -84,6 +84,17 @@ export function rankValues(
   };
 }
 
+/** One rank's entry of a per-rank list (cooldowns, costs, values); rank is 1-based. */
+export function rankAt(
+  list: readonly number[] | undefined,
+  rank: number,
+  label: string,
+): number {
+  const v = list?.[rank - 1];
+  if (v === undefined) throw new Error(`no ${label} at rank ${String(rank)}`);
+  return v;
+}
+
 /** Looks up an item's or rune's values. */
 export function flatValues(values: Readonly<Record<string, number>>) {
   return (name: string) => {

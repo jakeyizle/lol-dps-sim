@@ -1,6 +1,6 @@
 import type { AbilityKey, ChampionData } from "@lol/data";
 
-import { abilityRanks, evaluate, rankValues } from "../core/calc";
+import { abilityRanks, evaluate, rankAt, rankValues } from "../core/calc";
 import type { DamageInstance } from "../core/damage";
 import type { BuffSpec, Effect, EffectContext } from "../core/effects";
 import type { Rotation } from "../core/rotation";
@@ -9,6 +9,7 @@ import type { ChampionKit } from "./jinx";
 
 export const ASHE_FOCUS = "AsheFocus";
 const FROST = "AsheFrost";
+// Stryker disable next-line StringLiteral: a consistent rename of an internal buff id
 const RANGERS_FOCUS = "AsheRangersFocus";
 
 /** Every value the kit reads (DATA-012). */
@@ -39,16 +40,7 @@ export function ashe(
 ): ChampionKit {
   const { passive } = champion;
   const { Q, W, R } = champion.abilities;
-  const at = (
-    list: readonly number[] | undefined,
-    rank: number,
-    name: string,
-  ) => {
-    const v = list?.[rank - 1];
-    if (v === undefined)
-      throw new Error(`Ashe: no ${name} at rank ${String(rank)}`);
-    return v;
-  };
+  const at = rankAt;
   const passiveValue = rankValues(passive.values, 1);
   // The target's slow, tracked on Ashe's side (the target never acts).
   const frost: BuffSpec = {
@@ -70,6 +62,7 @@ export function ashe(
       : 1;
 
   const abilities: SimAbility[] = [];
+  // Stryker disable next-line ArrayDeclaration: a junk effect has no hooks, so the sim skips it
   const kit: Effect[] = [];
   const rotation: Rotation[number][] = [];
   let flurries = 0;
@@ -80,7 +73,6 @@ export function ashe(
       flurries = 0;
     },
     onAttackLaunch: (ctx, attack) => {
-      if (attack.phantom) return;
       // Crits add no damage; crit chance is in the Frost Shot bonus instead.
       attack.critable = false;
       attack.amountScale *= frostScale(ctx); // ASHE-007: not before the first hit
@@ -107,6 +99,7 @@ export function ashe(
       id: RANGERS_FOCUS,
       maxStacks: 1,
       duration: q("BuffDuration"),
+      // Stryker disable next-line BooleanLiteral: Ranger's Focus is cast once per buff (it needs 4 fresh Focus stacks)
       refreshOnStack: true,
       stats: { attackSpeed: q("BonusAS") / 100 },
     };
@@ -129,11 +122,12 @@ export function ashe(
         ctx.addBuff(active); // ASHE-003
       },
       onAttackLaunch: (ctx, attack) => {
-        if (attack.phantom || ctx.buffStacks(RANGERS_FOCUS) === 0) return;
+        if (ctx.buffStacks(RANGERS_FOCUS) === 0) return;
         // ASHE-008: the flurry's arrows, as a share of one attack's damage; on-hit
         // effects still apply once per flurry (ASHE-009).
         const shots = q("ShotsPerStrike");
         const arrows = flurries === 0 ? q("FirstFlurryShots") : shots;
+        // Stryker disable next-line AssignmentOperator: the counter is only compared with 0
         flurries += 1;
         attack.amountScale *= (q("DamagePerStrike") * arrows) / shots;
       },

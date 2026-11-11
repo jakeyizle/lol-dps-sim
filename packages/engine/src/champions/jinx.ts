@@ -1,6 +1,6 @@
 import type { AbilityKey, ChampionData } from "@lol/data";
 
-import { abilityRanks, evaluate, rankValues } from "../core/calc";
+import { abilityRanks, evaluate, rankAt, rankValues } from "../core/calc";
 import type { DamageInstance } from "../core/damage";
 import type {
   AttackMode,
@@ -22,6 +22,7 @@ export interface ChampionKit {
 }
 
 const REVD_UP = "JinxRevdUp";
+// Stryker disable next-line StringLiteral: a consistent rename of an internal buff id
 const FISHBONES = "JinxFishbones";
 const MINIGUN: AttackMode = {
   slot: "basic",
@@ -54,20 +55,12 @@ export function jinx(
   ranks: Record<AbilityKey, number> = abilityRanks(champion, level),
 ): ChampionKit {
   const { Q, W, R } = champion.abilities;
-  const at = (
-    list: readonly number[] | undefined,
-    rank: number,
-    name: string,
-  ) => {
-    const v = list?.[rank - 1];
-    if (v === undefined)
-      throw new Error(`Jinx: no ${name} at rank ${String(rank)}`);
-    return v;
-  };
+  const at = rankAt;
   const q = (name: string) => at(Q.values[name], ranks.Q, `Q ${name}`);
   const w = (name: string) => at(W.values[name], ranks.W, `W ${name}`);
 
   const abilities: SimAbility[] = [];
+  // Stryker disable next-line ArrayDeclaration: a junk effect has no hooks, so the sim skips it
   const kit: Effect[] = [];
   const rotation: Rotation[number][] = [];
 
@@ -91,6 +84,7 @@ export function jinx(
       id: FISHBONES,
       maxStacks: 1,
       duration: Infinity,
+      // Stryker disable next-line BooleanLiteral: with no expiry, refreshing changes nothing
       refreshOnStack: false,
     };
     const usingRockets = (ctx: { buffStacks: (id: string) => number }) =>

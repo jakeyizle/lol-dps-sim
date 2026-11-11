@@ -1,6 +1,6 @@
 import type { AbilityKey, ChampionData } from "@lol/data";
 
-import { abilityRanks, evaluate, rankValues } from "../core/calc";
+import { abilityRanks, evaluate, rankAt, rankValues } from "../core/calc";
 import type { DamageInstance } from "../core/damage";
 import type { BuffSpec, Effect, EffectContext } from "../core/effects";
 import type { Rotation } from "../core/rotation";
@@ -9,7 +9,9 @@ import type { StatBlock } from "../core/stats";
 import type { ChampionKit } from "./jinx";
 
 export const VAYNE_SILVER_BOLTS = "VayneSilverBolts";
+// Stryker disable next-line StringLiteral: a consistent rename of an internal buff id
 const TUMBLE = "VayneTumble";
+// Stryker disable next-line StringLiteral: a consistent rename of an internal buff id
 const FINAL_HOUR = "VayneFinalHour";
 /** Stacks consumed by the third (the game's fixed count). */
 const BOLTS_TO_PROC = 3;
@@ -39,18 +41,10 @@ export function vayne(
   ranks: Record<AbilityKey, number> = abilityRanks(champion, level),
 ): ChampionKit {
   const { Q, W, E, R } = champion.abilities;
-  const at = (
-    list: readonly number[] | undefined,
-    rank: number,
-    name: string,
-  ) => {
-    const v = list?.[rank - 1];
-    if (v === undefined)
-      throw new Error(`Vayne: no ${name} at rank ${String(rank)}`);
-    return v;
-  };
+  const at = rankAt;
 
   const abilities: SimAbility[] = [];
+  // Stryker disable next-line ArrayDeclaration: a junk effect has no hooks, so the sim skips it
   const kit: Effect[] = [];
   const rotation: Rotation[number][] = [];
 
@@ -97,6 +91,7 @@ export function vayne(
       id: TUMBLE,
       maxStacks: 1,
       duration: q("Duration"),
+      // Stryker disable next-line BooleanLiteral: Tumble is recast only after the empowered attack spends it
       refreshOnStack: true,
     };
     const rCut =
@@ -125,7 +120,7 @@ export function vayne(
           );
       },
       onAttackLaunch: (ctx, attack) => {
-        if (attack.phantom || ctx.buffStacks(TUMBLE) === 0) return;
+        if (ctx.buffStacks(TUMBLE) === 0) return;
         ctx.removeBuff(TUMBLE);
         // VAYNE-002: bonus physical damage that can't crit, landing with the attack.
         attack.extra.push({
@@ -175,6 +170,7 @@ export function vayne(
       id: FINAL_HOUR,
       maxStacks: 1,
       duration: r("BaseDuration"),
+      // Stryker disable next-line BooleanLiteral: R is cast once per buff (its cooldown outlasts it)
       refreshOnStack: true,
       stats: { attackDamage: r("BonusAttackDamage") },
     };

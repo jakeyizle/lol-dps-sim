@@ -7,6 +7,7 @@ import {
   evaluate,
   flatValues,
   isRanged,
+  rankAt,
   rankValues,
   type CalcContext,
 } from "./calc";
@@ -156,6 +157,14 @@ describe("broken calculations fail loudly", () => {
     expect(() => rankValues({}, 1)("Y")).toThrow(/no value Y at rank 1/);
     expect(rankValues({ X: [1, 2] }, 2)("X")).toBe(2);
   });
+});
+
+it("rank lists are read by 1-based rank, failing loudly past the end", () => {
+  expect(rankAt([10, 20, 30], 2, "Q cooldown")).toBe(20);
+  expect(() => rankAt([10], 2, "Q cooldown")).toThrow(
+    /no Q cooldown at rank 2/,
+  );
+  expect(() => rankAt(undefined, 1, "W cost")).toThrow(/no W cost at rank 1/);
 });
 
 it("ability ranks follow the skill order up to the level", () => {

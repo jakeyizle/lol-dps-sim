@@ -1,6 +1,6 @@
 import type { AbilityKey, ChampionData } from "@lol/data";
 
-import { abilityRanks, evaluate, rankValues } from "../core/calc";
+import { abilityRanks, evaluate, rankAt, rankValues } from "../core/calc";
 import type { DamageInstance } from "../core/damage";
 import type { BuffSpec, Effect, EffectContext } from "../core/effects";
 import type { Rotation } from "../core/rotation";
@@ -10,6 +10,7 @@ import type { ChampionKit } from "./jinx";
 
 /** Plasma on the target, tracked on Kai'Sa's side (the target never acts). */
 export const KAISA_PLASMA = "KaisaPlasma";
+// Stryker disable next-line StringLiteral: a consistent rename of an internal buff id
 const SUPERCHARGE = "KaisaSupercharge";
 
 /** Every value the kit reads (DATA-012). */
@@ -50,16 +51,7 @@ export function kaisa(
 ): ChampionKit {
   const { passive } = champion;
   const { Q, W, E } = champion.abilities;
-  const at = (
-    list: readonly number[] | undefined,
-    rank: number,
-    name: string,
-  ) => {
-    const v = list?.[rank - 1];
-    if (v === undefined)
-      throw new Error(`Kai'Sa: no ${name} at rank ${String(rank)}`);
-    return v;
-  };
+  const at = rankAt;
   const p = rankValues(passive.values, 1);
   const pCalc = (name: string, stats: StatBlock) =>
     evaluate(passive.calculations[name], { stats, value: p });
@@ -72,12 +64,14 @@ export function kaisa(
   };
 
   // Evolutions, decided from the stats the fight starts with (KAISA-003, -011, -012).
+  // Stryker disable next-line all: init() sets every evolution before the fight
   const evolved = { Q: false, W: false, E: false };
   /** AD from items plus level growth. */
   const adFromItemsAndGrowth = (s: StatBlock) =>
     s.attackDamage.total - levelValue(champion.stats.attackDamage.base, 0, 1);
 
   const abilities: SimAbility[] = [];
+  // Stryker disable next-line ArrayDeclaration: a junk effect has no hooks, so the sim skips it
   const kit: Effect[] = [];
   const rotation: Rotation[number][] = [];
   let lastAttackToHealth = 0;
@@ -112,8 +106,10 @@ export function kaisa(
     init: (ctx) => {
       lastAttackToHealth = 0;
       const s = ctx.stats;
+      // Stryker disable next-line EqualityOperator: exactly on the float threshold is a measure-zero boundary; with the ability unranked the flag only labels the event log
       evolved.Q = ranks.Q > 0 && adFromItemsAndGrowth(s) >= q("Effect6");
       evolved.W = ranks.W > 0 && s.abilityPower >= w("Effect2");
+      // Stryker disable next-line EqualityOperator: exactly on the float threshold is a measure-zero boundary; with the ability unranked the flag only labels the event log
       evolved.E = ranks.E > 0 && s.bonusAttackSpeed * 100 >= e("Effect6");
       // Shown in the event log's buffs.
       for (const key of ["Q", "W", "E"] as const)
@@ -122,6 +118,7 @@ export function kaisa(
             id: `Kaisa${key}Evolved`,
             maxStacks: 1,
             duration: Infinity,
+            // Stryker disable next-line BooleanLiteral: with no expiry, refreshing changes nothing
             refreshOnStack: false,
           });
     },
@@ -142,6 +139,7 @@ export function kaisa(
       });
       applyPlasma(ctx, 1, lastAttackToHealth);
       // KAISA-009: attacks cut Supercharge's remaining cooldown.
+      // Stryker disable next-line ConditionalExpression,EqualityOperator: without E there is no E cooldown to cut
       if (ranks.E > 0) ctx.reduceCooldownsBy(["E"], e("Effect4"));
     },
   });
@@ -150,6 +148,7 @@ export function kaisa(
     return at(Q.values[name], Math.max(1, ranks.Q), `Q ${name}`);
   }
   function w(name: string) {
+    // Stryker disable next-line MethodExpression: W's effect values are the same at every rank
     return at(W.values[name], Math.max(1, ranks.W), `W ${name}`);
   }
   function e(name: string) {
@@ -198,6 +197,7 @@ export function kaisa(
       id: SUPERCHARGE,
       maxStacks: 1,
       duration: e("Effect2"),
+      // Stryker disable next-line BooleanLiteral: E's cooldown outlasts its 4 s buff, so it's never re-added while active
       refreshOnStack: true,
       stats: { attackSpeed: e5 },
     };

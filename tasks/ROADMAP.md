@@ -104,7 +104,7 @@ Each milestone ends deployed, with its scenarios passing.
 ## M9 — Mutation testing (PLAN §8)
 
 - [x] Stryker on engine + `mutate:changed` PR job
-- [ ] Audit: engine → T-047
+- [x] Audit: engine
 - [ ] Web project in mutation scope; audit: web → T-048
 
 ## M10 — Scenario fidelity (optional, PLAN §8)

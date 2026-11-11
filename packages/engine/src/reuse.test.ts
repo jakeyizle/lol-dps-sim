@@ -7,6 +7,7 @@ import items from "../../data/generated/26.22/items.json";
 import runes from "../../data/generated/26.22/runes.json";
 import targets from "../../data/generated/26.22/targets.json";
 import { testChampion } from "../test/champions";
+import { KITS } from "./champions";
 import type { Effect } from "./core/effects";
 import { simulate, type SimAbility } from "./core/sim";
 import { equip } from "./items";
@@ -96,5 +97,29 @@ it("keystones start every fight fresh", { tags: ["SIM-009"] }, () => {
     expect(effects.map((e) => e.id)).toHaveLength(1);
     const [first, second] = twice(effects);
     expect(second, String(keystone)).toEqual(first);
+  }
+});
+
+it("champion kits start every fight fresh", { tags: ["SIM-009"] }, () => {
+  for (const id of ["Jinx", "Caitlyn", "Ashe", "Kaisa", "Vayne"]) {
+    const champion = data.champions[id];
+    const make = KITS[id];
+    if (!champion || !make) throw new Error(id);
+    const kit = make(champion, 18);
+    const run = () =>
+      simulate(
+        {
+          champion,
+          level: 18,
+          constants: data.constants,
+          bonuses: [{ attackDamage: 60, abilityPower: 100 }],
+          abilities: kit.abilities,
+          kit: kit.kit,
+          rotation: kit.rotation,
+        },
+        { maxHealth: 1e9, defender: { armor: 50, magicResist: 50 } },
+        { maxDuration: 12 },
+      ).trace.map((t) => [t.time, t.damage.instance.sourceId, t.buffs.join()]);
+    expect(run(), id).toEqual(run());
   }
 });

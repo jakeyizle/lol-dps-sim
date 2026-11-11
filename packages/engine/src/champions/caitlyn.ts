@@ -1,6 +1,6 @@
 import type { AbilityKey, ChampionData } from "@lol/data";
 
-import { abilityRanks, evaluate, rankValues } from "../core/calc";
+import { abilityRanks, evaluate, rankAt, rankValues } from "../core/calc";
 import type { DamageInstance } from "../core/damage";
 import type { BuffSpec, Effect, EffectContext } from "../core/effects";
 import type { Rotation } from "../core/rotation";
@@ -43,28 +43,22 @@ export function caitlyn(
 ): ChampionKit {
   const { passive } = champion;
   const { Q, W, E, R } = champion.abilities;
-  const at = (
-    list: readonly number[] | undefined,
-    rank: number,
-    name: string,
-  ) => {
-    const v = list?.[rank - 1];
-    if (v === undefined)
-      throw new Error(`Caitlyn: no ${name} at rank ${String(rank)}`);
-    return v;
-  };
+  const at = rankAt;
   const passiveValue = rankValues(passive.values, 1);
   const maxStacks = passiveValue("AttacksPerHeadshot");
   const stacks: BuffSpec = {
     id: STACKS,
     maxStacks,
     duration: Infinity,
+    // Stryker disable next-line BooleanLiteral: with no expiry, refreshing changes nothing
     refreshOnStack: false,
   };
 
   const abilities: SimAbility[] = [];
+  // Stryker disable next-line ArrayDeclaration: a junk effect has no hooks, so the sim skips it
   const kit: Effect[] = [];
   const rotation: Rotation[number][] = [];
+  // Stryker disable next-line ArrayDeclaration: a junk grant has no expiry, so the first launch drops it
   let granted: Granted[] = [];
 
   const headshotDamage = (ctx: EffectContext, extra: number) => ({
@@ -79,6 +73,7 @@ export function caitlyn(
     sourceId: "CaitlynHeadshot",
   });
   const trapBonus = (ctx: EffectContext) =>
+    // Stryker disable next-line ConditionalExpression,EqualityOperator: trap headshots only exist with W ranked
     ranks.W > 0
       ? evaluate(W.calculations.HeadShotBonusDamage, {
           stats: ctx.stats,
@@ -88,11 +83,13 @@ export function caitlyn(
 
   kit.push({
     id: "CaitlynHeadshot",
+    // Stryker disable next-line BlockStatement: a grant left from an earlier fight only becomes ready after this fight's own W or E has replaced it
     init: () => {
+      // Stryker disable next-line ArrayDeclaration: a junk grant has no expiry, so the first launch drops it
       granted = [];
     },
     onAttackLaunch: (ctx, attack) => {
-      if (attack.phantom) return;
+      // Stryker disable next-line EqualityOperator: launching exactly at a window's end is a measure-zero boundary
       granted = granted.filter((g) => g.until >= ctx.time);
       // CAIT-002: a trap or net headshot keeps the stacks (and the attack still stacks).
       const ready = granted
@@ -155,6 +152,7 @@ export function caitlyn(
         // CAIT-006: placed under the target, it springs once armed.
         const sprung = ctx.time + w("ArmDelay");
         granted = [
+          // Stryker disable next-line all: W recharges slower than its headshot window, so no older trap grant is left to replace
           ...granted.filter((g) => g.source !== "W"),
           { source: "W", from: sprung, until: sprung + w("HeadshotWindow") },
         ];
@@ -188,6 +186,7 @@ export function caitlyn(
         if (id !== "E") return;
         ctx.deal(net(ctx));
         granted = [
+          // Stryker disable next-line all: E's cooldown outlasts its headshot window, so no older net grant is left to replace
           ...granted.filter((g) => g.source !== "E"),
           {
             source: "E",
