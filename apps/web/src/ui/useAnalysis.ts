@@ -47,6 +47,7 @@ export function useJobs(entries: readonly JobEntry[]): JobAnalysis[] {
   const { runner, debounceMs } = ctx;
   const settings = useApp((s) => s.settings);
   // Keep each unchanged entry's job object (React's "previous render" pattern).
+  // Stryker disable next-line ArrayDeclaration: no entry matches the start value, so the first render replaces it either way
   const [prev, setPrev] = useState<readonly (Job & { key: string })[]>([]);
   const next = entries.map(
     ({ key, build, target }) =>
@@ -111,12 +112,14 @@ export function useAnalysis(build: Build): {
 } {
   const builds = useMemo(() => [build], [build]);
   const [only] = useAnalyses(builds);
+  // Stryker disable next-line OptionalChaining,LogicalOperator,BooleanLiteral: useAnalyses returns one entry per build, so `only` is always set
   return { result: only?.result, stale: only?.stale ?? true };
 }
 
 /** The target's effective health, for the chart's reference line (CMP-009). */
 export function useEffectiveHealth() {
   const target = useApp((s) => s.target);
+  // Stryker disable next-line ArrowFunction: game time only changes resistances (Conditioning) today, which effective health doesn't count
   const gameTime = useApp((s) => s.settings.gameTime);
   const patch = usePatch();
   return useMemo(

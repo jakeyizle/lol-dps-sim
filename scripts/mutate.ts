@@ -4,8 +4,8 @@
 export const MUTATE = [
   "packages/engine/src/**/*.ts",
   // Web logic only; components are presentation, covered by component and E2E tests.
-  // ui/useAnalysis.ts is left out until its mutants activate under Stryker (T-048).
   "apps/web/src/model/**/*.ts",
+  "apps/web/src/ui/useAnalysis.ts",
   "!**/*.test.ts",
   "!**/*.d.ts",
 ];
@@ -13,6 +13,7 @@ export const MUTATE = [
 const INCLUDE = [
   /^packages\/engine\/src\/.*\.ts$/,
   /^apps\/web\/src\/model\/.*\.ts$/,
+  /^apps\/web\/src\/ui\/useAnalysis\.ts$/,
 ];
 const EXCLUDE = [/\.test\.tsx?$/, /\.d\.ts$/];
 
