@@ -3,11 +3,17 @@
 /** Globs Stryker mutates in a full (audit) run; `isMutable` is the same rule for diffs. */
 export const MUTATE = [
   "packages/engine/src/**/*.ts",
+  // Web logic only; components are presentation, covered by component and E2E tests.
+  // ui/useAnalysis.ts is left out until its mutants activate under Stryker (T-048).
+  "apps/web/src/model/**/*.ts",
   "!**/*.test.ts",
   "!**/*.d.ts",
 ];
 
-const INCLUDE = [/^packages\/engine\/src\/.*\.ts$/];
+const INCLUDE = [
+  /^packages\/engine\/src\/.*\.ts$/,
+  /^apps\/web\/src\/model\/.*\.ts$/,
+];
 const EXCLUDE = [/\.test\.tsx?$/, /\.d\.ts$/];
 
 export const isMutable = (file: string) =>
