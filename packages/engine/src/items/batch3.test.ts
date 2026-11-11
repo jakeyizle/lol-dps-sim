@@ -305,3 +305,219 @@ it(
     expect(amounts(r, "EssenceReaver")).toEqual([75, 75]);
   },
 );
+
+describe("batch 3 details", () => {
+  const r: SimAbility = { id: "R", castTime: 0, cooldown: 100, cost: 0 };
+
+  it("Flurry grants its attack speed", { tags: ["ITEM-025"] }, () => {
+    // +30% AS for 2 s from the first launch (0.6 + 0.5 × 0.7); gone by the third attack
+    const { seen, effect } = atLaunch((ctx) => ctx.stats.attackSpeed);
+    run([yunTal({ ASDuration: 2 })], {
+      extra: [effect],
+      sim: { maxDuration: 3 },
+    });
+    expect(round(seen.slice(0, 3))).toEqual([0.95, 0.95, 0.8]);
+  });
+
+  it(
+    "Flurry's cooldown: phantom hits don't cut it, rolled crits cut it more, expected crits by share",
+    { tags: ["ITEM-025"] },
+    () => {
+      const flurries = (opts: Parameters<typeof run>[1]) => {
+        const { seen, effect } = atLaunch((ctx) =>
+          ctx.buffStacks("YunTalFlurry"),
+        );
+        run([yunTal()], {
+          ...opts,
+          extra: [...(opts?.extra ?? []), effect],
+          sim: { maxDuration: 8, ...opts?.sim },
+        });
+        return seen;
+      };
+      // phantom hits (Guinsoo) don't count
+      const phantom: Effect = {
+        id: "Phantom",
+        onHit: (ctx, attack) => {
+          if (!attack.phantom) ctx.applyOnHit(attack, 0.05);
+        },
+      };
+      expect(flurries({ extra: [phantom] })).toEqual([1, 0, 0, 1, 0, 0, 1]);
+      // 50% expected crit with a 6 s cooldown and 3 s per crit: −2 per hit → again at 2.5 s
+      const share = atLaunch((ctx) => ctx.buffStacks("YunTalFlurry"));
+      run([yunTal({ Cooldown: 6, CritCDR: 3 })], {
+        bonus: { critChance: 0.5 },
+        extra: [share.effect],
+        sim: { maxDuration: 3 },
+      });
+      expect(share.seen).toEqual([1, 0, 1]);
+
+      // rolled: all non-crits cut 1 s, all crits 2 s
+      const all = (critChance: number) => {
+        const p = atLaunch((ctx) => ctx.buffStacks("YunTalFlurry"));
+        run([yunTal()], {
+          bonus: { critChance },
+          extra: [p.effect],
+          sim: { maxDuration: 8, critMode: "rng", seed: 1 },
+        });
+        return p.seen;
+      };
+      expect(all(0.0001)).toEqual([1, 0, 0, 1, 0, 0, 1]);
+      expect(all(0.9999)).toEqual([1, 0, 1, 0, 1, 0, 1]);
+
+      // rolled crits: each hit cuts 1 s, or 2 s when it crit (not the 1.5 s expected value)
+      const pattern = (
+        result: ReturnType<typeof run>,
+        cut: (crit: string) => number,
+      ) => {
+        const launches = result.actions
+          .filter((x) => x.action === "attack")
+          .map((x) => x.time);
+        const landed = hits(result, "basic");
+        let readyAt = 0;
+        return launches.map((t) => {
+          for (const h of landed.filter(
+            (x) => x.time <= t && x.time > t - 1.25,
+          ))
+            readyAt -= cut(h.damage.crit);
+          if (t < readyAt) return 0;
+          readyAt = t + 5;
+          return 1;
+        });
+      };
+      // a seed whose rolls give a different pattern than averaging would
+      for (let seed = 1; seed <= 50; seed++) {
+        const rolled = atLaunch((ctx) => ctx.buffStacks("YunTalFlurry"));
+        const result = run([yunTal()], {
+          bonus: { critChance: 0.5 },
+          extra: [rolled.effect],
+          sim: { maxDuration: 20, critMode: "rng", seed },
+        });
+        const expected = pattern(result, (c) => (c === "crit" ? 2 : 1));
+        if (
+          JSON.stringify(expected) ===
+          JSON.stringify(pattern(result, () => 1.5))
+        )
+          continue;
+        expect(rolled.seen).toEqual(expected);
+        return;
+      }
+      throw new Error("no seed separates rolled crits from their average");
+    },
+  );
+
+  it(
+    "Fiendhunter: only R triggers it, and not again within its cooldown",
+    { tags: ["ITEM-029"] },
+    () => {
+      const q: SimAbility = { id: "Q", castTime: 0, cooldown: 100, cost: 0 };
+      const charges = (abilities: SimAbility[], rotation: Rotation) => {
+        const { seen, effect } = atLaunch((ctx) =>
+          ctx.buffStacks("FiendhunterBarrage"),
+        );
+        run([fiendhunter], {
+          abilities,
+          rotation,
+          extra: [effect],
+          sim: { maxDuration: 9 },
+        });
+        return seen;
+      };
+      expect(
+        charges([q], [{ action: "Q" }, { action: "attack" }]).every(
+          (s) => s === 0,
+        ),
+      ).toBe(true);
+      // R every 5 s, but the item's 45 s cooldown allows one barrage
+      const twiceR = charges(
+        [{ ...r, cooldown: 5 }],
+        [{ action: "R" }, { action: "attack" }],
+      );
+      // the probe runs after the first charge is spent: 2, 1
+      expect(twiceR.filter((s) => s > 0)).toEqual([2, 1]);
+    },
+  );
+
+  it(
+    "Fiendhunter: rolled non-crits use the crit modifier; true damage follows the attack's scale",
+    { tags: ["ITEM-029"] },
+    () => {
+      const rolled = run([fiendhunter], {
+        abilities: [r],
+        rotation: [{ action: "R" }, { action: "attack" }],
+        bonus: { critChance: 0.0001 },
+        sim: { maxDuration: 1, critMode: "rng", seed: 1 },
+      });
+      // a rolled non-crit: 60 × (1 + 1 × 0.8)
+      expect(round(amounts(rolled, "basic").slice(0, 1))).toEqual([108]);
+
+      // a 2× attack (like a rocket) that crits: true damage is 15% of the doubled crit
+      const double: Effect = {
+        id: "Double",
+        onAttackLaunch: (_ctx, attack) => {
+          attack.amountScale = 2;
+        },
+      };
+      const { effects } = equip([fiendhunter], testChampion, constants);
+      const scaled = simulate(
+        {
+          champion: testChampion,
+          level: 1,
+          constants,
+          bonuses: [{ attackSpeed: 0.4, critChance: 1 }],
+          items: [double, ...effects],
+          abilities: [r],
+          rotation: [{ action: "R" }, { action: "attack" }],
+        },
+        { ...big, defender: { armor: 100, magicResist: 100 } },
+        { maxDuration: 1 },
+      );
+      const bolt = scaled.trace.find(
+        (t) => t.damage.instance.sourceId === "FiendhunterBolts",
+      );
+      // true damage ignores the 100 armor
+      expect(bolt?.damage.postMitigation).toBeCloseTo(0.15 * 120 * 2, 9);
+    },
+  );
+
+  it(
+    "Essence Reaver: physical Spellblade, charged by an ability for its window",
+    { tags: ["ITEM-030"] },
+    () => {
+      // attacks stop after the first and resume at 11.5; Q at 0.25 and 6.25
+      let n = 0;
+      const pause: Effect = {
+        id: "Pause",
+        onAttackLaunch: (ctx) => {
+          n += 1;
+          if (n !== 1) return;
+          ctx.setAttackMode({ slot: "basic", critSlot: "basic", cost: 1e9 });
+          ctx.schedule(11.5, (later) => {
+            later.setAttackMode({ slot: "basic", critSlot: "basic", cost: 0 });
+          });
+        },
+      };
+      const r2 = run([essenceReaver], {
+        extra: [pause],
+        abilities: [{ id: "Q", castTime: 0, cooldown: 6, cost: 0 }],
+        rotation: [{ action: "attack" }, { action: "Q" }],
+        target: { defender: { armor: 0, magicResist: 300 } },
+        sim: { maxDuration: 13 },
+      });
+      // the second Q refreshes the 10 s window past the 11.5 s attack
+      const blade = hits(r2, "EssenceReaver");
+      expect(blade.map((h) => h.time)).toEqual([11.75]);
+      expect(blade[0]?.damage.instance.type).toBe("physical");
+      expect(blade[0]?.damage.postMitigation).toBe(75);
+
+      // one Q at 0.25: its charge is gone by 11.5
+      n = 0;
+      const once = run([essenceReaver], {
+        extra: [pause],
+        abilities: [{ id: "Q", castTime: 0, cooldown: 100, cost: 0 }],
+        rotation: [{ action: "attack" }, { action: "Q" }],
+        sim: { maxDuration: 13 },
+      });
+      expect(hits(once, "EssenceReaver").map((h) => h.time)).toEqual([]);
+    },
+  );
+});

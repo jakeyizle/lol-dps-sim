@@ -1,7 +1,7 @@
 import type { ChampionData, ItemData } from "@lol/data";
 
 import { evaluate, flatValues, isRanged } from "../core/calc";
-import type { Attack, BuffSpec, Effect } from "../core/effects";
+import type { BuffSpec, Effect } from "../core/effects";
 import { isEnergized } from "./batch2";
 
 export const NASHORS_TOOTH = "3115";
@@ -78,6 +78,7 @@ export function witsEnd(item: ItemData): Effect {
       ctx.deal(
         magicOnHit(
           "WitsEnd",
+          // Stryker disable next-line ObjectLiteral: 26.22's formula is a constant, needing no stats
           evaluate(item.calculations.OnHitDamage, { stats: ctx.stats, value }),
         ),
       );
@@ -101,12 +102,14 @@ export function yunTalWildarrows(
     id: "YunTalStacks",
     maxStacks: Math.ceil(critMax / perStack),
     duration: Infinity,
+    // Stryker disable next-line BooleanLiteral: with no expiry, refreshing changes nothing
     refreshOnStack: false,
   };
   const flurry: BuffSpec = {
     id: "YunTalFlurry",
     maxStacks: 1,
     duration: value("ASDuration"),
+    // Stryker disable next-line BooleanLiteral: Flurry is added once per cooldown, never onto itself
     refreshOnStack: true,
     stats: { attackSpeed: value("ASMod") },
   };
@@ -115,6 +118,7 @@ export function yunTalWildarrows(
     id: "YunTalWildarrows",
     init: (ctx) => {
       readyAt = 0;
+      // Stryker disable next-line ConditionalExpression,EqualityOperator: adding 0 stacks changes nothing
       if (startingStacks > 0) ctx.addBuff(stacks, startingStacks);
     },
     modifyStats: (ctx) => ({
@@ -147,6 +151,7 @@ export function stormrazor(item: ItemData): Effect {
       ctx.deal(
         magicOnHit(
           "Stormrazor",
+          // Stryker disable next-line ObjectLiteral: 26.22's formula is a constant, needing no stats
           evaluate(item.calculations.TotalProcDamage, {
             stats: ctx.stats,
             value,
@@ -176,9 +181,9 @@ export function fiendhunterBolts(item: ItemData): Effect {
     id: "FiendhunterBarrage",
     maxStacks: value("NumberOfAttacks"),
     duration: value("Duration"),
+    // Stryker disable next-line BooleanLiteral: each charge spent removes and re-adds the buff, so its expiry restarts either way
     refreshOnStack: true,
   };
-  const empowered = new WeakSet<Attack>();
   let readyAt = 0;
   return {
     id: "FiendhunterBolts",
@@ -199,8 +204,8 @@ export function fiendhunterBolts(item: ItemData): Effect {
       if (left === 0) return;
       // The attack's own timer already used the bonus attack speed; spend one charge.
       ctx.removeBuff(barrage.id);
+      // Stryker disable next-line ConditionalExpression,EqualityOperator: a 0-stack barrage is the same as none
       if (left > 1) ctx.addBuff(barrage, left - 1);
-      empowered.add(attack);
 
       // Always crits: a would-be non-crit uses the crit modifier on bonus crit damage.
       const critDamage = ctx.stats.critDamage;
@@ -238,6 +243,7 @@ export function essenceReaver(item: ItemData): Effect {
       readyAt = 0;
     },
     onAbilityCast: (ctx) => {
+      // Stryker disable next-line EqualityOperator: exactly at the cooldown's end is a measure-zero boundary
       if (ctx.time >= readyAt) ctx.addBuff(charged);
     },
     onHit: (ctx, attack) => {

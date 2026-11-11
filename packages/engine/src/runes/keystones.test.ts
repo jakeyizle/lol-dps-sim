@@ -262,3 +262,161 @@ describe("Conqueror", { tags: ["RUNE-006"] }, () => {
     expect(seen.slice(0, 6)).toEqual([0, 3, 4, 5, 6, 9]);
   });
 });
+
+describe("keystone details", () => {
+  const pta = () => pressTheAttack(rune(PRESS_THE_ATTACK));
+  const hail = (c: ChampionData) => hailOfBlades(rune(HAIL_OF_BLADES), c);
+  const conq = (c: ChampionData) => conqueror(rune(CONQUEROR), c);
+
+  it(
+    "Press the Attack: magic for AP builds, champions only, then a cooldown",
+    { tags: ["RUNE-004"] },
+    () => {
+      const proc = (opts: Parameters<typeof run>[1]) =>
+        hits(run(pta, { maxDuration: 13, ...opts }), "PressTheAttack");
+      expect(
+        proc({ bonus: { abilityPower: 50 } })[0]?.damage.instance.type,
+      ).toBe("magic");
+      expect(proc({ target: { champion: false } })).toEqual([]);
+      // hits at 0.25, 1.5, 2.75 …: procs at 2.75; 6 s cooldown; three more hits from 9
+      expect(proc({}).map((p) => p.time)).toEqual([2.75, 11.5]);
+    },
+  );
+
+  it(
+    "Press the Attack: each hit refreshes the 4 s window",
+    { tags: ["RUNE-004"] },
+    () => {
+      // 0.35 AS: hits 2.86 s apart, the third 5.7 s after the first
+      const slow = hits(
+        run(pta, { bonus: { attackSpeed: -0.5 }, maxDuration: 8 }),
+        "PressTheAttack",
+      );
+      expect(slow).toHaveLength(1);
+    },
+  );
+
+  it(
+    "Hail of Blades: melee values, true damage, a 3 s window refreshed by attacks",
+    { tags: ["RUNE-005"] },
+    () => {
+      const { seen, effect } = atLaunch((ctx) => ctx.stats.attackSpeed);
+      run(hail, { champion: melee, extra: [effect], maxDuration: 1 });
+      // +90% melee: 0.6 + 0.5 × 1.3
+      expect(seen[0]).toBeCloseTo(1.25, 9);
+
+      const armored = hits(
+        run(hail, {
+          target: { defender: { armor: 100, magicResist: 100 } },
+          maxDuration: 3,
+        }),
+        "HailOfBlades",
+      );
+      expect(armored[0]?.damage.postMitigation).toBe(
+        armored[0]?.damage.preMitigation,
+      );
+
+      // 0.5 AS while boosted: attacks 2 s apart, the third 4 s after the first
+      const slow = atLaunch((ctx) => ctx.buffStacks("HailOfBlades"));
+      run(hail, {
+        bonus: { attackSpeed: -0.8 },
+        extra: [slow.effect],
+        maxDuration: 5,
+      });
+      expect(slow.seen.slice(0, 3)).toEqual([3, 2, 1]);
+    },
+  );
+
+  it(
+    "Hail of Blades: unspent stacks expire and the cooldown starts at the next attack",
+    { tags: ["RUNE-005"] },
+    () => {
+      // one attack, then none until 6 s; then attacks resume
+      let n = 0;
+      const pause: Effect = {
+        id: "Pause",
+        onAttackLaunch: (ctx) => {
+          n += 1;
+          if (n !== 1) return;
+          ctx.setAttackMode({ slot: "basic", critSlot: "basic", cost: 1e9 });
+          ctx.schedule(6, (later) => {
+            later.setAttackMode({ slot: "basic", critSlot: "basic", cost: 0 });
+          });
+        },
+      };
+      const { seen, effect } = atLaunch((ctx) => ctx.time);
+      const boosted = atLaunch((ctx) => ctx.buffStacks("HailOfBlades"));
+      run(hail, { extra: [pause, effect, boosted.effect], maxDuration: 20 });
+      // after the 6 s attack, 10 s of cooldown: boosted again from 16 s
+      const at = seen.map((t, i) => [
+        Math.round(t * 100) / 100,
+        boosted.seen[i],
+      ]);
+      expect(at[0]).toEqual([0, 3]);
+      expect(
+        at
+          .filter(([t, s]) => (s ?? 0) > 0 && (t ?? 0) > 0)
+          .every(([t]) => (t ?? 0) >= 16),
+      ).toBe(true);
+      expect(at.some(([t, s]) => (t ?? 0) >= 16 && s === 3)).toBe(true);
+      // one activation: three boosted attacks
+      expect(
+        at.filter(([t, s]) => (t ?? 0) >= 16 && (s ?? 0) > 0),
+      ).toHaveLength(3);
+    },
+  );
+
+  it(
+    "Conqueror: champions only, and no stacks from item procs",
+    { tags: ["RUNE-006"] },
+    () => {
+      const stacks = (opts: Parameters<typeof run>[1]) => {
+        const { seen, effect } = atLaunch((ctx) => ctx.buffStacks("Conqueror"));
+        run(conq, {
+          ...opts,
+          extra: [...(opts?.extra ?? []), effect],
+          maxDuration: 4,
+        });
+        return seen;
+      };
+      expect(
+        stacks({ target: { champion: false } }).every((s) => s === 0),
+      ).toBe(true);
+      const proc: Effect = {
+        id: "Proc",
+        onHit: (ctx) => {
+          ctx.deal({
+            type: "magic",
+            amount: 5,
+            source: "item",
+            sourceId: "Proc",
+          });
+        },
+      };
+      // ranged: 1 stack per attack only
+      expect(stacks({ extra: [proc] }).slice(0, 3)).toEqual([0, 1, 2]);
+    },
+  );
+});
+
+it(
+  "Hail of Blades' cooldown starts when its last stack is spent",
+  { tags: ["RUNE-005"] },
+  () => {
+    // +50% AS: 1.05 AS (1.35 boosted); the spent stack's 10 s ends just before a launch
+    const launches = atLaunch((ctx) => ctx.time);
+    const stacks = atLaunch((ctx) => ctx.buffStacks("HailOfBlades"));
+    run((c) => hailOfBlades(rune(HAIL_OF_BLADES), c), {
+      bonus: { attackSpeed: 0.5 },
+      extra: [launches.effect, stacks.effect],
+      maxDuration: 16,
+    });
+    const t = launches.seen;
+    const again = stacks.seen.findIndex((s, i) => i > 2 && s > 0);
+    expect(again).toBeGreaterThan(3);
+    expect((t[again] ?? 0) - (t[2] ?? 0)).toBeGreaterThanOrEqual(10);
+    expect((t[again] ?? 0) - (t[3] ?? 0)).toBeLessThan(10);
+    // one activation: three boosted attacks
+    expect(stacks.seen.slice(again).filter((s) => s > 0)).toEqual([3, 2, 1]);
+  },
+);
