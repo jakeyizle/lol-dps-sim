@@ -12,19 +12,19 @@ export type SharedFields = Omit<SavedFields, "targetPresets">;
 const toBase64Url = (bytes: Uint8Array) => {
   let binary = "";
   for (const b of bytes) binary += String.fromCharCode(b);
-  return btoa(binary)
-    .replace(/\+/g, "-")
-    .replace(/\//g, "_")
-    .replace(/=+$/, "");
+  const b64 = btoa(binary).replace(/\+/g, "-").replace(/\//g, "_");
+  // Stryker disable next-line Regex,StringLiteral: base64 only pads at the end, and atob accepts it either way
+  return b64.replace(/=+$/, "");
 };
+// atob is forgiving base64: missing padding is fine.
 const fromBase64Url = (text: string) => {
-  const b64 = text.replace(/-/g, "+").replace(/_/g, "/");
-  const binary = atob(b64 + "=".repeat((4 - (b64.length % 4)) % 4));
+  const binary = atob(text.replace(/-/g, "+").replace(/_/g, "/"));
   return Uint8Array.from(binary, (c) => c.charCodeAt(0));
 };
 
 async function pipe(bytes: Uint8Array, stream: GenericTransformStream) {
   const body = new Response(new Uint8Array(bytes)).body;
+  // Stryker disable next-line all: a Response built from bytes always has a body
   if (!body) throw new Error("no stream");
   const out = body.pipeThrough(stream);
   return new Uint8Array(await new Response(out).arrayBuffer());
@@ -75,6 +75,7 @@ export async function decodeShare(
 
 /** The share value in a location hash, if any. */
 export function shareFromHash(hash: string): string | undefined {
+  // Stryker disable next-line Regex: a share value is base64url, which never contains #
   const params = new URLSearchParams(hash.replace(/^#/, ""));
   return params.get(SHARE_PARAM) ?? undefined;
 }

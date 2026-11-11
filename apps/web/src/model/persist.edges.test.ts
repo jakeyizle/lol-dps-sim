@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 import { loadLatest } from "../data";
 import { newBuild } from "./build";
@@ -275,7 +275,13 @@ describe("storage", { tags: ["SAVE-001"] }, () => {
     const changes: ((
       s: ReturnType<ReturnType<typeof createPersistentStore>["getState"]>,
     ) => void)[] = [
-      (s) => s.addBuild("Jinx"),
+      // builds only, then compared only
+      (s) => {
+        s.renameBuild("b1", "Renamed");
+      },
+      (s) => {
+        s.toggleCompared("b1");
+      },
       (s) => {
         s.setTarget({ ...defaultDummy, armor: 2 });
       },
@@ -289,10 +295,16 @@ describe("storage", { tags: ["SAVE-001"] }, () => {
         s.saveTargetPreset("P");
       },
     ];
+    const saved = serialize(rich, patch);
     for (const change of changes) {
       let n = 0;
       const store = createPersistentStore(
-        { getItem: () => null, setItem: () => (n += 1) },
+        {
+          getItem: () => saved,
+          setItem: () => {
+            n += 1;
+          },
+        },
         patch,
         undefined,
         1,
@@ -302,4 +314,56 @@ describe("storage", { tags: ["SAVE-001"] }, () => {
       expect(n).toBe(1);
     }
   });
+
+  it("starts without notices when nothing was saved", () => {
+    const store = createPersistentStore(
+      { getItem: () => null, setItem: () => undefined },
+      patch,
+    );
+    expect(store.getState().notices).toEqual([]);
+  });
+
+  it("works when the browser blocks storage", () => {
+    const spy = vi
+      .spyOn(window, "localStorage", "get")
+      .mockImplementation(() => {
+        throw new Error("blocked");
+      });
+    expect(browserStorage()).toBeUndefined();
+    spy.mockRestore();
+  });
 });
+
+it(
+  "lists every removed item, and rejects state that isn't an object",
+  { tags: ["SAVE-006", "SAVE-002"] },
+  () => {
+    const r = restore(
+      JSON.stringify({
+        version: SCHEMA_VERSION,
+        patch: patch.patch,
+        itemNames: { "99998": "Old A" },
+        state: {
+          ...rich,
+          builds: [{ ...rich.builds[0], items: ["99998", "99999"] }],
+        },
+      }),
+      patch,
+    );
+    expect(r.ok && r.notices).toEqual([
+      `Cait: removed Old A, item 99999 (not in patch ${patch.patch}).`,
+    ]);
+    for (const state of [null, "x"])
+      expect(
+        restore(
+          JSON.stringify({
+            version: 1,
+            patch: patch.patch,
+            itemNames: {},
+            state,
+          }),
+          patch,
+        ),
+      ).toEqual({ ok: false, error: "Saved data couldn't be migrated." });
+  },
+);

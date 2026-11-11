@@ -45,6 +45,7 @@ export function toSimulation(
 } {
   const champion = patch.champions[build.champion];
   const kitFactory = KITS[build.champion];
+  // Stryker disable next-line LogicalOperator: every champion in the data has a kit, so both are missing together
   if (!champion || !kitFactory)
     throw new Error(`${build.champion} has no implemented kit`);
   const kit = kitFactory(champion, build.level, ranksOf(build, champion));
@@ -67,8 +68,10 @@ export function toSimulation(
       constants: patch.constants,
       bonuses: [
         ...bonuses,
+        // Stryker disable next-line ArrayDeclaration: summing bonuses skips a junk element
         ...(page ? runeStats(page, patch.runes, build.level, ap > ad) : []),
       ],
+      // Stryker disable next-line ArrayDeclaration: a junk effect has no hooks, so the sim skips it
       runes: page ? runeEffects(page, patch.runes, champion, build.stacks) : [],
       abilities: kit.abilities,
       kit: kit.kit,

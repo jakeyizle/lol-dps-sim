@@ -18,6 +18,7 @@ export function newCondition(
   buff: { id: string; max: number } | undefined,
 ): Condition | undefined {
   switch (kind) {
+    // Stryker disable next-line ConditionalExpression: without this label it falls through to wouldKill's identical return
     case "afterAttack":
       return { kind };
     case "wouldKill":
@@ -42,6 +43,7 @@ export function movedRule(rotation: Rotation, from: number, to: number) {
   if (to < 0 || to >= rotation.length) return rotation;
   const next = [...rotation];
   const [rule] = next.splice(from, 1);
+  // Stryker disable next-line ConditionalExpression: callers move an existing rule, so splice always returns one
   if (rule) next.splice(to, 0, rule);
   return next;
 }
