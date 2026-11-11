@@ -46,7 +46,8 @@ describe("isMutable", () => {
 
   it("covers web logic, not components or its tests", () => {
     expect(isMutable("apps/web/src/model/persist.ts")).toBe(true);
-    expect(isMutable("apps/web/src/ui/useAnalysis.ts")).toBe(false);
+    expect(isMutable("apps/web/src/ui/useAnalysis.ts")).toBe(true);
+    expect(isMutable("apps/web/src/ui/context.ts")).toBe(false);
     expect(isMutable("apps/web/src/ui/Matrix.tsx")).toBe(false);
     expect(isMutable("apps/web/src/model/persist.test.ts")).toBe(false);
   });
